@@ -4,6 +4,11 @@
 # include <sys/select.h>
 # include <sys/types.h>
 
+/*
+ * server constants
+ */
+# define	MAX_FD	256
+
 typedef struct timeval	t_tstmp;
 
 typedef struct		s_list
@@ -53,7 +58,7 @@ typedef struct		s_action
 	t_tstmp		time;
 }					t_action;
 
-typedef struct		s_global
+typedef struct		s_zappy
 {
 	int			***board;
 	int			board_size[2];
@@ -62,6 +67,6 @@ typedef struct		s_global
 	t_team		*teams;
 	t_list		*actions;
 	t_player	players[MAX_FD];
-}					t_global;
+}					t_zappy;
 
 #endif
