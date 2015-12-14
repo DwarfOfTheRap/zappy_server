@@ -2,7 +2,7 @@
 #include <string.h>
 #include "linked_lists.h"
 
-t_lst_head		*lst_init(t_lst_elem *first, t_lst_elem *last)
+t_lst_head	*lst_init(t_lst_elem *first, t_lst_elem *last)
 {
 	t_lst_head		*head;
 
@@ -13,7 +13,7 @@ t_lst_head		*lst_init(t_lst_elem *first, t_lst_elem *last)
 	return (head);
 }
 
-t_lst_elem		*lst_create(void *content, size_t content_size)
+t_lst_elem	*lst_create(void *content, size_t content_size)
 {
 	t_lst_elem		*new;
 
@@ -36,7 +36,7 @@ t_lst_elem		*lst_create(void *content, size_t content_size)
 	return (new);
 }
 
-void			lst_pushfront(t_lst_head *head, t_lst_elem *new)
+void		lst_pushfront(t_lst_head *head, t_lst_elem *new)
 {
 	if (head)
 	{
@@ -47,7 +47,7 @@ void			lst_pushfront(t_lst_head *head, t_lst_elem *new)
 	}
 }
 
-void			lst_pushback(t_lst_head *head, t_lst_elem *new)
+void		lst_pushback(t_lst_head *head, t_lst_elem *new)
 {
 	t_lst_elem		*cursor;
 
