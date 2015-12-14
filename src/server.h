@@ -3,21 +3,18 @@
 
 # include <sys/select.h>
 # include <sys/types.h>
+# include <sys/time.h>
 
 /*
  * server constants
  */
-# define	MAX_FD	256
+# define MAX_FD		256
 
 typedef struct timeval	t_tstmp;
 
-typedef struct		s_list
-{
-}					t_list;
-
 typedef struct		s_msg
 {
-	char		*content;	
+	char		*content;
 }					t_msg;
 
 typedef struct		s_server
