@@ -12,11 +12,6 @@
 
 typedef struct timeval	t_tstmp;
 
-typedef struct		s_msg
-{
-	char		*content;
-}					t_msg;
-
 typedef struct		s_server
 {
 	int			port;
