@@ -11,6 +11,11 @@
 
 typedef struct timeval	t_tstmp;
 
+typedef struct			s_list
+{
+	void		*content;
+}						t_list;
+
 typedef struct			s_msg
 {
 	char		*content;
@@ -81,10 +86,6 @@ typedef struct			s_main_arg
 	const char	**av;
 }						t_main_arg;
 
-/*
-** src/read_arguments.c
-*/
-int						read_arguments(int ac, const char **av, \
-	t_arguments *args);
+# include "headers.h"
 
 #endif

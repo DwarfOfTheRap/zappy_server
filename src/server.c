@@ -20,7 +20,6 @@ void	usage(void)
 int		main(int ac, const char **av)
 {
 	t_arguments	args;
-	t_zappy		game;
 
 	bzero(&args, sizeof(args));
 	if (ac <= 12 || read_arguments(ac, av, &args))

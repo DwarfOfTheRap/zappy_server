@@ -11,6 +11,7 @@ if (APPLE)
 include_directories(
     $ENV{HOME}/.brew/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../src
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
     )
 link_directories(
     $ENV{HOME}/.brew/lib
@@ -27,6 +28,13 @@ file(
     GLOB_RECURSE
     sources_files
     src/*
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/*
+    )
+
+list(
+    REMOVE_ITEM
+    sources_files
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/server.c
     )
 
 list(

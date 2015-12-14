@@ -30,3 +30,8 @@
 
 # Debug files
 *.dSYM/
+
+# CMake unwanted files
+CMakeCache.txt
+CMakeFiles
+*.cmake
