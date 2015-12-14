@@ -39,7 +39,7 @@ typedef struct		s_player
 	u_char		facing:2;
 	u_char		status:2;
 	u_char		level:4;
-	t_list		*msg;
+	t_lst_head	*msg;
 }					t_player;
 
 typedef struct		s_action
@@ -57,7 +57,7 @@ typedef struct		s_zappy
 	int			team_size;
 	int			tick;
 	t_team		*teams;
-	t_list		*actions;
+	t_lst_head	*actions;
 	t_player	players[MAX_FD];
 }					t_zappy;
 
