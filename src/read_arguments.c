@@ -1,0 +1,85 @@
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "server.h"
+
+int		z_error(char *str)
+{
+	printf("%s\n", str);
+	return (1);
+}
+
+int		get_opt(const char *str)
+{
+	int			j;
+	const char	arg[6][3] = {"-p", "-x", "-y", "-c", "-t", "-n"};
+
+	j = 0;
+	while (j < 6 && strcmp(arg[j], str))
+		++j;
+	return (j);
+}
+
+int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args)
+{
+	int		first;
+
+	++(*i);
+	first = *i;
+	while (*i < m_arg.ac && get_opt(m_arg.av[*i]) == 6)
+		++(*i);
+	if (*i == first)
+		return (z_error("No team's name given"));
+	if (!(args->teams = (t_team *)malloc(sizeof(t_team) * (*i - first + 2))))
+		return (z_error("Can't allocate memory"));
+	while (first < *i)
+	{
+		args->teams[first].name = strdup(m_arg.av[first]);
+		++first;
+	}
+	return (0);
+}
+
+int		get_opt_int(t_main_arg const m_arg, int *i, int arg, t_arguments *args)
+{
+	int			j;
+	const char	*str = m_arg.av[*i + 1];
+
+	j = 0;
+	while (str[j] && str[j] >= '0' && str[j] <= '9')
+		++j;
+	if (str[j] != 0)
+	{
+		printf("%s: invalid argument\n", str);
+		return (1);
+	}
+	*(&(args->port) + arg) = atoi(str);
+	*i += 2;
+	return (0);
+}
+
+int		read_arguments(int ac, const char **av, t_arguments *args)
+{
+	int					i;
+	int					ret;
+	int					error;
+	const t_main_arg	main = {ac, av};
+
+	i = 1;
+	error = 0;
+	while (i < ac)
+	{
+		ret = get_opt(av[i]);
+		if (ret < 5)
+			error += get_opt_int(main, &i, ret, args);
+		else if (ret == 5)
+			error += get_opt_string(main, &i, args);
+		else
+		{
+			printf("%s: unrecognised option\n", av[i]);
+			++error;
+			++i;
+		}
+	}
+	return (error);
+}
