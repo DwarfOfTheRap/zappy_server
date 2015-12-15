@@ -7,3 +7,6 @@ os:
   - osx
 notifications:
   slack: dwarfoftherap:cIctwvXXMVkBmwNLxAkA6Y2g
+env:
+  - ARCH=x86_64
+  - ARCH=i686

@@ -24,8 +24,8 @@ START_TEST(arg_get_opt_int_port_missing)
 {
 	int					i = 0;
 	t_arguments			args;
-	char				*av[5] = {"-p", "-n", "tutu", NULL};
-	const t_main_arg	dummy = {4, (const char**)av};
+	char				*av[4] = {"-p", "-n", "tutu", NULL};
+	const t_main_arg	dummy = {3, (const char**)av};
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(1, get_opt_int(dummy, &i, 0, &args));
@@ -78,8 +78,8 @@ START_TEST(arg_get_opt_int_width_missing)
 {
 	int					i = 0;
 	t_arguments			args;
-	char				*av[5] = {"-x", "-n", "tutu", NULL};
-	const t_main_arg	dummy = {4, (const char**)av};
+	char				*av[4] = {"-x", "-n", "tutu", NULL};
+	const t_main_arg	dummy = {3, (const char**)av};
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(1, get_opt_int(dummy, &i, 1, &args));
@@ -132,8 +132,8 @@ START_TEST(arg_get_opt_int_height_missing)
 {
 	int					i = 0;
 	t_arguments			args;
-	char				*av[5] = {"-y", "-n", "tutu", NULL};
-	const t_main_arg	dummy = {4, (const char**)av};
+	char				*av[4] = {"-y", "-n", "tutu", NULL};
+	const t_main_arg	dummy = {3, (const char**)av};
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(1, get_opt_int(dummy, &i, 2, &args));
@@ -186,8 +186,8 @@ START_TEST(arg_get_opt_int_nb_clients_missing)
 {
 	int					i = 0;
 	t_arguments			args;
-	char				*av[5] = {"-c", "-n", "tutu", NULL};
-	const t_main_arg	dummy = {4, (const char**)av};
+	char				*av[4] = {"-c", "-n", "tutu", NULL};
+	const t_main_arg	dummy = {3, (const char**)av};
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(1, get_opt_int(dummy, &i, 3, &args));
@@ -240,8 +240,8 @@ START_TEST(arg_get_opt_int_tick_missing)
 {
 	int					i = 0;
 	t_arguments			args;
-	char				*av[5] = {"-t", "-n", "tutu", NULL};
-	const t_main_arg	dummy = {4, (const char**)av};
+	char				*av[4] = {"-t", "-n", "tutu", NULL};
+	const t_main_arg	dummy = {3, (const char**)av};
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(1, get_opt_int(dummy, &i, 4, &args));

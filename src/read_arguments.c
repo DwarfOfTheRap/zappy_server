@@ -51,14 +51,14 @@ int		get_opt_int(t_main_arg const m_arg, int *i, int arg, t_arguments *args)
 	int			j;
 	const char	*str = m_arg.av[*i + 1];
 
-	*i += 1;
+	++(*i);
 	j = 0;
 	if (get_opt(str) != 6)
 	{
 		dprintf(2, "%s: missing argument\n", m_arg.av[*i - 1]);
 		return (1);
 	}
-	*i += 1;
+	++(*i);
 	while (str[j] && str[j] >= '0' && str[j] <= '9')
 		++j;
 	if (str[j] != 0)
