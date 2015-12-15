@@ -1,5 +1,5 @@
 language: c
-script: cmake . && make && make test
+script: make && make test
 os:
   - linux
   - osx
