@@ -28,7 +28,7 @@ file(
     GLOB_RECURSE
     sources_files
     src/*
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src/*
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/*.c
     )
 
 list(

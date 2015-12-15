@@ -6,7 +6,7 @@ START_TEST(arg_get_opt_string_two_team)
 {
 	int					i = 0;
 	t_arguments			args;
-	char			*av[5] = {"-n", "toto", "tutu", "-p", NULL};
+	char				*av[5] = {"-n", "toto", "tutu", "-p", NULL};
 	const t_main_arg	dummy = {4, (const char**)av};
 
 	bzero(&args, sizeof(t_arguments));
@@ -22,7 +22,7 @@ START_TEST(arg_get_opt_string_two_team_last)
 {
 	int					i = 0;
 	t_arguments			args;
-	char			*av[4] = {"-n", "toto", "tutu", NULL};
+	char				*av[4] = {"-n", "toto", "tutu", NULL};
 	const t_main_arg	dummy = {3, (const char**)av};
 
 	bzero(&args, sizeof(t_arguments));
@@ -38,7 +38,7 @@ START_TEST(arg_get_opt_string_no_team)
 {
 	int					i = 0;
 	t_arguments			args;
-	char			*av[4] = {"-n", "-p", "1234", NULL};
+	char				*av[4] = {"-n", "-p", "1234", NULL};
 	const t_main_arg	dummy = {3, (const char**)av};
 
 	bzero(&args, sizeof(t_arguments));

@@ -5,7 +5,7 @@
 
 int		z_error(char *str)
 {
-	printf("%s\n", str);
+	dprintf(2, "%s\n", str);
 	return (1);
 }
 
@@ -49,16 +49,17 @@ int		get_opt_int(t_main_arg const m_arg, int *i, int arg, t_arguments *args)
 	int			j;
 	const char	*str = m_arg.av[*i + 1];
 
+	++(*i);
 	j = 0;
 	while (str[j] && str[j] >= '0' && str[j] <= '9')
 		++j;
 	if (str[j] != 0)
 	{
-		printf("%s: invalid argument\n", str);
+		dprintf(2, "%s: invalid argument\n", str);
 		return (1);
 	}
 	*(&(args->port) + arg) = atoi(str);
-	*i += 2;
+	++(*i);
 	return (0);
 }
 
@@ -80,7 +81,7 @@ int		read_arguments(int ac, const char **av, t_arguments *args)
 			error += get_opt_string(main, &i, args);
 		else
 		{
-			printf("%s: unrecognised option\n", av[i]);
+			dprintf(2, "%s: unrecognised option\n", av[i]);
 			++error;
 			++i;
 		}
