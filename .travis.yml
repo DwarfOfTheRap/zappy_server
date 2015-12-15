@@ -5,3 +5,5 @@ install: .ci/install.sh
 os:
   - linux
   - osx
+notifications:
+  slack: dwarfoftherap:cIctwvXXMVkBmwNLxAkA6Y2g
