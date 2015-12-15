@@ -1,0 +1,6 @@
+language: c
+script: cmake . && make && make test
+install: .ci/install.sh
+os:
+  - linux
+  - osx
