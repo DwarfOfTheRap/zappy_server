@@ -30,5 +30,4 @@ void			lst_free_match(t_lst_head *hd, void *dt \
 							, int *(*cmp)(void*, void*), void (*del)(void*));
 void			lst_delete(t_lst_head *head, void (*del)(void *));
 
-
 #endif
