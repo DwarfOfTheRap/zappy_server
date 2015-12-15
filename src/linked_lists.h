@@ -29,6 +29,6 @@ void			lst_delete_elem(t_lst_elem **elem, void (*del)(void*));
 void			lst_free_match(t_lst_head *hd, void *dt \
 							, int *(*cmp)(void*, void*), void (*del)(void*));
 void			lst_delete(t_lst_head *head, void (*del)(void *));
-void			lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*))
+void			lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*));
 
 #endif
