@@ -1,6 +1,6 @@
 sudo: required
 language: c
-script: make && make test || ./test/test_zappy_server 2 > /dev/null
+script: make && make test || ./test/test_zappy_server 2>/dev/null
 install: .ci/install.sh
 os:
   - linux
