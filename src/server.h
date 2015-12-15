@@ -24,6 +24,16 @@
 void	rm_teams(t_team **teams, u_int *nb_team);
 
 /*
+** src/check_arguements.c
+*/
+int		check_arguements(t_arguments *args, int error);
+
+/*
+** src/exit.c
+*/
+void	exit_arg_error(int error, t_arguments *args);
+
+/*
 ** src/read_arguments.c
 */
 int		z_error(char *str);
@@ -31,5 +41,10 @@ int		get_opt(const char *str);
 int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args);
 int		get_opt_int(t_main_arg const m_arg, int *i, int arg, t_arguments *args);
 int		read_arguments(int ac, const char **av, t_arguments *args);
+
+/*
+** src/usage.c
+*/
+void	usage(void);
 
 #endif
