@@ -51,15 +51,20 @@ int		get_opt_int(t_main_arg const m_arg, int *i, int arg, t_arguments *args)
 
 	++(*i);
 	j = 0;
+	if (get_opt(str) != 6)
+	{
+		dprintf(2, "%s: missing argument\n", m_arg.av[*i - 1]);
+		return (1);
+	}
+	++(*i);
 	while (str[j] && str[j] >= '0' && str[j] <= '9')
 		++j;
 	if (str[j] != 0)
 	{
-		dprintf(2, "%s: invalid argument\n", str);
+		dprintf(2, "%s %s: invalid argument\n", m_arg.av[*i - 2], str);
 		return (1);
 	}
 	*(&(args->port) + arg) = atoi(str);
-	++(*i);
 	return (0);
 }
 
