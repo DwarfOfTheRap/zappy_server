@@ -23,5 +23,6 @@ void			lst_pushfront(t_lst_head *head, t_lst_elem *new);
 void			lst_pushback(t_lst_head *head, t_lst_elem *new);
 t_lst_head		*lst_map(t_lst_head *hd, t_lst_elem *(*f)(t_lst_elem *e) \
 																, size_t s);
+t_lst_elem		*lst_pop(t_lst_head *head, unsigned int index_to_remove);
 
 #endif
