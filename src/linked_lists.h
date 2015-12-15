@@ -14,6 +14,7 @@ typedef struct	s_lst_head
 {
 	t_lst_elem		*first;
 	t_lst_elem		*last;
+	size_t			size;
 }				t_lst_head;
 
 t_lst_head		*lst_init(t_lst_elem *first, t_lst_elem *last);

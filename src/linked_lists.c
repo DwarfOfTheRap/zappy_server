@@ -8,8 +8,14 @@ t_lst_head	*lst_init(t_lst_elem *first, t_lst_elem *last)
 
 	if (!(head = (t_lst_head*)malloc(sizeof(t_lst_head))))
 		return (NULL);
+	head->size = 0;
 	head->first = first;
 	head->last = (first) ? first : last;
+	while (first)
+	{
+		head->size++;
+		first = first->next;
+	}
 	return (head);
 }
 
@@ -44,6 +50,7 @@ void		lst_pushfront(t_lst_head *head, t_lst_elem *new)
 			head->last = new;
 		new->next = head->first;
 		head->first = new;
+		head->size++;
 	}
 }
 
@@ -58,6 +65,7 @@ void		lst_pushback(t_lst_head *head, t_lst_elem *new)
 	}
 	else
 		head->last->next = new;
+	head->size++;
 }
 
 t_lst_head	*lst_map(t_lst_head *hd, t_lst_elem *(*f)(t_lst_elem *e), size_t s)
