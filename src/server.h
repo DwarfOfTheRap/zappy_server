@@ -9,6 +9,8 @@
  */
 # define MAX_FD		256
 
+# include "structs.h"
+
 /*
 ** src/read_arguments.c
 */
