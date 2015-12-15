@@ -65,6 +65,7 @@ typedef struct			s_zappy
 	int			board_size[2];
 	int			team_size;
 	int			tick;
+	int			nb_team;
 	t_team		*teams;
 	t_list		*actions;
 	t_player	players[MAX_FD];
@@ -77,6 +78,7 @@ typedef struct			s_arguments
 	int		height;
 	int		nb_clients;
 	int		tick;
+	u_int	nb_team;
 	t_team	*teams;
 }						t_arguments;
 
