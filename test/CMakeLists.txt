@@ -8,19 +8,24 @@ enable_testing()
 project(TestZappyServer)
 
 if (APPLE AND EXISTS /goinfre)
+
 include_directories(
     $ENV{HOME}/.brew/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../src
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     )
+
 link_directories(
     $ENV{HOME}/.brew/lib
     )
+
 else (APPLE AND EXISTS /goinfre)
+
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../src
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     )
+
 endif (APPLE AND EXISTS /goinfre)
 
 
@@ -50,10 +55,24 @@ add_executable(
     )
 
 #Configuration de l'édition de liens
+if (APPLE)
+
 target_link_libraries(
     test_zappy_server
     check
     )
+
+else (APPLE)
+
+target_link_libraries(
+    test_zappy_server
+    check
+    m
+    rt
+    pthread
+    )
+
+endif (APPLE)
 
 add_test(
     test_zappy_server

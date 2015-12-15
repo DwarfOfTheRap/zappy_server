@@ -75,7 +75,7 @@ int		read_arguments(int ac, char const **av, t_arguments *args)
 	int					i;
 	int					ret;
 	int					error;
-	const t_main_arg	main = {ac, av};
+	const t_main_arg	m_arg = {ac, av};
 
 	i = 1;
 	error = 0;
@@ -83,9 +83,9 @@ int		read_arguments(int ac, char const **av, t_arguments *args)
 	{
 		ret = get_opt(av[i]);
 		if (ret < 5)
-			error += get_opt_int(main, &i, ret, args);
+			error += get_opt_int(m_arg, &i, ret, args);
 		else if (ret == 5)
-			error += get_opt_string(main, &i, args);
+			error += get_opt_string(m_arg, &i, args);
 		else
 		{
 			dprintf(2, "%s: unrecognised option\n", av[i]);
