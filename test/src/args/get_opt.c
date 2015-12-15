@@ -38,6 +38,12 @@ START_TEST(arg_get_opt_n)
 }
 END_TEST
 
+START_TEST(arg_get_opt_team)
+{
+	ck_assert_int_eq(6, get_opt("team1"));
+}
+END_TEST
+
 TCase*	arg_get_opt(void)
 {
 	TCase	*get_opt;
@@ -49,5 +55,6 @@ TCase*	arg_get_opt(void)
 	tcase_add_test(get_opt, arg_get_opt_c);
 	tcase_add_test(get_opt, arg_get_opt_t);
 	tcase_add_test(get_opt, arg_get_opt_n);
+	tcase_add_test(get_opt, arg_get_opt_team);
 	return (get_opt);
 }

@@ -30,7 +30,8 @@ int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args)
 		++(*i);
 	if (*i == first)
 		return (z_error("No team's name given"));
-	if (!(args->teams = (t_team *)malloc(sizeof(t_team) * (*i - first + 2))))
+	args->nb_team = *i - first + 1;
+	if (!(args->teams = (t_team *)malloc(sizeof(t_team) * args->nb_team)))
 		return (z_error("Can't allocate memory"));
 	while (first < *i)
 	{
