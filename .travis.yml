@@ -1,5 +1,7 @@
+sudo: required
 language: c
-script: ls && make all && make test
+script: make && make test
+install: .ci/install.sh
 os:
   - linux
   - osx
