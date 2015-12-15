@@ -23,6 +23,7 @@ int		get_opt(const char *str)
 int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args)
 {
 	int		first;
+	int		j;
 
 	++(*i);
 	first = *i;
@@ -30,13 +31,15 @@ int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args)
 		++(*i);
 	if (*i == first)
 		return (z_error("No team's name given"));
-	args->nb_team = *i - first + 1;
+	args->nb_team = *i - first;
 	if (!(args->teams = (t_team *)malloc(sizeof(t_team) * args->nb_team)))
 		return (z_error("Can't allocate memory"));
+	j = 0;
 	while (first < *i)
 	{
-		args->teams[first].name = strdup(m_arg.av[first]);
+		args->teams[j].name = strdup(m_arg.av[first]);
 		++first;
+		++j;
 	}
 	return (0);
 }
