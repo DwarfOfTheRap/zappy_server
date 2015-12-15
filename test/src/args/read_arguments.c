@@ -1,0 +1,114 @@
+#include <stdlib.h>
+#include <check.h>
+#include "server.h"
+
+START_TEST(arg_read_arguments_valid)
+{
+	int					ac = 14;
+	char				*av[14] = {"./test", "-p", "1234", "-x", "2345", "-y",
+		"3456", "-n", "toto", "tutu", "-c", "4567", "-t", "5678"};
+	t_arguments			args;
+
+	bzero(&args, sizeof(t_arguments));
+	ck_assert_int_eq(0, read_arguments(ac, (const char **)av, &args));
+	ck_assert_int_eq(2, args.nb_team);
+	ck_assert_str_eq("toto", args.teams[0].name);
+	ck_assert_str_eq("tutu", args.teams[1].name);
+	ck_assert_int_eq(1234, args.port);
+	ck_assert_int_eq(2345, args.width);
+	ck_assert_int_eq(3456, args.height);
+	ck_assert_int_eq(4567, args.nb_clients);
+	ck_assert_int_eq(5678, args.tick);
+}
+END_TEST
+
+START_TEST(arg_read_arguments_missing_team_name)
+{
+	int					ac = 12;
+	char				*av[12] = {"./test", "-p", "1234", "-x", "2345", "-y",
+		"3456", "-n", "-c", "4567", "-t", "5678"};
+	t_arguments			args;
+
+	bzero(&args, sizeof(t_arguments));
+	ck_assert_int_eq(1, read_arguments(ac, (const char **)av, &args));
+	ck_assert_int_eq(0, args.nb_team);
+	ck_assert_int_eq(1234, args.port);
+	ck_assert_int_eq(2345, args.width);
+	ck_assert_int_eq(3456, args.height);
+	ck_assert_int_eq(4567, args.nb_clients);
+	ck_assert_int_eq(5678, args.tick);
+}
+END_TEST
+
+START_TEST(arg_read_arguments_team_name_given_two_time)
+{
+	int					ac = 16;
+	char				*av[16] = {"./test", "-p", "1234", "-n", "caca", "-x",
+		"2345", "-y", "3456", "-n", "toto", "tutu", "-c", "4567", "-t", "5678"};
+	t_arguments			args;
+
+	bzero(&args, sizeof(t_arguments));
+	ck_assert_int_eq(0, read_arguments(ac, (const char **)av, &args));
+	ck_assert_int_eq(2, args.nb_team);
+	ck_assert_str_eq("toto", args.teams[0].name);
+	ck_assert_str_eq("tutu", args.teams[1].name);
+	ck_assert_int_eq(1234, args.port);
+	ck_assert_int_eq(2345, args.width);
+	ck_assert_int_eq(3456, args.height);
+	ck_assert_int_eq(4567, args.nb_clients);
+	ck_assert_int_eq(5678, args.tick);
+}
+END_TEST
+
+START_TEST(arg_read_arguments_missing_port)
+{
+	int					ac = 13;
+	char				*av[13] = {"./test", "-p", "-x", "2345", "-y", "3456",
+		"-n", "toto", "tutu", "-c", "4567", "-t", "5678"};
+	t_arguments			args;
+
+	bzero(&args, sizeof(t_arguments));
+	ck_assert_int_eq(1, read_arguments(ac, (const char **)av, &args));
+	ck_assert_int_eq(2, args.nb_team);
+	ck_assert_str_eq("toto", args.teams[0].name);
+	ck_assert_str_eq("tutu", args.teams[1].name);
+	ck_assert_int_eq(0, args.port);
+	ck_assert_int_eq(2345, args.width);
+	ck_assert_int_eq(3456, args.height);
+	ck_assert_int_eq(4567, args.nb_clients);
+	ck_assert_int_eq(5678, args.tick);
+}
+END_TEST
+
+START_TEST(arg_read_arguments_port_given_two_time)
+{
+	int					ac = 16;
+	char				*av[16] = {"./test", "-p", "1234", "-x", "2345", "-y",
+		"3456", "-n", "toto", "tutu", "-c", "4567", "-t", "5678", "-p", "6789"};
+	t_arguments			args;
+
+	bzero(&args, sizeof(t_arguments));
+	ck_assert_int_eq(0, read_arguments(ac, (const char **)av, &args));
+	ck_assert_int_eq(2, args.nb_team);
+	ck_assert_str_eq("toto", args.teams[0].name);
+	ck_assert_str_eq("tutu", args.teams[1].name);
+	ck_assert_int_eq(6789, args.port);
+	ck_assert_int_eq(2345, args.width);
+	ck_assert_int_eq(3456, args.height);
+	ck_assert_int_eq(4567, args.nb_clients);
+	ck_assert_int_eq(5678, args.tick);
+}
+END_TEST
+
+TCase*	arg_read_arguments(void)
+{
+	TCase	*arg_read_arguments;
+
+	arg_read_arguments = tcase_create("read_arguments");
+	tcase_add_test(arg_read_arguments, arg_read_arguments_valid);
+	tcase_add_test(arg_read_arguments, arg_read_arguments_missing_team_name);
+	tcase_add_test(arg_read_arguments, arg_read_arguments_team_name_given_two_time);
+	tcase_add_test(arg_read_arguments, arg_read_arguments_missing_port);
+	tcase_add_test(arg_read_arguments, arg_read_arguments_port_given_two_time);
+	return (arg_read_arguments);
+}

@@ -11,5 +11,6 @@ Suite*	arg(void)
 	suite_add_tcase(s, arg_get_opt());
 	suite_add_tcase(s, arg_get_opt_string());
 	suite_add_tcase(s, arg_get_opt_int());
+	suite_add_tcase(s, arg_read_arguments());
 	return (s);
 }

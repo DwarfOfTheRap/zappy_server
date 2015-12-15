@@ -12,6 +12,11 @@
 # include "structs.h"
 
 /*
+** src/cleanup.c
+*/
+void	rm_teams(t_team **teams, u_int *nb_team);
+
+/*
 ** src/read_arguments.c
 */
 int		z_error(char *str);
