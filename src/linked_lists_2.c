@@ -22,7 +22,6 @@ t_lst_elem	*lst_remove(t_lst_head *head, t_lst_elem *elem_to_remove)
 t_lst_elem	*lst_pop(t_lst_head *head, unsigned int index_to_remove)
 {
 	t_lst_elem	*cursor;
-	t_lst_elem	*result;
 
 	if (!head)
 		return (NULL);
