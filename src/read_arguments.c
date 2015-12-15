@@ -63,7 +63,7 @@ int		get_opt_int(t_main_arg const m_arg, int *i, int arg, t_arguments *args)
 	return (0);
 }
 
-int		read_arguments(int ac, const char **av, t_arguments *args)
+int		read_arguments(int ac, char const **av, t_arguments *args)
 {
 	int					i;
 	int					ret;
