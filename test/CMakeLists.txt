@@ -7,7 +7,7 @@ enable_testing()
 # project declaration
 project(TestZappyServer)
 
-if (APPLE)
+if (APPLE AND EXISTS /goinfre)
 include_directories(
     $ENV{HOME}/.brew/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../src
@@ -16,11 +16,12 @@ include_directories(
 link_directories(
     $ENV{HOME}/.brew/lib
     )
-else (APPLE)
+else (APPLE AND EXISTS /goinfre)
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
     )
-endif (APPLE)
+endif (APPLE AND EXISTS /goinfre)
 
 
 # sources list
