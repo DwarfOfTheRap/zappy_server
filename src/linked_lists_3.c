@@ -21,4 +21,5 @@ void	lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*))
 	new->next = cursor->next;
 	if (cursor->next)
 		cursor->next->prev = new;
+	head->size++;
 }
