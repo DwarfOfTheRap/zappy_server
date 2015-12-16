@@ -1,12 +1,15 @@
 sudo: required
 language: c
+
 script: make && make test || ./test/test_zappy_server 2>/dev/null
 install: .ci/install.sh
+
 os:
   - linux
   - osx
+compiler:
+  - gcc
+  - clang
+
 notifications:
   slack: dwarfoftherap:cIctwvXXMVkBmwNLxAkA6Y2g
-env:
-  - ARCH=x86_64
-  - ARCH=i686

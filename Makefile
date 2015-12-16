@@ -1,5 +1,7 @@
 NAME := serveur
-CC := clang
+ifeq ($(CC),cc)
+	CC := clang
+endif
 CFLAGS := -Wall -Wextra -Werror
 CPPFLAGS := -I src
 LDFLAGS := 
@@ -27,5 +29,8 @@ re: fclean all
 
 test:
 	cd test && cmake . && make && make test
+
+caca:
+	echo $(CC)
 
 .PHONY: all clean fclean re test
