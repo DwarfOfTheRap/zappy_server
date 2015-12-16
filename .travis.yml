@@ -1,7 +1,13 @@
-sudo: required
+sudo: false
 language: c
 
 script: make && make test || ./test/test_zappy_server 2>/dev/null
+
+addons:
+  apt:
+    packages:
+      - check
+
 install: .ci/install.sh
 
 os:

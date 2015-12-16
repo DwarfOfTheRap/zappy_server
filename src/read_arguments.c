@@ -27,7 +27,7 @@ int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args)
 
 	++(*i);
 	first = *i;
-	if (args->nb_team > 0)
+	if (args->teams)
 		rm_teams(&(args->teams), &(args->nb_team));
 	while (*i < m_arg.ac && get_opt(m_arg.av[*i]) == 6)
 		++(*i);
