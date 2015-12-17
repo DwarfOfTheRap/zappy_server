@@ -1,7 +1,7 @@
 sudo: required 
 language: c
 
-script: make test
+script: make test || ./test/test_zappy_server 
 
 install: .ci/install.sh
 

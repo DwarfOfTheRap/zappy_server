@@ -8,6 +8,5 @@ elif [[ "${TRAVIS_OS_NAME}" == linux ]]; then
 	cd 'check-0.10.0'
 	./configure
 	make
-	make check
 	sudo make install
 fi
