@@ -9,12 +9,7 @@ install: .ci/install.sh
 os:
   - linux
   - osx
-compiler:
-  - gcc
-  - clang
-matrix:
-  allow_failures:
-    - os: linux
+compiler: clang
 
 notifications:
   slack: dwarfoftherap:cIctwvXXMVkBmwNLxAkA6Y2g
