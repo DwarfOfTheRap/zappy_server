@@ -19,5 +19,16 @@ int		check_arguements(t_arguments *args, int error)
 		error += check_error_int("Number of client", args->nb_clients);
 	if (args->tick < MIN_TICK || args->tick > MAX_TICK)
 		error += check_error_int("Tick", args->tick);
+	if (args->nb_team > (u_int)args->nb_clients / 6)
+	{
+		++error;
+		dprintf(2, "Too much team registered (%d) compare to number of "
+			"client\n", args->nb_team);
+	}
+	if (!args->nb_team)
+	{
+		++error;
+		dprintf(2, "No team provided\n");
+	}
 	return (error);
 }

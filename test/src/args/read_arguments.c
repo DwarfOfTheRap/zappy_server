@@ -30,7 +30,7 @@ START_TEST(arg_read_arguments_missing_team_name)
 	t_arguments			args;
 
 	bzero(&args, sizeof(t_arguments));
-	ck_assert_int_eq(1, read_arguments(ac, (const char **)av, &args));
+	ck_assert_int_eq(2, read_arguments(ac, (const char **)av, &args));
 	ck_assert_int_eq(0, args.nb_team);
 	ck_assert_int_eq(1234, args.port);
 	ck_assert_int_eq(20, args.width);
