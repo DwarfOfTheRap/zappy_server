@@ -33,6 +33,7 @@
 
 # CMake unwanted files
 CMakeCache.txt
+CMakeLists.txt
 CMakeFiles
 *.cmake
 
