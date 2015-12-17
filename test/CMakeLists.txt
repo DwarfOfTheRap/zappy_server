@@ -75,6 +75,11 @@ target_link_libraries(
 endif (APPLE)
 
 add_test(
-    test_zappy_server
+    test_zappy_server_functions
     ${CMAKE_CURRENT_BINARY_DIR}/test_zappy_server
+    )
+
+add_test(
+    test_zappy_server_binary
+    ${CMAKE_CURRENT_BINARY_DIR}/test_zappy_server.sh
     )

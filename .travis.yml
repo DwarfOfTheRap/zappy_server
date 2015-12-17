@@ -2,7 +2,7 @@ sudo: required
 dist: trusty
 language: c
 
-script: make && make test || ./test/test_zappy_server 2>/dev/null
+script: .ci/script.sh
 
 install: .ci/install.sh
 
