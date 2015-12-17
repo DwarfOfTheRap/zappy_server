@@ -35,7 +35,7 @@ t_lst_elem	*lst_pop(t_lst_head *head, unsigned int index_to_remove)
 
 void		lst_delete_elem(t_lst_elem **elem, void (*del)(void*))
 {
-	if (elem)
+	if (elem && *elem)
 	{
 		del((*elem)->content);
 		free(*elem);
