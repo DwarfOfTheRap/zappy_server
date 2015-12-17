@@ -34,7 +34,6 @@
 # CMake unwanted files
 Testing
 CMakeCache.txt
-CMakeLists.txt
 CMakeFiles
 *.cmake
 
