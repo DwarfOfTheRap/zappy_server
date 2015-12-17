@@ -1,12 +1,7 @@
-sudo: false
+sudo: required 
 language: c
 
 script: make test
-
-addons:
-  apt:
-    packages:
-      - check
 
 install: .ci/install.sh
 
