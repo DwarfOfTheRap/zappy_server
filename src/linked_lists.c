@@ -2,19 +2,20 @@
 #include <string.h>
 #include "linked_lists.h"
 
-t_lst_head	*lst_init(t_lst_elem *first, t_lst_elem *last)
+t_lst_head	*lst_init(t_lst_elem *first)
 {
 	t_lst_head		*head;
+	t_lst_elem		*cursor;
 
 	if (!(head = (t_lst_head*)malloc(sizeof(t_lst_head))))
 		return (NULL);
 	head->size = 0;
 	head->first = first;
-	head->last = (first) ? first : last;
-	while (first)
+	cursor = first;
+	while (cursor)
 	{
 		head->size++;
-		first = first->next;
+		cursor = cursor->next;
 	}
 	return (head);
 }
@@ -74,7 +75,7 @@ t_lst_head	*lst_map(t_lst_head *hd, t_lst_elem *(*f)(t_lst_elem *e), size_t s)
 	t_lst_elem		*cursor;
 	t_lst_elem		*new_elem;
 
-	if (!hd || !(new_head = lst_init(NULL, NULL)))
+	if (!hd || !(new_head = lst_init(NULL)))
 		return (NULL);
 	cursor = hd->first;
 	while (cursor)

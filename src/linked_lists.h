@@ -17,7 +17,7 @@ typedef struct	s_lst_head
 	size_t			size;
 }				t_lst_head;
 
-t_lst_head		*lst_init(t_lst_elem *first, t_lst_elem *last);
+t_lst_head		*lst_init(t_lst_elem *first);
 t_lst_elem		*lst_create(void *content, size_t content_size);
 void			lst_pushfront(t_lst_head *head, t_lst_elem *new);
 void			lst_pushback(t_lst_head *head, t_lst_elem *new);
