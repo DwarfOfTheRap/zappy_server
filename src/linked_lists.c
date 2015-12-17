@@ -5,17 +5,18 @@
 t_lst_head	*lst_init(t_lst_elem *first)
 {
 	t_lst_head		*head;
-	t_lst_elem		*cursor;
 
 	if (!(head = (t_lst_head*)malloc(sizeof(t_lst_head))))
 		return (NULL);
 	head->size = 0;
 	head->first = first;
-	cursor = first;
-	while (cursor)
+	head->last = NULL;
+	while (first)
 	{
 		head->size++;
-		cursor = cursor->next;
+		if (!(first->next))
+			head->last = first;
+		first = first->next;
 	}
 	return (head);
 }
@@ -65,7 +66,7 @@ void		lst_pushback(t_lst_head *head, t_lst_elem *new)
 		head->last = new;
 	}
 	else
-		head->last->next = new;
+		head->last = new;
 	head->size++;
 }
 
