@@ -1,0 +1,24 @@
+sudo: false
+language: c
+
+script: make test
+
+addons:
+  apt:
+    packages:
+      - check
+
+install: .ci/install.sh
+
+os:
+  - linux
+  - osx
+compiler:
+  - gcc
+  - clang
+matrix:
+  allow_failures:
+    - os: linux
+
+notifications:
+  slack: dwarfoftherap:cIctwvXXMVkBmwNLxAkA6Y2g
