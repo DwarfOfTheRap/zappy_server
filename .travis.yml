@@ -10,11 +10,7 @@ os:
   - linux
   - osx
 compiler:
-  - gcc
   - clang
-matrix:
-  allow_failures:
-    - os: linux
 
 notifications:
   slack: dwarfoftherap:cIctwvXXMVkBmwNLxAkA6Y2g
