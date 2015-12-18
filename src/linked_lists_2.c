@@ -44,7 +44,7 @@ void		lst_delete_elem(t_lst_elem **elem, void (*del)(void*))
 }
 
 void		lst_free_match(t_lst_head *hd, void *dt
-								, int *(*cmp)(void*, void*), void (*del)(void*))
+								, int (*cmp)(void*, void*), void (*del)(void*))
 {
 	t_lst_elem	*cursor;
 	t_lst_elem	*elem_to_remove;
