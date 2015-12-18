@@ -47,6 +47,7 @@ void		lst_free_match(t_lst_head *hd, void *dt
 								, int (*cmp)(void*, void*), void (*del)(void*))
 {
 	t_lst_elem	*cursor;
+	t_lst_elem	*prev_save;
 	t_lst_elem	*elem_to_remove;
 
 	elem_to_remove = NULL;
@@ -55,12 +56,13 @@ void		lst_free_match(t_lst_head *hd, void *dt
 	cursor = hd->first;
 	while (cursor)
 	{
-		if (cmp(cursor->content, dt))
+		prev_save = cursor;
+		cursor = cursor->next;
+		if (cmp(prev_save->content, dt))
 		{
-			elem_to_remove = lst_remove(hd, cursor);
+			elem_to_remove = lst_remove(hd, prev_save);
 			lst_delete_elem(&elem_to_remove, del);
 		}
-		cursor = cursor->next;
 	}
 }
 
