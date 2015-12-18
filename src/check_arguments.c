@@ -22,7 +22,7 @@ int		check_arguements(t_arguments *args, int error)
 	if (args->nb_team > (u_int)args->nb_clients / 6)
 	{
 		++error;
-		dprintf(2, "Too much team registered (%d) compare to number of "
+		dprintf(2, "Too many team registered (%d) compare to the number of "
 			"client\n", args->nb_team);
 	}
 	if (!args->nb_team)
