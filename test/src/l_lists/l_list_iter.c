@@ -23,33 +23,6 @@ static int	find_aurevoir(void *data)
 	return (!strcmp((char*)data, "Au revoir"));
 }
 
-static int	check_list(t_lst_head *head)
-{
-	t_lst_elem	*cursor;
-	t_lst_elem	*cursor_end;
-	int			i;
-	const char	*str[7] = {"PIERRE!", "Bonjour", "Salut", "Ca va ?",
-							"PIERRE!", "Au revoir", NULL};
-
-	i = 0;
-	cursor = head->first;
-	while (cursor)
-	{
-		if (strcmp((char*)cursor->content, str[i]) != 0)
-			return (0);
-		i++;
-		if (!cursor->next)
-			cursor_end = cursor;
-		cursor = cursor->next;
-	}
-	while (cursor_end)
-	{
-		if (strcmp((char*)cursor_end->content, str[--i]) != 0)
-			return (0);
-		cursor_end = cursor_end->prev;
-	}
-	return (1);
-}
 
 static void	free_elem(void* data)
 {
@@ -62,6 +35,8 @@ START_TEST(insert)
 	t_lst_elem	*new1;
 	t_lst_elem	*new3;
 	t_lst_elem	*first;
+	const char	*str[7] = {"PIERRE!", "Bonjour", "Salut", "Ca va ?",
+							"PIERRE!", "Au revoir", NULL};
 
 	head = push_sample_list();
 	first = head->first;
@@ -74,7 +49,7 @@ START_TEST(insert)
 
 	new3 = lst_create("PIERRE!", 8);
 	lst_insert(head, new3, find_aurevoir);
-	ck_assert_int_eq(1, check_list(head));
+	ck_assert_int_eq(1, check_list(head, str));
 
 	lst_delete(head, free_elem);
 	free(head);

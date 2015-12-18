@@ -31,4 +31,6 @@ void			lst_free_match(t_lst_head *hd, void *dt \
 void			lst_delete(t_lst_head *head, void (*del)(void *));
 void			lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*));
 
+int				check_list(t_lst_head *head, const char *str[]);
+
 #endif
