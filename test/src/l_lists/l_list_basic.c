@@ -1,6 +1,18 @@
 #include <check.h>
 #include "linked_lists.h"
 
+t_lst_head	*sample_list(void (*add)(t_lst_head*, t_lst_elem*))
+{	
+	t_lst_head	*head;
+
+	head = lst_init(NULL);
+	add(head, lst_create("Bonjour", 8));
+	add(head, lst_create("Salut", 6));
+	add(head, lst_create("Ca va ?", 8));
+	add(head, lst_create("A+", 3));
+	return (head);
+}
+
 void	free_elem(t_lst_elem	**elem)
 {
 	free((*elem)->content);
@@ -66,58 +78,52 @@ END_TEST
 START_TEST(pushfront)
 {
 	t_lst_head	*head;
-	t_lst_elem	*elem1;
-	t_lst_elem	*elem2;
+	t_lst_elem	*to_free;
 
-	elem1 = lst_create("Bonjour", 8);
-	elem2 = lst_create("Salut", 6);
-	head = lst_init(NULL);
+	head = sample_list(lst_pushfront);
 
 	//head == NULL
-	lst_pushfront(NULL, elem1);
-	ck_assert_ptr_eq(NULL, head->first);
+	lst_pushfront(NULL, NULL);
 
-	lst_pushfront(head, elem1);
-	ck_assert_ptr_eq(head->first, elem1);
-	ck_assert_ptr_eq(head->last, elem1);
-	ck_assert_int_eq(1, head->size);
+	ck_assert_str_eq((char*)head->first->content, "A+");
+	ck_assert_str_eq((char*)head->first->next->content, "Ca va ?");
+	ck_assert_str_eq((char*)head->first->next->next->content, "Salut");
+	ck_assert_str_eq((char*)head->first->next->next->next->content, "Bonjour");
+	ck_assert_int_eq(4, head->size);
 
-	lst_pushfront(head, elem2);
-	ck_assert_ptr_eq(head->first, elem2);
-	ck_assert_ptr_eq(head->last, elem1);
-	ck_assert_int_eq(2, head->size);
-
-	free_elem(&elem1);
-	free_elem(&elem2);
+	while (head->first)
+	{
+		to_free = head->first;
+		head->first = head->first->next;
+		free_elem(&to_free);
+	}
+	free(head);
 }
 END_TEST
 
 START_TEST(pushback)
 {
 	t_lst_head	*head;
-	t_lst_elem	*elem1;
-	t_lst_elem	*elem2;
+	t_lst_elem	*to_free;
 
-	elem1 = lst_create("Bonjour", 8);
-	elem2 = lst_create("Salut", 6);
-	head = lst_init(NULL);
+	head = sample_list(lst_pushback);
 
 	//head == NULL
-	lst_pushback(NULL, elem1);
-	ck_assert_ptr_eq(NULL, head->first);
+	lst_pushback(NULL, NULL);
 
-	lst_pushback(head, elem1);
-	ck_assert_ptr_eq(head->first, elem1);
-	ck_assert_ptr_eq(head->last, elem1);
-	ck_assert_int_eq(1, head->size);
+	ck_assert_str_eq((char*)head->first->content, "Bonjour");
+	ck_assert_str_eq((char*)head->first->next->content, "Salut");
+	ck_assert_str_eq((char*)head->first->next->next->content, "Ca va ?");
+	ck_assert_str_eq((char*)head->first->next->next->next->content, "A+");
+	ck_assert_int_eq(4, head->size);
 
-	lst_pushback(head, elem2);
-	ck_assert_ptr_eq(head->first, elem1);
-	ck_assert_ptr_eq(head->last, elem2);
-	ck_assert_int_eq(2, head->size);
-
-	free_elem(&elem1);
-	free_elem(&elem2);
+	while (head->first)
+	{
+		to_free = head->first;
+		head->first = head->first->next;
+		free_elem(&to_free);
+	}
+	free(head);
 }
 END_TEST
 

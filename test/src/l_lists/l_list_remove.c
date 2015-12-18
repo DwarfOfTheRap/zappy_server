@@ -1,7 +1,7 @@
 #include <check.h>
 #include "linked_lists.h"
 
-t_lst_head	*new_sample_list()
+t_lst_head	*push_sample_list()
 {	
 	t_lst_head	*head;
 
@@ -40,7 +40,7 @@ START_TEST(test_remove)
 	t_lst_elem	*third;
 	t_lst_elem	*last;
 
-	head = new_sample_list();
+	head = push_sample_list();
 	second = head->first->next;
 	third = head->first->next->next;
 
