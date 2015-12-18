@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "server.h"
 
-void	rm_teams(t_team **teams, u_int *nb_team)
+void	rm_teams(t_team **teams, int *nb_team)
 {
 	if (!*teams)
 	{
@@ -15,4 +15,29 @@ void	rm_teams(t_team **teams, u_int *nb_team)
 	}
 	free(*teams);
 	*teams = NULL;
+}
+
+void	rm_board(int ****board, int board_size[2], int i, int j)
+{
+	if (!*board)
+		return ;
+	if (j == board_size[1])
+		--i;
+	else
+		--j;
+	while (i >= 0)
+	{
+		while (j >= 0)
+		{
+			free(*board[i][j]);
+			*board[i][j] = NULL;
+			--j;
+		}
+		j = board_size[1];
+		free(*board[i]);
+		*board[i] = NULL;
+		--i;
+	}
+	free(*board);
+	*board = NULL;
 }

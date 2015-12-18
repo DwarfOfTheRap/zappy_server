@@ -4,13 +4,14 @@ ifeq ($(CC),cc)
 endif
 CFLAGS := -Wall -Wextra -Werror
 CPPFLAGS := -I src
-LDFLAGS := 
+LDFLAGS :=
 SRC := \
 	src/check_arguments.c \
 	src/cleanup.c \
 	src/exit.c \
+	src/init.c \
 	src/read_arguments.c \
-	src/server.c \
+	src/serveur.c \
 	src/usage.c
 OBJ := $(SRC:.c=.o)
 
@@ -29,8 +30,5 @@ re: fclean all
 
 test:
 	cd test && cmake . && make && make test
-
-caca:
-	echo $(CC)
 
 .PHONY: all clean fclean re test
