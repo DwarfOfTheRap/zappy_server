@@ -269,6 +269,33 @@ src/l_lists/l_list_basic.c.s:
 	$(MAKE) -f CMakeFiles/test_zappy_server.dir/build.make CMakeFiles/test_zappy_server.dir/src/l_lists/l_list_basic.c.s
 .PHONY : src/l_lists/l_list_basic.c.s
 
+src/l_lists/l_list_iter.o: src/l_lists/l_list_iter.c.o
+
+.PHONY : src/l_lists/l_list_iter.o
+
+# target to build an object file
+src/l_lists/l_list_iter.c.o:
+	$(MAKE) -f CMakeFiles/test_zappy_server.dir/build.make CMakeFiles/test_zappy_server.dir/src/l_lists/l_list_iter.c.o
+.PHONY : src/l_lists/l_list_iter.c.o
+
+src/l_lists/l_list_iter.i: src/l_lists/l_list_iter.c.i
+
+.PHONY : src/l_lists/l_list_iter.i
+
+# target to preprocess a source file
+src/l_lists/l_list_iter.c.i:
+	$(MAKE) -f CMakeFiles/test_zappy_server.dir/build.make CMakeFiles/test_zappy_server.dir/src/l_lists/l_list_iter.c.i
+.PHONY : src/l_lists/l_list_iter.c.i
+
+src/l_lists/l_list_iter.s: src/l_lists/l_list_iter.c.s
+
+.PHONY : src/l_lists/l_list_iter.s
+
+# target to generate assembly for a file
+src/l_lists/l_list_iter.c.s:
+	$(MAKE) -f CMakeFiles/test_zappy_server.dir/build.make CMakeFiles/test_zappy_server.dir/src/l_lists/l_list_iter.c.s
+.PHONY : src/l_lists/l_list_iter.c.s
+
 src/l_lists/l_list_remove.o: src/l_lists/l_list_remove.c.o
 
 .PHONY : src/l_lists/l_list_remove.o
@@ -348,6 +375,9 @@ help:
 	@echo "... src/l_lists/l_list_basic.o"
 	@echo "... src/l_lists/l_list_basic.i"
 	@echo "... src/l_lists/l_list_basic.s"
+	@echo "... src/l_lists/l_list_iter.o"
+	@echo "... src/l_lists/l_list_iter.i"
+	@echo "... src/l_lists/l_list_iter.s"
 	@echo "... src/l_lists/l_list_remove.o"
 	@echo "... src/l_lists/l_list_remove.i"
 	@echo "... src/l_lists/l_list_remove.s"

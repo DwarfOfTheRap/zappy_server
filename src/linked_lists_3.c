@@ -12,14 +12,18 @@ void	lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*))
 		cursor = cursor->next;
 	if (!cursor)
 		return ;
-	previous = cursor->prev;
-	if (!previous)
-		head->first = new;
 	else
-		previous->next = new;
-	new->prev = previous;
-	new->next = cursor->next;
-	if (cursor->next)
-		cursor->next->prev = new;
+	{
+		previous = cursor->prev;
+		if (!previous)
+			head->first = new;
+		else
+		{
+			previous->next = new;
+			new->prev = previous;
+		}
+		cursor->prev = new;
+		new->next = cursor;
+	}
 	head->size++;
 }
