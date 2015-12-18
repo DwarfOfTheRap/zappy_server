@@ -42,3 +42,4 @@ serveur
 # test
 test/test_zappy_server
 test/Makefile
+test/Testing
