@@ -8,5 +8,6 @@ Suite*	l_list(void)
 	s = suite_create("l_list");
 	suite_add_tcase(s, l_list_basic());
 	suite_add_tcase(s, l_list_remove());
+	suite_add_tcase(s, l_list_iter());
 	return (s);
 }
