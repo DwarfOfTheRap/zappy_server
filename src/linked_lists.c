@@ -58,15 +58,19 @@ void		lst_pushfront(t_lst_head *head, t_lst_elem *new)
 
 void		lst_pushback(t_lst_head *head, t_lst_elem *new)
 {
-	if (!head)
+	if (!(head && new))
 		return ;
+	new->prev = head->last;
 	if (!head->first)
 	{
 		head->first = new;
 		head->last = new;
 	}
 	else
+	{
+		head->last->next = new;
 		head->last = new;
+	}
 	head->size++;
 }
 

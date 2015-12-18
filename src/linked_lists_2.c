@@ -5,13 +5,13 @@ t_lst_elem	*lst_remove(t_lst_head *head, t_lst_elem *elem_to_remove)
 {
 	if (!(head && elem_to_remove))
 		return (NULL);
-	if (!elem_to_remove->prev)
+	if (elem_to_remove == head->first)
 		head->first = elem_to_remove->next;
-	else
-		elem_to_remove->prev->next = elem_to_remove->next;
-	if (!elem_to_remove->next)
+	if (elem_to_remove == head->last)
 		head->last = elem_to_remove->prev;
-	else
+	if (elem_to_remove->prev)
+		elem_to_remove->prev->next = elem_to_remove->next;
+	if (elem_to_remove->next)
 		elem_to_remove->next->prev = elem_to_remove->prev;
 	elem_to_remove->next = NULL;
 	elem_to_remove->prev = NULL;
