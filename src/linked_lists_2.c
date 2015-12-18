@@ -69,15 +69,19 @@ void		lst_free_match(t_lst_head *hd, void *dt
 void		lst_delete(t_lst_head *head, void (*del)(void*))
 {
 	t_lst_elem	*cursor;
-	t_lst_elem	*elem_to_remove;
+	t_lst_elem	*prev_save;
+	t_lst_elem	*to_free;
 
 	if (!head)
 		return ;
 	cursor = head->first;
 	while (cursor)
 	{
-		elem_to_remove = lst_remove(head, cursor);
-		lst_delete_elem(&elem_to_remove, del);
+		prev_save = cursor;
 		cursor = cursor->next;
+		to_free = lst_remove(head, prev_save);
+		lst_delete_elem(&to_free, del);
 	}
+	head->first = NULL;
+	head->last = NULL;
 }
