@@ -73,22 +73,3 @@ void		lst_pushback(t_lst_head *head, t_lst_elem *new)
 	}
 	head->size++;
 }
-
-t_lst_head	*lst_map(t_lst_head *hd, t_lst_elem *(*f)(t_lst_elem *e), size_t s)
-{
-	t_lst_head		*new_head;
-	t_lst_elem		*cursor;
-	t_lst_elem		*new_elem;
-
-	if (!hd || !(new_head = lst_init(NULL)))
-		return (NULL);
-	cursor = hd->first;
-	while (cursor)
-	{
-		if (!(new_elem = lst_create(cursor->content, s)))
-			return (NULL);
-		new_elem = f(new_elem);
-		lst_pushback(new_head, new_elem);
-	}
-	return (new_head);
-}

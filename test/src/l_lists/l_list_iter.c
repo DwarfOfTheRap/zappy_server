@@ -63,4 +63,3 @@ TCase*	l_list_iter(void)
 	tcase_add_test(l_list_iter, insert);
 	return (l_list_iter);
 }
-
