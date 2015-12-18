@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cmd=../serveur
+cmd=`dirname $0`/../serveur
 error=0
 
 function assert_return()
