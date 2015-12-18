@@ -79,16 +79,14 @@ START_TEST(pushfront)
 {
 	t_lst_head	*head;
 	t_lst_elem	*to_free;
+	const char	*str[5] = {"A+", "Ca va ?", "Salut", "Bonjour", NULL};
 
 	head = sample_list(lst_pushfront);
 
 	//head == NULL
 	lst_pushfront(NULL, NULL);
 
-	ck_assert_str_eq((char*)head->first->content, "A+");
-	ck_assert_str_eq((char*)head->first->next->content, "Ca va ?");
-	ck_assert_str_eq((char*)head->first->next->next->content, "Salut");
-	ck_assert_str_eq((char*)head->first->next->next->next->content, "Bonjour");
+	ck_assert_int_eq(1, check_list(head, str));
 	ck_assert_int_eq(4, head->size);
 
 	while (head->first)
@@ -105,16 +103,14 @@ START_TEST(pushback)
 {
 	t_lst_head	*head;
 	t_lst_elem	*to_free;
+	const char	*str[5] = {"Bonjour", "Salut", "Ca va ?", "A+", NULL};
 
 	head = sample_list(lst_pushback);
 
 	//head == NULL
 	lst_pushback(NULL, NULL);
 
-	ck_assert_str_eq((char*)head->first->content, "Bonjour");
-	ck_assert_str_eq((char*)head->first->next->content, "Salut");
-	ck_assert_str_eq((char*)head->first->next->next->content, "Ca va ?");
-	ck_assert_str_eq((char*)head->first->next->next->next->content, "A+");
+	ck_assert_int_eq(1, check_list(head, str));
 	ck_assert_int_eq(4, head->size);
 
 	while (head->first)

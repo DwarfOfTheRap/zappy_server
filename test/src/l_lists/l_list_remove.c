@@ -121,6 +121,7 @@ END_TEST
 START_TEST(free_match)
 {
 	t_lst_head	*head;
+	const char	*str[4] = {"Salut", "Ca va ?", "Au revoir", NULL};
 
 	head = push_sample_list();
 	lst_free_match(head, "Salut", cmp_ne, simple_free);	
@@ -136,11 +137,7 @@ START_TEST(free_match)
 	
 	head = push_sample_list();
 	lst_free_match(head, "Bonjour", cmp_eq, simple_free);	
-	ck_assert_ptr_ne(NULL, head->first);
-	ck_assert_str_eq("Salut", (char*)head->first->content);
-	ck_assert_ptr_eq(NULL, head->first->prev);
-	ck_assert_str_eq("Ca va ?", (char*)head->first->next->content);
-	ck_assert_str_eq("Au revoir", (char*)head->first->next->next->content);
+	ck_assert_int_eq(1, check_list(head, str));
 	lst_delete(head, simple_free);
 	free(head);
 }

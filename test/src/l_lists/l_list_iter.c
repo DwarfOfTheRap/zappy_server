@@ -23,7 +23,6 @@ static int	find_aurevoir(void *data)
 	return (!strcmp((char*)data, "Au revoir"));
 }
 
-
 static void	free_elem(void* data)
 {
 	free(data);
