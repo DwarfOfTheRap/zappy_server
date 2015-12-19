@@ -4,12 +4,16 @@ ifeq ($(CC),cc)
 endif
 CFLAGS := -Wall -Wextra -Werror
 CPPFLAGS := -I src
-LDFLAGS :=
+LDFLAGS := 
 SRC := \
 	src/check_arguments.c \
 	src/cleanup.c \
 	src/exit.c \
 	src/init.c \
+	src/linked_lists.c \
+	src/linked_lists_2.c \
+	src/linked_lists_3.c \
+	src/main_loop.c \
 	src/read_arguments.c \
 	src/serveur.c \
 	src/usage.c
@@ -18,7 +22,6 @@ OBJ := $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
 	rm -f $(OBJ)

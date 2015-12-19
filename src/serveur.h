@@ -1,20 +1,28 @@
-#ifndef SERVER_H
-# define SERVER_H
+#ifndef SERVEUR_H
+# define SERVEUR_H
 # include <sys/select.h>
 # include <sys/types.h>
 # include <sys/time.h>
 
 /*
- * server constants
- */
+** server constants
+*/
 # define MAX_FD		256
 # define MIN_CLIENT	6
 # define MIN_PORT	1024
 # define MAX_PORT	65535
 # define MIN_MAP	10
-# define MAX_MAP	100
+# define MAX_MAP	50
 # define MIN_TICK	1
 # define MAX_TICK	500
+
+/*
+** client status
+*/
+# define FD_FREE	0
+# define FD_SERVER	1
+# define FD_CLIENT	2
+# define FD_GFX		3
 
 # include "structs.h"
 
@@ -23,6 +31,7 @@
 */
 void	rm_teams(t_team **teams, int *nb_team);
 void	rm_board(int ****board, int board_size[2], int i, int j);
+void	cleanup_game(t_zappy *var, t_server *serv);
 
 /*
 ** src/check_arguements.c
@@ -40,7 +49,13 @@ void	exit_arg_error(int error, t_arguments *args);
 int		init_board_inventory(int **row, int j_max, int *j);
 int		init_board(int ****board, int board_size[2], int i, int j);
 int		init_game_var(t_zappy *var, t_arguments *args);
-int		init(t_zappy *var, t_arguments *args);
+int		init_server(t_zappy *var, t_server *serv, t_arguments *args);
+int		init(t_zappy *var, t_server *serv, t_arguments *args);
+
+/*
+** src/main_loop.c
+*/
+void	pre_select(t_zappy *var, t_server *serv);
 
 /*
 ** src/read_arguments.c

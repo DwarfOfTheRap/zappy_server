@@ -15,6 +15,7 @@ typedef struct			s_msg
 
 typedef struct			s_server
 {
+	int			sock;
 	int			port;
 	int			fd_max;
 	int			fd_sel;

@@ -7,10 +7,12 @@ int		main(int ac, const char **av)
 	int			ret;
 	t_arguments	args;
 	t_zappy		game_var;
+	t_server	serv;
 
 	bzero(&args, sizeof(args));
 	if ((ret = read_arguments(ac, av, &args)))
 		exit_arg_error(ret, &args);
-	init(&game_var, &args);
+	if (!init(&game_var, &serv, &args))
+		;// let's play
 	return (0);
 }

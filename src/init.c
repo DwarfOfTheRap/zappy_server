@@ -1,5 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
+#include <netdb.h>
+#include <sys/socket.h>
+#include <stdio.h>
 #include "serveur.h"
 
 int		init_board_inventory(int **row, int j_max, int *j)
@@ -59,9 +62,40 @@ int		init_game_var(t_zappy *var, t_arguments *args)
 	return (0);
 }
 
-int		init(t_zappy *var, t_arguments *args)
+int		init_server(t_zappy *var, t_server *serv, t_arguments *args)
+{
+	struct protoent		*proto;
+	struct sockaddr_in	sin;
+
+	bzero(serv, sizeof(t_server));
+	serv->port = args->port;
+	serv->fd_max = 4;
+	if (!(proto = getprotobyname("tcp")))
+		return (z_error("tcp: Unsupported protocol\n"));
+	serv->sock = socket(PF_INET, SOCK_STREAM, proto->p_proto);
+	sin.sin_family = AF_INET;
+	sin.sin_port = htons(serv->port);
+	sin.sin_addr.s_addr = htonl(INADDR_ANY);
+	if (bind(serv->sock, (const struct sockaddr *)&sin, sizeof(sin)) < 0)
+	{
+		dprintf(2, "Bind error on port %d\n", serv->port);
+		return (1);
+	}
+	listen(serv->sock, MAX_FD);
+	var->players[serv->sock].status = FD_SERVER;
+	printf("Listening for maximum %d clients, on port %d\n",
+		MAX_FD - serv->sock, serv->port);
+	return (0);
+}
+
+int		init(t_zappy *var, t_server *serv, t_arguments *args)
 {
 	if (init_game_var(var, args))
 		return (1);
+	if (init_server(var, serv, args))
+	{
+		cleanup_game(var, serv);
+		return (1);
+	}
 	return (0);
 }
