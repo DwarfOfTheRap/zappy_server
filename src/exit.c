@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "server.h"
+#include "serveur.h"
 
 void	exit_arg_error(int error, t_arguments *args)
 {

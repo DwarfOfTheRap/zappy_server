@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <check.h>
-#include "server.h"
+#include "serveur.h"
 
 START_TEST(rm_teams_two_team)
 {

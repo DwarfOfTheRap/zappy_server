@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "server.h"
+#include "serveur.h"
 
 int		z_error(char *str)
 {

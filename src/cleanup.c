@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "server.h"
+#include "serveur.h"
 
 void	rm_teams(t_team **teams, int *nb_team)
 {

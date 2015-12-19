@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <check.h>
-#include "server.h"
+#include "serveur.h"
 #include "cleanup.h"
 
 Suite*	cleanup(void)

@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "server.h"
+#include "serveur.h"
 
 int		init_board_inventory(int **row, int j_max, int *j)
 {

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "server.h"
+#include "serveur.h"
 
 int		check_error_int(char *str, int value)
 {

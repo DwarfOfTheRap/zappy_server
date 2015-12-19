@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "server.h"
+#include "serveur.h"
 
 int		main(int ac, const char **av)
 {
