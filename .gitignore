@@ -32,11 +32,14 @@
 *.dSYM/
 
 # CMake unwanted files
-Testing
 CMakeCache.txt
 CMakeFiles
 *.cmake
 
 # program name
 serveur
-test_zappy_server
+
+# test
+test/test_zappy_server
+test/Makefile
+test/Testing

@@ -1,3 +1,7 @@
 # zappy_server
-[![Build Status](https://travis-ci.org/DwarfOfTheRap/zappy_server.svg?branch=feature%2Flinked_lists)](https://travis-ci.org/DwarfOfTheRap/zappy_server)
+[![Build Status](https://travis-ci.org/DwarfOfTheRap/zappy_server.svg?branch=develop)](https://travis-ci.org/DwarfOfTheRap/zappy_server)
+
 42 school project zappy - server
+
+## Trello board
+Here is the [public link](https://trello.com/b/SAMysnab) to our trello, cause we planned our work on trello.

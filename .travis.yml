@@ -1,8 +1,8 @@
-sudo: required 
+sudo: required
 dist: trusty
 language: c
 
-script: make test || ./test/test_zappy_server 
+script: .ci/script.sh
 
 install: .ci/install.sh
 
