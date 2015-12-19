@@ -6,7 +6,7 @@ START_TEST(rm_teams_two_team)
 {
 	t_team	*teams = NULL;
 	char	*team_names[2];
-	u_int	nb_team = 2;
+	int	nb_team = 2;
 
 	teams = (t_team *)malloc(sizeof(t_team) * 2);
 	team_names[0] = (char *)malloc(10);
@@ -24,7 +24,7 @@ END_TEST
 START_TEST(rm_teams_no_team)
 {
 	t_team	*teams = NULL;
-	u_int	nb_team = 0;
+	int	nb_team = 0;
 
 	rm_teams(&teams, &nb_team);
 	ck_assert_uint_eq(0, nb_team);
@@ -35,7 +35,7 @@ END_TEST
 START_TEST(rm_teams_no_team_wrong_nb_team)
 {
 	t_team	*teams = NULL;
-	u_int	nb_team = 2;
+	int	nb_team = 2;
 
 	rm_teams(&teams, &nb_team);
 	ck_assert_uint_eq(0, nb_team);

@@ -20,7 +20,7 @@ START_TEST(arg_check_arguments_valid)
 	ck_assert_uint_eq(2, args.nb_team);
 	ck_assert_str_eq("toto", args.teams[0].name);
 	ck_assert_str_eq("tutu", args.teams[1].name);
-	rm_teams(&args.teams, &args.nb_team);
+	rm_teams(&args.teams, (int *)&args.nb_team);
 }
 END_TEST
 
