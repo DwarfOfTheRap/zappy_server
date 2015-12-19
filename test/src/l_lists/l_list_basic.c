@@ -1,5 +1,5 @@
 #include <check.h>
-#include "linked_lists.h"
+#include "linked_lists_test.h"
 
 t_lst_head	*sample_list(void (*add)(t_lst_head*, t_lst_elem*))
 {	

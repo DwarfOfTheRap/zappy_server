@@ -1,5 +1,5 @@
 #include <check.h>
-#include "linked_lists.h"
+#include "linked_lists_test.h"
 
 int		check_list(t_lst_head *head, const char *str[])
 {
