@@ -93,5 +93,5 @@ int		read_arguments(int ac, char const **av, t_arguments *args)
 			++i;
 		}
 	}
-	return (check_arguements(args, error));
+	return (check_arguments(args, error));
 }

@@ -1,3 +1,8 @@
+#include <sys/socket.h>
+#include <sys/select.h>
+#include <arpa/inet.h>
+#include <string.h>
+#include <stdio.h>
 #include "serveur.h"
 
 void	init_client(t_zappy *var, int client)
@@ -20,7 +25,7 @@ int		do_accept(t_zappy *var, t_server *serv)
 	}
 	printf("New connection from %s\n", inet_ntoa(csin.sin_addr));
 	init_client(var, cs);
-	var->players[cs].status = FD_USE;
+	var->players[cs].status = FD_CLIENT;
 	var->players[cs].level = 1;
 	if (cs > serv->fd_max)
 		serv->fd_max += 1;

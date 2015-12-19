@@ -34,9 +34,9 @@ void	rm_board(int ****board, int board_size[2], int i, int j);
 void	cleanup_game(t_zappy *var, t_server *serv);
 
 /*
-** src/check_arguements.c
+** src/check_arguments.c
 */
-int		check_arguements(t_arguments *args, int error);
+int		check_arguments(t_arguments *args, int error);
 
 /*
 ** src/do_accept.c

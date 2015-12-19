@@ -11,7 +11,7 @@ START_TEST(arg_check_arguments_valid)
 	args.teams[1].name = (char *)malloc(10);
 	strcpy(args.teams[0].name, "toto");
 	strcpy(args.teams[1].name, "tutu");
-	ck_assert_int_eq(0, check_arguements(&args, 0));
+	ck_assert_int_eq(0, check_arguments(&args, 0));
 	ck_assert_int_eq(1234, args.port);
 	ck_assert_int_eq(20, args.width);
 	ck_assert_int_eq(30, args.height);
@@ -28,7 +28,7 @@ START_TEST(arg_check_arguments_too_much)
 {
 	t_arguments		args = {123411, 120, 130, 340, 550, 112, NULL};
 
-	ck_assert_int_eq(6, check_arguements(&args, 0));
+	ck_assert_int_eq(6, check_arguments(&args, 0));
 }
 END_TEST
 
@@ -36,17 +36,17 @@ START_TEST(arg_check_arguments_too_few)
 {
 	t_arguments		args = {1, 2, 3, 4, 0, 0, NULL};
 
-	ck_assert_int_eq(6, check_arguements(&args, 0));
+	ck_assert_int_eq(6, check_arguments(&args, 0));
 }
 END_TEST
 
 TCase*	arg_check_arguments(void)
 {
-	TCase	*check_arguements;
+	TCase	*check_arguments;
 
-	check_arguements = tcase_create("check_arguements");
-	tcase_add_test(check_arguements, arg_check_arguments_valid);
-	tcase_add_test(check_arguements, arg_check_arguments_too_much);
-	tcase_add_test(check_arguements, arg_check_arguments_too_few);
-	return (check_arguements);
+	check_arguments = tcase_create("check_arguments");
+	tcase_add_test(check_arguments, arg_check_arguments_valid);
+	tcase_add_test(check_arguments, arg_check_arguments_too_much);
+	tcase_add_test(check_arguments, arg_check_arguments_too_few);
+	return (check_arguments);
 }

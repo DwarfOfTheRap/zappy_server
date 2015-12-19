@@ -7,7 +7,7 @@ int		check_error_int(char *str, int value)
 	return (1);
 }
 
-int		check_arguements(t_arguments *args, int error)
+int		check_arguments(t_arguments *args, int error)
 {
 	if (args->port < MIN_PORT || args->port > MAX_PORT)
 		error += check_error_int("Port", args->port);

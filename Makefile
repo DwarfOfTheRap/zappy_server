@@ -8,6 +8,7 @@ LDFLAGS :=
 SRC := \
 	src/check_arguments.c \
 	src/cleanup.c \
+	src/do_accept.c \
 	src/exit.c \
 	src/init.c \
 	src/linked_lists.c \
@@ -17,7 +18,6 @@ SRC := \
 	src/read_arguments.c \
 	src/serveur.c \
 	src/usage.c
-
 OBJ := $(SRC:.c=.o)
 
 all: $(NAME)
