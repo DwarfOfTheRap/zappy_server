@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "serveur.h"
 
 void	pre_select(t_zappy *var, t_server *serv)
@@ -39,12 +40,12 @@ void	post_select(t_zappy *var, t_server *serv)
 		if (FD_ISSET(i, &serv->fd_read))
 		{
 			if (var->players[i].status == FD_SERVER)
-				;//do_accept(data, sock);
+				do_accept(var, serv);
 			else
-				;//do_read(i);
+				;//do_read(...);
 		}
 		if (FD_ISSET(i, &serv->fd_write))
-			;//do_write(data, i);
+			;//do_write(...);
 		if ((FD_ISSET(i, &serv->fd_read)) || (FD_ISSET(i, &serv->fd_write)))
 			serv->fd_sel--;
 		i++;
@@ -58,5 +59,6 @@ int		main_loop(t_zappy *var, t_server *serv)
 		pre_select(var, serv);
 		do_select(serv);
 		post_select(var, serv);
+		// place loop throttle here
 	}
 }

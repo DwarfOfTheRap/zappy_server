@@ -39,6 +39,12 @@ void	cleanup_game(t_zappy *var, t_server *serv);
 int		check_arguements(t_arguments *args, int error);
 
 /*
+** src/do_accept.c
+*/
+void	init_client(t_zappy *var, int client);
+int		do_accept(t_zappy *var, t_server *serv);
+
+/*
 ** src/exit.c
 */
 void	exit_arg_error(int error, t_arguments *args);
