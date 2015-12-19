@@ -17,11 +17,13 @@ SRC := \
 	src/read_arguments.c \
 	src/serveur.c \
 	src/usage.c
+
 OBJ := $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
 	rm -f $(OBJ)
