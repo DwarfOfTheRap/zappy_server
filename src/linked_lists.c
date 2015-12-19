@@ -46,7 +46,7 @@ t_lst_elem	*lst_create(void *content, size_t content_size)
 
 void		lst_pushfront(t_lst_head *head, t_lst_elem *new)
 {
-	if (head)
+	if (head && new)
 	{
 		if (!head->first)
 			head->last = new;
