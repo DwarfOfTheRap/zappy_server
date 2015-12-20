@@ -13,6 +13,6 @@ int		main(int ac, const char **av)
 	if ((ret = read_arguments(ac, av, &args)))
 		exit_arg_error(ret, &args);
 	if (!init(&game_var, &serv, &args))
-		;// let's play
+		ret = ret;// let's play
 	return (0);
 }

@@ -22,21 +22,21 @@ void	rm_board(int ****board, int board_size[2], int i, int j)
 {
 	if (!*board)
 		return ;
-	if (j == board_size[1])
+	if (j == board_size[0])
 		--i;
-	else
+	if (j == board_size[1])
 		--j;
 	while (i >= 0)
 	{
 		while (j >= 0)
 		{
-			free(*board[i][j]);
-			*board[i][j] = NULL;
+			free((*board)[i][j]);
+			(*board)[i][j] = NULL;
 			--j;
 		}
-		j = board_size[1];
-		free(*board[i]);
-		*board[i] = NULL;
+		j = board_size[1] - 1;
+		free((*board)[i]);
+		(*board)[i] = NULL;
 		--i;
 	}
 	free(*board);

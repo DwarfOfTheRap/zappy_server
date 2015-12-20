@@ -27,13 +27,13 @@ int		init_board(int ****board, int board_size[2], int i, int j)
 			j = 0;
 			if (init_board_inventory((*board)[i], board_size[1], &j))
 			{
-				rm_board(board, board_size, i, j);
+				rm_board(board, board_size, i, j - 1);
 				return (1);
 			}
 		}
 		else
 		{
-			rm_board(board, board_size, i, j);
+			rm_board(board, board_size, i - 1, board_size[1]);
 			return (1);
 		}
 		++i;
@@ -50,10 +50,8 @@ int		init_game_var(t_zappy *var, t_arguments *args)
 	var->nb_team = (int)args->nb_team;
 	var->teams = args->teams;
 	var->actions = NULL;
-	if (!(var->board = (int ***)malloc(sizeof(int **) * var->board_size[0])))
-		rm_board(&(var->board), var->board_size, 0, var->board_size[1]);
-	else
-		init_board(&(var->board), var->board_size, 0, var->board_size[1]);
+	if ((var->board = (int ***)malloc(sizeof(int **) * var->board_size[0])))
+		init_board(&(var->board), var->board_size, 0, 0);
 	if (!var->board)
 	{
 		rm_teams(&(var->teams), &(var->nb_team));
