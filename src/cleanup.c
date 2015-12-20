@@ -22,7 +22,7 @@ void	rm_board(int ****board, int board_size[2], int i, int j)
 {
 	if (!*board)
 		return ;
-	if (j == board_size[0])
+	if (i == board_size[0])
 		--i;
 	if (j == board_size[1])
 		--j;

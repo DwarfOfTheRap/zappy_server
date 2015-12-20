@@ -27,16 +27,16 @@
 # include "structs.h"
 
 /*
+** src/check_arguments.c
+*/
+int		check_arguments(t_arguments *args, int error);
+
+/*
 ** src/cleanup.c
 */
 void	rm_teams(t_team **teams, int *nb_team);
 void	rm_board(int ****board, int board_size[2], int i, int j);
 void	cleanup_game(t_zappy *var, t_server *serv);
-
-/*
-** src/check_arguments.c
-*/
-int		check_arguments(t_arguments *args, int error);
 
 /*
 ** src/do_accept.c
@@ -52,7 +52,6 @@ void	exit_arg_error(int error, t_arguments *args);
 /*
 ** src/init.c
 */
-int		init_board_inventory(int **row, int j_max, int *j);
 int		init_board(int ****board, int board_size[2], int i, int j);
 int		init_game_var(t_zappy *var, t_arguments *args);
 int		init_server(t_zappy *var, t_server *serv, t_arguments *args);

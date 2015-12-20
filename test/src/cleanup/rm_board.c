@@ -68,7 +68,7 @@ START_TEST(rm_board_start_row)
 
 	board = gen_board(size, 5, 10);
 	ck_assert_msg(NULL != board, "Can't allocate needed memory for test");
-	rm_board(&board, size, 6, 10);
+	rm_board(&board, size, 5, 10);
 	ck_assert_ptr_eq(NULL, board);
 }
 END_TEST
