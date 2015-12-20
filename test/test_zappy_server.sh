@@ -35,7 +35,6 @@ function assert_return()
 
 # declare test variables
 args=(
-    "-p 1234 -x 10 -y 10 -c 20 -n toto tutu -t 10"
     ""
     "-x 10 -y 10 -c 20 -n toto tutu -t 10"
     "-p 1234 -y 10 -c 20 -n toto tutu -t 10"
@@ -45,7 +44,6 @@ args=(
     "-p 1234 -x 10 -y 10 -c 20 -n toto tutu"
 )
 error=(
-    0
     6
     1
     1
