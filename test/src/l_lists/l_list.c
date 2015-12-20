@@ -1,5 +1,5 @@
 #include <check.h>
-#include "l_list_test.h"
+#include "linked_lists_test.h"
 
 Suite*	l_list(void)
 {

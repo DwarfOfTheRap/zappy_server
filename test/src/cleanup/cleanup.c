@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <check.h>
 #include "serveur.h"
-#include "cleanup.h"
+#include "cleanup_test.h"
 
 Suite*	cleanup(void)
 {
@@ -10,6 +10,6 @@ Suite*	cleanup(void)
 	s = suite_create("cleanup");
 	suite_add_tcase(s, cleanup_rm_teams());
 	suite_add_tcase(s, cleanup_rm_board());
-	//suite_add_tcase(s, cleanup_cleanup_game());
+	suite_add_tcase(s, cleanup_cleanup_game());
 	return (s);
 }
