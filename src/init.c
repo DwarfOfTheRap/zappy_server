@@ -33,7 +33,7 @@ int		init_board(int ****board, int board_size[2], int i, int j)
 		}
 		else
 		{
-			rm_board(board, board_size, i - 1, board_size[1]);
+			rm_board(board, board_size, i - 1, j);
 			return (1);
 		}
 		++i;
