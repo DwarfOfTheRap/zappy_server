@@ -21,8 +21,9 @@
 */
 # define FD_FREE	0
 # define FD_SERVER	1
-# define FD_CLIENT	2
-# define FD_GFX		3
+# define FD_USED	2
+# define FD_CLIENT	3
+# define FD_GFX		4
 
 # include "structs.h"
 

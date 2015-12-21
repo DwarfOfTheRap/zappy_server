@@ -38,9 +38,9 @@ typedef struct			s_player
 	int			pending_actions;
 	t_team		*team;
 	t_tstmp		timeofdeath;
-	u_char		facing:2;
-	u_char		status:2;
-	u_char		level:4;
+	u_short		facing:2;
+	u_short		status:3;
+	u_short		level:4;
 	t_list		*msg;
 }						t_player;
 

@@ -25,7 +25,7 @@ int		do_accept(t_zappy *var, t_server *serv)
 	}
 	printf("New connection from %s\n", inet_ntoa(csin.sin_addr));
 	init_client(var, cs);
-	var->players[cs].status = FD_CLIENT;
+	var->players[cs].status = FD_USED;
 	var->players[cs].level = 1;
 	if (cs > serv->fd_max)
 		serv->fd_max += 1;
