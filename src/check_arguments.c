@@ -1,10 +1,35 @@
 #include <stdio.h>
+#include <string.h>
 #include "serveur.h"
 
 int		check_error_int(char *str, int value)
 {
 	dprintf(2, "%s %d not in range.\n", str, value);
 	return (1);
+}
+
+int		check_team_names(t_arguments *args)
+{
+	u_int	i;
+	u_int	j;
+	int		error;
+
+	i = 0;
+	error = 0;
+	while (i < args->nb_team - 1)
+	{
+		j = i + 1;
+		while (j < args->nb_team)
+		{
+			if (!strcmp(args->teams[i].name, args->teams[j].name))
+				++error;
+			++j;
+		}
+		++i;
+	}
+	if (error)
+		dprintf(2, "Some teams share the same name\n");
+	return (error);
 }
 
 int		check_arguments(t_arguments *args, int error)
@@ -30,5 +55,7 @@ int		check_arguments(t_arguments *args, int error)
 		++error;
 		dprintf(2, "No team provided\n");
 	}
+	else
+		error += check_team_names(args);
 	return (error);
 }

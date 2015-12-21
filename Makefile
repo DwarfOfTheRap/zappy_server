@@ -4,7 +4,7 @@ ifeq ($(CC),cc)
 endif
 CFLAGS := -Wall -Wextra -Werror
 CPPFLAGS := -I src
-LDFLAGS := 
+LDFLAGS :=
 SRC := \
 	src/check_arguments.c \
 	src/cleanup.c \
@@ -23,7 +23,6 @@ OBJ := $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
 	rm -f $(OBJ)
