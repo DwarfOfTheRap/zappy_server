@@ -7,6 +7,6 @@ Suite*	init_test(void)
 
 	s = suite_create("init");
 	suite_add_tcase(s, init_init_game_var());
-	//suite_add_tcase(s, init_init_server());
+	suite_add_tcase(s, init_init_server());
 	return (s);
 }
