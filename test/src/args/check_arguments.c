@@ -28,7 +28,7 @@ START_TEST(arg_check_arguments_too_much)
 {
 	t_arguments		args = {123411, 120, 130, 340, 550, 112, NULL};
 
-	ck_assert_int_eq(6, check_arguments(&args, 0));
+	ck_assert_int_eq(7, check_arguments(&args, 0));
 }
 END_TEST
 

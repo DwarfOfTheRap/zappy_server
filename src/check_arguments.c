@@ -14,6 +14,8 @@ int		check_team_names(t_arguments *args)
 	u_int	j;
 	int		error;
 
+	if (!args->teams)
+		return (1);
 	i = 0;
 	error = 0;
 	while (i < args->nb_team - 1)
