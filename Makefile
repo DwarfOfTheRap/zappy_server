@@ -23,6 +23,7 @@ OBJ := $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	$(CC) $(LDFLAGS) $^ -o $@
 
 clean:
 	rm -f $(OBJ)
