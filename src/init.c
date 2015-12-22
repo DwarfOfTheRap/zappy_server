@@ -32,10 +32,12 @@ int		init_board(int ****board, int board_size[2], int i, int j)
 
 int		init_game_var(t_zappy *var, t_arguments *args)
 {
+	int		i;
+
 	bzero(var, sizeof(t_zappy));
 	var->board_size[0] = args->height;
 	var->board_size[1] = args->width;
-	var->team_size = args->nb_clients / (int)args->nb_team;
+	var->team_size = (MAX_FD - 4) / (int)args->nb_team;
 	var->tick = args->tick;
 	var->nb_team = (int)args->nb_team;
 	var->teams = args->teams;
@@ -46,6 +48,9 @@ int		init_game_var(t_zappy *var, t_arguments *args)
 		rm_teams(&(var->teams), &(var->nb_team));
 		return (1);
 	}
+	i = 0;
+	while (i < var->nb_team)
+		var->teams[i++].remain = args->nb_clients;
 	return (0);
 }
 

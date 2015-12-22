@@ -5,6 +5,7 @@
 
 START_TEST(init_game_var_valid)
 {
+	int					i;
 	int					ac = 14;
 	char				*av[14] = {"./test", "-p", "1234", "-x", "20", "-y",
 		"30", "-n", "toto", "tutu", "-c", "40", "-t", "50"};
@@ -22,8 +23,14 @@ START_TEST(init_game_var_valid)
 	ck_assert_int_eq(args.nb_team, var.nb_team);
 	ck_assert_int_eq(args.height, var.board_size[0]);
 	ck_assert_int_eq(args.width, var.board_size[1]);
-	ck_assert_int_eq(args.nb_clients / (int)args.nb_team, var.team_size);
+	ck_assert_int_eq((MAX_FD - 4) / (int)args.nb_team, var.team_size);
 	ck_assert_int_eq(args.tick, var.tick);
+	i = 0;
+	while (i < var.nb_team)
+	{
+		ck_assert_int_eq(args.nb_clients, var.teams[i].remain);
+		++i;
+	}
 	cleanup_game(&var, &serv);
 }
 END_TEST

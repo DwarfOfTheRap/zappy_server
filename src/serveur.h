@@ -8,7 +8,7 @@
 ** server constants
 */
 # define MAX_FD		256
-# define MIN_CLIENT	6
+# define MIN_CLIENT	1
 # define MIN_PORT	1024
 # define MAX_PORT	65535
 # define MIN_MAP	10

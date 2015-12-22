@@ -42,16 +42,11 @@ int		check_arguments(t_arguments *args, int error)
 		error += check_error_int("Width", args->width);
 	if (args->height < MIN_MAP || args->height > MAX_MAP)
 		error += check_error_int("Height", args->height);
-	if (args->nb_clients < MIN_CLIENT || args->nb_clients > MAX_FD - 4)
+	if (args->nb_clients < MIN_CLIENT || (args->nb_team &&
+				args->nb_clients > (MAX_FD - 4) / (int)args->nb_team))
 		error += check_error_int("Number of client", args->nb_clients);
 	if (args->tick < MIN_TICK || args->tick > MAX_TICK)
 		error += check_error_int("Tick", args->tick);
-	if (args->nb_team > (u_int)args->nb_clients / 6)
-	{
-		++error;
-		dprintf(2, "Too many team registered (%d) compare to the number of "
-			"client\n", args->nb_team);
-	}
 	if (!args->nb_team)
 	{
 		++error;
