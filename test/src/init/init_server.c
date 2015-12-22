@@ -19,10 +19,9 @@ START_TEST(init_server_valid)
 		"test variable");
 	ck_assert_int_eq(0, init_server(&var, &serv, &args));
 	ck_assert_int_eq(args.port, serv.port);
-	ck_assert_int_eq(4, serv.fd_max);
-	ck_assert_int_eq(4, serv.sock);
+	ck_assert_int_eq(serv.sock, serv.fd_max);
 	ck_assert_int_eq(0, serv.fd_sel);
-	ck_assert_int_eq(FD_SERVER, var.players[4].status);
+	ck_assert_int_eq(FD_SERVER, var.players[serv.sock].status);
 	cleanup_game(&var, &serv);
 }
 END_TEST
