@@ -24,6 +24,7 @@
 # define FD_USED	2
 # define FD_CLIENT	3
 # define FD_GFX		4
+# define FD_CLOSE	5
 
 /*
 ** other define
@@ -51,7 +52,7 @@ void	cleanup_game(t_zappy *var, t_server *serv);
 /*
 ** src/do_accept.c
 */
-void	init_client(t_player *p, int client);
+void	accept_client(t_player *p, int client);
 int		do_accept(t_zappy *var, t_server *serv);
 
 /*
