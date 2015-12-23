@@ -33,7 +33,7 @@ int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args)
 		++(*i);
 	if (*i == first)
 		return (z_error("No team's name given"));
-	args->nb_team = *i - first;
+	args->nb_team = *i - first + 1;
 	if (!(args->teams = (t_team *)malloc(sizeof(t_team) * args->nb_team)))
 		return (z_error("Can't allocate memory"));
 	j = 0;
@@ -43,6 +43,7 @@ int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args)
 		++first;
 		++j;
 	}
+	args->teams[j].name = strdup("GRAPHIC");
 	return (0);
 }
 

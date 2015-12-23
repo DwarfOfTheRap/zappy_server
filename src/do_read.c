@@ -21,6 +21,12 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 
 void	affect_team(t_zappy *var, t_player *p, char *str, size_t len)
 {
+	(void)var;
+	if (!strncmp(str, "GRAPHIC", len))
+		p->status = FD_GFX;
+	else
+	{
+	}
 }
 
 char	*process_input(t_zappy *var, t_player *p, char *str)
