@@ -13,6 +13,25 @@ typedef struct			s_msg
 	char		*content;
 }						t_msg;
 
+typedef struct			s_rcv_buf
+{
+	char		buf[NB_RCV][RCV_SIZE + 1];
+	u_short		read;
+	u_short		write;
+	char		full;
+	char		*remain;
+}						t_rcv_buf;
+
+typedef struct			s_snd_buf
+{
+	char		buf[NB_SND][SND_SIZE + 1];
+	u_short		read;
+	u_short		write;
+	char		full;
+	char		*pos;
+	t_lst_head	lst;
+}						t_snd_buf;
+
 typedef struct			s_server
 {
 	int			sock;
@@ -41,7 +60,8 @@ typedef struct			s_player
 	u_short		facing:2;
 	u_short		status:3;
 	u_short		level:4;
-	t_list		*msg;
+	t_rcv_buf	rcv;
+	t_snd_buf	snd;
 }						t_player;
 
 typedef struct			s_action

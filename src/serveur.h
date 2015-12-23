@@ -25,6 +25,15 @@
 # define FD_CLIENT	3
 # define FD_GFX		4
 
+/*
+** other define
+*/
+# define NB_RCV		5
+# define RCV_SIZE	128
+# define NB_SND		20
+# define SND_SIZE	1024
+
+# include "linked_lists.h"
 # include "structs.h"
 
 /*
@@ -42,7 +51,7 @@ void	cleanup_game(t_zappy *var, t_server *serv);
 /*
 ** src/do_accept.c
 */
-void	init_client(t_zappy *var, int client);
+void	init_client(t_player *p, int client);
 int		do_accept(t_zappy *var, t_server *serv);
 
 /*
@@ -67,6 +76,14 @@ void	post_select(t_zappy *var, t_server *serv);
 int		main_loop(t_zappy *var, t_server *serv);
 
 /*
+** src/message.c
+*/
+void	update_pos_pointer(t_snd_buf *buf);
+void	add_msg_to_player_lst(t_player *p, char *msg, size_t pos, size_t len);
+void	add_msg_to_player(t_player *p, char *msg, size_t len);
+void	clean_msg_queue(t_player *p);
+
+/*
 ** src/read_arguments.c
 */
 int		z_error(char *str);
@@ -74,6 +91,12 @@ int		get_opt(const char *str);
 int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args);
 int		get_opt_int(t_main_arg const m_arg, int *i, int arg, t_arguments *args);
 int		read_arguments(int ac, const char **av, t_arguments *args);
+
+/*
+** src/tools
+*/
+char	*strjoin(char *str1, char *str2);
+void	strdel(char **str);
 
 /*
 ** src/usage.c

@@ -9,14 +9,17 @@ SRC := \
 	src/check_arguments.c \
 	src/cleanup.c \
 	src/do_accept.c \
+	src/do_read.c \
 	src/exit.c \
 	src/init.c \
 	src/linked_lists.c \
 	src/linked_lists_2.c \
 	src/linked_lists_3.c \
 	src/main_loop.c \
+	src/message.c \
 	src/read_arguments.c \
 	src/serveur.c \
+	src/tools.c \
 	src/usage.c
 OBJ := $(SRC:.c=.o)
 
