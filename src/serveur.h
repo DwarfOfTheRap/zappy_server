@@ -50,10 +50,26 @@ void	rm_board(int ****board, int board_size[2], int i, int j);
 void	cleanup_game(t_zappy *var, t_server *serv);
 
 /*
+** src/connexion.c
+*/
+int		close_client(t_zappy *var, t_server *serv, int fd);
+void	client_error(t_player *p, char *str);
+void	init_gfx(t_zappy *var, t_player *p);
+void	init_client(t_zappy *var, t_player *p);
+void	affect_team(t_zappy *var, t_player *p, char *str, size_t len);
+
+/*
 ** src/do_accept.c
 */
 void	accept_client(t_player *p, int client);
 int		do_accept(t_zappy *var, t_server *serv);
+
+/*
+** src/do_read.c
+*/
+char	*process_input(t_zappy *var, t_player *p, char *str);
+void	read_buffer(t_zappy *var, t_player *p);
+int		do_read(t_zappy *var, t_server *serv, int fd);
 
 /*
 ** src/exit.c

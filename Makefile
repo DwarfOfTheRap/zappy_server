@@ -8,6 +8,7 @@ LDFLAGS :=
 SRC := \
 	src/check_arguments.c \
 	src/cleanup.c \
+	src/connexion.c \
 	src/do_accept.c \
 	src/do_read.c \
 	src/exit.c \

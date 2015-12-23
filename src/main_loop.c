@@ -42,7 +42,7 @@ void	post_select(t_zappy *var, t_server *serv)
 			if (var->players[i].status == FD_SERVER)
 				do_accept(var, serv);
 			else
-				(void)i; //do_read(...);
+				do_read(var, serv, i);
 		}
 		if (FD_ISSET(i, &serv->fd_write))
 			(void)i; //do_write(...);
