@@ -72,6 +72,11 @@ void	read_buffer(t_zappy *var, t_player *p);
 int		do_read(t_zappy *var, t_server *serv, int fd);
 
 /*
+** src/do_write.c
+*/
+void	do_write(t_zappy *var, t_server *serv, int fd);
+
+/*
 ** src/exit.c
 */
 void	exit_arg_error(int error, t_arguments *args);
@@ -99,6 +104,7 @@ void	update_pos_pointer(t_snd_buf *buf);
 void	add_msg_to_player_lst(t_player *p, char *msg, size_t pos, size_t len);
 void	add_msg_to_player(t_player *p, char *msg, size_t len);
 void	clean_msg_queue(t_player *p);
+char	*pop_msg(t_lst_head *head);
 
 /*
 ** src/read_arguments.c

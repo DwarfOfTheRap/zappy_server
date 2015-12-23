@@ -11,6 +11,7 @@ SRC := \
 	src/connexion.c \
 	src/do_accept.c \
 	src/do_read.c \
+	src/do_write.c \
 	src/exit.c \
 	src/init.c \
 	src/linked_lists.c \

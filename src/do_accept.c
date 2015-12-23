@@ -25,7 +25,7 @@ int		do_accept(t_zappy *var, t_server *serv)
 		dprintf(2, "\033[0;31mError\033[0m: accept");
 		return (1);
 	}
-	printf("New connection from %s\n", inet_ntoa(csin.sin_addr));
+	printf("[INFO] New connection from %s\n", inet_ntoa(csin.sin_addr));
 	accept_client(&var->players[cs], cs);
 	var->players[cs].status = FD_USED;
 	var->players[cs].level = 1;

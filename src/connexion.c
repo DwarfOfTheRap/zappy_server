@@ -12,7 +12,7 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 	close(fd);
 	p->status = FD_FREE;
 	clean_msg_queue(p);
-	printf("[Deconnexion] Client %d disconnected\n", fd);
+	printf("[INFO] Client %d disconnected\n", fd);
 	// need to clean action of this player from action queue
 	if (fd == serv->fd_max)
 		--serv->fd_max;
@@ -22,7 +22,7 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 void	client_error(t_player *p, char *str)
 {
 	add_msg_to_player(p, str, 0);
-	printf("[Warning] Client %d: %s\n", p->id, str);
+	printf("[WARNING] Client %d: %s\n", p->id, str);
 	p->status = FD_CLOSE;
 }
 
@@ -43,6 +43,7 @@ void	init_client(t_zappy *var, t_player *p)
 	--p->team->remain;
 	len = sprintf(str, "%d\n%d %d", p->team->remain, var->board_size[1],
 			var->board_size[0]);
+	printf("[INFO] Client %d: team %s\n", p->id, p->team->name);
 	add_msg_to_player(p, str, len);
 }
 

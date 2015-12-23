@@ -45,7 +45,7 @@ void	post_select(t_zappy *var, t_server *serv)
 				do_read(var, serv, i);
 		}
 		if (FD_ISSET(i, &serv->fd_write))
-			(void)i; //do_write(...);
+			do_write(var, serv, i);
 		if ((FD_ISSET(i, &serv->fd_read)) || (FD_ISSET(i, &serv->fd_write)))
 			serv->fd_sel--;
 		i++;
