@@ -18,7 +18,9 @@ START_TEST(init_game_var_valid)
 	read_arguments(ac, (const char **)av, &args);
 	ck_assert_int_eq(0, init_game_var(&var, &args));
 	ck_assert_ptr_ne(NULL, var.board);
-	ck_assert_ptr_eq(NULL, var.actions);
+	ck_assert_ptr_eq(NULL, var.actions.first);
+	ck_assert_ptr_eq(NULL, var.actions.last);
+	ck_assert_int_eq(0, var.actions.size);
 	ck_assert_ptr_eq(args.teams, var.teams);
 	ck_assert_int_eq(args.nb_team, var.nb_team);
 	ck_assert_int_eq(args.height, var.board_size[0]);

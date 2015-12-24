@@ -3,16 +3,6 @@
 
 typedef struct timeval	t_tstmp;
 
-typedef struct			s_list
-{
-	void		*content;
-}						t_list;
-
-typedef struct			s_msg
-{
-	char		*content;
-}						t_msg;
-
 typedef struct			s_rcv_buf
 {
 	char		buf[NB_RCV][RCV_SIZE + 1];
@@ -80,9 +70,17 @@ typedef struct			s_zappy
 	int			tick;
 	int			nb_team;
 	t_team		*teams;
-	t_list		*actions;
+	t_lst_head	actions;
 	t_player	players[MAX_FD];
 }						t_zappy;
+
+typedef struct			s_cmd
+{
+	char	cmd[16];
+	u_short	status:15;
+	u_short arg:1;
+	void	(*run)(t_zappy *var, t_player *p, char *arg);
+}						t_cmd;
 
 typedef struct			s_arguments
 {
