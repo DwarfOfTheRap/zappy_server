@@ -46,6 +46,11 @@ void	add_msg_to_player(t_player *p, char *msg, size_t len)
 void	clean_msg_queue(t_player *p)
 {
 	lst_delete(&p->snd.lst, free);
+	if (p->rcv.remain)
+	{
+		free(p->rcv.remain);
+		p->rcv.remain = NULL;
+	}
 }
 
 char	*pop_msg(t_lst_head *head)
