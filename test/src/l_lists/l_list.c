@@ -1,7 +1,7 @@
 #include <check.h>
 #include "linked_lists_test.h"
 
-Suite*	l_list(void)
+Suite*	suite_l_list(void)
 {
 	Suite	*s;
 

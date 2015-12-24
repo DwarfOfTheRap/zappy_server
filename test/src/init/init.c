@@ -1,7 +1,7 @@
 #include <check.h>
 #include "init_test.h"
 
-Suite*	init_test(void)
+Suite*	suite_init_test(void)
 {
 	Suite	*s;
 

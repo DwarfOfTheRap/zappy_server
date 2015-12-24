@@ -3,7 +3,7 @@
 #include "serveur.h"
 #include "cleanup_test.h"
 
-Suite*	cleanup(void)
+Suite*	suite_cleanup(void)
 {
 	Suite	*s;
 

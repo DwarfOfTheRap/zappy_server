@@ -3,7 +3,7 @@
 #include "serveur.h"
 #include "arg.h"
 
-Suite*	arg(void)
+Suite*	suite_arg(void)
 {
 	Suite	*s;
 
