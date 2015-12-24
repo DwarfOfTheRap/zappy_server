@@ -56,7 +56,7 @@ void	affect_team(t_zappy *var, t_player *p, char *str, size_t len)
 	{
 		if (!strncmp(var->teams[i].name, str, len))
 		{
-			p->team = &var->teams[i];
+			p->team = &(var->teams[i]);
 			if (!var->teams[i].remain)
 				client_error(p, "EQUIPE PLEINE");
 			else if (i == var->nb_team - 1)

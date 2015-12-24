@@ -2,7 +2,7 @@
 #include <check.h>
 #include "serveur.h"
 
-START_TEST(connexion_close_client)
+START_TEST(connexion_close_client_)
 {
 	t_zappy		var;
 	t_server	serv;
@@ -44,11 +44,11 @@ START_TEST(connexion_close_client)
 }
 END_TEST
 
-TCase*	connexion_test(void)
+TCase*	connexion_close_client(void)
 {
 	TCase	*tc;
 
 	tc = tcase_create("close_client");
-	tcase_add_test(tc, connexion_close_client);
+	tcase_add_test(tc, connexion_close_client_);
 	return (tc);
 }

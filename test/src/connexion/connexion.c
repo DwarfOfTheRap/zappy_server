@@ -6,6 +6,8 @@ Suite*	suite_connexion(void)
 	Suite	*s;
 
 	s = suite_create("connexion");
-	suite_add_tcase(s, connexion_test());
+	suite_add_tcase(s, connexion_close_client());
+	suite_add_tcase(s, connexion_client_error());
+	suite_add_tcase(s, connexion_affect_team());
 	return (s);
 }
