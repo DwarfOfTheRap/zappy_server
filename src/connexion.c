@@ -10,6 +10,8 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 
 	p = &var->players[fd];
 	close(fd);
+	if (p->status == FD_GFX)
+		++p->team->remain;
 	p->status = FD_FREE;
 	clean_msg_queue(p);
 	printf("[INFO] Client %d disconnected\n", fd);

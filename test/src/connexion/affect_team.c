@@ -34,6 +34,7 @@ START_TEST(connexion_affect_team_valid)
 	ck_assert_int_eq(0, var.teams[1].remain);
 	ck_assert_int_eq(FD_CLIENT, p->status);
 	ck_assert_str_eq("0\n20 10\n", p->snd.buf[p->snd.write]);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
@@ -49,6 +50,7 @@ START_TEST(connexion_affect_team_full)
 	ck_assert_int_eq(0, var.teams[1].remain);
 	ck_assert_int_eq(FD_CLOSE, p->status);
 	ck_assert_str_eq("EQUIPE PLEINE\n", p->snd.buf[p->snd.write]);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
@@ -62,6 +64,7 @@ START_TEST(connexion_affect_team_unknow)
 	ck_assert_ptr_eq(NULL, p->team);
 	ck_assert_int_eq(1, var.teams[1].remain);
 	ck_assert_str_eq("EQUIPE INCONNUE\n", p->snd.buf[p->snd.write]);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
@@ -76,6 +79,7 @@ START_TEST(connexion_affect_team_gfx)
 	ck_assert_int_eq(0, var.teams[2].remain);
 	ck_assert_int_eq(FD_GFX, p->status);
 	ck_assert_str_eq("", p->snd.buf[p->snd.write]);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 

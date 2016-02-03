@@ -4,7 +4,7 @@
 
 t_cmd const	*get_cmd_list(void)
 {
-	t_cmd static const	cmd[21] = {
+	static t_cmd const	cmd[21] = {
 		{"avance", FD_CLIENT, 0, NULL},
 		{"droite", FD_CLIENT, 0, NULL},
 		{"gauche", FD_CLIENT, 0, NULL},
