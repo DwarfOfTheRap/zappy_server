@@ -1,9 +1,6 @@
 #include <check.h>
 #include "serveur.h"
 
-//t_cmd const	*get_cmd_list(void);
-//int			command_match(t_cmd const *cmd, char *str);
-
 START_TEST(commands_command_match_avance)
 {
 	ck_assert_int_eq(command_match(get_cmd_list()[0], "avance"), strlen(get_cmd_list()[0].cmd));
