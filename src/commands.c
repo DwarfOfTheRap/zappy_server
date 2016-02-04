@@ -11,7 +11,7 @@ t_cmd const	*get_cmd_list(void)
 		{"prend", FD_CLIENT, 1, NULL},
 		{"pose", FD_CLIENT, 1, NULL},
 		{"expulse", FD_CLIENT, 0, NULL},
-		{"broadcast", FD_CLIENT, 0, NULL},
+		{"broadcast", FD_CLIENT, 1, NULL},
 		{"incantation", FD_CLIENT, 0, NULL},
 		{"fork", FD_CLIENT, 0, NULL},
 		{"connect_nbr", FD_CLIENT, 0, NULL},
@@ -28,19 +28,19 @@ t_cmd const	*get_cmd_list(void)
 	return (cmd);
 }
 
-int			command_match(t_cmd const *cmd, char *str)
+int			command_match(t_cmd const cmd, char *str)
 {
 	int		i;
 
 	i = 0;
-	while (cmd->cmd[i] && cmd->cmd[i] == str[i])
+	while (cmd.cmd[i] && cmd.cmd[i] == str[i])
 		++i;
-	if ((cmd->cmd[i] == str[i] && !cmd->arg) ||
-		(!cmd->cmd[i] && str[i] == ' ' && cmd->arg))
+	if ((cmd.cmd[i] == str[i] && !cmd.arg) ||
+		(!cmd.cmd[i] && str[i] == ' ' && cmd.arg))
 		return (i);
-	else if (cmd->cmd[i] == str[i] && cmd->arg)
+	else if (cmd.cmd[i] == str[i] && cmd.arg)
 		return (-1);
-	else if (!cmd->cmd[i] && str[i] == ' ' && !cmd->arg)
+	else if (!cmd.cmd[i] && str[i] == ' ' && !cmd.arg)
 		return (-2);
 	return (0);
 }
@@ -55,7 +55,7 @@ void		find_command(t_zappy *var, t_player *p, char *str, size_t len)
 	str[len] = '\0';
 	while (i < 21)
 	{
-		if ((ret = command_match(&cmd[i], str)))
+		if ((ret = command_match(cmd[i], str)))
 		{
 			if (ret < 0)
 				add_msg_to_player(p, "Command format error", 0);

@@ -3,6 +3,7 @@
 
 Suite*	suite_arg(void);
 Suite*	suite_cleanup(void);
+Suite*	suite_commands_test(void);
 Suite*	suite_l_list(void);
 Suite*	suite_init_test(void);
 Suite*	suite_connexion(void);

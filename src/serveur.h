@@ -53,7 +53,7 @@ void		cleanup_game(t_zappy *var, t_server *serv);
 ** src/commands.c
 */
 t_cmd const	*get_cmd_list(void);
-int			command_match(t_cmd const *cmd, char *str);
+int			command_match(t_cmd const cmd, char *str);
 void		find_command(t_zappy *var, t_player *p, char *str, size_t len);
 
 
