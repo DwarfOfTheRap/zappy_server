@@ -9,6 +9,7 @@ SRC := \
 	src/check_arguments.c \
 	src/cleanup.c \
 	src/connexion.c \
+	src/commands.c \
 	src/do_accept.c \
 	src/do_read.c \
 	src/do_write.c \
