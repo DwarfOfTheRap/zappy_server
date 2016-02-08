@@ -12,6 +12,11 @@ typedef struct			s_rcv_buf
 	char		*remain;
 }						t_rcv_buf;
 
+/*
+** circular buffer but if overflow, has a linked list in order to avoid message
+** loss; It's expect to be use (the linked list) when the gfx client ask for
+** the map
+*/
 typedef struct			s_snd_buf
 {
 	char		buf[NB_SND][SND_SIZE + 1];

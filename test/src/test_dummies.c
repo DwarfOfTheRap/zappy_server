@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <check.h>
 #include "serveur.h"
 
 void	dummy_t_zappy_without_board(t_zappy *var)
@@ -30,6 +31,7 @@ void	dummy_t_serv(t_server *serv)
 
 void	dummy_t_player(t_zappy *var, t_player *p)
 {
+	bzero(p, sizeof(t_player));
 	p->status = FD_CLIENT;
 	p->snd.lst.size = 1;
 	p->snd.lst.first = lst_create("caca", 4);
