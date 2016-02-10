@@ -4,7 +4,7 @@
 
 void	update_pos_pointer(t_snd_buf *buf)
 {
-	buf->write = (buf->write + 1 == NB_RCV) ? 0 : buf->write + 1;
+	buf->write = (buf->write + 1 == NB_SND) ? 0 : buf->write + 1;
 	buf->pos = buf->buf[buf->write];
 	buf->full = (buf->write == buf->read) ? 1 : 0;
 	if (!buf->full)

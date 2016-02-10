@@ -33,8 +33,9 @@ void	dummy_t_player(t_zappy *var, t_player *p)
 {
 	bzero(p, sizeof(t_player));
 	p->status = FD_CLIENT;
+	p->snd.pos = p->snd.buf[p->snd.write];
 	p->snd.lst.size = 1;
-	p->snd.lst.first = lst_create("caca", 4);
+	p->snd.lst.first = lst_create("caca", 5);
 	p->snd.lst.last = p->snd.lst.first;
 	p->team = &(var->teams[0]);
 	p->rcv.remain = (char *)malloc(16);
