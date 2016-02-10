@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "serveur.h"
 
@@ -13,8 +13,19 @@ void	update_pos_pointer(t_snd_buf *buf)
 
 void	add_msg_to_player_lst(t_player *p, char *msg, size_t pos, size_t len)
 {
-	lst_pushback(&p->snd.lst, lst_create(msg + pos, len));
-	((char *)(p->snd.lst.last->content))[len] = '\0';
+	t_lst_elem		*new;
+
+	if (!(new = (t_lst_elem *)malloc(sizeof(t_lst_elem))))
+		return ;
+	bzero(new, sizeof(t_lst_elem));
+	if (!(new->content = malloc(len + 1)))
+	{
+		free(new);
+		return ;
+	}
+	memcpy(new->content, msg + pos, len);
+	memcpy(new->content + len - 1, "\n", 2);
+	lst_pushback(&p->snd.lst, new);
 }
 
 void	add_msg_to_player(t_player *p, char *msg, size_t len)
@@ -25,10 +36,10 @@ void	add_msg_to_player(t_player *p, char *msg, size_t len)
 
 	pos = 0;
 	len = (len) ? len + 1 : strlen(msg) + 1;
-	while (!p->snd.full && pos != len)
+	while (!p->snd.full && pos < len)
 	{
 		avail = SND_SIZE - (p->snd.pos - p->snd.buf[p->snd.write]);
-		cpy = (avail >= len) ? len : avail;
+		cpy = (avail >= len) ? len - pos : avail;
 		p->snd.pos = stpncpy(p->snd.pos, msg + pos, cpy);
 		pos += cpy;
 		if (p->snd.pos - SND_SIZE == p->snd.buf[p->snd.write])
@@ -39,8 +50,8 @@ void	add_msg_to_player(t_player *p, char *msg, size_t len)
 			++p->snd.pos;
 		}
 	}
-	if (pos != len)
-		add_msg_to_player_lst(p, msg, cpy, len - cpy);
+	if (pos < len)
+		add_msg_to_player_lst(p, msg, pos, len - pos);
 }
 
 void	clean_msg_queue(t_player *p)

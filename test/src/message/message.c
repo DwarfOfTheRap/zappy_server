@@ -7,7 +7,7 @@ Suite*	suite_message_test(void)
 
 	s = suite_create("message");
 	suite_add_tcase(s, message_update_pos_pointer());
-	suite_add_tcase(s, message_add_msg_to_plater_lst());
-	suite_add_tcase(s, message_add_msg_to_plater());
+	suite_add_tcase(s, message_add_msg_to_player_lst());
+	suite_add_tcase(s, message_add_msg_to_player());
 	return (s);
 }

@@ -2,7 +2,7 @@
 #include "serveur.h"
 #include "test_dummies.h"
 
-START_TEST(message_add_msg_to_plater_lst_)
+START_TEST(message_add_msg_to_player_lst_)
 {
 	t_zappy		var;
 	t_player	*p = &var.players[5];
@@ -13,18 +13,18 @@ START_TEST(message_add_msg_to_plater_lst_)
 	add_msg_to_player_lst(p, "crotte, crotte de chien", 8, 16);
 	ck_assert_int_eq(p->snd.lst.size, 3);
 	ck_assert_str_eq(p->snd.lst.first->content, "caca");
-	ck_assert_str_eq(p->snd.lst.first->next->content, "boudin");
-	ck_assert_str_eq(p->snd.lst.last->content, "crotte de chien");
+	ck_assert_str_eq(p->snd.lst.first->next->content, "boudin\n");
+	ck_assert_str_eq(p->snd.lst.last->content, "crotte de chien\n");
 	clean_msg_queue(p);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
-TCase*	message_add_msg_to_plater_lst(void)
+TCase*	message_add_msg_to_player_lst(void)
 {
 	TCase	*tc;
 
 	tc = tcase_create("add_msg_to_player_lst");
-	tcase_add_test(tc, message_add_msg_to_plater_lst_);
+	tcase_add_test(tc, message_add_msg_to_player_lst_);
 	return (tc);
 }
