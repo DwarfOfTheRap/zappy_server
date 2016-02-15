@@ -78,7 +78,6 @@ START_TEST(message_add_msg_to_player_all_buffer_overflow)
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);
-	clean_msg_queue(p);
 	test_snd_overflow(p);
 	rm_teams(&var.teams, &var.nb_team);
 }
@@ -91,7 +90,6 @@ START_TEST(message_add_msg_to_player_all_buffer_overflow_multiple)
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);
-	clean_msg_queue(p);
 	test_snd_overflow(p);
 	test_snd_overflow(p);
 	test_snd_overflow(p);

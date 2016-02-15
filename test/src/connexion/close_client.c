@@ -12,6 +12,7 @@ START_TEST(connexion_close_client_)
 	dummy_t_zappy_without_board(&var);
 	dummy_t_serv(&serv);
 	dummy_t_player(&var, p);
+	dummy_t_player_fill_buffer(p);
 
 	ck_assert_int_eq(1, close_client(&var, &serv, 5));
 	ck_assert_ptr_eq((void *)0xdeadbeaf, (void *)var.board);
@@ -43,6 +44,7 @@ START_TEST(connexion_close_client_fd_max)
 	dummy_t_zappy_without_board(&var);
 	dummy_t_serv(&serv);
 	dummy_t_player(&var, p);
+	dummy_t_player_fill_buffer(p);
 
 	ck_assert_int_eq(1, close_client(&var, &serv, 7));
 	ck_assert_ptr_eq((void *)0xdeadbeaf, (void *)var.board);
@@ -74,6 +76,7 @@ START_TEST(connexion_close_client_gfx)
 	dummy_t_zappy_without_board(&var);
 	dummy_t_serv(&serv);
 	dummy_t_player(&var, p);
+	dummy_t_player_fill_buffer(p);
 
 	p->team = &(var.teams[2]);
 	p->status = FD_GFX;

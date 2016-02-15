@@ -9,6 +9,7 @@ START_TEST(message_add_msg_to_player_lst_)
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);
+	dummy_t_player_fill_buffer(p);
 	add_msg_to_player_lst(p, "boudin", 0, 7);
 	add_msg_to_player_lst(p, "crotte, crotte de chien", 8, 16);
 	ck_assert_int_eq(p->snd.lst.size, 3);
