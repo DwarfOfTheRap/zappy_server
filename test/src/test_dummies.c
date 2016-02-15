@@ -21,6 +21,17 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	bzero(&var->actions.size, sizeof(t_lst_head));
 }
 
+void	dummy_t_zappy_add_remaining_in_team(t_zappy *var)
+{
+	int	i = 0;
+
+	while (i < var->nb_team)
+	{
+		++var->teams[i].remain;
+		++i;
+	}
+}
+
 void	dummy_t_serv(t_server *serv)
 {
 	serv->sock = 5;

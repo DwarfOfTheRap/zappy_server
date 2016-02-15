@@ -14,9 +14,9 @@ char	*process_input(t_zappy *var, t_player *p, char *str)
 		if (str[i] == '\n')
 		{
 			if (p->status == FD_USED)
-				affect_team(var, p, str + start, i);
+				affect_team(var, p, str + start, i - start);
 			else
-				find_command(var, p, str + start, i);
+				find_command(var, p, str + start, i - start);
 			start = i + 1;
 		}
 		++i;
