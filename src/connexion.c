@@ -28,12 +28,21 @@ void	client_error(t_player *p, char *str)
 	p->status = FD_CLOSE;
 }
 
+/*
+ * Those init function will need a little refactor due to dumb protocol imposed
+ * by subject..
+ */
 void	init_gfx(t_zappy *var, t_player *p)
 {
 	(void)var;
-	p->status = FD_GFX;
-	--p->team->remain;
-	// need to send the map
+	if (p->team->remain)
+	{
+		p->status = FD_GFX;
+		--p->team->remain;
+		// need to send the map
+	}
+	else
+		p->status = FD_CLOSE;
 }
 
 void	init_client(t_zappy *var, t_player *p)
@@ -42,10 +51,15 @@ void	init_client(t_zappy *var, t_player *p)
 	size_t	len;
 
 	p->status = FD_CLIENT;
-	--p->team->remain;
 	len = sprintf(str, "%d\n%d %d", p->team->remain, var->board_size[1],
 			var->board_size[0]);
-	printf("[INFO] Client %d: team %s\n", p->id, p->team->name);
+	if (p->team->remain)
+	{
+		--p->team->remain;
+		printf("[INFO] Client %d: team %s\n", p->id, p->team->name);
+	}
+	else
+		p->status = FD_CLOSE;
 	add_msg_to_player(p, str, len);
 }
 
@@ -59,9 +73,10 @@ void	affect_team(t_zappy *var, t_player *p, char *str, size_t len)
 		if (!strncmp(var->teams[i].name, str, len))
 		{
 			p->team = &(var->teams[i]);
-			if (!var->teams[i].remain)
-				client_error(p, "EQUIPE PLEINE");
-			else if (i == var->nb_team - 1)
+			//if (!var->teams[i].remain)
+			//	client_error(p, "EQUIPE PLEINE");
+			//else if (i == var->nb_team - 1)
+			if (i == var->nb_team - 1)
 				init_gfx(var, p);
 			else
 				init_client(var, p);

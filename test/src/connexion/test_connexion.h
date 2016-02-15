@@ -4,5 +4,6 @@
 TCase*	connexion_close_client(void);
 TCase*	connexion_client_error(void);
 TCase*	connexion_affect_team(void);
+TCase*	connexion_process_input(void);
 
 #endif

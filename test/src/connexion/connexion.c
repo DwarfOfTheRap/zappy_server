@@ -9,5 +9,6 @@ Suite*	suite_connexion(void)
 	suite_add_tcase(s, connexion_close_client());
 	suite_add_tcase(s, connexion_client_error());
 	suite_add_tcase(s, connexion_affect_team());
+	suite_add_tcase(s, connexion_process_input());
 	return (s);
 }
