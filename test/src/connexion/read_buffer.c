@@ -24,6 +24,7 @@ START_TEST(connexion_read_buffer_normal)
 	ck_assert_ptr_eq(p->snd.pos, (void *)&p->snd.buf[p->snd.write] + strlen(str2));
 	ck_assert_str_eq(p->snd.buf[p->snd.write], str2);
 	ck_assert_int_eq(p->snd.full, 0);
+	clean_msg_queue(p);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
@@ -58,6 +59,7 @@ START_TEST(connexion_read_buffer_normal_multiple_buffer)
 	ck_assert_ptr_eq(p->snd.pos, (void *)&p->snd.buf[p->snd.write] + strlen(str2));
 	ck_assert_str_eq(p->snd.buf[p->snd.write], str2);
 	ck_assert_int_eq(p->snd.full, 0);
+	clean_msg_queue(p);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
@@ -81,6 +83,7 @@ START_TEST(connexion_read_buffer_missing_new_line)
 	ck_assert_str_eq(p->rcv.remain, str);
 	ck_assert_int_eq(p->snd.write, p->snd.read);
 	ck_assert_int_eq(p->snd.full, 0);
+	clean_msg_queue(p);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
