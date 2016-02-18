@@ -76,11 +76,13 @@ START_TEST(connexion_process_input_unkown)
 }
 END_TEST
 
+// This test will evolve when command will be supported
 START_TEST(connexion_process_input_multiple_commands)
 {
 	t_zappy		var;
 	t_player	*p = &var.players[5];
 	char		str[30] = "avance\ngauche\navance\n";
+	char		str2[128] = "Unsupported command\nUnsupported command\nUnsupported command\n";
 	char		*ret;
 
 	dummy_t_zappy_without_board(&var);
@@ -89,6 +91,7 @@ START_TEST(connexion_process_input_multiple_commands)
 	ret = process_input(&var, p, str);
 	ck_assert_ptr_eq(p->rcv.remain, NULL);
 	ck_assert_ptr_eq(ret, NULL);
+	ck_assert_str_eq(p->snd.buf[p->snd.read], str2);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
