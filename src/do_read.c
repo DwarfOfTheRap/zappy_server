@@ -45,8 +45,7 @@ void	read_buffer(t_zappy *var, t_player *p)
 		p->rcv.full = 0;
 		p->rcv.read = (p->rcv.read + 1 == NB_RCV) ? 0 : p->rcv.read + 1;
 	}
-	if (ret)
-		p->rcv.remain = strdup(ret);
+	p->rcv.remain = (ret && ret[0] != '\0') ? strdup(ret) : NULL;
 	if (tmp)
 		free(tmp);
 }
@@ -56,9 +55,9 @@ int		do_read(t_zappy *var, t_server *serv, int fd)
 	int			ret;
 	t_player	*p;
 
-	ret = 1;
+	ret = RCV_SIZE;
 	p = &var->players[fd];
-	while (!p->rcv.full && ret)
+	while (!p->rcv.full && ret == RCV_SIZE)
 	{
 		if ((ret = read(fd, p->rcv.buf[p->rcv.write], RCV_SIZE)) <= 0)
 			return (close_client(var, serv, fd));

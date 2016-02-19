@@ -42,11 +42,16 @@ void	dummy_t_serv(t_server *serv)
 
 void	dummy_t_player(t_zappy *var, t_player *p)
 {
+	size_t	i = 3;
+
+	while (i < MAX_FD && &var->players[i] != p)
+		++i;
 	bzero(p, sizeof(t_player));
 	p->status = FD_CLIENT;
 	p->snd.pos = p->snd.buf[p->snd.write];
 	p->snd.lst.size = 1;
 	p->team = &(var->teams[0]);
+	p->id = i;
 }
 
 void	dummy_t_player_fill_buffer(t_player *p)

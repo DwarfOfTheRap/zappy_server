@@ -18,15 +18,16 @@ START_TEST(connexion_do_read_normal)
 	dummy_t_serv(&serv);
 	p = &var.players[pipe_fd[0]];
 	dummy_t_player(&var, p);
+	ck_assert_int_eq(p->id, pipe_fd[0]);
 	write(pipe_fd[1], str, strlen(str));
 	write(pipe_fd[1], str, strlen(str));
 	write(pipe_fd[1], "pre", 3);
 	ck_assert_int_eq(do_read(&var, &serv, pipe_fd[0]), 0);
 	ck_assert_ptr_ne(p->rcv.remain, NULL);
-	ck_assert_str_eq(p->rcv,remain. "pre");
+	ck_assert_str_eq(p->rcv.remain, "pre");
 	ck_assert_str_eq(p->snd.buf[p->snd.write], "Command format error\nCommand format error\n");
 	write(pipe_fd[1], "nd\n", 3);
-	ck_assert_int_eq(do_read(&var, &serv, p), 0);
+	ck_assert_int_eq(do_read(&var, &serv, p->id), 0);
 	ck_assert_ptr_eq(p->rcv.remain, NULL);
 	ck_assert_str_eq(p->snd.buf[p->snd.write], "Command format error\nCommand format error\nCommand format error\n");
 	rm_teams(&var.teams, &var.nb_team);
@@ -38,6 +39,6 @@ TCase*	connexion_do_read(void)
 	TCase	*tc;
 
 	tc = tcase_create("do_read");
-	tcase_add_test(tc, connexion_do_read_noraml);
+	tcase_add_test(tc, connexion_do_read_normal);
 	return (tc);
 }
