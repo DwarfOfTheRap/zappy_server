@@ -35,23 +35,26 @@ void	add_msg_to_player(t_player *p, char *msg, size_t len)
 	size_t	avail;
 
 	pos = 0;
-	len = (len) ? len + 1 : strlen(msg) + 1;
+	len = (len) ? len : strlen(msg);
 	while (!p->snd.full && pos < len)
 	{
 		avail = SND_SIZE - (p->snd.pos - p->snd.buf[p->snd.write]);
-		cpy = (avail >= len) ? len - pos : avail;
+		cpy = (avail >= len - pos) ? len - pos : avail;
 		p->snd.pos = stpncpy(p->snd.pos, msg + pos, cpy);
 		pos += cpy;
 		if (p->snd.pos - SND_SIZE == p->snd.buf[p->snd.write])
 			update_pos_pointer(&p->snd);
-		else
-		{
-			memcpy(p->snd.pos, "\n", 2);
-			++p->snd.pos;
-		}
 	}
 	if (pos < len)
-		add_msg_to_player_lst(p, msg, pos, len - pos);
+		add_msg_to_player_lst(p, msg, pos, len - pos + 1);
+	else
+	{
+		memcpy(p->snd.pos, "\n", 2);
+		if (p->snd.pos - SND_SIZE == p->snd.buf[p->snd.write])
+			update_pos_pointer(&p->snd);
+		else
+			++p->snd.pos;
+	}
 }
 
 void	clean_msg_queue(t_player *p)

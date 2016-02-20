@@ -14,10 +14,11 @@ void	test_snd_overflow(t_player *p)
 		add_msg_to_player(p, str, SND_SIZE - 1);
 		++i;
 	}
-	add_msg_to_player(p, str, SND_SIZE - 4);
+	add_msg_to_player(p, str, SND_SIZE - 3);
 	add_msg_to_player(p, "caca", 0);
 	ck_assert_int_eq(p->snd.full, 1);
 	ck_assert_int_eq(p->snd.read, p->snd.write);
+	str[SND_SIZE - 1] = '\n';
 	i = 0;
 	while (i < NB_SND - 1)
 	{
@@ -60,7 +61,7 @@ START_TEST(message_add_msg_to_player_buffer_overflow)
 	dummy_t_player(&var, p);
 	memset(str, '0', SND_SIZE);
 	str[SND_SIZE] = 0;
-	add_msg_to_player(p, str, SND_SIZE - 4);
+	add_msg_to_player(p, str, SND_SIZE - 3);
 	add_msg_to_player(p, "caca", 0);
 	strcpy(str + SND_SIZE - 3, "\nca");
 	ck_assert_int_eq(p->snd.read + 1, p->snd.write);
