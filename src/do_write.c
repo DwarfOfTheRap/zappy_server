@@ -7,6 +7,7 @@ void	do_write(t_zappy *var, t_server *serv, int fd)
 	char		*str;
 	t_player	*p;
 
+	(void)serv;
 	p = &var->players[fd];
 	while (p->snd.full || p->snd.read != p->snd.write ||
 			p->snd.buf[p->snd.write] != p->snd.pos)

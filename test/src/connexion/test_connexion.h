@@ -7,5 +7,6 @@ TCase*	connexion_affect_team(void);
 TCase*	connexion_process_input(void);
 TCase*	connexion_read_buffer(void);
 TCase*	connexion_do_read(void);
+TCase*	connexion_do_write(void);
 
 #endif

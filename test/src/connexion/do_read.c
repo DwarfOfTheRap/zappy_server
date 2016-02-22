@@ -30,6 +30,9 @@ START_TEST(connexion_do_read_normal)
 	ck_assert_int_eq(do_read(&var, &serv, p->id), 0);
 	ck_assert_ptr_eq(p->rcv.remain, NULL);
 	ck_assert_str_eq(p->snd.buf[p->snd.write], "Command format error\nCommand format error\nCommand format error\n");
+	clean_msg_queue(p);
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
