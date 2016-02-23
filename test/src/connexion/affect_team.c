@@ -79,6 +79,7 @@ START_TEST(connexion_affect_team_gfx)
 	ck_assert_int_eq(0, var.teams[2].remain);
 	ck_assert_int_eq(FD_GFX, p->status);
 	ck_assert_str_eq("", p->snd.buf[p->snd.write]);
+	ck_assert_ptr_eq(var.gfx_client, p);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST

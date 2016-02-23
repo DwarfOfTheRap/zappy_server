@@ -77,6 +77,7 @@ typedef struct			s_zappy
 	t_team		*teams;
 	t_lst_head	actions;
 	t_player	players[MAX_FD];
+	t_player	*gfx_client;
 }						t_zappy;
 
 typedef struct			s_cmd
