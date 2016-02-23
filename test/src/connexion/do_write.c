@@ -26,7 +26,7 @@ START_TEST(connexion_do_write_normal)
 	str[SND_SIZE] = 0;
 	while (i < 3)
 	{
-		add_msg_to_player(p, str, SND_SIZE - 1);
+		add_msg_to_player(p, str, SND_SIZE - 1, 1);
 		++i;
 	}
 	str[SND_SIZE - 1] = '\n';
@@ -72,7 +72,7 @@ START_TEST(connexion_do_write_linked_list)
 	str[SND_SIZE] = 0;
 	while (i < 3)
 	{
-		add_msg_to_player_lst(p, str, 0, SND_SIZE);
+		add_msg_to_player_lst(p, str, SND_SIZE, 1);
 		++i;
 	}
 	str[SND_SIZE - 1] = '\n';

@@ -109,9 +109,8 @@ int			main_loop(t_zappy *var, t_server *serv);
 ** src/message.c
 */
 void		update_pos_pointer(t_snd_buf *buf);
-void		add_msg_to_player_lst(t_player *p, char *msg, size_t pos,
-				size_t len);
-void		add_msg_to_player(t_player *p, char *msg, size_t len);
+void		add_msg_to_player_lst(t_player *p, char *msg, size_t len, int cr);
+void		add_msg_to_player(t_player *p, char *msg, size_t len, int cr);
 void		clean_msg_queue(t_player *p);
 char		*pop_msg(t_lst_head *head);
 
