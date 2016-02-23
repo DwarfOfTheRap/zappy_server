@@ -97,6 +97,7 @@ START_TEST(connexion_close_client_gfx)
 	ck_assert_ptr_eq(NULL, p->snd.lst.first);
 	ck_assert_ptr_eq(NULL, p->snd.lst.last);
 	ck_assert_ptr_eq(NULL, p->rcv.remain);
+	ck_assert_ptr_eq(NULL, var.gfx_client);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
