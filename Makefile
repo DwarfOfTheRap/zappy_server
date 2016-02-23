@@ -10,6 +10,8 @@ SRC := \
 	src/cleanup.c \
 	src/connexion.c \
 	src/commands.c \
+	src/commands_gfx.c \
+	src/commands_pre.c \
 	src/do_accept.c \
 	src/do_read.c \
 	src/do_write.c \

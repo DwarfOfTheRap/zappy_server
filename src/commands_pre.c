@@ -6,6 +6,7 @@ void	command_pre_bct(t_zappy *var, t_player *p, char *arg)
 	char	*end_arg[2];
 	int		pos[2];
 
+	(void)p;
 	bzero(end_arg, sizeof(void *) * 2);
 	pos[1] = (int)strtol(arg, &end_arg[1], 10);
 	if (end_arg[1] == arg)
