@@ -8,10 +8,10 @@ LDFLAGS :=
 SRC := \
 	src/check_arguments.c \
 	src/cleanup.c \
-	src/connexion.c \
 	src/commands.c \
 	src/commands_gfx.c \
 	src/commands_pre.c \
+	src/connexion.c \
 	src/do_accept.c \
 	src/do_read.c \
 	src/do_write.c \
@@ -22,6 +22,12 @@ SRC := \
 	src/linked_lists_3.c \
 	src/main_loop.c \
 	src/message.c \
+	src/message_gfx_egg.c \
+	src/message_gfx_player.c \
+	src/message_gfx_player_2.c \
+	src/message_gfx_player_3.c \
+	src/message_gfx_server.c \
+	src/message_gfx_server_2.c \
 	src/read_arguments.c \
 	src/serveur.c \
 	src/tools.c \
