@@ -47,7 +47,7 @@ void	add_msg_to_player(t_player *p, char *msg, size_t len, int cr)
 		if (p->snd.pos - SND_SIZE == p->snd.buf[p->snd.write])
 			update_pos_pointer(&p->snd);
 	}
-	if (pos < len)
+	if (p->snd.full && len - pos + cr > 0)
 		add_msg_to_player_lst(p, msg + pos, len - pos + cr, cr);
 	else if (cr)
 	{
