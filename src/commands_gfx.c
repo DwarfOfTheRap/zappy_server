@@ -10,7 +10,7 @@ void	command_gfx_msz(t_zappy *var)
 	if (!var->gfx_client)
 		return ;
 	ret = sprintf(str, "msz %d %d", var->board_size[1], var->board_size[0]);
-	add_msg_to_player(var->gfx_client, str, ret);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
 void	command_gfx_bct(t_zappy *var, int pos[2])
@@ -25,7 +25,7 @@ void	command_gfx_bct(t_zappy *var, int pos[2])
 	ret = sprintf(str, "bct %d %d %d %d %d %d %d %d %d", pos[1], pos[0],
 		square[0], square[1], square[2], square[3], square[4], square[5],
 		square[6]);
-	add_msg_to_player(var->gfx_client, str, ret);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
 void	command_gfx_mct(t_zappy *var, int square)
@@ -69,7 +69,7 @@ void	command_gfx_tna(t_zappy *var)
 	while (i < var->nb_team - 1)
 	{
 		stpncpy(str_name, var->teams[i].name, 33);
-		add_msg_to_player(var->gfx_client, str, 0);
+		add_msg_to_player(var->gfx_client, str, 0, 1);
 		++i;
 	}
 }
@@ -83,7 +83,7 @@ void	command_gfx_pnw(t_zappy *var, t_player *p)
 		return ;
 	ret = sprintf(str, "pnw %d %d %d %d %d %s", p->id, p->coord[1], p->coord[1],
 		p->facing + 1, p->level, p->team->name);
-	add_msg_to_player(var->gfx_client, str, ret);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
 void	command_gfx_ppo(t_zappy *var, t_player *p)
@@ -95,7 +95,7 @@ void	command_gfx_ppo(t_zappy *var, t_player *p)
 		return ;
 	ret = sprintf(str, "ppo %d %d %d %d", p->id, p->coord[1], p->coord[1],
 		p->facing + 1);
-	add_msg_to_player(var->gfx_client, str, ret);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
 void	command_gfx_plv(t_zappy *var, t_player *p)
@@ -106,7 +106,7 @@ void	command_gfx_plv(t_zappy *var, t_player *p)
 	if (!var->gfx_client)
 		return ;
 	ret = sprintf(str, "plv %d %d", p->id, p->level);
-	add_msg_to_player(var->gfx_client, str, ret);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
 void	command_gfx_pin(t_zappy *var, t_player *p)
@@ -120,7 +120,7 @@ void	command_gfx_pin(t_zappy *var, t_player *p)
 		p->coord[0], 0, p->inv[0], p->inv[1], p->inv[2], p->inv[3], p->inv[4], p->inv[5]);
 	// need to replace the hard code 0 with life base on timestamp, waiting for
 	// jability part for now
-	add_msg_to_player(var->gfx_client, str, ret);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
 void	command_gfx_pex(t_zappy *var, t_player *p)
@@ -131,12 +131,54 @@ void	command_gfx_pex(t_zappy *var, t_player *p)
 	if (!var->gfx_client)
 		return ;
 	ret = sprintf(str, "pex %d", p->id);
-	add_msg_to_player(var->gfx_client, str, ret);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
 void	command_gfx_pbc(t_zappy *var, t_player *p, char *msg)
 {
-	(void)var;
-	(void)p;
-	(void)msg;
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "pbc %d ", p->id);
+	add_msg_to_player(var->gfx_client, str, ret, 0);
+	add_msg_to_player(var->gfx_client, msg, 0, 1);
+}
+
+void	command_gfx_pic(t_zappy *var, t_server *serv, t_player *p)
+{
+	int		i;
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "pic %d %d %d %d", p->coord[1], p->coord[0], p->level,
+		p->id);
+	add_msg_to_player(var->gfx_client, str, ret, 0);
+	i = 3;
+	while (i <= serv->fd_max)
+	{
+		if (var->players[i].status == FD_CLIENT && i != p->id &&
+			var->players[i].level == p->level &&
+			var->players[i].coord[0] == p->coord[0] &&
+			var->players[i].coord[0] == p->coord[0])
+		{
+			ret = sprintf(str, " %d", i);
+			add_msg_to_player(var->gfx_client, str, ret, 0);
+		}
+	}
+	add_msg_to_player(var->gfx_client, "", 0, 1);
+}
+
+void	command_gfx_pie(t_zappy *var, t_player *p, int success)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "pie %d %d %d", p->coord[1], p->coord[0], success);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
