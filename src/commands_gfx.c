@@ -182,3 +182,124 @@ void	command_gfx_pie(t_zappy *var, t_player *p, int success)
 	ret = sprintf(str, "pie %d %d %d", p->coord[1], p->coord[0], success);
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
+
+void	command_gfx_pfk(t_zappy *var, t_player *p)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "pfk %d", p->id);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
+}
+
+void	command_gfx_pdr(t_zappy *var, t_player *p, int res_id)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "pdr %d %d", p->id, res_id);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
+}
+
+void	command_gfx_pgt(t_zappy *var, t_player *p, int res_id)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "pgt %d %d", p->id, res_id);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
+}
+
+void	command_gfx_pdi(t_zappy *var, t_player *p)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "pdi %d", p->id);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
+}
+
+// we will need to replace the t_player egg with the appropriate struct for the
+// egg once this one will be create
+void	command_gfx_enw(t_zappy *var, t_player *p, t_player *egg)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "enw %d %d %d %d", egg->id, p->id, egg->coord[1],
+		egg->coord[0]);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
+}
+
+void	command_gfx_eht(t_zappy *var, t_player *egg)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "enw %d", egg->id);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
+}
+
+void	command_gfx_ebo(t_zappy *var, t_player *egg)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "ebo %d", egg->id);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
+}
+
+void	command_gfx_edi(t_zappy *var, t_player *egg)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "edi %d", egg->id);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
+}
+
+void	command_gfx_sgt(t_zappy *var)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "sgt %d", var->tick);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
+}
+
+void	command_gfx_seg(t_zappy *var, t_team *team)
+{
+	int		ret;
+	char	str[64];
+
+	if (!var->gfx_client)
+		return ;
+	ret = sprintf(str, "seg %s", team->name);
+	add_msg_to_player(var->gfx_client, str, ret, 1);
+}
+
+void	command_gfx_smg(t_zappy *var, char *msg)
+{
+	if (!var->gfx_client)
+		return ;
+	add_msg_to_player(var->gfx_client, "smg ", 4, 0);
+	add_msg_to_player(var->gfx_client, msg, 0, 1);
+}
