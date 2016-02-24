@@ -26,7 +26,7 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 
 void	client_error(t_player *p, char *str)
 {
-	add_msg_to_player(p, str, 0);
+	add_msg_to_player(p, str, 0, 1);
 	printf("[WARNING] Client %d: %s\n", p->id, str);
 	p->status = FD_CLOSE;
 }
@@ -64,7 +64,7 @@ void	init_client(t_zappy *var, t_player *p)
 	}
 	else
 		p->status = FD_CLOSE;
-	add_msg_to_player(p, str, len);
+	add_msg_to_player(p, str, len, 1);
 }
 
 void	affect_team(t_zappy *var, t_player *p, char *str, size_t len)

@@ -11,7 +11,7 @@ void	update_pos_pointer(t_snd_buf *buf)
 		*buf->pos = '\0';
 }
 
-void	add_msg_to_player_lst(t_player *p, char *msg, size_t pos, size_t len)
+void	add_msg_to_player_lst(t_player *p, char *msg, size_t len, int cr)
 {
 	t_lst_elem		*new;
 
@@ -23,12 +23,14 @@ void	add_msg_to_player_lst(t_player *p, char *msg, size_t pos, size_t len)
 		free(new);
 		return ;
 	}
-	memcpy(new->content, msg + pos, len);
-	memcpy(new->content + len - 1, "\n", 2);
+	memcpy(new->content, msg, len);
+	if (cr)
+		((char *)new->content)[len - 1] = '\n';
+	((char *)new->content)[len] = '\0';
 	lst_pushback(&p->snd.lst, new);
 }
 
-void	add_msg_to_player(t_player *p, char *msg, size_t len)
+void	add_msg_to_player(t_player *p, char *msg, size_t len, int cr)
 {
 	size_t	pos;
 	size_t	cpy;
@@ -46,8 +48,8 @@ void	add_msg_to_player(t_player *p, char *msg, size_t len)
 			update_pos_pointer(&p->snd);
 	}
 	if (pos < len)
-		add_msg_to_player_lst(p, msg, pos, len - pos + 1);
-	else
+		add_msg_to_player_lst(p, msg + pos, len - pos + cr, cr);
+	else if (cr)
 	{
 		memcpy(p->snd.pos, "\n", 2);
 		if (p->snd.pos - SND_SIZE == p->snd.buf[p->snd.write])

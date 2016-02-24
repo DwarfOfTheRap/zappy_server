@@ -10,7 +10,7 @@ void	accept_client(t_player *p, int client)
 	bzero(p, sizeof(t_player));
 	p->id = client;
 	p->snd.pos = p->snd.buf[0];
-	add_msg_to_player(p, "BIENVENUE", 9);
+	add_msg_to_player(p, "BIENVENUE", 9, 1);
 }
 
 int		do_accept(t_zappy *var, t_server *serv)
