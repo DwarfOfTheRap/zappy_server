@@ -9,8 +9,7 @@ SRC := \
 	src/check_arguments.c \
 	src/cleanup.c \
 	src/commands.c \
-	src/commands_gfx.c \
-	src/commands_pre.c \
+	src/commands_pre_gfx.c \
 	src/connexion.c \
 	src/do_accept.c \
 	src/do_read.c \
