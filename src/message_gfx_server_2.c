@@ -2,7 +2,7 @@
 #include <string.h>
 #include "serveur.h"
 
-void	command_gfx_seg(t_zappy *var, t_team *team)
+void	message_gfx_seg(t_zappy *var, t_team *team)
 {
 	int		ret;
 	char	str[64];
@@ -13,7 +13,7 @@ void	command_gfx_seg(t_zappy *var, t_team *team)
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	command_gfx_smg(t_zappy *var, char *msg)
+void	message_gfx_smg(t_zappy *var, char *msg)
 {
 	if (!var->gfx_client)
 		return ;

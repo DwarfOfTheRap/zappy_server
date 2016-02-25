@@ -2,7 +2,7 @@
 #include <string.h>
 #include "serveur.h"
 
-void	command_gfx_msz(t_zappy *var)
+void	message_gfx_msz(t_zappy *var)
 {
 	int		ret;
 	char	str[64];
@@ -13,7 +13,7 @@ void	command_gfx_msz(t_zappy *var)
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	command_gfx_bct(t_zappy *var, int pos[2])
+void	message_gfx_bct(t_zappy *var, int pos[2])
 {
 	int		ret;
 	int		*square;
@@ -28,7 +28,7 @@ void	command_gfx_bct(t_zappy *var, int pos[2])
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	command_gfx_mct(t_zappy *var, int square)
+void	message_gfx_mct(t_zappy *var, int square)
 {
 	int		pos[2];
 
@@ -40,7 +40,7 @@ void	command_gfx_mct(t_zappy *var, int square)
 	{
 		while (pos[1] < var->board_size[1])
 		{
-			command_gfx_bct(var, pos);
+			message_gfx_bct(var, pos);
 			if (var->gfx_client->snd.full)
 			{
 				// we need to save one way or another the square to call this
@@ -55,7 +55,7 @@ void	command_gfx_mct(t_zappy *var, int square)
 	}
 }
 
-void	command_gfx_tna(t_zappy *var)
+void	message_gfx_tna(t_zappy *var)
 {
 	int		i;
 	char	str[64];
@@ -74,7 +74,7 @@ void	command_gfx_tna(t_zappy *var)
 	}
 }
 
-void	command_gfx_sgt(t_zappy *var)
+void	message_gfx_sgt(t_zappy *var)
 {
 	int		ret;
 	char	str[64];

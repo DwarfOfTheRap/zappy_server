@@ -2,7 +2,7 @@
 #include <string.h>
 #include "serveur.h"
 
-void	command_gfx_pnw(t_zappy *var, t_player *p)
+void	message_gfx_pnw(t_zappy *var, t_player *p)
 {
 	int		ret;
 	char	str[64];
@@ -14,7 +14,7 @@ void	command_gfx_pnw(t_zappy *var, t_player *p)
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	command_gfx_ppo(t_zappy *var, t_player *p)
+void	message_gfx_ppo(t_zappy *var, t_player *p)
 {
 	int		ret;
 	char	str[64];
@@ -26,7 +26,7 @@ void	command_gfx_ppo(t_zappy *var, t_player *p)
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	command_gfx_plv(t_zappy *var, t_player *p)
+void	message_gfx_plv(t_zappy *var, t_player *p)
 {
 	int		ret;
 	char	str[64];
@@ -37,7 +37,7 @@ void	command_gfx_plv(t_zappy *var, t_player *p)
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	command_gfx_pin(t_zappy *var, t_player *p)
+void	message_gfx_pin(t_zappy *var, t_player *p)
 {
 	int		ret;
 	char	str[64];
@@ -51,7 +51,7 @@ void	command_gfx_pin(t_zappy *var, t_player *p)
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	command_gfx_pex(t_zappy *var, t_player *p)
+void	message_gfx_pex(t_zappy *var, t_player *p)
 {
 	int		ret;
 	char	str[64];

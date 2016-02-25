@@ -2,7 +2,7 @@
 #include <string.h>
 #include "serveur.h"
 
-void	command_gfx_pbc(t_zappy *var, t_player *p, char *msg)
+void	message_gfx_pbc(t_zappy *var, t_player *p, char *msg)
 {
 	int		ret;
 	char	str[64];
@@ -14,7 +14,7 @@ void	command_gfx_pbc(t_zappy *var, t_player *p, char *msg)
 	add_msg_to_player(var->gfx_client, msg, 0, 1);
 }
 
-void	command_gfx_pic(t_zappy *var, t_server *serv, t_player *p)
+void	message_gfx_pic(t_zappy *var, t_server *serv, t_player *p)
 {
 	int		i;
 	int		ret;
@@ -40,7 +40,7 @@ void	command_gfx_pic(t_zappy *var, t_server *serv, t_player *p)
 	add_msg_to_player(var->gfx_client, "", 0, 1);
 }
 
-void	command_gfx_pie(t_zappy *var, t_player *p, int success)
+void	message_gfx_pie(t_zappy *var, t_player *p, int success)
 {
 	int		ret;
 	char	str[64];
@@ -51,7 +51,7 @@ void	command_gfx_pie(t_zappy *var, t_player *p, int success)
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	command_gfx_pfk(t_zappy *var, t_player *p)
+void	message_gfx_pfk(t_zappy *var, t_player *p)
 {
 	int		ret;
 	char	str[64];
@@ -62,7 +62,7 @@ void	command_gfx_pfk(t_zappy *var, t_player *p)
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	command_gfx_pdr(t_zappy *var, t_player *p, int res_id)
+void	message_gfx_pdr(t_zappy *var, t_player *p, int res_id)
 {
 	int		ret;
 	char	str[64];
