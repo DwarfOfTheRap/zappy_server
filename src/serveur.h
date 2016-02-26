@@ -115,6 +115,14 @@ void		clean_msg_queue(t_player *p);
 char		*pop_msg(t_lst_head *head);
 
 /*
+** src/message_2.c
+*/
+void	message_unknown_command(t_player *p);
+void	message_command_format_error(t_player *p);
+void	message_unsupported_command(t_player *p);
+void	message_unauthorised_command(t_player *p);
+
+/*
 ** src/read_arguments.c
 */
 int			z_error(char *str);
