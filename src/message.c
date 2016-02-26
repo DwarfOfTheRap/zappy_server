@@ -11,7 +11,7 @@ void	update_pos_pointer(t_snd_buf *buf)
 		*buf->pos = '\0';
 }
 
-void	add_msg_to_player_lst(t_player *p, char *msg, size_t len, int cr)
+void	add_msg_to_player_lst(t_player *p, const char *msg, size_t len, int cr)
 {
 	t_lst_elem		*new;
 
@@ -30,7 +30,7 @@ void	add_msg_to_player_lst(t_player *p, char *msg, size_t len, int cr)
 	lst_pushback(&p->snd.lst, new);
 }
 
-void	add_msg_to_player(t_player *p, char *msg, size_t len, int cr)
+void	add_msg_to_player(t_player *p, const char *msg, size_t len, int cr)
 {
 	size_t	pos;
 	size_t	cpy;
