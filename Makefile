@@ -20,6 +20,7 @@ SRC := \
 	src/linked_lists_3.c \
 	src/main_loop.c \
 	src/message.c \
+	src/message_2.c \
 	src/read_arguments.c \
 	src/serveur.c \
 	src/tools.c \
