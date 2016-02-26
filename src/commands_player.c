@@ -160,7 +160,7 @@ void	command_player_expulse(t_zappy *var, t_player *p, char *args)
 		{
 			command_player_move(var, &var->players[i], p->facing);
 			message_player_expulsed(p, &var->players[i]);
-			// if incantation in progress stop it and send ko
+			// if any action in progress, interrupt it
 			++has_expulse;
 		}
 		++i;

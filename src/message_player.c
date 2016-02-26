@@ -82,3 +82,17 @@ void	message_player_message(t_player *p, int square, char *msg)
 	add_msg_to_player(p, str, ret, 0);
 	add_msg_to_player(p, msg, 0, 1);
 }
+
+void	message_player_incantation_start(t_player *p)
+{
+	add_msg_to_player(p, "elevation en cours", 0, 1);
+}
+
+void	message_player_incantation_end(t_player *p)
+{
+	int		ret;
+	char	str[32];
+
+	ret = sprintf(str, "niveau actuel : %d", p->level);
+	add_msg_to_player(p, str, ret, 1);
+}
