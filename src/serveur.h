@@ -59,19 +59,19 @@ void		find_command(t_zappy *var, t_player *p, char *str, size_t len);
 /*
 ** src/commands_pre_gfx.o
 */
-void	command_pre_bct(t_zappy *var, t_player *p, char *arg);
-void	command_pre_mct(t_zappy *var, t_player *p, char *arg);
-void	command_pre_msz(t_zappy *var, t_player *p, char *arg);
-void	command_pre_sgt(t_zappy *var, t_player *p, char *arg);
-void	command_pre_tna(t_zappy *var, t_player *p, char *arg);
+void		command_pre_bct(t_zappy *var, t_player *p, char *arg);
+void		command_pre_mct(t_zappy *var, t_player *p, char *arg);
+void		command_pre_msz(t_zappy *var, t_player *p, char *arg);
+void		command_pre_sgt(t_zappy *var, t_player *p, char *arg);
+void		command_pre_tna(t_zappy *var, t_player *p, char *arg);
 
 /*
 ** src/commands_pre_gfx_2.o
 */
-void	command_pre_pin(t_zappy *var, t_player *p, char *arg);
-void	command_pre_plv(t_zappy *var, t_player *p, char *arg);
-void	command_pre_ppo(t_zappy *var, t_player *p, char *arg);
-void	command_pre_sst(t_zappy *var, t_player *p, char *arg);
+void		command_pre_pin(t_zappy *var, t_player *p, char *arg);
+void		command_pre_plv(t_zappy *var, t_player *p, char *arg);
+void		command_pre_ppo(t_zappy *var, t_player *p, char *arg);
+void		command_pre_sst(t_zappy *var, t_player *p, char *arg);
 
 /*
 ** src/connexion.c
@@ -131,53 +131,61 @@ void		clean_msg_queue(t_player *p);
 char		*pop_msg(t_lst_head *head);
 
 /*
+** src/message_2.c
+*/
+void		message_unknown_command(t_player *p);
+void		message_command_format_error(t_player *p);
+void		message_unsupported_command(t_player *p);
+void		message_unauthorised_command(t_player *p);
+
+/*
 ** src/message_gfx_egg.c
 */
-void	message_gfx_ebo(t_zappy *var, t_player *egg);
-void	message_gfx_edi(t_zappy *var, t_player *egg);
-void	message_gfx_eht(t_zappy *var, t_player *egg);
-void	message_gfx_enw(t_zappy *var, t_player *p, t_player *egg);
+void		message_gfx_ebo(t_zappy *var, t_player *egg);
+void		message_gfx_edi(t_zappy *var, t_player *egg);
+void		message_gfx_eht(t_zappy *var, t_player *egg);
+void		message_gfx_enw(t_zappy *var, t_player *p, t_player *egg);
 
 /*
 ** src/message_gfx_player_2.c
 */
-void	message_gfx_pbc(t_zappy *var, t_player *p, char *msg);
-void	message_gfx_pdr(t_zappy *var, t_player *p, int res_id);
-void	message_gfx_pfk(t_zappy *var, t_player *p);
-void	message_gfx_pic(t_zappy *var, t_server *serv, t_player *p);
-void	message_gfx_pie(t_zappy *var, t_player *p, int success);
+void		message_gfx_pbc(t_zappy *var, t_player *p, char *msg);
+void		message_gfx_pdr(t_zappy *var, t_player *p, int res_id);
+void		message_gfx_pfk(t_zappy *var, t_player *p);
+void		message_gfx_pic(t_zappy *var, t_server *serv, t_player *p);
+void		message_gfx_pie(t_zappy *var, t_player *p, int success);
 
 /*
 ** src/message_gfx_player_3.c
 */
-void	message_gfx_pdi(t_zappy *var, t_player *p);
-void	message_gfx_pgt(t_zappy *var, t_player *p, int res_id);
+void		message_gfx_pdi(t_zappy *var, t_player *p);
+void		message_gfx_pgt(t_zappy *var, t_player *p, int res_id);
 
 /*
 ** src/message_gfx_player.c
 */
-void	message_gfx_pex(t_zappy *var, t_player *p);
-void	message_gfx_pin(t_zappy *var, t_player *p);
-void	message_gfx_plv(t_zappy *var, t_player *p);
-void	message_gfx_pnw(t_zappy *var, t_player *p);
-void	message_gfx_ppo(t_zappy *var, t_player *p);
+void		message_gfx_pex(t_zappy *var, t_player *p);
+void		message_gfx_pin(t_zappy *var, t_player *p);
+void		message_gfx_plv(t_zappy *var, t_player *p);
+void		message_gfx_pnw(t_zappy *var, t_player *p);
+void		message_gfx_ppo(t_zappy *var, t_player *p);
 
 /*
 ** src/message_gfx_server_2.c
 */
-void	message_gfx_sbp(t_zappy *var);
-void	message_gfx_seg(t_zappy *var, t_team *team);
-void	message_gfx_smg(t_zappy *var, char *msg);
-void	message_gfx_suc(t_zappy *var);
+void		message_gfx_sbp(t_zappy *var);
+void		message_gfx_seg(t_zappy *var, t_team *team);
+void		message_gfx_smg(t_zappy *var, char *msg);
+void		message_gfx_suc(t_zappy *var);
 
 /*
 ** src/message_gfx_server.c
 */
-void	message_gfx_bct(t_zappy *var, int pos[2]);
-void	message_gfx_mct(t_zappy *var, int square);
-void	message_gfx_msz(t_zappy *var);
-void	message_gfx_sgt(t_zappy *var);
-void	message_gfx_tna(t_zappy *var);
+void		message_gfx_bct(t_zappy *var, int pos[2]);
+void		message_gfx_mct(t_zappy *var, int square);
+void		message_gfx_msz(t_zappy *var);
+void		message_gfx_sgt(t_zappy *var);
+void		message_gfx_tna(t_zappy *var);
 
 /*
 ** src/read_arguments.c
