@@ -14,6 +14,7 @@ SRC := \
 	src/do_read.c \
 	src/do_write.c \
 	src/exit.c \
+	src/globals.c \
 	src/init.c \
 	src/linked_lists.c \
 	src/linked_lists_2.c \

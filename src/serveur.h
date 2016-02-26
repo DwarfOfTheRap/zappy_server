@@ -34,6 +34,8 @@
 # define NB_SND		20
 # define SND_SIZE	1024
 
+# define ABS(x)		(x < 0 ? -x : x)
+
 # include "linked_lists.h"
 # include "structs.h"
 
