@@ -96,3 +96,20 @@ void	message_player_incantation_end(t_player *p)
 	ret = sprintf(str, "niveau actuel : %d", p->level);
 	add_msg_to_player(p, str, ret, 1);
 }
+
+void	message_player_connect_nbr(t_player *p)
+{
+	int		ret;
+	char	str[32];
+
+	if (!p->team)
+		ret = sprintf(str, "%d", 0);
+	else
+		ret = sprintf(str, "%d", p->team->remain);
+	add_msg_to_player(p, str, ret, 1);
+}
+
+void	message_player_mort(t_player *p)
+{
+	add_msg_to_player(p, "mort", 4, 1);
+}
