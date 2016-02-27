@@ -14,7 +14,7 @@ void	message_gfx_pbc(t_zappy *var, t_player *p, char *msg)
 	add_msg_to_player(var->gfx_client, msg, 0, 1);
 }
 
-void	message_gfx_pic(t_zappy *var, t_server *serv, t_player *p)
+void	message_gfx_pic(t_zappy *var, t_player *p)
 {
 	int		i;
 	int		ret;
@@ -26,7 +26,7 @@ void	message_gfx_pic(t_zappy *var, t_server *serv, t_player *p)
 		p->id);
 	add_msg_to_player(var->gfx_client, str, ret, 0);
 	i = 3;
-	while (i <= serv->fd_max)
+	while (i <= *(var->fd_max))
 	{
 		if (var->players[i].status == FD_CLIENT && i != p->id &&
 			var->players[i].level == p->level &&
