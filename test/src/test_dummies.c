@@ -81,5 +81,4 @@ void	dummy_t_player_default(t_player *p)
 	p->inv[3] = 8;
 	p->inv[4] = 9;
 	p->inv[5] = 10;
-	p->inv[6] = 11;
 }

@@ -36,6 +36,7 @@ void	message_gfx_pic(t_zappy *var, t_player *p)
 			ret = sprintf(str, " %d", i);
 			add_msg_to_player(var->gfx_client, str, ret, 0);
 		}
+		++i;
 	}
 	add_msg_to_player(var->gfx_client, "", 0, 1);
 }
