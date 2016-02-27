@@ -53,6 +53,13 @@ void	dummy_t_player(t_zappy *var, t_player *p)
 	p->id = i;
 }
 
+void	dummy_t_player_gfx(t_zappy *var, t_player *p)
+{
+	dummy_t_player(var, p);
+	var->gfx_client = p;
+	p->status = FD_GFX;
+}
+
 void	dummy_t_player_fill_buffer(t_player *p)
 {
 	p->snd.lst.first = lst_create("caca", 5);
@@ -60,4 +67,19 @@ void	dummy_t_player_fill_buffer(t_player *p)
 	p->rcv.remain = (char *)malloc(16);
 	p->snd.lst.size = 1;
 	strcpy(p->rcv.remain, "caca");
+}
+
+void	dummy_t_player_default(t_player *p)
+{
+	p->level = 1;
+	p->facing = 2;
+	p->coord[0] = 3;
+	p->coord[1] = 4;
+	p->inv[0] = 5;
+	p->inv[1] = 6;
+	p->inv[2] = 7;
+	p->inv[3] = 8;
+	p->inv[4] = 9;
+	p->inv[5] = 10;
+	p->inv[6] = 11;
 }
