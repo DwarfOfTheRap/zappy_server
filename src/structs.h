@@ -74,6 +74,7 @@ typedef struct			s_zappy
 	int			team_size;
 	int			tick;
 	int			nb_team;
+	int			*fd_max;
 	t_team		*teams;
 	t_lst_head	actions;
 	t_player	players[MAX_FD];
