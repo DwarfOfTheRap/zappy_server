@@ -126,6 +126,30 @@ void	message_unsupported_command(t_player *p);
 void	message_unauthorised_command(t_player *p);
 
 /*
+** src/message_player.o
+*/
+void		message_player_ko(t_player *p);
+void		message_player_ok(t_player *p);
+void		message_player_separator(t_player *p, int sep);
+void		message_player_voir_square_sub(t_zappy *var, t_player *p,
+				int square[2]);
+void		message_player_voir_square(t_zappy *var, t_player *p, int square[2]);
+
+/*
+** src/message_player_2.o
+*/
+void		message_player_connect_nbr(t_player *p);
+void		message_player_expulsed(t_player *pusher, t_player *pushed);
+void		message_player_incantation_end(t_player *p);
+void		message_player_incantation_start(t_player *p);
+void		message_player_message(t_player *p, int square, char *msg);
+
+/*
+** src/message_player_3.o
+*/
+void		message_player_mort(t_player *p);
+
+/*
 ** src/read_arguments.c
 */
 int			z_error(char *str);

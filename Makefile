@@ -10,6 +10,10 @@ SRC := \
 	src/cleanup.c \
 	src/connexion.c \
 	src/commands.c \
+	src/commands_player.c \
+	src/commands_player_2.c \
+	src/commands_player_3.c \
+	src/commands_player_broadcast.c \
 	src/do_accept.c \
 	src/do_read.c \
 	src/do_write.c \
@@ -22,6 +26,9 @@ SRC := \
 	src/main_loop.c \
 	src/message.c \
 	src/message_2.c \
+	src/message_player.c \
+	src/message_player_2.c \
+	src/message_player_3.c \
 	src/read_arguments.c \
 	src/serveur.c \
 	src/tools.c \

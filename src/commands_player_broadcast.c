@@ -55,7 +55,7 @@ void	command_player_broadcast(t_zappy *var, t_player *p, char *args)
 	while (i < MAX_FD)
 	{
 		if (i != p->id && var->players[i].status == FD_CLIENT)
-			message_player_message(var->players[i], broadcast_get_square(
+			message_player_message(&var->players[i], broadcast_get_square(
 				var->board_size, p, &var->players[i]), args);
 		++i;
 	}
