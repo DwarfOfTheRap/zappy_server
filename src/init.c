@@ -75,6 +75,7 @@ int		init_server(t_zappy *var, t_server *serv, t_arguments *args)
 	listen(serv->sock, MAX_FD);
 	var->players[serv->sock].status = FD_SERVER;
 	serv->fd_max = serv->sock;
+	var->fd_max = &serv->fd_max;
 	printf("Listening for maximum %d clients, on port %d\n",
 		MAX_FD - serv->sock, serv->port);
 	return (0);
