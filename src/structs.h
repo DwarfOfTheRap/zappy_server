@@ -3,18 +3,33 @@
 
 typedef struct timeval	t_tstmp;
 
-typedef struct			s_list
+typedef struct			s_rcv_buf
 {
-	void		*content;
-}						t_list;
+	char		buf[NB_RCV][RCV_SIZE + 1];
+	u_short		read;
+	u_short		write;
+	char		full;
+	char		*remain;
+}						t_rcv_buf;
 
-typedef struct			s_msg
+/*
+** circular buffer but if overflow, has a linked list in order to avoid message
+** loss; It's expect to be use (the linked list) when the gfx client ask for
+** the map
+*/
+typedef struct			s_snd_buf
 {
-	char		*content;
-}						t_msg;
+	char		buf[NB_SND][SND_SIZE + 1];
+	u_short		read;
+	u_short		write;
+	char		full;
+	char		*pos;
+	t_lst_head	lst;
+}						t_snd_buf;
 
 typedef struct			s_server
 {
+	int			sock;
 	int			port;
 	int			fd_max;
 	int			fd_sel;
@@ -37,10 +52,11 @@ typedef struct			s_player
 	int			pending_actions;
 	t_team		*team;
 	t_tstmp		timeofdeath;
-	u_char		facing:2;
-	u_char		status:2;
-	u_char		level:4;
-	t_list		*msg;
+	u_short		facing:2;
+	u_short		status:3;
+	u_short		level:4;
+	t_rcv_buf	rcv;
+	t_snd_buf	snd;
 }						t_player;
 
 typedef struct			s_action
@@ -58,10 +74,20 @@ typedef struct			s_zappy
 	int			team_size;
 	int			tick;
 	int			nb_team;
+	int			*fd_max;
 	t_team		*teams;
-	t_list		*actions;
+	t_lst_head	actions;
 	t_player	players[MAX_FD];
+	t_player	*gfx_client;
 }						t_zappy;
+
+typedef struct			s_cmd
+{
+	char	cmd[16];
+	u_short	status:15;
+	u_short arg:1;
+	void	(*run)(t_zappy *var, t_player *p, char *arg);
+}						t_cmd;
 
 typedef struct			s_arguments
 {

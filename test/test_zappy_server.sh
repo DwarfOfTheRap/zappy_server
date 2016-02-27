@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cmd=`dirname $0`/../serveur
-error=0
+error_nb=0
 
 function assert_return()
 {
@@ -29,13 +29,12 @@ function assert_return()
         echo -e "[\033[0;33mASSERT\033[0;m:\033[0;32mOK\033[0m] $cmd $2 == $1"
     else
         echo -e "[\033[0;33mASSERT\033[0;m:\033[0;31mKO\033[0m] $cmd $2 == $1"
-        error=`expr $error + 1`
+        error_nb=`expr $error + 1`
     fi
 }
 
 # declare test variables
 args=(
-    "-p 1234 -x 10 -y 10 -c 20 -n toto tutu -t 10"
     ""
     "-x 10 -y 10 -c 20 -n toto tutu -t 10"
     "-p 1234 -y 10 -c 20 -n toto tutu -t 10"
@@ -43,14 +42,15 @@ args=(
     "-p 1234 -x 10 -y 10 -n toto tutu -t 10"
     "-p 1234 -x 10 -y 10 -c 20 -t 10"
     "-p 1234 -x 10 -y 10 -c 20 -n toto tutu"
+    "-p 1234 -x 10 -y 10 -c 20 -n toto tutu toto -t 10"
 )
 error=(
-    0
     6
     1
     1
     1
-    2
+    1
+    1
     1
     1
 )
@@ -61,7 +61,7 @@ do
     assert_return ${error[$test_nb]} "$arg"
     test_nb=`expr $test_nb + 1`
 done
-if [[ $error -gt 0 ]]; then
-    echo "Total error: $error"
+if [[ $error_nb -gt 0 ]]; then
+    echo "Total error: $error_nb"
     exit 1
 fi

@@ -7,9 +7,13 @@ int		main(void)
 	int		nb_failed;
 	SRunner	*sr;
 
-	sr = srunner_create(arg());
-	srunner_add_suite(sr, cleanup());
-	srunner_add_suite(sr, l_list());
+	sr = srunner_create(suite_cleanup());
+	srunner_add_suite(sr, suite_l_list());
+	srunner_add_suite(sr, suite_arg());
+	srunner_add_suite(sr, suite_init_test());
+	srunner_add_suite(sr, suite_message_test());
+	srunner_add_suite(sr, suite_commands_test());
+	srunner_add_suite(sr, suite_connexion());
 	srunner_run_all(sr, CK_NORMAL);
 	nb_failed = srunner_ntests_failed(sr);
 	srunner_free(sr);

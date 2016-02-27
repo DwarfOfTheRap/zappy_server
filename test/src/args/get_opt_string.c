@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <check.h>
-#include "server.h"
+#include "serveur.h"
 
 START_TEST(arg_get_opt_string_two_team)
 {
@@ -11,9 +11,10 @@ START_TEST(arg_get_opt_string_two_team)
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(0, get_opt_string(dummy, &i, &args));
-	ck_assert_int_eq(2, args.nb_team);
+	ck_assert_int_eq(3, args.nb_team);
 	ck_assert_str_eq("toto", args.teams[0].name);
 	ck_assert_str_eq("tutu", args.teams[1].name);
+	ck_assert_str_eq("GRAPHIC", args.teams[2].name);
 	ck_assert_int_eq(3, i);
 }
 END_TEST
@@ -27,9 +28,10 @@ START_TEST(arg_get_opt_string_two_team_last)
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(0, get_opt_string(dummy, &i, &args));
-	ck_assert_int_eq(2, args.nb_team);
+	ck_assert_int_eq(3, args.nb_team);
 	ck_assert_str_eq("toto", args.teams[0].name);
 	ck_assert_str_eq("tutu", args.teams[1].name);
+	ck_assert_str_eq("GRAPHIC", args.teams[2].name);
 	ck_assert_int_eq(3, i);
 }
 END_TEST

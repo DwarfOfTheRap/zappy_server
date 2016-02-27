@@ -13,3 +13,4 @@ compiler: clang
 
 notifications:
   slack: dwarfoftherap:cIctwvXXMVkBmwNLxAkA6Y2g
+  email: false

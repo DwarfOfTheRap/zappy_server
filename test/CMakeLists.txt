@@ -40,7 +40,7 @@ file(
 list(
     REMOVE_ITEM
     sources_files
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src/server.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/serveur.c
     )
 
 list(

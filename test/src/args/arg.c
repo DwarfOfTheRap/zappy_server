@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <check.h>
-#include "server.h"
+#include "serveur.h"
 #include "arg.h"
 
-Suite*	arg(void)
+Suite*	suite_arg(void)
 {
 	Suite	*s;
 
