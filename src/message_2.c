@@ -1,4 +1,29 @@
+#include <string.h>
 #include "serveur.h"
+
+int		rearrange_message_queue(t_player *p, size_t len, int buffer)
+{
+	t_lst_head	tmp_head;
+	t_lst_elem	*tmp;
+
+	if (buffer)
+		memmove(p->snd.buf[p->snd.read], &(p->snd.buf[p->snd.read][len]),
+			SND_SIZE - len);
+	if (!p->snd.full && p->snd.lst.size)
+	{
+		tmp_head.size = p->snd.lst.size;
+		tmp_head.first = p->snd.lst.first;
+		tmp_head.last = p->snd.lst.last;
+		bzero(&p->snd.lst, sizeof(t_lst_head));
+		while (tmp_head.size)
+		{
+			tmp = lst_pop(&tmp_head, 0);
+			add_msg_to_player(p, tmp->content, 0, 0);
+			free(tmp);
+		}
+	}
+	return (1);
+}
 
 void	message_unknown_command(t_player *p)
 {
