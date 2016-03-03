@@ -10,7 +10,7 @@ void	command_pre_sst(t_zappy *var, t_player *p, char *arg)
 	tick = (int)strtol(arg, &end, 10);
 	if (end == arg)
 		return (message_gfx_sbp(var));
-	if (tick <= MIN_TICK || MAX_TICK < tick)
+	if (tick < MIN_TICK || MAX_TICK < tick)
 		return (message_gfx_sbp(var));
 	// trig game speed change
 	message_gfx_sgt(var);

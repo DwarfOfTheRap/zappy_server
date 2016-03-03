@@ -20,12 +20,12 @@ START_TEST(message_gfx_bct_test)
 {
 	t_zappy		var;
 	t_player	*gfx = &var.players[6];
-	char		str[] = "bct 0 0 1 2 3 4 5 6 7\n";
-	int			pos[2] = {0, 0};
+	char		str[] = "bct 1 0 1 2 3 4 5 6 7\n";
+	int			pos[2] = {0, 1};
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_zappy_add_board(&var);
-	dummy_t_board_square(var.board[0][0]);
+	dummy_t_board_square(var.board[0][1]);
 	dummy_t_player_gfx(&var, gfx);
 	message_gfx_bct(&var, pos);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);

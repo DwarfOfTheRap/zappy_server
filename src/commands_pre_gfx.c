@@ -21,8 +21,8 @@ void	command_pre_bct(t_zappy *var, t_player *p, char *arg)
 	pos[0] = (int)strtol(end_arg[1], &end_arg[0], 10);
 	if (end_arg[0] == end_arg[1])
 		return (message_gfx_sbp(var));
-	if (pos[0] <= 0 || var->board_size[0] < pos[0] ||
-			pos[1] <= 0 || var->board_size[1] < pos[1])
+	if (pos[0] < 0 || var->board_size[0] <= pos[0] ||
+			pos[1] < 0 || var->board_size[1] <= pos[1])
 		return (message_gfx_sbp(var));
 	message_gfx_bct(var, pos);
 }
