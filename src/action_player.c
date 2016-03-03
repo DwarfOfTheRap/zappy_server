@@ -2,7 +2,7 @@
 
 extern const int	g_move[4][2];
 
-void	command_player_move(t_zappy *var, t_player *p, int dir)
+void	action_player_move(t_zappy *var, t_player *p, int dir)
 {
 	p->coord[0] += g_move[dir][0];
 	p->coord[1] += g_move[dir][1];
@@ -16,14 +16,14 @@ void	command_player_move(t_zappy *var, t_player *p, int dir)
 		p->coord[1] = 0;
 }
 
-void	command_player_avance(t_zappy *var, t_player *p, char *args)
+void	action_player_avance(t_zappy *var, t_player *p, char *args)
 {
 	(void)args;
-	command_player_move(var, p, p->facing);
+	action_player_move(var, p, p->facing);
 	message_player_ok(p);
 }
 
-void	command_player_droite(t_zappy *var, t_player *p, char *args)
+void	action_player_droite(t_zappy *var, t_player *p, char *args)
 {
 	(void)var;
 	(void)args;
@@ -31,7 +31,7 @@ void	command_player_droite(t_zappy *var, t_player *p, char *args)
 	message_player_ok(p);
 }
 
-void	command_player_gauche(t_zappy *var, t_player *p, char *args)
+void	action_player_gauche(t_zappy *var, t_player *p, char *args)
 {
 	(void)var;
 	(void)args;
@@ -39,7 +39,7 @@ void	command_player_gauche(t_zappy *var, t_player *p, char *args)
 	message_player_ok(p);
 }
 
-void	command_player_expulse(t_zappy *var, t_player *p, char *args)
+void	action_player_expulse(t_zappy *var, t_player *p, char *args)
 {
 	int		i;
 	int		has_expulse;
@@ -53,7 +53,7 @@ void	command_player_expulse(t_zappy *var, t_player *p, char *args)
 			var->players[i].coord[0] == p->coord[0] &&
 			var->players[i].coord[1] == p->coord[1])
 		{
-			command_player_move(var, &var->players[i], p->facing);
+			action_player_move(var, &var->players[i], p->facing);
 			message_player_expulsed(p, &var->players[i]);
 			// if any action in progress, interrupt it
 			++has_expulse;

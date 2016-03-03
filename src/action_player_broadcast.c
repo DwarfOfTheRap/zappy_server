@@ -47,7 +47,7 @@ int		broadcast_get_square(int ms[2], t_player *s, t_player *r)
 	return (absolute_dir);
 }
 
-void	command_player_broadcast(t_zappy *var, t_player *p, char *args)
+void	action_player_broadcast(t_zappy *var, t_player *p, char *args)
 {
 	int		i;
 

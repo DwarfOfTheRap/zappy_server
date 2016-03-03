@@ -4,7 +4,7 @@
 
 extern const char	g_ressources[7][16];
 
-void	command_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
+void	action_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
 {
 	int		i;
 	int		j;
@@ -30,7 +30,7 @@ void	command_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
 	}
 }
 
-void	command_player_voir(t_zappy *var, t_player *p, char *args)
+void	action_player_voir(t_zappy *var, t_player *p, char *args)
 {
 	int		k;
 	int		l;
@@ -39,11 +39,11 @@ void	command_player_voir(t_zappy *var, t_player *p, char *args)
 	add_msg_to_player(p, "{", 1, 0);
 	k = (p->facing == 0 || p->facing == 2) ? 0 : 1;
 	l = (p->facing == 0 || p->facing == 1) ? 1 : -1;
-	command_player_voir_sub(var, p, k, l);
+	action_player_voir_sub(var, p, k, l);
 	add_msg_to_player(p, "}", 1, 1);
 }
 
-void	command_player_inventaire(t_zappy *var, t_player *p, char *args)
+void	action_player_inventaire(t_zappy *var, t_player *p, char *args)
 {
 	int		ret;
 	char	str[128];
@@ -61,7 +61,7 @@ void	command_player_inventaire(t_zappy *var, t_player *p, char *args)
 	add_msg_to_player(p, str, ret, 1);
 }
 
-void	command_player_prend(t_zappy *var, t_player *p, char *args)
+void	action_player_prend(t_zappy *var, t_player *p, char *args)
 {
 	int		i;
 
@@ -83,7 +83,7 @@ void	command_player_prend(t_zappy *var, t_player *p, char *args)
 		message_player_ko(p);
 }
 
-void	command_player_pose(t_zappy *var, t_player *p, char *args)
+void	action_player_pose(t_zappy *var, t_player *p, char *args)
 {
 	int		i;
 
