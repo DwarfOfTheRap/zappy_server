@@ -6,17 +6,19 @@ CFLAGS := -Wall -Wextra -Werror
 CPPFLAGS := -I src
 LDFLAGS :=
 SRC := \
-	src/check_arguments.c \
-	src/cleanup.c \
-	src/connexion.c \
-	src/commands.c \
-	src/commands_player.c \
-	src/commands_player_2.c \
-	src/commands_player_3.c \
 	src/action_player.c \
 	src/action_player_2.c \
 	src/action_player_3.c \
 	src/action_player_broadcast.c \
+	src/check_arguments.c \
+	src/cleanup.c \
+	src/commands.c \
+	src/commands_gfx.c \
+	src/commands_gfx_2.c \
+	src/connexion.c \
+	src/commands_player.c \
+	src/commands_player_2.c \
+	src/commands_player_3.c \
 	src/do_accept.c \
 	src/do_read.c \
 	src/do_write.c \
@@ -29,6 +31,12 @@ SRC := \
 	src/main_loop.c \
 	src/message.c \
 	src/message_2.c \
+	src/message_gfx_egg.c \
+	src/message_gfx_player.c \
+	src/message_gfx_player_2.c \
+	src/message_gfx_player_3.c \
+	src/message_gfx_server.c \
+	src/message_gfx_server_2.c \
 	src/message_player.c \
 	src/message_player_2.c \
 	src/message_player_3.c \
