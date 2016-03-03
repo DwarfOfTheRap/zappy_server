@@ -9,6 +9,5 @@ Suite*	suite_init_test(void);
 Suite*	suite_message_test(void);
 Suite*	suite_connexion(void);
 Suite*	suite_message_gfx_test(void);
-Suite*	suite_commands_pre_test(void);
 
 #endif
