@@ -21,6 +21,36 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	bzero(&var->actions.size, sizeof(t_lst_head));
 }
 
+void	dummy_t_zappy_add_board(t_zappy *var)
+{
+	int		i = 0;
+	int		j = 0;
+
+	var->board = (int ***)malloc(sizeof(int **) * var->board_size[0]);
+	while (i < var->board_size[0])
+	{
+		var->board[i] = (int **)malloc(sizeof(int *) * var->board_size[1]);
+		j = 0;
+		while (j < var->board_size[1])
+		{
+			var->board[i][j] = (int *)malloc(sizeof(int) * 7);
+			++j;
+		}
+		++i;
+	}
+}
+
+void	dummy_t_board_square(int *square)
+{
+	int		i = 0;
+
+	while (i < 7)
+	{
+		square[i] = i + 1;
+		++i;
+	}
+}
+
 void	dummy_t_zappy_add_remaining_in_team(t_zappy *var)
 {
 	int	i = 0;
