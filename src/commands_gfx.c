@@ -1,14 +1,14 @@
 #include <string.h>
 #include "serveur.h"
 
-void	command_pre_msz(t_zappy *var, t_player *p, char *arg)
+void	command_msz(t_zappy *var, t_player *p, char *arg)
 {
 	(void)p;
 	(void)arg;
 	message_gfx_msz(var);
 }
 
-void	command_pre_bct(t_zappy *var, t_player *p, char *arg)
+void	command_bct(t_zappy *var, t_player *p, char *arg)
 {
 	char	*end_arg[2];
 	int		pos[2];
@@ -27,21 +27,21 @@ void	command_pre_bct(t_zappy *var, t_player *p, char *arg)
 	message_gfx_bct(var, pos);
 }
 
-void	command_pre_mct(t_zappy *var, t_player *p, char *arg)
+void	command_mct(t_zappy *var, t_player *p, char *arg)
 {
 	(void)p;
 	(void)arg;
 	message_gfx_mct(var, 0);
 }
 
-void	command_pre_tna(t_zappy *var, t_player *p, char *arg)
+void	command_tna(t_zappy *var, t_player *p, char *arg)
 {
 	(void)p;
 	(void)arg;
 	message_gfx_tna(var);
 }
 
-void	command_pre_sgt(t_zappy *var, t_player *p, char *arg)
+void	command_sgt(t_zappy *var, t_player *p, char *arg)
 {
 	(void)p;
 	(void)arg;

@@ -17,15 +17,15 @@ t_cmd const	*get_cmd_list(void)
 		{"incantation", FD_CLIENT, 0, NULL},
 		{"fork", FD_CLIENT, 0, NULL},
 		{"connect_nbr", FD_CLIENT, 0, NULL},
-		{"msz", FD_GFX, 0, &command_pre_msz},
-		{"bct", FD_GFX, 1, &command_pre_bct},
-		{"mct", FD_GFX, 0, &command_pre_mct},
-		{"tna", FD_GFX, 0, &command_pre_tna},
-		{"ppo", FD_GFX, 1, &command_pre_ppo},
-		{"plv", FD_GFX, 1, &command_pre_plv},
-		{"pin", FD_GFX, 1, &command_pre_pin},
-		{"sgt", FD_GFX, 0, &command_pre_sgt},
-		{"sst", FD_GFX, 1, &command_pre_sst}};
+		{"msz", FD_GFX, 0, &command_msz},
+		{"bct", FD_GFX, 1, &command_bct},
+		{"mct", FD_GFX, 0, &command_mct},
+		{"tna", FD_GFX, 0, &command_tna},
+		{"ppo", FD_GFX, 1, &command_ppo},
+		{"plv", FD_GFX, 1, &command_plv},
+		{"pin", FD_GFX, 1, &command_pin},
+		{"sgt", FD_GFX, 0, &command_sgt},
+		{"sst", FD_GFX, 1, &command_sst}};
 
 	return (cmd);
 }

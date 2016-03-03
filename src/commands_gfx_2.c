@@ -1,7 +1,7 @@
 #include <string.h>
 #include "serveur.h"
 
-void	command_pre_sst(t_zappy *var, t_player *p, char *arg)
+void	command_sst(t_zappy *var, t_player *p, char *arg)
 {
 	int		tick;
 	char	*end;
@@ -16,7 +16,7 @@ void	command_pre_sst(t_zappy *var, t_player *p, char *arg)
 	message_gfx_sgt(var);
 }
 
-void	command_pre_ppo(t_zappy *var, t_player *p, char *arg)
+void	command_ppo(t_zappy *var, t_player *p, char *arg)
 {
 	int		p_id;
 	char	*end;
@@ -30,7 +30,7 @@ void	command_pre_ppo(t_zappy *var, t_player *p, char *arg)
 	message_gfx_ppo(var, &var->players[p_id]);
 }
 
-void	command_pre_plv(t_zappy *var, t_player *p, char *arg)
+void	command_plv(t_zappy *var, t_player *p, char *arg)
 {
 	int		p_id;
 	char	*end;
@@ -44,7 +44,7 @@ void	command_pre_plv(t_zappy *var, t_player *p, char *arg)
 	message_gfx_plv(var, &var->players[p_id]);
 }
 
-void	command_pre_pin(t_zappy *var, t_player *p, char *arg)
+void	command_pin(t_zappy *var, t_player *p, char *arg)
 {
 	int		p_id;
 	char	*end;

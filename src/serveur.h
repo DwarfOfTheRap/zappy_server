@@ -57,21 +57,21 @@ int			command_match(t_cmd const cmd, char *str);
 void		find_command(t_zappy *var, t_player *p, char *str, size_t len);
 
 /*
-** src/commands_pre_gfx.o
+** src/commands_gfx.o
 */
-void		command_pre_bct(t_zappy *var, t_player *p, char *arg);
-void		command_pre_mct(t_zappy *var, t_player *p, char *arg);
-void		command_pre_msz(t_zappy *var, t_player *p, char *arg);
-void		command_pre_sgt(t_zappy *var, t_player *p, char *arg);
-void		command_pre_tna(t_zappy *var, t_player *p, char *arg);
+void		command_bct(t_zappy *var, t_player *p, char *arg);
+void		command_mct(t_zappy *var, t_player *p, char *arg);
+void		command_msz(t_zappy *var, t_player *p, char *arg);
+void		command_sgt(t_zappy *var, t_player *p, char *arg);
+void		command_tna(t_zappy *var, t_player *p, char *arg);
 
 /*
-** src/commands_pre_gfx_2.o
+** src/commands_gfx_2.o
 */
-void		command_pre_pin(t_zappy *var, t_player *p, char *arg);
-void		command_pre_plv(t_zappy *var, t_player *p, char *arg);
-void		command_pre_ppo(t_zappy *var, t_player *p, char *arg);
-void		command_pre_sst(t_zappy *var, t_player *p, char *arg);
+void		command_pin(t_zappy *var, t_player *p, char *arg);
+void		command_plv(t_zappy *var, t_player *p, char *arg);
+void		command_ppo(t_zappy *var, t_player *p, char *arg);
+void		command_sst(t_zappy *var, t_player *p, char *arg);
 
 /*
 ** src/connexion.c
