@@ -1,17 +1,16 @@
 #include "serveur.h"
 
-void	command_player_incantation(t_zappy *var, t_player *p, char *args)
+void	command_pre_fork(t_zappy *var, t_player *p, char *args)
 {
 	(void)var;
 	(void)args;
-	++p->level;
-	message_player_incantation_end(p);
+	// send message to gfx_client
+	// add player action to action queue
 }
 
-void	command_player_fork(t_zappy *var, t_player *p, char args)
+void	command_pre_connect_nbr(t_zappy *var, t_player *p, char *args)
 {
 	(void)args;
 	(void)var;
-	// add new egg on player coordinate
-	message_player_ok(p);
+	message_player_connect_nbr(p);
 }

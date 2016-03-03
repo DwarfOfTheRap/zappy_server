@@ -13,7 +13,10 @@ SRC := \
 	src/commands_player.c \
 	src/commands_player_2.c \
 	src/commands_player_3.c \
-	src/commands_player_broadcast.c \
+	src/action_player.c \
+	src/action_player_2.c \
+	src/action_player_3.c \
+	src/action_player_broadcast.c \
 	src/do_accept.c \
 	src/do_read.c \
 	src/do_write.c \

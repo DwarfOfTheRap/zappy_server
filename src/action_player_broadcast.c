@@ -17,7 +17,7 @@ int		broadcast_get_direction(int ms[2], t_player *s, t_player *r)
 {
 	int		dist[2];
 	int		square;
-	
+
 	dist[0] = broadcast_get_distance(ms, s->coord, r->coord, 0);
 	dist[1] = broadcast_get_distance(ms, s->coord, r->coord, 1);
 	if (ABS(dist[0]) > ABS(dist[1]))
