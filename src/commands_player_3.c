@@ -1,6 +1,6 @@
 #include "serveur.h"
 
-void	command_pre_fork(t_zappy *var, t_player *p, char *args)
+void	command_fork(t_zappy *var, t_player *p, char *args)
 {
 	(void)var;
 	(void)args;
@@ -8,7 +8,7 @@ void	command_pre_fork(t_zappy *var, t_player *p, char *args)
 	// add player action to action queue
 }
 
-void	command_pre_connect_nbr(t_zappy *var, t_player *p, char *args)
+void	command_connect_nbr(t_zappy *var, t_player *p, char *args)
 {
 	(void)args;
 	(void)var;

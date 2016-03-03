@@ -90,6 +90,29 @@ t_cmd const	*get_cmd_list(void);
 int			command_match(t_cmd const cmd, char *str);
 void		find_command(t_zappy *var, t_player *p, char *str, size_t len);
 
+/*
+** src/commands_player.c
+*/
+void	command_avance(t_zappy *var, t_player *p, char *args);
+void	command_droite(t_zappy *var, t_player *p, char *args);
+void	command_gauche(t_zappy *var, t_player *p, char *args);
+void	command_voir(t_zappy *var, t_player *p, char *args);
+void	command_inventaire(t_zappy *var, t_player *p, char *args);
+
+/*
+** src/commands_player_2.c
+*/
+void	command_prend(t_zappy *var, t_player *p, char *args);
+void	command_pose(t_zappy *var, t_player *p, char *args);
+void	command_expulse(t_zappy *var, t_player *p, char *args);
+void	command_broadcast(t_zappy *var, t_player *p, char *args);
+void	command_incantation(t_zappy *var, t_player *p, char *args);
+
+/*
+** src/commands_player_3.c
+*/
+void	command_fork(t_zappy *var, t_player *p, char *args);
+void	command_connect_nbr(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/connexion.c

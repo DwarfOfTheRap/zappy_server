@@ -2,32 +2,32 @@
 
 extern const char	g_ressources[7][16];
 
-void	command_pre_prend(t_zappy *var, t_player *p, char *args)
+void	command_prend(t_zappy *var, t_player *p, char *args)
 {
 	// send message to gfx_client
 	// add player action to action queue
 }
 
-void	command_pre_pose(t_zappy *var, t_player *p, char *args)
+void	command_pose(t_zappy *var, t_player *p, char *args)
 {
 	// send message to gfx_client
 	// add player action to action queue
 }
 
-void	command_pre_expulse(t_zappy *var, t_player *p, char *args)
+void	command_expulse(t_zappy *var, t_player *p, char *args)
 {
 	(void)args;
 	// send message to gfx_client
 	// add player action to action queue
 }
 
-void	command_pre_broadcast(t_zappy *var, t_player *p, char *args)
+void	command_broadcast(t_zappy *var, t_player *p, char *args)
 {
 	// send message to gfx_client
 	// add player action to action queue
 }
 
-void	command_pre_incantation(t_zappy *var, t_player *p, char *args)
+void	command_incantation(t_zappy *var, t_player *p, char *args)
 {
 	int		i;
 
