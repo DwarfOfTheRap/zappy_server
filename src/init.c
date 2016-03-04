@@ -92,5 +92,6 @@ int		init(t_zappy *var, t_server *serv, t_arguments *args)
 		cleanup_game(var, serv);
 		return (1);
 	}
+	init_ressources(var);
 	return (0);
 }
