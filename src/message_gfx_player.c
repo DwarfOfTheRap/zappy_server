@@ -10,7 +10,7 @@ void	message_gfx_pnw(t_zappy *var, t_player *p)
 	if (!var->gfx_client)
 		return ;
 	ret = sprintf(str, "pnw %d %d %d %d %d %s", p->id, p->coord[1], p->coord[0],
-		p->facing + 1, p->level, p->team->name);
+		p->facing + 1, p->level + 1, p->team->name);
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
@@ -33,7 +33,7 @@ void	message_gfx_plv(t_zappy *var, t_player *p)
 
 	if (!var->gfx_client)
 		return ;
-	ret = sprintf(str, "plv %d %d", p->id, p->level);
+	ret = sprintf(str, "plv %d %d", p->id, p->level + 1);
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 

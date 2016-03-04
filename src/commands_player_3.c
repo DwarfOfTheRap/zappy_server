@@ -13,17 +13,17 @@ void	command_fork(t_zappy *var, t_player *p, char *args)
 int		command_incantation_can_incant(t_zappy *var, t_player *p, int nb_player)
 {
 	int		i;
-	int		incant_level;
 	int		can_incant;
 	int		*square;
 
+	if (p->level == 7)
+		return (0);
 	square = var->board[p->coord[0]][p->coord[1]];
-	incant_level = p->level - 1;
-	can_incant = (nb_player >= g_incant[incant_level][0]) ? 1 : 0;
+	can_incant = (nb_player >= g_incant[p->level][0]) ? 1 : 0;
 	i = 1;
 	while (i < 8)
 	{
-		if (square[i] < g_incant[incant_level][i])
+		if (square[i] < g_incant[p->level][i])
 			can_incant = 0;
 		++i;
 	}
