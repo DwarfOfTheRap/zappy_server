@@ -15,6 +15,8 @@
 # define MAX_MAP	50
 # define MIN_TICK	1
 # define MAX_TICK	500
+# define FOOD_RATIO	100
+# define RES_RATIO	100
 
 /*
 ** client status
