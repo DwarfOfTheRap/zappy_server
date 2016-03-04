@@ -23,6 +23,7 @@ END_TEST
 START_TEST(message_gfx_pic_test)
 {
 	int			fd_max = 13;
+	int			pl[MAX_FD];
 	t_zappy		var;
 	t_player	*p1 = &var.players[5];
 	t_player	*p2 = &var.players[6];
@@ -36,6 +37,8 @@ START_TEST(message_gfx_pic_test)
 	char		str[] = "pic 4 3 1 9 5 7 11 12\n";
 
 	dummy_t_zappy_without_board(&var);
+	memset(pl, 0, sizeof(int) * MAX_FD);
+	memset(pl + 5, 1, sizeof(int) * 8);
 	var.fd_max = &fd_max;
 	dummy_t_player(&var, p1);
 	dummy_t_player_default(p1);
@@ -54,10 +57,10 @@ START_TEST(message_gfx_pic_test)
 	dummy_t_player(&var, p8);
 	dummy_t_player_default(p8);
 	dummy_t_player_gfx(&var, gfx);
-	p2->status = FD_FREE;
-	++p4->coord[0];
-	++p6->level;
-	message_gfx_pic(&var, p5);
+	pl[6] = 0;
+	pl[8] = 0;
+	pl[10] = 0;
+	message_gfx_pic(&var, p5, pl);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
 }

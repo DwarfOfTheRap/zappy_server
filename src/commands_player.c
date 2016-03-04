@@ -24,11 +24,15 @@ void	command_gauche(t_zappy *var, t_player *p, char *args)
 void	command_voir(t_zappy *var, t_player *p, char *args)
 {
 	(void)args;
+	(void)p; // to remove
+	(void)var; // to remove
 	// add player action to action queue
 }
 
 void	command_inventaire(t_zappy *var, t_player *p, char *args)
 {
 	(void)args;
+	(void)p; // to remove
+	(void)var; // to remove
 	// add player action to action queue
 }
