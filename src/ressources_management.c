@@ -49,5 +49,6 @@ void	dispatch_incantation_ressources(t_zappy *var, t_player *p, int *res)
 			--square[i];
 			--j;
 		}
+		++i;
 	}
 }
