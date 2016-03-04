@@ -81,6 +81,8 @@ void	action_player_prend(t_zappy *var, t_player *p, char *args)
 	}
 	else
 		message_player_ko(p);
+	message_gfx_pin(var, p);
+	message_gfx_bct(var, p->coord);
 }
 
 void	action_player_pose(t_zappy *var, t_player *p, char *args)
@@ -104,4 +106,6 @@ void	action_player_pose(t_zappy *var, t_player *p, char *args)
 	}
 	else
 		message_player_ko(p);
+	message_gfx_pin(var, p);
+	message_gfx_bct(var, p->coord);
 }

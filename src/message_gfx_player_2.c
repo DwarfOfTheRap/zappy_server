@@ -14,7 +14,7 @@ void	message_gfx_pbc(t_zappy *var, t_player *p, char *msg)
 	add_msg_to_player(var->gfx_client, msg, 0, 1);
 }
 
-void	message_gfx_pic(t_zappy *var, t_player *p)
+void	message_gfx_pic(t_zappy *var, t_player *p, int *pl)
 {
 	int		i;
 	int		ret;
@@ -28,10 +28,7 @@ void	message_gfx_pic(t_zappy *var, t_player *p)
 	i = 3;
 	while (i <= *(var->fd_max))
 	{
-		if (var->players[i].status == FD_CLIENT && i != p->id &&
-			var->players[i].level == p->level &&
-			var->players[i].coord[0] == p->coord[0] &&
-			var->players[i].coord[0] == p->coord[0])
+		if (pl[i] && i != p->id)
 		{
 			ret = sprintf(str, " %d", i);
 			add_msg_to_player(var->gfx_client, str, ret, 0);

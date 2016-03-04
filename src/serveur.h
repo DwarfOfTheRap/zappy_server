@@ -123,13 +123,15 @@ void	command_prend(t_zappy *var, t_player *p, char *args);
 void	command_pose(t_zappy *var, t_player *p, char *args);
 void	command_expulse(t_zappy *var, t_player *p, char *args);
 void	command_broadcast(t_zappy *var, t_player *p, char *args);
-void	command_incantation(t_zappy *var, t_player *p, char *args);
+void	command_connect_nbr(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/commands_player_3.c
 */
 void	command_fork(t_zappy *var, t_player *p, char *args);
-void	command_connect_nbr(t_zappy *var, t_player *p, char *args);
+int		command_incantation_can_incant(t_zappy *var, t_player *p, int nb_playe);
+int		command_incantation_count_player(t_zappy *var, t_player *p, int *pl);
+void	command_incantation(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/connexion.c
@@ -206,21 +208,6 @@ void		message_gfx_eht(t_zappy *var, t_player *egg);
 void		message_gfx_enw(t_zappy *var, t_player *p, t_player *egg);
 
 /*
-** src/message_gfx_player_2.c
-*/
-void		message_gfx_pbc(t_zappy *var, t_player *p, char *msg);
-void		message_gfx_pdr(t_zappy *var, t_player *p, int res_id);
-void		message_gfx_pfk(t_zappy *var, t_player *p);
-void		message_gfx_pic(t_zappy *var, t_player *p);
-void		message_gfx_pie(t_zappy *var, t_player *p, int success);
-
-/*
-** src/message_gfx_player_3.c
-*/
-void		message_gfx_pdi(t_zappy *var, t_player *p);
-void		message_gfx_pgt(t_zappy *var, t_player *p, int res_id);
-
-/*
 ** src/message_gfx_player.c
 */
 void		message_gfx_pex(t_zappy *var, t_player *p);
@@ -230,12 +217,20 @@ void		message_gfx_pnw(t_zappy *var, t_player *p);
 void		message_gfx_ppo(t_zappy *var, t_player *p);
 
 /*
-** src/message_gfx_server_2.c
+** src/message_gfx_player_2.c
 */
-void		message_gfx_sbp(t_zappy *var);
-void		message_gfx_seg(t_zappy *var, t_team *team);
-void		message_gfx_smg(t_zappy *var, char *msg);
-void		message_gfx_suc(t_zappy *var);
+void		message_gfx_pbc(t_zappy *var, t_player *p, char *msg);
+void		message_gfx_pdr(t_zappy *var, t_player *p, int res_id);
+void		message_gfx_pfk(t_zappy *var, t_player *p);
+void		message_gfx_pic(t_zappy *var, t_player *p, int *pl);
+void		message_gfx_pie(t_zappy *var, t_player *p, int success);
+
+/*
+** src/message_gfx_player_3.c
+*/
+void		message_gfx_pdi(t_zappy *var, t_player *p);
+void		message_gfx_pgt(t_zappy *var, t_player *p, int res_id);
+
 
 /*
 ** src/message_gfx_server.c
@@ -245,9 +240,16 @@ void		message_gfx_mct(t_zappy *var, int square);
 void		message_gfx_msz(t_zappy *var);
 void		message_gfx_sgt(t_zappy *var);
 void		message_gfx_tna(t_zappy *var);
+/*
+** src/message_gfx_server_2.c
+*/
+void		message_gfx_sbp(t_zappy *var);
+void		message_gfx_seg(t_zappy *var, t_team *team);
+void		message_gfx_smg(t_zappy *var, char *msg);
+void		message_gfx_suc(t_zappy *var);
 
 /*
-** src/message_player.o
+** src/message_player.c
 */
 void		message_player_ko(t_player *p);
 void		message_player_ok(t_player *p);
@@ -257,7 +259,7 @@ void		message_player_voir_square_sub(t_zappy *var, t_player *p,
 void		message_player_voir_square(t_zappy *var, t_player *p, int square[2]);
 
 /*
-** src/message_player_2.o
+** src/message_player_2.c
 */
 void		message_player_connect_nbr(t_player *p);
 void		message_player_expulsed(t_player *pusher, t_player *pushed);
@@ -266,7 +268,7 @@ void		message_player_incantation_start(t_player *p);
 void		message_player_message(t_player *p, int square, char *msg);
 
 /*
-** src/message_player_3.o
+** src/message_player_3.c
 */
 void		message_player_mort(t_player *p);
 
