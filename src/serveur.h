@@ -15,6 +15,8 @@
 # define MAX_MAP	50
 # define MIN_TICK	1
 # define MAX_TICK	500
+# define FOOD_RATIO	100
+# define RES_RATIO	100
 
 /*
 ** client status
@@ -283,7 +285,16 @@ int			get_opt_int(t_main_arg const m_arg, int *i, int arg,
 int			read_arguments(int ac, const char **av, t_arguments *args);
 
 /*
-** src/tools.c
+** src/ressources_management.c
+*/
+void		add_ressource_on_random_square(t_zappy *var, int res);
+void		add_ressource(t_zappy *var, int res, int nb);
+void		init_ressources(t_zappy *var);
+void		dispatch_incantation_ressources(t_zappy *var, t_player *p,
+				int *res);
+
+/*
+** src/tools
 */
 char		*strjoin(char *str1, char *str2);
 void		strdel(char **str);
