@@ -1,5 +1,7 @@
 #include "serveur.h"
 
+extern const int	g_incant[7][7];
+
 void	action_player_incantation(t_zappy *var, t_player *p, char *args)
 {
 	int		i;
@@ -20,7 +22,7 @@ void	action_player_incantation(t_zappy *var, t_player *p, char *args)
 			}
 			++i;
 		}
-		// dispatch corresponding ressources
+		dispatch_incantation_ressources(var, p, g_incant[p->level - 1]);
 	}
 }
 

@@ -74,7 +74,10 @@ void	action_player_prend(t_zappy *var, t_player *p, char *args)
 	{
 		--var->board[p->coord[0]][p->coord[1]][i];
 		if (i == 0)
+		{
 			; // need to add life to player
+			add_ressource_on_random_square(var, 0);
+		}
 		else
 			++p->inv[i - 1];
 		message_player_ok(p);
