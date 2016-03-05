@@ -32,7 +32,8 @@ void	init_ressources(t_zappy *var)
 	add_ressource(var, 6, nb_square * RES_RATIO / 100 / 39);
 }
 
-void	dispatch_incantation_ressources(t_zappy *var, t_player *p, int *res)
+void	dispatch_incantation_ressources(t_zappy *var, t_player *p,
+			const int *res)
 {
 	int		i;
 	int		j;
