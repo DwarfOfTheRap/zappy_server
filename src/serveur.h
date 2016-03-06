@@ -15,6 +15,7 @@
 # define MAX_MAP	50
 # define MIN_TICK	1
 # define MAX_TICK	500
+# define TEAM_LEN	32
 
 /*
 ** client status
@@ -27,7 +28,7 @@
 # define FD_CLOSE	5
 
 /*
-** other define
+** buffer constants
 */
 # define NB_RCV		5
 # define RCV_SIZE	128

@@ -39,7 +39,7 @@ typedef struct			s_server
 
 typedef struct			s_team
 {
-	char		*name;
+	char		name[TEAM_LEN + 1];
 	int			remain;
 }						t_team;
 

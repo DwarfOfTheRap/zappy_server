@@ -11,8 +11,6 @@ void	set_dummy_t_zappy(t_zappy *var)
 	var->board_size[1] = 10;
 	var->board = gen_board(var->board_size, 10, 10);
 	var->teams = (t_team *)malloc(sizeof(t_team) * 2);
-	var->teams[0].name = (char *)malloc(10);
-	var->teams[1].name = (char *)malloc(10);
 	strcpy(var->teams[0].name, "toto");
 	strcpy(var->teams[1].name, "tutu");
 	var->nb_team = 2;

@@ -7,8 +7,6 @@ START_TEST(arg_check_arguments_valid)
 	t_arguments		args = {1234, 20, 30, 40, 50, 2, NULL};
 
 	args.teams = (t_team*)malloc(sizeof(t_team)*2);
-	args.teams[0].name = (char *)malloc(10);
-	args.teams[1].name = (char *)malloc(10);
 	strcpy(args.teams[0].name, "toto");
 	strcpy(args.teams[1].name, "tutu");
 	ck_assert_int_eq(0, check_arguments(&args, 0));
@@ -29,9 +27,6 @@ START_TEST(arg_check_arguments_duplicate_team_name)
 	t_arguments		args = {1234, 20, 30, 40, 50, 3, NULL};
 
 	args.teams = (t_team*)malloc(sizeof(t_team)*3);
-	args.teams[0].name = (char *)malloc(10);
-	args.teams[1].name = (char *)malloc(10);
-	args.teams[2].name = (char *)malloc(10);
 	strcpy(args.teams[0].name, "toto");
 	strcpy(args.teams[1].name, "tutu");
 	strcpy(args.teams[2].name, "toto");
