@@ -17,6 +17,7 @@
 # define MAX_TICK	500
 # define FOOD_RATIO	100
 # define RES_RATIO	100
+# define TEAM_LEN	32
 
 /*
 ** client status
@@ -29,7 +30,7 @@
 # define FD_CLOSE	5
 
 /*
-** other define
+** buffer constants
 */
 # define NB_RCV		5
 # define RCV_SIZE	128
@@ -119,6 +120,7 @@ char		*pop_msg(t_lst_head *head);
 /*
 ** src/message_2.c
 */
+int			rearrange_message_queue(t_player *p, size_t len, int buffer);
 void		message_unknown_command(t_player *p);
 void		message_command_format_error(t_player *p);
 void		message_unsupported_command(t_player *p);

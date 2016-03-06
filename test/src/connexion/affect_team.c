@@ -9,9 +9,6 @@ void	dummy_t_zappy(t_zappy *var, t_player *p)
 	var->board_size[1] = 20;
 	var->teams = (t_team *)malloc(sizeof(t_team) * 3);
 	bzero(var->teams, sizeof(t_team) * 3);
-	var->teams[0].name = (char *)malloc(10);
-	var->teams[1].name = (char *)malloc(10);
-	var->teams[2].name = (char *)malloc(10);
 	strcpy(var->teams[0].name, "toto");
 	strcpy(var->teams[1].name, "tutu");
 	strcpy(var->teams[2].name, "GRAPHIC");
