@@ -17,7 +17,10 @@ SRC := \
 	src/main_loop.c \
 	src/read_arguments.c \
 	src/serveur.c \
-	src/usage.c
+	src/usage.c \
+	src/tstmp_calcs.c \
+	src/action_queue.c
+
 OBJ := $(SRC:.c=.o)
 
 all: $(NAME)

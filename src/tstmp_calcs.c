@@ -1,5 +1,4 @@
 #include <sys/time.h>
-#include "structs.h"
 #include "serveur.h"
 
 int				time_compare(t_tstmp *time1, t_tstmp *time2)

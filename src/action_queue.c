@@ -1,10 +1,9 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include "serveur.h"
-#include "structs.h"
 #include "linked_lists.h"
 
-void	process_actions(t_tstmp *start, t_zappy *var, t_server *serv)
+void	process_actions(t_tstmp *start, t_zappy *var)
 {
 	t_lst_head	*list;
 	t_action	*cur_action;
@@ -12,7 +11,7 @@ void	process_actions(t_tstmp *start, t_zappy *var, t_server *serv)
 
 	list = var->actions;
 	cur_action = (list->first) ? (t_action*)list->first->content : NULL;
-	while (list->first && time_compare(&cur_action->time, var->start_time) <= 0)
+	while (list->first && time_compare(&cur_action->time, start) <= 0)
 	{
 		elem = lst_pop(list, 0);
 		cur_action->run(cur_action->player); // ret ?
