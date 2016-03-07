@@ -5,10 +5,12 @@
 #include <stdio.h>
 #include "serveur.h"
 
-void	init_client(t_zappy *var, int client)
+void	accept_client(t_player *p, int client)
 {
-	bzero(&(var->players[client]), sizeof(t_player));
-	var->players[client].id = client;
+	bzero(p, sizeof(t_player));
+	p->id = client;
+	p->snd.pos = p->snd.buf[0];
+	add_msg_to_player(p, "BIENVENUE", 9, 1);
 }
 
 int		do_accept(t_zappy *var, t_server *serv)
@@ -23,9 +25,9 @@ int		do_accept(t_zappy *var, t_server *serv)
 		dprintf(2, "\033[0;31mError\033[0m: accept");
 		return (1);
 	}
-	printf("New connection from %s\n", inet_ntoa(csin.sin_addr));
-	init_client(var, cs);
-	var->players[cs].status = FD_CLIENT;
+	printf("[INFO] New connection from %s\n", inet_ntoa(csin.sin_addr));
+	accept_client(&var->players[cs], cs);
+	var->players[cs].status = FD_USED;
 	var->players[cs].level = 1;
 	if (cs > serv->fd_max)
 		serv->fd_max += 1;

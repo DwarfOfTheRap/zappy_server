@@ -13,8 +13,8 @@ void	usage(void)
 		"\033[0;32m%d\033[0m\n", MIN_MAP, MAX_MAP);
 	printf("-n nom\\ equipe\\ 1 nom\\ \\ equipe\\ 2 ...\n");
 	printf("-c nombre de client autorises au commencement du jeu. "
-		"\033[0;32m%d\033[0m <= nombre de client <= \033[0;32m%d\033[0m\n",
-		MIN_CLIENT, MAX_FD - 4);
+		"\033[0;32m%d\033[0m <= nombre de client <= \033[0;32m%d / number of "
+		"team\033[0m\n", MIN_CLIENT, MAX_FD - 4);
 	printf("-t diviseur de l'unite de temps (plus t est grand, plus le "
 		"jeu va vite). \033[0;32m%d\033[0m <= tick <= \033[0;32m%d\033[0m\n",
 		MIN_TICK, MAX_TICK);

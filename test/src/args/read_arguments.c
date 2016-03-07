@@ -11,7 +11,7 @@ START_TEST(arg_read_arguments_valid)
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(0, read_arguments(ac, (const char **)av, &args));
-	ck_assert_int_eq(2, args.nb_team);
+	ck_assert_int_eq(3, args.nb_team);
 	ck_assert_str_eq("toto", args.teams[0].name);
 	ck_assert_str_eq("tutu", args.teams[1].name);
 	ck_assert_int_eq(1234, args.port);
@@ -49,7 +49,7 @@ START_TEST(arg_read_arguments_team_name_given_two_time)
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(0, read_arguments(ac, (const char **)av, &args));
-	ck_assert_int_eq(2, args.nb_team);
+	ck_assert_int_eq(3, args.nb_team);
 	ck_assert_str_eq("toto", args.teams[0].name);
 	ck_assert_str_eq("tutu", args.teams[1].name);
 	ck_assert_int_eq(1234, args.port);
@@ -69,7 +69,7 @@ START_TEST(arg_read_arguments_missing_port)
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(2, read_arguments(ac, (const char **)av, &args));
-	ck_assert_int_eq(2, args.nb_team);
+	ck_assert_int_eq(3, args.nb_team);
 	ck_assert_str_eq("toto", args.teams[0].name);
 	ck_assert_str_eq("tutu", args.teams[1].name);
 	ck_assert_int_eq(0, args.port);
@@ -89,7 +89,7 @@ START_TEST(arg_read_arguments_port_given_two_time)
 
 	bzero(&args, sizeof(t_arguments));
 	ck_assert_int_eq(0, read_arguments(ac, (const char **)av, &args));
-	ck_assert_int_eq(2, args.nb_team);
+	ck_assert_int_eq(3, args.nb_team);
 	ck_assert_str_eq("toto", args.teams[0].name);
 	ck_assert_str_eq("tutu", args.teams[1].name);
 	ck_assert_int_eq(2345, args.port);

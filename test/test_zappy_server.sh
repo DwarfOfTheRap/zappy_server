@@ -42,13 +42,15 @@ args=(
     "-p 1234 -x 10 -y 10 -n toto tutu -t 10"
     "-p 1234 -x 10 -y 10 -c 20 -t 10"
     "-p 1234 -x 10 -y 10 -c 20 -n toto tutu"
+    "-p 1234 -x 10 -y 10 -c 20 -n toto tutu toto -t 10"
 )
 error=(
     6
     1
     1
     1
-    2
+    1
+    1
     1
     1
 )
