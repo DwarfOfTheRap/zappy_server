@@ -30,6 +30,7 @@ SRC := \
 	src/message_gfx_server.c \
 	src/message_gfx_server_2.c \
 	src/read_arguments.c \
+	src/ressources_management.c \
 	src/serveur.c \
 	src/tools.c \
 	src/usage.c

@@ -39,11 +39,12 @@ int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args)
 	j = 0;
 	while (first < *i)
 	{
-		args->teams[j].name = strdup(m_arg.av[first]);
+		stpncpy(args->teams[j].name, m_arg.av[first], TEAM_LEN);
+		args->teams[j].name[TEAM_LEN] = '\0';
 		++first;
 		++j;
 	}
-	args->teams[j].name = strdup("GRAPHIC");
+	stpncpy(args->teams[j].name, "GRAPHIC", TEAM_LEN);
 	return (0);
 }
 

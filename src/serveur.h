@@ -15,6 +15,9 @@
 # define MAX_MAP	50
 # define MIN_TICK	1
 # define MAX_TICK	500
+# define FOOD_RATIO	100
+# define RES_RATIO	100
+# define TEAM_LEN	32
 
 /*
 ** client status
@@ -27,7 +30,7 @@
 # define FD_CLOSE	5
 
 /*
-** other define
+** buffer constants
 */
 # define NB_RCV		5
 # define RCV_SIZE	128
@@ -134,6 +137,7 @@ char		*pop_msg(t_lst_head *head);
 /*
 ** src/message_2.c
 */
+int			rearrange_message_queue(t_player *p, size_t len, int buffer);
 void		message_unknown_command(t_player *p);
 void		message_command_format_error(t_player *p);
 void		message_unsupported_command(t_player *p);
@@ -199,7 +203,16 @@ int			get_opt_int(t_main_arg const m_arg, int *i, int arg,
 int			read_arguments(int ac, const char **av, t_arguments *args);
 
 /*
-** src/tools.c
+** src/ressources_management.c
+*/
+void		add_ressource_on_random_square(t_zappy *var, int res);
+void		add_ressource(t_zappy *var, int res, int nb);
+void		init_ressources(t_zappy *var);
+void		dispatch_incantation_ressources(t_zappy *var, t_player *p,
+				const int *res);
+
+/*
+** src/tools
 */
 char		*strjoin(char *str1, char *str2);
 void		strdel(char **str);
