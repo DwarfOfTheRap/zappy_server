@@ -25,6 +25,17 @@ t_tstmp			time_create(double seconds)
 	return (result);
 }
 
+t_tstmp			time_generate(double ref, t_zappy *var)
+{
+	t_tstmp	real_time;
+	t_tstmp new_time;
+
+	real_time = time_create(ref / (double)var->tick);
+	new_time = *(var->start_time);
+	time_add(&new_time, &real_time);
+	return (new_time);
+}
+
 double			time_double(t_tstmp *time)
 {
 	return (time->tv_sec + (time->tv_usec / 1000000000.0));

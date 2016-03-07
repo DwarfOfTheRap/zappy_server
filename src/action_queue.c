@@ -1,9 +1,10 @@
 #include <stdlib.h>
+#include <string.h>
 #include <sys/time.h>
 #include "serveur.h"
 #include "linked_lists.h"
 
-void	process_actions(t_tstmp *start, t_zappy *var)
+void		process_actions(t_tstmp *start, t_zappy *var)
 {
 	t_lst_head	*list;
 	t_action	*cur_action;
@@ -30,11 +31,11 @@ static int	cmp(void *data1, void *data2)
 	return (time_compare(&action1->time, &action2->time) <= 0);
 }
 
-int		action_add(t_action *action, t_zappy *var)
+int			action_add(t_action *action, t_zappy *var)
 {
 	t_lst_elem	*new;
 
-	if (action->player->pending_actions >= 10)
+	if (!action || action->player->pending_actions >= 10)
 		return (0);
 	new = lst_create(action, sizeof(t_action));
 	if (new)
@@ -43,4 +44,19 @@ int		action_add(t_action *action, t_zappy *var)
 		return (1);
 	}
 	return (0);
+}
+
+// MIGHT NEED CHANGES TO MATCH MARC'S USAGE
+t_action	*action_create(char *arg, char *(*f)(t_player*)
+							, t_player *player, t_tstmp time)
+{
+	t_action	*new;
+
+	if (!(new = (t_action*)malloc(sizeof(t_action))))
+		return (NULL);
+	new->arg = strdup(arg);
+	new->run = f;
+	new->player = player;
+	new->time = time;
+	return (new);
 }
