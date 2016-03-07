@@ -118,10 +118,10 @@ char		*pop_msg(t_lst_head *head);
 /*
 ** src/message_2.c
 */
-void	message_unknown_command(t_player *p);
-void	message_command_format_error(t_player *p);
-void	message_unsupported_command(t_player *p);
-void	message_unauthorised_command(t_player *p);
+void		message_unknown_command(t_player *p);
+void		message_command_format_error(t_player *p);
+void		message_unsupported_command(t_player *p);
+void		message_unauthorised_command(t_player *p);
 
 /*
 ** src/read_arguments.c
@@ -147,15 +147,18 @@ void		usage(void);
 /*
 ** src/tstmp_calcs.c
 */
-int		time_compare(t_tstmp *time1, t_tstmp *time2);
-t_tstmp	time_create(double seconds);
-double	time_double(t_tstmp *time);
-void	time_add(t_tstmp *time1, t_tstmp *time2);
+int			time_compare(t_tstmp *time1, t_tstmp *time2);
+t_tstmp		time_create(double seconds);
+t_tstmp		time_generate(double ref, t_zappy *var);
+double		time_double(t_tstmp *time);
+void		time_add(t_tstmp *time1, t_tstmp *time2);
 
 /*
 ** src/action_queue.c
 */
-void	process_actions(t_tstmp *start, t_zappy *var);
-int		action_add(t_action *action, t_zappy *var);
+void		process_actions(t_tstmp *start, t_zappy *var);
+int			action_add(t_action *action, t_zappy *var);
+t_action	*action_create(char *arg, char *(*f)(t_player*)
+						, t_player *player, t_tstmp time);
 
 #endif
