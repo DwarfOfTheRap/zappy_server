@@ -12,11 +12,11 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	var->nb_team = 3;
 	var->teams = (t_team *)malloc(sizeof(t_team) * 3);
 	bzero(var->teams, sizeof(t_team) * 3);
-	var->teams[0].name = strdup("toto");
+	strcpy(var->teams[0].name, "toto");
 	var->teams[0].remain = 0;
-	var->teams[1].name = strdup("tutu");
+	strcpy(var->teams[1].name, "tutu");
 	var->teams[1].remain = 0;
-	var->teams[2].name = strdup("GRAPHIC");
+	strcpy(var->teams[2].name, "GRAPHIC");
 	var->teams[2].remain = 0;
 	bzero(&var->actions.size, sizeof(t_lst_head));
 }
