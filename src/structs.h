@@ -1,5 +1,6 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
+# include "linked_lists.h"
 
 typedef struct timeval	t_tstmp;
 

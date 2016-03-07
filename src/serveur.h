@@ -91,5 +91,5 @@ void	time_add(t_tstmp *time1, t_tstmp *time2);
 ** src/action_queue.c
 */
 void	process_actions(t_tstmp *start, t_zappy *var, t_server *serv);
-int
+int		action_add(t_action *action, t_zappy *var);
 #endif
