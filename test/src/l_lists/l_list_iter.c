@@ -16,13 +16,13 @@ static t_lst_head	*push_sample_list()
 static int	find_bonjour(void *data, void *data2)
 {
 	(void)data2;
-	return (!strcmp((char*)data, "Bonjour");
+	return (!strcmp((char*)data, "Bonjour"));
 }
 
 static int	find_aurevoir(void *data, void *data2)
 {
 	(void)data2;
-	return (!strcmp((char*)data, "Au revoir");
+	return (!strcmp((char*)data, "Au revoir"));
 }
 
 static void	free_elem(void* data)
