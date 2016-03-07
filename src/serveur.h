@@ -15,6 +15,8 @@
 # define MAX_MAP	50
 # define MIN_TICK	1
 # define MAX_TICK	500
+# define FOOD_RATIO	100
+# define RES_RATIO	100
 # define TEAM_LEN	32
 
 /*
@@ -56,7 +58,6 @@ void		cleanup_game(t_zappy *var, t_server *serv);
 t_cmd const	*get_cmd_list(void);
 int			command_match(t_cmd const cmd, char *str);
 void		find_command(t_zappy *var, t_player *p, char *str, size_t len);
-
 
 /*
 ** src/connexion.c
@@ -119,11 +120,11 @@ char		*pop_msg(t_lst_head *head);
 /*
 ** src/message_2.c
 */
-int		rearrange_message_queue(t_player *p, size_t len, int buffer);
-void	message_unknown_command(t_player *p);
-void	message_command_format_error(t_player *p);
-void	message_unsupported_command(t_player *p);
-void	message_unauthorised_command(t_player *p);
+int			rearrange_message_queue(t_player *p, size_t len, int buffer);
+void		message_unknown_command(t_player *p);
+void		message_command_format_error(t_player *p);
+void		message_unsupported_command(t_player *p);
+void		message_unauthorised_command(t_player *p);
 
 /*
 ** src/read_arguments.c
@@ -134,6 +135,15 @@ int			get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args);
 int			get_opt_int(t_main_arg const m_arg, int *i, int arg,
 				t_arguments *args);
 int			read_arguments(int ac, const char **av, t_arguments *args);
+
+/*
+** src/ressources_management.c
+*/
+void		add_ressource_on_random_square(t_zappy *var, int res);
+void		add_ressource(t_zappy *var, int res, int nb);
+void		init_ressources(t_zappy *var);
+void		dispatch_incantation_ressources(t_zappy *var, t_player *p,
+				const int *res);
 
 /*
 ** src/tools
