@@ -79,4 +79,17 @@ int		read_arguments(int ac, const char **av, t_arguments *args);
 */
 void	usage(void);
 
+/*
+** src/tstmp_calcs.c
+*/
+int		time_compare(t_tstmp *time1, t_tstmp *time2);
+t_tstmp	time_create(double seconds);
+double	time_double(t_tstmp *time);
+void	time_add(t_tstmp *time1, t_tstmp *time2);
+
+/*
+** src/action_queue.c
+*/
+void	process_actions(t_tstmp *start, t_zappy *var, t_server *serv);
+int
 #endif

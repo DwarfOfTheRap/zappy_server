@@ -60,7 +60,8 @@ typedef struct			s_zappy
 	int			tick;
 	int			nb_team;
 	t_team		*teams;
-	t_list		*actions;
+	t_lst_head	*actions;
+	t_tstmp		*start_time;
 	t_player	players[MAX_FD];
 }						t_zappy;
 
