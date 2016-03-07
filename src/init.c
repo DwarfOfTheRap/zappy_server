@@ -43,7 +43,7 @@ int		init_game_var(t_zappy *var, t_arguments *args)
 	var->nb_team = (int)args->nb_team;
 	var->teams = args->teams;
 	var->actions = lst_init(NULL);
-	if ((var->start_time = (t_tstmp*)malloc(sizeof(t_tstmp))))
+	if (!(var->start_time = (t_tstmp*)malloc(sizeof(t_tstmp))))
 		return (1);
 	if ((var->board = (int ***)malloc(sizeof(int **) * var->board_size[0])))
 		init_board(&(var->board), var->board_size, 0, 0);

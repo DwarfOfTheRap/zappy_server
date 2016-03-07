@@ -15,14 +15,14 @@ static t_lst_head	*push_sample_list()
 
 static int	find_bonjour(void *data, void *data2)
 {
-	(void)data2;
-	return (!strcmp((char*)data, "Bonjour"));
+	(void)data;
+	return (!strcmp((char*)data2, "Bonjour"));
 }
 
 static int	find_aurevoir(void *data, void *data2)
 {
-	(void)data2;
-	return (!strcmp((char*)data, "Au revoir"));
+	(void)data;
+	return (!strcmp((char*)data2, "Au revoir"));
 }
 
 static void	free_elem(void* data)
@@ -36,8 +36,8 @@ START_TEST(insert)
 	t_lst_elem	*new1;
 	t_lst_elem	*new3;
 	t_lst_elem	*first;
-	const char	*str[7] = {"PIERRE!", "Bonjour", "Salut", "Ca va ?",
-							"PIERRE!", "Au revoir", NULL};
+	const char	*str[7] = {"PIERRE!", "Bonjour", "Salut",
+							"Ca va ?", "PIERRE!", "Au revoir", NULL};
 
 	head = push_sample_list();
 	first = head->first;
