@@ -236,7 +236,7 @@ void		time_add(t_tstmp *time1, t_tstmp *time2);
 */
 void		process_actions(t_tstmp *start, t_zappy *var);
 int			action_add(t_action *action, t_zappy *var);
-t_action	*action_create(char *arg, char *(*f)(t_player*)
+t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
 						, t_player *player, t_tstmp time);
 
 #endif

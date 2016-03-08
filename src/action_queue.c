@@ -15,7 +15,7 @@ void		process_actions(t_tstmp *start, t_zappy *var)
 	while (list->first && time_compare(&cur_action->time, start) <= 0)
 	{
 		elem = lst_pop(list, 0);
-		cur_action->run(cur_action->player); // ret ?
+		cur_action->run(var, cur_action->player, cur_action->arg);
 		cur_action->player->pending_actions--;
 		cur_action = (elem->next) ? (t_action*)elem->next->content : NULL;
 	}
@@ -47,7 +47,7 @@ int			action_add(t_action *action, t_zappy *var)
 }
 
 // MIGHT NEED CHANGES TO MATCH MARC'S USAGE
-t_action	*action_create(char *arg, char *(*f)(t_player*)
+t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
 							, t_player *player, t_tstmp time)
 {
 	t_action	*new;
