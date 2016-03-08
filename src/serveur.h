@@ -39,6 +39,9 @@
 
 # define ABS(x)		(x < 0 ? -x : x)
 
+enum		e_action {AVANCE, DROITE, GAUCHE, VOIR, INVENTAIRE, PREND, POSE,
+				EXPULSE, BROADCAST, INCANTATION, FORK};
+
 # include "linked_lists.h"
 # include "structs.h"
 
@@ -69,7 +72,7 @@ void		action_player_pose(t_zappy *var, t_player *p, char *args);
 ** src/action_player_3.c
 */
 void		action_player_incantation(t_zappy *var, t_player *p, char *args);
-void		action_player_fork(t_zappy *var, t_player *p, char args);
+void		action_player_fork(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/action_player_broadcast.c
@@ -334,5 +337,6 @@ void		process_actions(t_tstmp *start, t_zappy *var);
 int			action_add(t_action *action, t_zappy *var);
 t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
 						, t_player *player, t_tstmp time);
+void		action_add_wrapper(t_zappy *var, t_player *p, char *args, int act);
 
 #endif

@@ -14,3 +14,16 @@ const int	g_incant[7][7] = {
 	{6, 1, 2, 3, 0, 1, 0},
 	{6, 2, 2, 2, 2, 2, 1}};
 	//  9, 8,10, 5, 6, 1
+
+t_action_d	g_action[11] = {
+	{&action_player_avance, {0, 0}},
+	{&action_player_droite, {0, 0}},
+	{&action_player_gauche, {0, 0}},
+	{&action_player_voir, {0, 0}},
+	{&action_player_inventaire, {0, 0}},
+	{&action_player_prend, {0, 0}},
+	{&action_player_pose, {0, 0}},
+	{&action_player_expulse, {0, 0}},
+	{&action_player_broadcast, {0, 0}},
+	{&action_player_incantation, {0, 0}},
+	{&action_player_fork, {0, 0}}};

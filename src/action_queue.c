@@ -4,6 +4,8 @@
 #include "serveur.h"
 #include "linked_lists.h"
 
+extern t_action_d	g_action[9];
+
 void		process_actions(t_tstmp *start, t_zappy *var)
 {
 	t_lst_head	*list;
@@ -59,4 +61,14 @@ t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
 	new->player = player;
 	new->time = time;
 	return (new);
+}
+
+void		action_add_wrapper(t_zappy *var, t_player *p, char *args, int act)
+{
+	t_tstmp		time;
+	t_action	*new;
+
+	timeradd(var->start_time, &g_action[act].t, &time);
+	new = action_create(args, g_action[act].f, p, time);
+	action_add(new, var);
 }

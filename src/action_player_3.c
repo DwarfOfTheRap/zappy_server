@@ -26,7 +26,7 @@ void	action_player_incantation(t_zappy *var, t_player *p, char *args)
 	}
 }
 
-void	action_player_fork(t_zappy *var, t_player *p, char args)
+void	action_player_fork(t_zappy *var, t_player *p, char *args)
 {
 	(void)args;
 	(void)var;

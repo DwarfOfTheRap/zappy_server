@@ -90,6 +90,12 @@ typedef struct			s_cmd
 	void	(*run)(t_zappy *var, t_player *p, char *arg);
 }						t_cmd;
 
+typedef struct			s_action_d
+{
+	void	(*f)(t_zappy*, t_player*, char*);
+	t_tstmp	t;
+}						t_action_d;
+
 typedef struct			s_arguments
 {
 	int		port;
