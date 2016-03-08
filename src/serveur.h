@@ -86,9 +86,13 @@ void		command_sst(t_zappy *var, t_player *p, char *arg);
 */
 int			close_client(t_zappy *var, t_server *serv, int fd);
 void		client_error(t_player *p, char *str);
-void		init_gfx(t_zappy *var, t_player *p);
 void		init_client(t_zappy *var, t_player *p);
 void		affect_team(t_zappy *var, t_player *p, char *str, size_t len);
+
+/*
+** src/connexion_2.c
+*/
+void		init_gfx(t_zappy *var, t_player *p);
 
 /*
 ** src/do_accept.c

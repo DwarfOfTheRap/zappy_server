@@ -13,6 +13,7 @@ SRC := \
 	src/commands_gfx.c \
 	src/commands_gfx_2.c \
 	src/connexion.c \
+	src/connexion_2.c \
 	src/do_accept.c \
 	src/do_read.c \
 	src/do_write.c \
