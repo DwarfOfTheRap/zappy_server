@@ -31,24 +31,6 @@ void	client_error(t_player *p, char *str)
 	p->status = FD_CLOSE;
 }
 
-/*
- * Those init function will need a little refactor due to dumb protocol imposed
- * by subject..
- */
-void	init_gfx(t_zappy *var, t_player *p)
-{
-	(void)var;
-	if (p->team->remain)
-	{
-		p->status = FD_GFX;
-		--p->team->remain;
-		var->gfx_client = p;
-		// need to send the map
-	}
-	else
-		p->status = FD_CLOSE;
-}
-
 void	init_client(t_zappy *var, t_player *p)
 {
 	char	str[128];

@@ -1,6 +1,6 @@
 #include "linked_lists.h"
 
-void	lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*))
+void	lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*, void*))
 {
 	t_lst_elem	*cursor;
 	t_lst_elem	*previous;
@@ -8,7 +8,7 @@ void	lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*))
 	if (!head)
 		return ;
 	cursor = head->first;
-	while (cursor && !f(cursor->content))
+	while (cursor && !f(new->content, cursor->content))
 		cursor = cursor->next;
 	if (!cursor)
 		return ;

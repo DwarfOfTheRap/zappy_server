@@ -27,7 +27,7 @@ START_TEST(connexion_process_input_normal)
 }
 END_TEST
 
-START_TEST(connexion_process_input_gfx)
+/*START_TEST(connexion_process_input_gfx)
 {
 	t_zappy		var;
 	t_player	*p = &var.players[5];
@@ -51,7 +51,7 @@ START_TEST(connexion_process_input_gfx)
 	ck_assert_int_eq(p->status, FD_GFX);
 	rm_teams(&var.teams, &var.nb_team);
 }
-END_TEST
+END_TEST*/
 
 START_TEST(connexion_process_input_unkown)
 {
@@ -119,7 +119,7 @@ TCase*	connexion_process_input(void)
 
 	tc = tcase_create("process_input");
 	tcase_add_test(tc, connexion_process_input_normal);
-	tcase_add_test(tc, connexion_process_input_gfx);
+//	tcase_add_test(tc, connexion_process_input_gfx);
 	tcase_add_test(tc, connexion_process_input_unkown);
 	tcase_add_test(tc, connexion_process_input_multiple_commands);
 	tcase_add_test(tc, connexion_process_input_incomplete_command);

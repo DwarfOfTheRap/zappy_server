@@ -6,6 +6,7 @@ CFLAGS := -Wall -Wextra -Werror
 CPPFLAGS := -I src
 LDFLAGS :=
 SRC := \
+	src/action_gfx.c \
 	src/action_player.c \
 	src/action_player_2.c \
 	src/action_player_3.c \
@@ -15,10 +16,11 @@ SRC := \
 	src/commands.c \
 	src/commands_gfx.c \
 	src/commands_gfx_2.c \
-	src/connexion.c \
 	src/commands_player.c \
 	src/commands_player_2.c \
 	src/commands_player_3.c \
+	src/connexion.c \
+	src/connexion_2.c \
 	src/do_accept.c \
 	src/do_read.c \
 	src/do_write.c \
@@ -43,8 +45,12 @@ SRC := \
 	src/read_arguments.c \
 	src/ressources_management.c \
 	src/serveur.c \
+	src/usage.c \
+	src/tstmp_calcs.c \
+	src/action_queue.c \
 	src/tools.c \
 	src/usage.c
+
 OBJ := $(SRC:.c=.o)
 
 all: $(NAME)

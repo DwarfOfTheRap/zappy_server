@@ -41,6 +41,7 @@ void	cleanup_game(t_zappy *var, t_server *serv)
 	rm_teams(&(var->teams), &(var->nb_team));
 	rm_board(&(var->board), var->board_size, var->board_size[0],
 			var->board_size[1]);
+	// cleanup action lists
 	if (serv->sock > 0)
 		close(serv->sock);
 }

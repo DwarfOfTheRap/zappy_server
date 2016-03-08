@@ -4,6 +4,7 @@
 
 void	dummy_t_zappy_without_board(t_zappy *var)
 {
+	var->actions = lst_init(NULL);
 	var->board = (int ***)0xdeadbeaf;
 	var->board_size[0] = 1;
 	var->board_size[1] = 2;
@@ -18,7 +19,6 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	var->teams[1].remain = 0;
 	strcpy(var->teams[2].name, "GRAPHIC");
 	var->teams[2].remain = 0;
-	bzero(&var->actions.size, sizeof(t_lst_head));
 }
 
 void	dummy_t_zappy_add_board(t_zappy *var)
@@ -34,6 +34,7 @@ void	dummy_t_zappy_add_board(t_zappy *var)
 		while (j < var->board_size[1])
 		{
 			var->board[i][j] = (int *)malloc(sizeof(int) * 7);
+			bzero(var->board[i][j], sizeof(int) * 7);
 			++j;
 		}
 		++i;
@@ -70,17 +71,23 @@ void	dummy_t_serv(t_server *serv)
 	serv->fd_sel = 8;
 }
 
-void	dummy_t_player(t_zappy *var, t_player *p)
+void	dummy_t_player_client(t_zappy *var, t_player *p)
 {
 	size_t	i = 3;
 
 	while (i < MAX_FD && &var->players[i] != p)
 		++i;
 	bzero(p, sizeof(t_player));
-	p->status = FD_CLIENT;
-	p->snd.pos = p->snd.buf[p->snd.write];
-	p->team = &(var->teams[0]);
 	p->id = i;
+	p->snd.pos = p->snd.buf[p->snd.write];
+	p->status = FD_USED;
+}
+
+void	dummy_t_player(t_zappy *var, t_player *p)
+{
+	dummy_t_player_client(var, p);
+	p->status = FD_CLIENT;
+	p->team = &(var->teams[0]);
 }
 
 void	dummy_t_player_gfx(t_zappy *var, t_player *p)

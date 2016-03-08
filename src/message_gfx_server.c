@@ -28,31 +28,31 @@ void	message_gfx_bct(t_zappy *var, int pos[2])
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	message_gfx_mct(t_zappy *var, int square)
+void	message_gfx_mct(t_zappy *var, long *square)
 {
 	int		pos[2];
+	int		bypass;
 
 	if (!var->gfx_client)
 		return ;
-	pos[0] = square / var->board_size[1];
-	pos[1] = square - var->board_size[1] * pos[0];
+	bypass = (*square == -1) ? 1 : 0;
+	*square = (*square == -1) ? 0 : *square;
+	pos[0] = *square / var->board_size[1];
+	pos[1] = *square - var->board_size[1] * pos[0];
 	while (pos[0] < var->board_size[0])
 	{
 		while (pos[1] < var->board_size[1])
 		{
 			message_gfx_bct(var, pos);
-			if (var->gfx_client->snd.full)
-			{
-				// we need to save one way or another the square to call this
-				// function the next loop
+			if (!bypass && var->gfx_client->snd.full)
 				break ;
-			}
-			++square;
+			++(*square);
 			++pos[1];
 		}
 		pos[1] = 0;
 		++pos[0];
 	}
+	*square = -1;
 }
 
 void	message_gfx_tna(t_zappy *var)

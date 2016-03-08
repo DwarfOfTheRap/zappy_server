@@ -43,6 +43,11 @@
 # include "structs.h"
 
 /*
+** src/action_gfx.c
+*/
+void	action_gfx_mct(t_zappy *var, t_player *p, char *args);
+
+/*
 ** src/action_player.c
 */
 void	action_player_move(t_zappy *var, t_player *p, int dir);
@@ -141,9 +146,13 @@ void	command_incantation(t_zappy *var, t_player *p, char *args);
 */
 int			close_client(t_zappy *var, t_server *serv, int fd);
 void		client_error(t_player *p, char *str);
-void		init_gfx(t_zappy *var, t_player *p);
 void		init_client(t_zappy *var, t_player *p);
 void		affect_team(t_zappy *var, t_player *p, char *str, size_t len);
+
+/*
+** src/connexion_2.c
+*/
+void		init_gfx(t_zappy *var, t_player *p);
 
 /*
 ** src/do_accept.c
@@ -239,11 +248,12 @@ void		message_gfx_pgt(t_zappy *var, t_player *p, int res_id);
 /*
 ** src/message_gfx_server.c
 */
-void		message_gfx_bct(t_zappy *var, int pos[2]);
-void		message_gfx_mct(t_zappy *var, int square);
 void		message_gfx_msz(t_zappy *var);
+void		message_gfx_bct(t_zappy *var, int pos[2]);
+void		message_gfx_mct(t_zappy *var, long *square);
 void		message_gfx_sgt(t_zappy *var);
 void		message_gfx_tna(t_zappy *var);
+
 /*
 ** src/message_gfx_server_2.c
 */
@@ -305,5 +315,22 @@ void		strdel(char **str);
 ** src/usage.c
 */
 void		usage(void);
+
+/*
+** src/tstmp_calcs.c
+*/
+int			time_compare(t_tstmp *time1, t_tstmp *time2);
+t_tstmp		time_create(double seconds);
+t_tstmp		time_generate(double ref, t_zappy *var);
+double		time_double(t_tstmp *time);
+void		time_add(t_tstmp *time1, t_tstmp *time2);
+
+/*
+** src/action_queue.c
+*/
+void		process_actions(t_tstmp *start, t_zappy *var);
+int			action_add(t_action *action, t_zappy *var);
+t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
+						, t_player *player, t_tstmp time);
 
 #endif
