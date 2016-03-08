@@ -45,39 +45,39 @@
 /*
 ** src/action_gfx.c
 */
-void	action_gfx_mct(t_zappy *var, t_player *p, char *args);
+void		action_gfx_mct(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/action_player.c
 */
-void	action_player_move(t_zappy *var, t_player *p, int dir);
-void	action_player_avance(t_zappy *var, t_player *p, char *args);
-void	action_player_droite(t_zappy *var, t_player *p, char *args);
-void	action_player_gauche(t_zappy *var, t_player *p, char *args);
-void	action_player_expulse(t_zappy *var, t_player *p, char *args);
+void		action_player_move(t_zappy *var, t_player *p, int dir);
+void		action_player_avance(t_zappy *var, t_player *p, char *args);
+void		action_player_droite(t_zappy *var, t_player *p, char *args);
+void		action_player_gauche(t_zappy *var, t_player *p, char *args);
+void		action_player_expulse(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/action_player_2.c
 */
-void	action_player_voir_sub(t_zappy *var, t_player *p, int k, int l);
-void	action_player_voir(t_zappy *var, t_player *p, char *args);
-void	action_player_inventaire(t_zappy *var, t_player *p, char *args);
-void	action_player_prend(t_zappy *var, t_player *p, char *args);
-void	action_player_pose(t_zappy *var, t_player *p, char *args);
+void		action_player_voir_sub(t_zappy *var, t_player *p, int k, int l);
+void		action_player_voir(t_zappy *var, t_player *p, char *args);
+void		action_player_inventaire(t_zappy *var, t_player *p, char *args);
+void		action_player_prend(t_zappy *var, t_player *p, char *args);
+void		action_player_pose(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/action_player_3.c
 */
-void	action_player_incantation(t_zappy *var, t_player *p, char *args);
-void	action_player_fork(t_zappy *var, t_player *p, char args);
+void		action_player_incantation(t_zappy *var, t_player *p, char *args);
+void		action_player_fork(t_zappy *var, t_player *p, char args);
 
 /*
 ** src/action_player_broadcast.c
 */
-int		broadcast_get_distance(int ms[2], int s[2], int r[2], int i);
-int		broadcast_get_direction(int ms[2], t_player *s, t_player *r);
-int		broadcast_get_square(int ms[2], t_player *s, t_player *r);
-void	action_player_broadcast(t_zappy *var, t_player *p, char *args);
+int			broadcast_get_distance(int ms[2], int s[2], int r[2], int i);
+int			broadcast_get_direction(int ms[2], t_player *s, t_player *r);
+int			broadcast_get_square(int ms[2], t_player *s, t_player *r);
+void		action_player_broadcast(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/check_arguments.c
@@ -118,28 +118,30 @@ void		command_sst(t_zappy *var, t_player *p, char *arg);
 /*
 ** src/commands_player.c
 */
-void	command_avance(t_zappy *var, t_player *p, char *args);
-void	command_droite(t_zappy *var, t_player *p, char *args);
-void	command_gauche(t_zappy *var, t_player *p, char *args);
-void	command_voir(t_zappy *var, t_player *p, char *args);
-void	command_inventaire(t_zappy *var, t_player *p, char *args);
+void		command_avance(t_zappy *var, t_player *p, char *args);
+void		command_droite(t_zappy *var, t_player *p, char *args);
+void		command_gauche(t_zappy *var, t_player *p, char *args);
+void		command_voir(t_zappy *var, t_player *p, char *args);
+void		command_inventaire(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/commands_player_2.c
 */
-void	command_prend(t_zappy *var, t_player *p, char *args);
-void	command_pose(t_zappy *var, t_player *p, char *args);
-void	command_expulse(t_zappy *var, t_player *p, char *args);
-void	command_broadcast(t_zappy *var, t_player *p, char *args);
-void	command_connect_nbr(t_zappy *var, t_player *p, char *args);
+void		command_prend(t_zappy *var, t_player *p, char *args);
+void		command_pose(t_zappy *var, t_player *p, char *args);
+void		command_expulse(t_zappy *var, t_player *p, char *args);
+void		command_broadcast(t_zappy *var, t_player *p, char *args);
+void		command_connect_nbr(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/commands_player_3.c
 */
-void	command_fork(t_zappy *var, t_player *p, char *args);
-int		command_incantation_can_incant(t_zappy *var, t_player *p, int nb_playe);
-int		command_incantation_count_player(t_zappy *var, t_player *p, int *pl);
-void	command_incantation(t_zappy *var, t_player *p, char *args);
+void		command_fork(t_zappy *var, t_player *p, char *args);
+int			command_incantation_can_incant(t_zappy *var, t_player *p,
+				int nb_player);
+int			command_incantation_count_player(t_zappy *var, t_player *p,
+				int *pl);
+void		command_incantation(t_zappy *var, t_player *p, char *args);
 
 /*
 ** src/connexion.c
