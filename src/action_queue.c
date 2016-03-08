@@ -54,7 +54,7 @@ t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
 
 	if (!(new = (t_action*)malloc(sizeof(t_action))))
 		return (NULL);
-	new->arg = strdup(arg);
+	new->arg = arg;
 	new->run = f;
 	new->player = player;
 	new->time = time;
