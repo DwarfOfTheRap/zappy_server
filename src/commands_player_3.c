@@ -5,8 +5,7 @@ extern const int	g_incant[7][7];
 
 void	command_fork(t_zappy *var, t_player *p, char *args)
 {
-	(void)args;
-	// add player action to action queue
+	action_add_wrapper(var, p, args, FORK);
 	message_gfx_pfk(var, p);
 }
 
@@ -64,7 +63,7 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 	bzero(pl, sizeof(int) * MAX_FD);
 	nb_player = command_incantation_count_player(var, p, pl);
 	pl[0] = command_incantation_can_incant(var, p, nb_player);
-	// add player action to action queue with pl as args
+	action_add_wrapper(var, p, (char *)pl, INCANTATION);
 	message_player_incantation_start(p);
 	i = 3;
 	while (i <= *(var->fd_max))
