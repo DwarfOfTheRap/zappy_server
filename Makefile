@@ -32,8 +32,12 @@ SRC := \
 	src/read_arguments.c \
 	src/ressources_management.c \
 	src/serveur.c \
+	src/usage.c \
+	src/tstmp_calcs.c \
+	src/action_queue.c \
 	src/tools.c \
 	src/usage.c
+
 OBJ := $(SRC:.c=.o)
 
 all: $(NAME)

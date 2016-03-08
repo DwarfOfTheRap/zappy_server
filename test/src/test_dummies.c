@@ -4,6 +4,7 @@
 
 void	dummy_t_zappy_without_board(t_zappy *var)
 {
+	var->actions = lst_init(NULL);
 	var->board = (int ***)0xdeadbeaf;
 	var->board_size[0] = 1;
 	var->board_size[1] = 2;
@@ -18,7 +19,6 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	var->teams[1].remain = 0;
 	strcpy(var->teams[2].name, "GRAPHIC");
 	var->teams[2].remain = 0;
-	bzero(&var->actions.size, sizeof(t_lst_head));
 }
 
 void	dummy_t_zappy_add_board(t_zappy *var)

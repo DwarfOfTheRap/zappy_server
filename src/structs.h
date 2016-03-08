@@ -1,5 +1,6 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
+# include "linked_lists.h"
 
 typedef struct timeval	t_tstmp;
 
@@ -75,7 +76,8 @@ typedef struct			s_zappy
 	int			nb_team;
 	int			*fd_max;
 	t_team		*teams;
-	t_lst_head	actions;
+	t_lst_head	*actions;
+	t_tstmp		*start_time;
 	t_player	players[MAX_FD];
 	t_player	*gfx_client;
 }						t_zappy;

@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <sys/time.h>
 #include "serveur.h"
 
 void	pre_select(t_zappy *var, t_server *serv)
@@ -24,7 +25,7 @@ void	do_select(t_server *serv)
 {
 	struct timeval	time;
 
-	time.tv_sec = 1;
+	time.tv_sec = 0;
 	time.tv_usec = 0;
 	serv->fd_sel = select(serv->fd_max + 1, &serv->fd_read,
 		&serv->fd_write, NULL, &time);
@@ -56,6 +57,8 @@ int		main_loop(t_zappy *var, t_server *serv)
 {
 	while (1)
 	{
+		gettimeofday(var->start_time, NULL);
+		process_actions(var->start_time, var);
 		pre_select(var, serv);
 		do_select(serv);
 		post_select(var, serv);
