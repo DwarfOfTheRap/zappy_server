@@ -6,6 +6,7 @@ CFLAGS := -Wall -Wextra -Werror
 CPPFLAGS := -I src
 LDFLAGS :=
 SRC := \
+	src/action_gfx.c \
 	src/check_arguments.c \
 	src/cleanup.c \
 	src/commands.c \

@@ -41,6 +41,11 @@
 # include "structs.h"
 
 /*
+** src/action_gfx.c
+*/
+void	action_gfx_mct(t_zappy *var, t_player *p, char *args);
+
+/*
 ** src/check_arguments.c
 */
 int			check_arguments(t_arguments *args, int error);
