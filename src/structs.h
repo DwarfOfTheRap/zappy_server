@@ -1,5 +1,6 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
+# include "linked_lists.h"
 
 typedef struct timeval	t_tstmp;
 
@@ -58,14 +59,6 @@ typedef struct			s_player
 	t_snd_buf	snd;
 }						t_player;
 
-typedef struct			s_action
-{
-	char		*arg;
-	char		*(*run)(t_player *);
-	t_player	*player;
-	t_tstmp		time;
-}						t_action;
-
 typedef struct			s_zappy
 {
 	int			***board;
@@ -75,10 +68,19 @@ typedef struct			s_zappy
 	int			nb_team;
 	int			*fd_max;
 	t_team		*teams;
-	t_lst_head	actions;
+	t_lst_head	*actions;
+	t_tstmp		start_time;
 	t_player	players[MAX_FD];
 	t_player	*gfx_client;
 }						t_zappy;
+
+typedef struct			s_action
+{
+	char		*arg;
+	void		(*run)(t_zappy *var, t_player *p, char *arg);	
+	t_player	*player;
+	t_tstmp		time;
+}						t_action;
 
 typedef struct			s_cmd
 {
@@ -87,6 +89,12 @@ typedef struct			s_cmd
 	u_short arg:1;
 	void	(*run)(t_zappy *var, t_player *p, char *arg);
 }						t_cmd;
+
+typedef struct			s_action_d
+{
+	void	(*f)(t_zappy*, t_player*, char*);
+	int		rel_time;
+}						t_action_d;
 
 typedef struct			s_arguments
 {
