@@ -68,7 +68,7 @@ void		action_add_wrapper(t_zappy *var, t_player *p, char *args, int act)
 	t_tstmp		time;
 	t_action	*new;
 
-	time = time_generate(0, var); // must change to action specific reference
+	time = time_generate(g_action[act].rel_time, var);
 	new = action_create(args, g_action[act].f, p, time);
 	action_add(new, var);
 }
