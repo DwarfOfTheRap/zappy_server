@@ -4,6 +4,8 @@
 #include "serveur.h"
 #include "linked_lists.h"
 
+extern t_action_d	g_action[9];
+
 void		process_actions(t_tstmp *start, t_zappy *var)
 {
 	t_lst_head	*list;
@@ -15,7 +17,7 @@ void		process_actions(t_tstmp *start, t_zappy *var)
 	while (list->first && time_compare(&cur_action->time, start) <= 0)
 	{
 		elem = lst_pop(list, 0);
-		cur_action->run(cur_action->player); // ret ?
+		cur_action->run(var, cur_action->player, cur_action->arg);
 		cur_action->player->pending_actions--;
 		cur_action = (elem->next) ? (t_action*)elem->next->content : NULL;
 	}
@@ -47,16 +49,26 @@ int			action_add(t_action *action, t_zappy *var)
 }
 
 // MIGHT NEED CHANGES TO MATCH MARC'S USAGE
-t_action	*action_create(char *arg, char *(*f)(t_player*)
+t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
 							, t_player *player, t_tstmp time)
 {
 	t_action	*new;
 
 	if (!(new = (t_action*)malloc(sizeof(t_action))))
 		return (NULL);
-	new->arg = strdup(arg);
+	new->arg = arg;
 	new->run = f;
 	new->player = player;
 	new->time = time;
 	return (new);
+}
+
+void		action_add_wrapper(t_zappy *var, t_player *p, char *args, int act)
+{
+	t_tstmp		time;
+	t_action	*new;
+
+	timeradd(&var->start_time, &g_action[act].t, &time);
+	new = action_create(args, g_action[act].f, p, time);
+	action_add(new, var);
 }

@@ -78,7 +78,7 @@ typedef struct			s_zappy
 	int			*fd_max;
 	t_team		*teams;
 	t_lst_head	*actions;
-	t_tstmp		*start_time;
+	t_tstmp		start_time;
 	t_player	players[MAX_FD];
 	t_player	*gfx_client;
 }						t_zappy;
