@@ -1,4 +1,4 @@
-#include <strings.h>
+#include <string.h>
 #include <stdio.h>
 #include "serveur.h"
 
@@ -7,7 +7,11 @@ extern const int	g_incant[7][7];
 
 void	command_fork(t_zappy *var, t_player *p, char *args)
 {
-	action_add_wrapper(var, p, args, FORK);
+	t_aargs		t;
+
+	bzero(&t, sizeof(t_aargs));
+	t.str = strdup(args);
+	action_add_wrapper(var, p, &t, FORK);
 	message_gfx_pfk(var, p);
 	if (g_log & LOG_C)
 		printf("[COMMAND] p %d -> fork\n", p->id);
@@ -59,24 +63,25 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 {
 	int		i;
 	int		nb_player;
-	int		*pl;
+	t_aargs	t;
 
 	(void)args;
-	if (!(pl = (int *)malloc(sizeof(int) * MAX_FD)))
+	bzero(&t, sizeof(t_aargs));
+	if (!(t.pl = (int *)malloc(sizeof(int) * MAX_FD)))
 		return (message_player_ko(p));
-	bzero(pl, sizeof(int) * MAX_FD);
-	nb_player = command_incantation_count_player(var, p, pl);
-	pl[0] = command_incantation_can_incant(var, p, nb_player);
-	action_add_wrapper(var, p, (char *)pl, INCANTATION);
+	bzero(t.pl, sizeof(int) * MAX_FD);
+	nb_player = command_incantation_count_player(var, p, t.pl);
+	t.pl[0] = command_incantation_can_incant(var, p, nb_player);
+	action_add_wrapper(var, p, &t, INCANTATION);
 	message_player_incantation_start(p);
 	i = 3;
 	while (i <= *(var->fd_max))
 	{
-		if (pl[i])
+		if (t.pl[i])
 			message_player_incantation_start(&var->players[i]);
 		++i;
 	}
-	message_gfx_pic(var, p, pl);
+	message_gfx_pic(var, p, t.pl);
 	if (g_log & LOG_C)
 		printf("[COMMAND] p %d -> incantation\n", p->id);
 }

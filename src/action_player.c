@@ -18,7 +18,7 @@ void	action_player_move(t_zappy *var, t_player *p, int dir)
 		p->coord[1] = 0;
 }
 
-void	action_player_avance(t_zappy *var, t_player *p, char *args)
+void	action_player_avance(t_zappy *var, t_player *p, t_aargs *args)
 {
 	(void)args;
 	action_player_move(var, p, p->facing);
@@ -27,7 +27,7 @@ void	action_player_avance(t_zappy *var, t_player *p, char *args)
 		printf("[ACTION] p %d avance\n", p->id);
 }
 
-void	action_player_droite(t_zappy *var, t_player *p, char *args)
+void	action_player_droite(t_zappy *var, t_player *p, t_aargs *args)
 {
 	(void)var;
 	(void)args;
@@ -37,7 +37,7 @@ void	action_player_droite(t_zappy *var, t_player *p, char *args)
 		printf("[ACTION] p %d droite\n", p->id);
 }
 
-void	action_player_gauche(t_zappy *var, t_player *p, char *args)
+void	action_player_gauche(t_zappy *var, t_player *p, t_aargs *args)
 {
 	(void)var;
 	(void)args;
@@ -47,7 +47,7 @@ void	action_player_gauche(t_zappy *var, t_player *p, char *args)
 		printf("[ACTION] p %d gauche\n", p->id);
 }
 
-void	action_player_expulse(t_zappy *var, t_player *p, char *args)
+void	action_player_expulse(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 	int		has_expulse;
@@ -55,7 +55,7 @@ void	action_player_expulse(t_zappy *var, t_player *p, char *args)
 	(void)args;
 	i = 0;
 	has_expulse = 0;
-	while (i < MAX_FD)
+	while (i < *var->fd_max)
 	{
 		if (i != p->id && var->players[i].status == FD_CLIENT &&
 			var->players[i].coord[0] == p->coord[0] &&

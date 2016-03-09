@@ -36,19 +36,19 @@ void	command_bct(t_zappy *var, t_player *p, char *arg)
 
 void	command_mct(t_zappy *var, t_player *p, char *arg)
 {
+	t_aargs		t;
 	t_action	*new;
 	t_tstmp		time;
-	long	square;
 
 	(void)p;
 	(void)arg;
-	square = 0;
-	message_gfx_mct(var, &square);
-	if (square != -1)
+	bzero(&t, sizeof(t_aargs));
+	message_gfx_mct(var, &t.nb);
+	if (t.nb != -1)
 	{
 		time = var->start_time;
 		++time.tv_usec;
-		new = action_create((char *)square, &action_gfx_mct, NULL, time);
+		new = action_create(&t, &action_gfx_mct, NULL, time);
 		action_add(new, var);
 	}
 	if (g_log & LOG_C)

@@ -2,7 +2,7 @@
 
 void	init_gfx_sub(t_zappy *var)
 {
-	long	i;
+	int		i;
 
 	i = -1;
 	message_gfx_msz(var);

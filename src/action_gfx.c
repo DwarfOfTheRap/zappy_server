@@ -1,19 +1,17 @@
 #include "serveur.h"
 
-void	action_gfx_mct(t_zappy *var, t_player *p, char *args)
+void	action_gfx_mct(t_zappy *var, t_player *p, t_aargs *args)
 {
 	t_action	*new;
 	t_tstmp		time;
-	long		square;
 
 	(void)p;
-	square = (long)args;
-	message_gfx_mct(var, &square);
-	if (square != -1)
+	message_gfx_mct(var, &args->nb);
+	if (args->nb != -1)
 	{
 		time = var->start_time;
 		++time.tv_usec;
-		new = action_create((char *)square, &action_gfx_mct, NULL, time);
+		new = action_create(args, &action_gfx_mct, NULL, time);
 		action_add(new, var);
 	}
 }

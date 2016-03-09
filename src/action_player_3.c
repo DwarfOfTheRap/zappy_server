@@ -4,19 +4,17 @@
 extern int			g_log;
 extern const int	g_incant[7][7];
 
-void	action_player_incantation(t_zappy *var, t_player *p, char *args)
+void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
-	int		*pl;
 
-	pl = (int *)args;
 	i = 3;
-	message_gfx_pie(var, p, pl[0]);
-	if (pl[0])
+	message_gfx_pie(var, p, args->pl[0]);
+	if (args->pl[0])
 	{
 		while (i <= *(var->fd_max))
 		{
-			if (pl[i])
+			if (args->pl[i])
 			{
 				++var->players[i].level;
 				message_player_incantation_end(&var->players[i]);
@@ -30,7 +28,7 @@ void	action_player_incantation(t_zappy *var, t_player *p, char *args)
 		printf("[ACTION] p %d incantation", p->id);
 }
 
-void	action_player_fork(t_zappy *var, t_player *p, char *args)
+void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 {
 	(void)args;
 	(void)var;
@@ -38,4 +36,13 @@ void	action_player_fork(t_zappy *var, t_player *p, char *args)
 	message_player_ok(p);
 	if (g_log & LOG_A)
 		printf("[ACTION] p %d fork\n", p->id);
+}
+
+void	action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args)
+{
+	(void)var;
+	(void)args;
+	message_player_connect_nbr(p);
+	if (g_log & LOG_A)
+		printf("[ACTION] p %d connect_nbr\n", p->id);
 }

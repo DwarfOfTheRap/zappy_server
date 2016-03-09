@@ -49,7 +49,7 @@
 # define ABS(x)		(x < 0 ? -x : x)
 
 enum		e_action {AVANCE, DROITE, GAUCHE, VOIR, INVENTAIRE, PREND, POSE,
-				EXPULSE, BROADCAST, INCANTATION, FORK};
+				EXPULSE, BROADCAST, INCANTATION, FORK, CONNECT_NBR};
 
 # include "linked_lists.h"
 # include "structs.h"
@@ -57,31 +57,32 @@ enum		e_action {AVANCE, DROITE, GAUCHE, VOIR, INVENTAIRE, PREND, POSE,
 /*
 ** src/action_gfx.c
 */
-void		action_gfx_mct(t_zappy *var, t_player *p, char *args);
+void		action_gfx_mct(t_zappy *var, t_player *p, t_aargs *args);
 
 /*
 ** src/action_player.c
 */
 void		action_player_move(t_zappy *var, t_player *p, int dir);
-void		action_player_avance(t_zappy *var, t_player *p, char *args);
-void		action_player_droite(t_zappy *var, t_player *p, char *args);
-void		action_player_gauche(t_zappy *var, t_player *p, char *args);
-void		action_player_expulse(t_zappy *var, t_player *p, char *args);
+void		action_player_avance(t_zappy *var, t_player *p, t_aargs *args);
+void		action_player_droite(t_zappy *var, t_player *p, t_aargs *args);
+void		action_player_gauche(t_zappy *var, t_player *p, t_aargs *args);
+void		action_player_expulse(t_zappy *var, t_player *p, t_aargs *args);
 
 /*
 ** src/action_player_2.c
 */
 void		action_player_voir_sub(t_zappy *var, t_player *p, int k, int l);
-void		action_player_voir(t_zappy *var, t_player *p, char *args);
-void		action_player_inventaire(t_zappy *var, t_player *p, char *args);
-void		action_player_prend(t_zappy *var, t_player *p, char *args);
-void		action_player_pose(t_zappy *var, t_player *p, char *args);
+void		action_player_voir(t_zappy *var, t_player *p, t_aargs *args);
+void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args);
+void		action_player_prend(t_zappy *var, t_player *p, t_aargs *args);
+void		action_player_pose(t_zappy *var, t_player *p, t_aargs *args);
 
 /*
 ** src/action_player_3.c
 */
-void		action_player_incantation(t_zappy *var, t_player *p, char *args);
-void		action_player_fork(t_zappy *var, t_player *p, char *args);
+void		action_player_incantation(t_zappy *var, t_player *p, t_aargs *args);
+void		action_player_fork(t_zappy *var, t_player *p, t_aargs *args);
+void		action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args);
 
 /*
 ** src/action_player_broadcast.c
@@ -89,7 +90,7 @@ void		action_player_fork(t_zappy *var, t_player *p, char *args);
 int			broadcast_get_distance(int ms[2], int s[2], int r[2], int i);
 int			broadcast_get_direction(int ms[2], t_player *s, t_player *r);
 int			broadcast_get_square(int ms[2], t_player *s, t_player *r);
-void		action_player_broadcast(t_zappy *var, t_player *p, char *args);
+void		action_player_broadcast(t_zappy *var, t_player *p, t_aargs *args);
 
 /*
 ** src/check_arguments.c
@@ -102,6 +103,7 @@ int			check_arguments(t_arguments *args, int error);
 void		rm_teams(t_team **teams, int *nb_team);
 void		rm_board(int ****board, int board_size[2], int i, int j);
 void		cleanup_game(t_zappy *var, t_server *serv);
+void		action_free(void *action);
 
 /*
 ** src/commands.c
@@ -264,7 +266,7 @@ void		message_gfx_pgt(t_zappy *var, t_player *p, int res_id);
 */
 void		message_gfx_msz(t_zappy *var);
 void		message_gfx_bct(t_zappy *var, int pos[2]);
-void		message_gfx_mct(t_zappy *var, long *square);
+void		message_gfx_mct(t_zappy *var, int *square);
 void		message_gfx_sgt(t_zappy *var);
 void		message_gfx_tna(t_zappy *var);
 
@@ -349,8 +351,9 @@ void		time_add(t_tstmp *time1, t_tstmp *time2);
 */
 void		process_actions(t_tstmp *start, t_zappy *var);
 int			action_add(t_action *action, t_zappy *var);
-t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
-						, t_player *player, t_tstmp time);
-void		action_add_wrapper(t_zappy *var, t_player *p, char *args, int act);
+t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
+				t_aargs*), t_player *player, t_tstmp time);
+void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
+				int act);
 
 #endif

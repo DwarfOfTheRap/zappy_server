@@ -50,7 +50,7 @@ int		broadcast_get_square(int ms[2], t_player *s, t_player *r)
 	return (absolute_dir);
 }
 
-void	action_player_broadcast(t_zappy *var, t_player *p, char *args)
+void	action_player_broadcast(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 
@@ -59,10 +59,10 @@ void	action_player_broadcast(t_zappy *var, t_player *p, char *args)
 	{
 		if (i != p->id && var->players[i].status == FD_CLIENT)
 			message_player_message(&var->players[i], broadcast_get_square(
-				var->board_size, p, &var->players[i]), args);
+				var->board_size, p, &var->players[i]), args->str);
 		++i;
 	}
 	message_player_ok(p);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d broadcast [%s]\n", p->id, args);
+		printf("[ACTION] p %d broadcast [%s]\n", p->id, args->str);
 }

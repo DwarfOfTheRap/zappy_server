@@ -28,7 +28,7 @@ void	message_gfx_bct(t_zappy *var, int pos[2])
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
-void	message_gfx_mct(t_zappy *var, long *square)
+void	message_gfx_mct(t_zappy *var, int *square)
 {
 	int		pos[2];
 	int		bypass;

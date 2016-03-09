@@ -45,3 +45,15 @@ void	cleanup_game(t_zappy *var, t_server *serv)
 	if (serv->sock > 0)
 		close(serv->sock);
 }
+
+void	action_free(void *action)
+{
+	t_action	*a;
+
+	a = (t_action*)action;
+	if (a->arg.str)
+		free(a->arg.str);
+	if (a->arg.pl)
+		free(a->arg.pl);
+	free(action);
+}

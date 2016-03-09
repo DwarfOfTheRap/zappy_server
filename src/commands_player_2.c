@@ -1,3 +1,4 @@
+#include <string.h>
 #include <stdio.h>
 #include "serveur.h"
 
@@ -6,7 +7,11 @@ extern const char	g_ressources[7][16];
 
 void	command_prend(t_zappy *var, t_player *p, char *args)
 {
-	action_add_wrapper(var, p, args, PREND);
+	t_aargs		t;
+
+	bzero(&t, sizeof(t_aargs));
+	t.str = strdup(args);
+	action_add_wrapper(var, p, &t, PREND);
 	message_gfx_pgt(var, p, 0);
 	if (g_log & LOG_C)
 		printf("[COMMAND] p %d -> prend %s\n", p->id, args);
@@ -14,7 +19,11 @@ void	command_prend(t_zappy *var, t_player *p, char *args)
 
 void	command_pose(t_zappy *var, t_player *p, char *args)
 {
-	action_add_wrapper(var, p, args, POSE);
+	t_aargs		t;
+
+	bzero(&t, sizeof(t_aargs));
+	t.str = strdup(args);
+	action_add_wrapper(var, p, &t, POSE);
 	message_gfx_pdr(var, p, 0);
 	if (g_log & LOG_C)
 		printf("[COMMAND] p %d -> pose %s\n", p->id, args);
@@ -22,15 +31,23 @@ void	command_pose(t_zappy *var, t_player *p, char *args)
 
 void	command_expulse(t_zappy *var, t_player *p, char *args)
 {
-	action_add_wrapper(var, p, args, EXPULSE);
+	t_aargs		t;
+
+	bzero(&t, sizeof(t_aargs));
+	(void)args;
+	action_add_wrapper(var, p, &t, EXPULSE);
 	message_gfx_pex(var, p);
 	if (g_log & LOG_C)
-		printf("[COMMAND] p %d -> expulse %s\n", p->id, args);
+		printf("[COMMAND] p %d -> expulse\n", p->id);
 }
 
 void	command_broadcast(t_zappy *var, t_player *p, char *args)
 {
-	action_add_wrapper(var, p, args, BROADCAST);
+	t_aargs		t;
+
+	bzero(&t, sizeof(t_aargs));
+	t.str = strdup(args);
+	action_add_wrapper(var, p, &t, BROADCAST);
 	message_gfx_pbc(var, p, args);
 	if (g_log & LOG_C)
 		printf("[COMMAND] p %d -> broadcast %s\n", p->id, args);
@@ -38,9 +55,12 @@ void	command_broadcast(t_zappy *var, t_player *p, char *args)
 
 void	command_connect_nbr(t_zappy *var, t_player *p, char *args)
 {
+	t_aargs		t;
+
+	bzero(&t, sizeof(t_aargs));
 	(void)args;
 	(void)var;
-	message_player_connect_nbr(p);
+	action_add_wrapper(var, p, &t, CONNECT_NBR);
 	if (g_log & LOG_C)
-		printf("[COMMAND] p %d -> connect_nbr %s\n", p->id, args);
+		printf("[COMMAND] p %d -> connect_nbr\n", p->id);
 }

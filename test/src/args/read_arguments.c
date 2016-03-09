@@ -32,6 +32,7 @@ START_TEST(arg_read_arguments_valid_verbose)
 	t_arguments			args;
 
 	bzero(&args, sizeof(t_arguments));
+	g_log = 0;
 	ck_assert_int_eq(0, read_arguments(ac, (const char **)av, &args));
 	ck_assert_int_eq(3, args.nb_team);
 	ck_assert_str_eq("toto", args.teams[0].name);
@@ -131,6 +132,7 @@ START_TEST(arg_read_arguments_invalid_verbose)
 	t_arguments			args;
 
 	bzero(&args, sizeof(t_arguments));
+	g_log = 0;
 	ck_assert_int_eq(4, read_arguments(ac, (const char **)av, &args));
 	ck_assert_int_eq(3, args.nb_team);
 	ck_assert_str_eq("toto", args.teams[0].name);

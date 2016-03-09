@@ -15,17 +15,18 @@ const int	g_incant[7][7] = {
 	{6, 2, 2, 2, 2, 2, 1}};
 	//  9, 8,10, 5, 6, 1
 
-t_action_d	g_action[11] = {
-	{&action_player_avance, {0, 0}},
-	{&action_player_droite, {0, 0}},
-	{&action_player_gauche, {0, 0}},
-	{&action_player_voir, {0, 0}},
-	{&action_player_inventaire, {0, 0}},
-	{&action_player_prend, {0, 0}},
-	{&action_player_pose, {0, 0}},
-	{&action_player_expulse, {0, 0}},
-	{&action_player_broadcast, {0, 0}},
-	{&action_player_incantation, {0, 0}},
-	{&action_player_fork, {0, 0}}};
+t_action_d	g_action[12] = {
+	{&action_player_avance, 7},
+	{&action_player_droite, 7},
+	{&action_player_gauche, 7},
+	{&action_player_voir, 7},
+	{&action_player_inventaire, 1},
+	{&action_player_prend, 7},
+	{&action_player_pose, 7},
+	{&action_player_expulse, 7},
+	{&action_player_broadcast, 7},
+	{&action_player_incantation, 300},
+	{&action_player_fork, 42},
+	{&action_player_connect_nbr, 0}};
 
 int			g_log = 0;
