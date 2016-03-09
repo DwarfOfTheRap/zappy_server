@@ -9,7 +9,11 @@ install: .ci/install.sh
 os:
   - linux
   - osx
+
 compiler: clang
+
+env:
+  - CK_FORK=no
 
 notifications:
   slack: dwarfoftherap:cIctwvXXMVkBmwNLxAkA6Y2g
