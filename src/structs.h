@@ -59,14 +59,6 @@ typedef struct			s_player
 	t_snd_buf	snd;
 }						t_player;
 
-typedef struct			s_action
-{
-	char		*arg;
-	char		*(*run)(t_player *);
-	t_player	*player;
-	t_tstmp		time;
-}						t_action;
-
 typedef struct			s_zappy
 {
 	int			***board;
@@ -81,6 +73,14 @@ typedef struct			s_zappy
 	t_player	players[MAX_FD];
 	t_player	*gfx_client;
 }						t_zappy;
+
+typedef struct			s_action
+{
+	char		*arg;
+	void		(*run)(t_zappy *var, t_player *p, char *arg);	
+	t_player	*player;
+	t_tstmp		time;
+}						t_action;
 
 typedef struct			s_cmd
 {
