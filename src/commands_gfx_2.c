@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 #include "serveur.h"
 
 void	command_sst(t_zappy *var, t_player *p, char *arg)
@@ -14,6 +15,7 @@ void	command_sst(t_zappy *var, t_player *p, char *arg)
 		return (message_gfx_sbp(var));
 	// trig game speed change
 	message_gfx_sgt(var);
+	printf("[COMMAND] sst %s\n", arg);
 }
 
 void	command_ppo(t_zappy *var, t_player *p, char *arg)
@@ -28,6 +30,7 @@ void	command_ppo(t_zappy *var, t_player *p, char *arg)
 	if (p_id <= 0 || MAX_FD < p_id || var->players[p_id].status != FD_CLIENT)
 		return (message_gfx_sbp(var));
 	message_gfx_ppo(var, &var->players[p_id]);
+	printf("[COMMAND] ppo %s\n", arg);
 }
 
 void	command_plv(t_zappy *var, t_player *p, char *arg)
@@ -42,6 +45,7 @@ void	command_plv(t_zappy *var, t_player *p, char *arg)
 	if (p_id <= 0 || MAX_FD < p_id || var->players[p_id].status != FD_CLIENT)
 		return (message_gfx_sbp(var));
 	message_gfx_plv(var, &var->players[p_id]);
+	printf("[COMMAND] plv %s\n", arg);
 }
 
 void	command_pin(t_zappy *var, t_player *p, char *arg)
@@ -56,4 +60,5 @@ void	command_pin(t_zappy *var, t_player *p, char *arg)
 	if (p_id <= 0 || MAX_FD < p_id || var->players[p_id].status != FD_CLIENT)
 		return (message_gfx_sbp(var));
 	message_gfx_pin(var, &var->players[p_id]);
+	printf("[COMMAND] pin %s\n", arg);
 }

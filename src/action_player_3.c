@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "serveur.h"
 
 extern const int	g_incant[7][7];
@@ -24,6 +25,7 @@ void	action_player_incantation(t_zappy *var, t_player *p, char *args)
 		}
 		dispatch_incantation_ressources(var, p, g_incant[p->level - 1]);
 	}
+	printf("[ACTION] p %d incantation", p->id);
 }
 
 void	action_player_fork(t_zappy *var, t_player *p, char *args)
@@ -32,4 +34,5 @@ void	action_player_fork(t_zappy *var, t_player *p, char *args)
 	(void)var;
 	// add new egg on player coordinate
 	message_player_ok(p);
+	printf("[ACTION] p %d fork\n", p->id);
 }
