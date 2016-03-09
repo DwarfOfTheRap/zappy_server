@@ -60,11 +60,11 @@ void		find_command(t_zappy *var, t_player *p, char *str, size_t len)
 		if ((ret = command_match(cmd[i], str)))
 		{
 			if (ret < 0)
-				message_command_format_error(p);
+				message_command_format_error(p, str, NULL);
 			else if (!cmd[i].run)
-				message_unsupported_command(p);
+				message_unsupported_command(p, str, NULL);
 			else if (cmd[i].status != p->status)
-				message_unauthorised_command(p);
+				message_unauthorised_command(p, str, NULL);
 			else
 				cmd[i].run(var, p, str + ret);
 			return ;
@@ -72,5 +72,5 @@ void		find_command(t_zappy *var, t_player *p, char *str, size_t len)
 		++i;
 	}
 	if (i == 21)
-		message_unknown_command(p);
+		message_unknown_command(p, str);
 }

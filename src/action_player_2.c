@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "serveur.h"
 
+extern int			g_log;
 extern const char	g_ressources[7][16];
 
 void	action_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
@@ -41,7 +42,8 @@ void	action_player_voir(t_zappy *var, t_player *p, char *args)
 	l = (p->facing == 0 || p->facing == 1) ? 1 : -1;
 	action_player_voir_sub(var, p, k, l);
 	add_msg_to_player(p, "}", 1, 1);
-	printf("[ACTION] p %d voir\n", p->id);
+	if (g_log & LOG_A)
+		printf("[ACTION] p %d voir\n", p->id);
 }
 
 void	action_player_inventaire(t_zappy *var, t_player *p, char *args)
@@ -60,7 +62,8 @@ void	action_player_inventaire(t_zappy *var, t_player *p, char *args)
 		g_ressources[5], p->inv[4],
 		g_ressources[6], p->inv[5]);
 	add_msg_to_player(p, str, ret, 1);
-	printf("[ACTION] p %d inventaire\n", p->id);
+	if (g_log & LOG_A)
+		printf("[ACTION] p %d inventaire\n", p->id);
 }
 
 void	action_player_prend(t_zappy *var, t_player *p, char *args)
@@ -71,7 +74,7 @@ void	action_player_prend(t_zappy *var, t_player *p, char *args)
 	while (i < 7 && strcmp(g_ressources[i], args))
 		++i;
 	if (i == 7)
-		message_command_format_error(p);
+		return (message_command_format_error(p, "prend", args));
 	if (var->board[p->coord[0]][p->coord[1]][i] > 0)
 	{
 		--var->board[p->coord[0]][p->coord[1]][i];
@@ -88,7 +91,8 @@ void	action_player_prend(t_zappy *var, t_player *p, char *args)
 		message_player_ko(p);
 	message_gfx_pin(var, p);
 	message_gfx_bct(var, p->coord);
-	printf("[ACTION] p %d prend %s\n", p->id, args);
+	if (g_log & LOG_A)
+		printf("[ACTION] p %d prend %s\n", p->id, args);
 }
 
 void	action_player_pose(t_zappy *var, t_player *p, char *args)
@@ -99,7 +103,7 @@ void	action_player_pose(t_zappy *var, t_player *p, char *args)
 	while (i < 7 && strcmp(g_ressources[i], args))
 		++i;
 	if (i == 7)
-		message_command_format_error(p);
+		return (message_command_format_error(p, "pose", args));
 	// need to replace the hard code one with correct condition relatif to life
 	if ((i == 0 && 1) && (i > 0 && p->inv[i - 1] > 0))
 	{
@@ -114,5 +118,6 @@ void	action_player_pose(t_zappy *var, t_player *p, char *args)
 		message_player_ko(p);
 	message_gfx_pin(var, p);
 	message_gfx_bct(var, p->coord);
-	printf("[ACTION] p %d pose %s\n", p->id, args);
+	if (g_log & LOG_A)
+		printf("[ACTION] p %d pose %s\n", p->id, args);
 }

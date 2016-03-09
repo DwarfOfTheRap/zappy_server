@@ -2,13 +2,15 @@
 #include <stdio.h>
 #include "serveur.h"
 
+extern int			g_log;
 extern const int	g_incant[7][7];
 
 void	command_fork(t_zappy *var, t_player *p, char *args)
 {
 	action_add_wrapper(var, p, args, FORK);
 	message_gfx_pfk(var, p);
-	printf("[COMMAND] p %d -> fork\n", p->id);
+	if (g_log & LOG_C)
+		printf("[COMMAND] p %d -> fork\n", p->id);
 }
 
 int		command_incantation_can_incant(t_zappy *var, t_player *p, int nb_player)
@@ -75,5 +77,6 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 		++i;
 	}
 	message_gfx_pic(var, p, pl);
-	printf("[COMMAND] p %d -> incantation\n", p->id);
+	if (g_log & LOG_C)
+		printf("[COMMAND] p %d -> incantation\n", p->id);
 }

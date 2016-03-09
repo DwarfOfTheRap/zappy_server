@@ -43,6 +43,7 @@ SRC := \
 	src/message_player_2.c \
 	src/message_player_3.c \
 	src/read_arguments.c \
+	src/read_arguments_2.c \
 	src/ressources_management.c \
 	src/serveur.c \
 	src/usage.c \

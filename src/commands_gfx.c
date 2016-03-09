@@ -2,12 +2,15 @@
 #include <stdio.h>
 #include "serveur.h"
 
+extern int	g_log;
+
 void	command_msz(t_zappy *var, t_player *p, char *arg)
 {
 	(void)p;
 	(void)arg;
 	message_gfx_msz(var);
-	printf("[COMMAND] msz\n");
+	if (g_log & LOG_C)
+		printf("[COMMAND] msz\n");
 }
 
 void	command_bct(t_zappy *var, t_player *p, char *arg)
@@ -27,7 +30,8 @@ void	command_bct(t_zappy *var, t_player *p, char *arg)
 			pos[1] < 0 || var->board_size[1] <= pos[1])
 		return (message_gfx_sbp(var));
 	message_gfx_bct(var, pos);
-	printf("[COMMAND] bct %s\n", arg);
+	if (g_log & LOG_C)
+		printf("[COMMAND] bct %s\n", arg);
 }
 
 void	command_mct(t_zappy *var, t_player *p, char *arg)
@@ -47,7 +51,8 @@ void	command_mct(t_zappy *var, t_player *p, char *arg)
 		new = action_create((char *)square, &action_gfx_mct, NULL, time);
 		action_add(new, var);
 	}
-	printf("[COMMAND] mct\n");
+	if (g_log & LOG_C)
+		printf("[COMMAND] mct\n");
 }
 
 void	command_tna(t_zappy *var, t_player *p, char *arg)
@@ -55,7 +60,8 @@ void	command_tna(t_zappy *var, t_player *p, char *arg)
 	(void)p;
 	(void)arg;
 	message_gfx_tna(var);
-	printf("[COMMAND] tna\n");
+	if (g_log & LOG_C)
+		printf("[COMMAND] tna\n");
 }
 
 void	command_sgt(t_zappy *var, t_player *p, char *arg)
@@ -63,5 +69,6 @@ void	command_sgt(t_zappy *var, t_player *p, char *arg)
 	(void)p;
 	(void)arg;
 	message_gfx_sgt(var);
-	printf("[COMMAND] sgt\n");
+	if (g_log & LOG_C)
+		printf("[COMMAND] sgt\n");
 }

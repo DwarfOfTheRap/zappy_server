@@ -27,3 +27,5 @@ t_action_d	g_action[11] = {
 	{&action_player_broadcast, {0, 0}},
 	{&action_player_incantation, {0, 0}},
 	{&action_player_fork, {0, 0}}};
+
+int			g_log = 0;

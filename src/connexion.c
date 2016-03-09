@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include "serveur.h"
 
+extern int	g_log;
+
 int		close_client(t_zappy *var, t_server *serv, int fd)
 {
 	t_player	*p;
@@ -17,7 +19,8 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 	}
 	p->status = FD_FREE;
 	clean_msg_queue(p);
-	printf("[INFO] Client %d disconnected\n", fd);
+	if (g_log & LOG_I)
+		printf("[INFO] Client %d disconnected\n", fd);
 	// need to clean action of this player from action queue
 	if (fd == serv->fd_max)
 		--serv->fd_max;
@@ -27,7 +30,8 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 void	client_error(t_player *p, char *str)
 {
 	add_msg_to_player(p, str, 0, 1);
-	printf("[WARNING] Client %d: %s\n", p->id, str);
+	if (g_log & LOG_W)
+		printf("[WARNING] Client %d: %s\n", p->id, str);
 	p->status = FD_CLOSE;
 }
 
@@ -42,7 +46,8 @@ void	init_client(t_zappy *var, t_player *p)
 	if (p->team->remain)
 	{
 		--p->team->remain;
-		printf("[INFO] Client %d: team %s\n", p->id, p->team->name);
+		if (g_log & LOG_I)
+			printf("[INFO] Client %d: team %s\n", p->id, p->team->name);
 	}
 	else
 		p->status = FD_CLOSE;

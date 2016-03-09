@@ -37,6 +37,15 @@
 # define NB_SND		20
 # define SND_SIZE	1024
 
+/*
+** log level
+*/
+# define LOG_W		1
+# define LOG_E		2
+# define LOG_I		4
+# define LOG_C		8
+# define LOG_A		16
+
 # define ABS(x)		(x < 0 ? -x : x)
 
 enum		e_action {AVANCE, DROITE, GAUCHE, VOIR, INVENTAIRE, PREND, POSE,
@@ -212,10 +221,10 @@ char		*pop_msg(t_lst_head *head);
 ** src/message_2.c
 */
 int			rearrange_message_queue(t_player *p, size_t len, int buffer);
-void		message_unknown_command(t_player *p);
-void		message_command_format_error(t_player *p);
-void		message_unsupported_command(t_player *p);
-void		message_unauthorised_command(t_player *p);
+void		message_unknown_command(t_player *p, char *str);
+void		message_command_format_error(t_player *p, char *str, char *args);
+void		message_unsupported_command(t_player *p, char *str, char *args);
+void		message_unauthorised_command(t_player *p, char *str, char *args);
 
 /*
 ** src/message_gfx_egg.c
@@ -300,6 +309,11 @@ int			get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args);
 int			get_opt_int(t_main_arg const m_arg, int *i, int arg,
 				t_arguments *args);
 int			read_arguments(int ac, const char **av, t_arguments *args);
+
+/*
+** src/read_arguments_2.c
+*/
+int			get_opt_verbose(t_main_arg const m_arg, int *i);
 
 /*
 ** src/ressources_management.c

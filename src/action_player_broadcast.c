@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "serveur.h"
 
+extern int	g_log;
+
 int		broadcast_get_distance(int ms[2], int s[2], int r[2], int i)
 {
 	int		dist;
@@ -61,5 +63,6 @@ void	action_player_broadcast(t_zappy *var, t_player *p, char *args)
 		++i;
 	}
 	message_player_ok(p);
-	printf("[ACTION] p %d broadcast [%s]\n", p->id, args);
+	if (g_log & LOG_A)
+		printf("[ACTION] p %d broadcast [%s]\n", p->id, args);
 }
