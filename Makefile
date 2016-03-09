@@ -28,7 +28,8 @@ SRC := \
 	src/tstmp_calcs.c \
 	src/action_queue.c \
 	src/tools.c \
-	src/usage.c
+	src/usage.c \
+	src/globals.c
 
 OBJ := $(SRC:.c=.o)
 

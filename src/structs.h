@@ -93,7 +93,7 @@ typedef struct			s_cmd
 typedef struct			s_action_d
 {
 	void	(*f)(t_zappy*, t_player*, char*);
-	t_tstmp	t;
+	int		relative_time;
 }						t_action_d;
 
 typedef struct			s_arguments
