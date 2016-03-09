@@ -4,6 +4,7 @@
 
 void	dummy_t_zappy_without_board(t_zappy *var)
 {
+	bzero(var, sizeof(t_zappy));
 	var->actions = lst_init(NULL);
 	var->board = (int ***)0xdeadbeaf;
 	var->board_size[0] = 1;
