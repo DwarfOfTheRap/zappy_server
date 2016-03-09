@@ -160,5 +160,6 @@ void		process_actions(t_tstmp *start, t_zappy *var);
 int			action_add(t_action *action, t_zappy *var);
 t_action	*action_create(char *arg, char *(*f)(t_player*)
 						, t_player *player, t_tstmp time);
+void		action_add_wrapper(t_zappy *var, t_player *p char *args, int act);
 
 #endif
