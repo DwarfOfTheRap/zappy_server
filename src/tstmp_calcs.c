@@ -31,7 +31,7 @@ t_tstmp			time_generate(double ref, t_zappy *var)
 	t_tstmp new_time;
 
 	real_time = time_create(ref / (double)var->tick);
-	new_time = *(var->start_time);
+	new_time = var->start_time;
 	time_add(&new_time, &real_time);
 	return (new_time);
 }
