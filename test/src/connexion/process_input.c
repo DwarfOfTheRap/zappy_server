@@ -27,31 +27,33 @@ START_TEST(connexion_process_input_normal)
 }
 END_TEST
 
-/*START_TEST(connexion_process_input_gfx)
+START_TEST(connexion_process_input_gfx)
 {
+	int			fd_max = 10;
 	t_zappy		var;
 	t_player	*p = &var.players[5];
 	char		str[10] = "GRAPHIC\n";
-	char		str2[128] = "";
+	char		str2[128] = "msz 2 2\nsgt 4\nbct 0 0 0 0 0 0 0 0 0\nbct 1 0 0 0 0 0 0 0 0\n" \
+					"bct 0 1 0 0 0 0 0 0 0\nbct 1 1 0 0 0 0 0 0 0\ntna toto\ntna tutu\n";
 	char		*ret;
 
 	dummy_t_zappy_without_board(&var);
+	var.board_size[0] = 2;
+	var.board_size[1] = 2;
+	var.fd_max = &fd_max;
+	dummy_t_zappy_add_board(&var);
 	dummy_t_zappy_add_remaining_in_team(&var);
-	dummy_t_player(&var, p);
-	p->status = FD_USED;
-	p->team = NULL;
+	dummy_t_player_client(&var, p);
 	ret = process_input(&var, p, str);
-	// this test need to be completed when we would have a proper gfx client
-	// initialisation management. Though we won't be able to do advance test due
-	// to random food location on map.
 	ck_assert_ptr_eq(p->rcv.remain, NULL);
 	ck_assert_ptr_eq(ret, NULL);
 	ck_assert_str_eq(p->snd.buf[p->snd.read], str2);
 	ck_assert_ptr_eq(p->team, &var.teams[var.nb_team - 1]);
 	ck_assert_int_eq(p->status, FD_GFX);
 	rm_teams(&var.teams, &var.nb_team);
+	rm_board(&var.board, var.board_size, 0, 0);
 }
-END_TEST*/
+END_TEST
 
 START_TEST(connexion_process_input_unkown)
 {
@@ -63,9 +65,8 @@ START_TEST(connexion_process_input_unkown)
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_zappy_add_remaining_in_team(&var);
-	dummy_t_player(&var, p);
-	p->status = FD_USED;
-	p->team = NULL;
+	dummy_t_zappy_add_remaining_in_team(&var);
+	dummy_t_player_client(&var, p);
 	ret = process_input(&var, p, str);
 	ck_assert_ptr_eq(p->rcv.remain, NULL);
 	ck_assert_ptr_eq(ret, NULL);
@@ -79,13 +80,19 @@ END_TEST
 // This test will evolve when command will be supported
 START_TEST(connexion_process_input_multiple_commands)
 {
+	int			fd_max = 10;
 	t_zappy		var;
 	t_player	*p = &var.players[5];
 	char		str[30] = "avance\ngauche\navance\n";
-	char		str2[128] = "Unsupported command\nUnsupported command\nUnsupported command\n";
+	char		str2[128] = "";
 	char		*ret;
 
 	dummy_t_zappy_without_board(&var);
+	var.board_size[0] = 10;
+	var.board_size[1] = 10;
+	var.fd_max = &fd_max;
+	gettimeofday(&var.start_time, NULL);
+	dummy_t_zappy_add_board(&var);
 	dummy_t_zappy_add_remaining_in_team(&var);
 	dummy_t_player(&var, p);
 	ret = process_input(&var, p, str);
@@ -93,6 +100,7 @@ START_TEST(connexion_process_input_multiple_commands)
 	ck_assert_ptr_eq(ret, NULL);
 	ck_assert_str_eq(p->snd.buf[p->snd.read], str2);
 	rm_teams(&var.teams, &var.nb_team);
+	rm_board(&var.board, var.board_size, 0, 0);
 }
 END_TEST
 
@@ -119,7 +127,7 @@ TCase*	connexion_process_input(void)
 
 	tc = tcase_create("process_input");
 	tcase_add_test(tc, connexion_process_input_normal);
-//	tcase_add_test(tc, connexion_process_input_gfx);
+	tcase_add_test(tc, connexion_process_input_gfx);
 	tcase_add_test(tc, connexion_process_input_unkown);
 	tcase_add_test(tc, connexion_process_input_multiple_commands);
 	tcase_add_test(tc, connexion_process_input_incomplete_command);

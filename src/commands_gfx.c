@@ -39,7 +39,7 @@ void	command_mct(t_zappy *var, t_player *p, char *arg)
 	message_gfx_mct(var, &square);
 	if (square != -1)
 	{
-		time = *var->start_time;
+		time = var->start_time;
 		++time.tv_usec;
 		new = action_create((char *)square, &action_gfx_mct, NULL, time);
 		action_add(new, var);

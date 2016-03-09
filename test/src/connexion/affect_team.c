@@ -74,7 +74,7 @@ START_TEST(connexion_affect_team_gfx)
 	ck_assert_ptr_eq(&var.teams[2], gfx->team);
 	ck_assert_int_eq(0, var.teams[2].remain);
 	ck_assert_int_eq(FD_GFX, gfx->status);
-	ck_assert_str_eq(str, gfx->snd.buf[gfx->snd.write]);
+	ck_assert_str_eq(gfx->snd.buf[gfx->snd.write], str);
 	ck_assert_ptr_eq(var.gfx_client, gfx);
 	rm_teams(&var.teams, &var.nb_team);
 	rm_board(&var.board, var.board_size, 0, 0);

@@ -6,7 +6,6 @@ void	init_gfx_sub(t_zappy *var)
 
 	i = -1;
 	message_gfx_msz(var);
-	(void)i;
 	message_gfx_sgt(var);
 	message_gfx_mct(var, &i);
 	message_gfx_tna(var);
