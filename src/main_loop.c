@@ -57,8 +57,8 @@ int		main_loop(t_zappy *var, t_server *serv)
 {
 	while (1)
 	{
-		gettimeofday(var->start_time, NULL);
-		process_actions(var->start_time, var);
+		gettimeofday(&var->start_time, NULL);
+		process_actions(&var->start_time, var);
 		pre_select(var, serv);
 		do_select(serv);
 		post_select(var, serv);
