@@ -40,7 +40,7 @@ typedef struct			s_server
 
 typedef struct			s_team
 {
-	char		*name;
+	char		name[TEAM_LEN + 1];
 	int			remain;
 }						t_team;
 
@@ -49,7 +49,6 @@ typedef struct			s_player
 	int			id;
 	int			inv[6];
 	int			coord[2];
-	int			fov;
 	int			pending_actions;
 	t_team		*team;
 	t_tstmp		timeofdeath;

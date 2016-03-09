@@ -3,6 +3,7 @@
 #include <netdb.h>
 #include <sys/socket.h>
 #include <stdio.h>
+#include <time.h>
 #include "serveur.h"
 #include "linked_lists.h"
 
@@ -85,6 +86,7 @@ int		init_server(t_zappy *var, t_server *serv, t_arguments *args)
 
 int		init(t_zappy *var, t_server *serv, t_arguments *args)
 {
+	srand(time(NULL));
 	if (init_game_var(var, args))
 		return (1);
 	if (init_server(var, serv, args))
@@ -92,5 +94,6 @@ int		init(t_zappy *var, t_server *serv, t_arguments *args)
 		cleanup_game(var, serv);
 		return (1);
 	}
+	init_ressources(var);
 	return (0);
 }

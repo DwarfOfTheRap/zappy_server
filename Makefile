@@ -22,6 +22,7 @@ SRC := \
 	src/message.c \
 	src/message_2.c \
 	src/read_arguments.c \
+	src/ressources_management.c \
 	src/serveur.c \
 	src/usage.c \
 	src/tstmp_calcs.c \

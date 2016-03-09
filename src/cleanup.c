@@ -4,16 +4,9 @@
 
 void	rm_teams(t_team **teams, int *nb_team)
 {
+	*nb_team = 0;
 	if (!*teams)
-	{
-		*nb_team = 0;
 		return ;
-	}
-	while (*nb_team > 0)
-	{
-		--(*nb_team);
-		free(((*teams)[*nb_team]).name);
-	}
 	free(*teams);
 	*teams = NULL;
 }
