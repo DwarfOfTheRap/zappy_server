@@ -20,6 +20,7 @@ void		process_actions(t_tstmp *start, t_zappy *var)
 		cur_action->run(var, cur_action->player, cur_action->arg);
 		cur_action->player->pending_actions--;
 		cur_action = (elem->next) ? (t_action*)elem->next->content : NULL;
+		lst_delete_elem(&elem, free);
 	}
 }
 
@@ -68,7 +69,7 @@ void		action_add_wrapper(t_zappy *var, t_player *p, char *args, int act)
 	t_tstmp		time;
 	t_action	*new;
 
-	timeradd(&var->start_time, &g_action[act].t, &time);
+	time = time_generate(0, var); // must change to action specific reference
 	new = action_create(args, g_action[act].f, p, time);
 	action_add(new, var);
 }
