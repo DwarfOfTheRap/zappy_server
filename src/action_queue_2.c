@@ -18,9 +18,12 @@ static int	cmp(void *data1, void *data2)
 void		action_player_clear(t_player *player, t_zappy *var)
 {
 	t_lst_head	*list;
+	t_lst_head	*list_p;
 
 	list = var->actions;
+	list_p = player->actions;
 	lst_free_match(list, player, cmp, free); // change 'free' to 'action_free'
+	lst_delete(list_p, free); // change to action_free
 	player->pending_actions = 0;
 }
 

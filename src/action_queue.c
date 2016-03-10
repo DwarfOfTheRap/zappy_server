@@ -10,16 +10,19 @@ void		process_actions(t_tstmp *start, t_zappy *var)
 	t_lst_head	*list;
 	t_action	*cur_action;
 	t_lst_elem	*elem;
+	t_lst_elem	*elem_p;
 
 	list = var->actions;
 	cur_action = (list->first) ? (t_action*)list->first->content : NULL;
 	while (list->first && time_compare(&cur_action->trigger_t, start))
 	{
 		elem = lst_pop(list, 0);
+		elem_p = lst_pop(cur_action->player->actions, 0);
 		cur_action->run(var, cur_action->player, cur_action->arg);
 		cur_action->player->pending_actions--;
 		cur_action = (elem->next) ? (t_action*)elem->next->content : NULL;
 		lst_delete_elem(&elem, free);
+		lst_delete_elem(&elem_p, free);
 	}
 }
 
@@ -43,6 +46,7 @@ int			action_add(t_action *action, t_zappy *var)
 	if (new)
 	{
 		lst_insert(var->actions, new, cmp);
+		lst_insert(action->player->actions, new, cmp);
 		action->player->pending_actions++;
 		return (1);
 	}

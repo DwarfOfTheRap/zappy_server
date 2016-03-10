@@ -50,6 +50,7 @@ typedef struct			s_player
 	int			inv[6];
 	int			coord[2];
 	int			pending_actions;
+	t_lst_head	*actions;
 	t_team		*team;
 	t_tstmp		timeofdeath;
 	u_short		facing:2;
