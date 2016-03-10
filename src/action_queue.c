@@ -2,7 +2,8 @@
 #include <string.h>
 #include <sys/time.h>
 #include "serveur.h"
-#include "linked_lists.h"
+
+extern t_action_d	g_action[9];
 
 void		process_actions(t_tstmp *start, t_zappy *var)
 {
@@ -18,6 +19,7 @@ void		process_actions(t_tstmp *start, t_zappy *var)
 		cur_action->run(var, cur_action->player, cur_action->arg);
 		cur_action->player->pending_actions--;
 		cur_action = (elem->next) ? (t_action*)elem->next->content : NULL;
+		lst_delete_elem(&elem, free);
 	}
 }
 
@@ -59,4 +61,14 @@ t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
 	new->player = player;
 	new->time = time;
 	return (new);
+}
+
+void		action_add_wrapper(t_zappy *var, t_player *p, char *args, int act)
+{
+	t_tstmp		time;
+	t_action	*new;
+
+	time = time_generate(g_action[act].rel_time, var);
+	new = action_create(args, g_action[act].f, p, time);
+	action_add(new, var);
 }

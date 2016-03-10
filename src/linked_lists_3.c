@@ -7,11 +7,12 @@ void	lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*, void*))
 
 	if (!head)
 		return ;
-	cursor = head->first;
+	if (!(cursor = head->first))
+		return (lst_pushfront(head, new));
 	while (cursor && !f(new->content, cursor->content))
 		cursor = cursor->next;
 	if (!cursor)
-		return ;
+		return (lst_pushback(head, new));
 	else
 	{
 		previous = cursor->prev;
