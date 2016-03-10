@@ -21,7 +21,7 @@ t_tstmp			time_create(double microseconds)
 	t_tstmp	result;
 
 	result.tv_sec = microseconds / 1000000;
-	result.tv_usec = microseconds % 1000000;
+	result.tv_usec = (long long)microseconds % 1000000;
 	return (result);
 }
 
