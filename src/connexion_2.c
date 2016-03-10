@@ -13,7 +13,7 @@ void	init_gfx_sub(t_zappy *var)
 	while (i++ < *var->fd_max)
 	{
 		if (var->players[i].status == FD_CLIENT)
-			message_gfx_ppo(var, &var->players[i]);
+			message_gfx_pnw(var, &var->players[i]);
 	}
 	// need to iter on the eggs
 }
