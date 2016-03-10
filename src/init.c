@@ -56,7 +56,7 @@ int		init_game_var(t_zappy *var, t_arguments *args)
 		var->teams[i++].remain = args->nb_clients;
 	i = 0;
 	while (i < MAX_FD)
-		var->players[i].actions = lst_init(NULL); // need to free this at cleanup
+		var->players[i++].actions = lst_init(NULL); // need to free this at cleanup
 	return (0);
 }
 
