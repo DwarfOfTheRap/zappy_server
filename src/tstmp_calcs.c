@@ -21,7 +21,7 @@ t_tstmp			time_create(double seconds)
 	t_tstmp	result;
 
 	result.tv_sec = seconds;
-	result.tv_usec = ((seconds - (double) result.tv_sec) * 1000000000.0);
+	result.tv_usec = ((seconds - (double)result.tv_sec) * 1000000.0);
 	return (result);
 }
 
@@ -38,16 +38,16 @@ t_tstmp			time_generate(double ref, t_zappy *var)
 
 double			time_double(t_tstmp *time)
 {
-	return (time->tv_sec + (time->tv_usec / 1000000000.0));
+	return (time->tv_sec + (time->tv_usec / 1000000.0));
 }
 
 void			time_add(t_tstmp *time1, t_tstmp *time2)
 {
 	time1->tv_sec += time2->tv_sec;
 	time1->tv_usec += time2->tv_usec;
-	while (time1->tv_usec >= 1000000000L)
+	while (time1->tv_usec >= 1000000)
 	{
 		time1->tv_sec++;
-		time1->tv_usec -= 1000000000L;
+		time1->tv_usec -= 1000000;
 	}
 }
