@@ -1,36 +1,21 @@
 #include <stdlib.h>
 #include <check.h>
 #include "serveur.h"
-
-void	dummy_t_zappy(t_zappy *var, t_player *p)
-{
-	bzero(var, sizeof(t_zappy));
-	var->board_size[0] = 10;
-	var->board_size[1] = 20;
-	var->teams = (t_team *)malloc(sizeof(t_team) * 3);
-	bzero(var->teams, sizeof(t_team) * 3);
-	strcpy(var->teams[0].name, "toto");
-	strcpy(var->teams[1].name, "tutu");
-	strcpy(var->teams[2].name, "GRAPHIC");
-	var->nb_team = 3;
-	var->teams[0].remain = 1;
-	var->teams[1].remain = 1;
-	var->teams[2].remain = 1;
-	p->snd.pos = p->snd.buf[0];
-	p->status = FD_USED;
-}
+#include "test_dummies.h"
 
 START_TEST(connexion_affect_team_valid)
 {
 	t_zappy		var;
 	t_player	*p = &var.players[4];
 
-	dummy_t_zappy(&var, p);
+	dummy_t_zappy_without_board(&var);
+	dummy_t_player_client(&var, p);
+	dummy_t_zappy_add_remaining_in_team(&var);
 	affect_team(&var, p, "tutu", 4);
 	ck_assert_ptr_eq(&var.teams[1], p->team);
 	ck_assert_int_eq(0, var.teams[1].remain);
 	ck_assert_int_eq(FD_CLIENT, p->status);
-	ck_assert_str_eq("1\n20 10\n", p->snd.buf[p->snd.write]);
+	ck_assert_str_eq("1\n2 1\n", p->snd.buf[p->snd.write]);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
@@ -40,13 +25,14 @@ START_TEST(connexion_affect_team_full)
 	t_zappy		var;
 	t_player	*p = &var.players[4];
 
-	dummy_t_zappy(&var, p);
+	dummy_t_zappy_without_board(&var);
+	dummy_t_player_client(&var, p);
 	var.teams[1].remain = 0;
 	affect_team(&var, p, "tutu", 4);
 	ck_assert_ptr_eq(&var.teams[1], p->team);
 	ck_assert_int_eq(0, var.teams[1].remain);
 	ck_assert_int_eq(FD_CLOSE, p->status);
-	ck_assert_str_eq("0\n20 10\n", p->snd.buf[p->snd.write]);
+	ck_assert_str_eq("0\n2 1\n", p->snd.buf[p->snd.write]);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
@@ -56,7 +42,9 @@ START_TEST(connexion_affect_team_unknow)
 	t_zappy		var;
 	t_player	*p = &var.players[4];
 
-	dummy_t_zappy(&var, p);
+	dummy_t_zappy_without_board(&var);
+	dummy_t_player_client(&var, p);
+	dummy_t_zappy_add_remaining_in_team(&var);
 	affect_team(&var, p, "caca", 4);
 	ck_assert_ptr_eq(NULL, p->team);
 	ck_assert_int_eq(1, var.teams[1].remain);
@@ -67,17 +55,30 @@ END_TEST
 
 START_TEST(connexion_affect_team_gfx)
 {
+	int			fd_max = 8;
 	t_zappy		var;
-	t_player	*p = &var.players[4];
+	t_player	*gfx = &var.players[4];
+	t_player	*p1 = &var.players[5];
+	t_player	*p2 = &var.players[6];
+	char		str[] = "msz 2 1\nsgt 4\nbct 0 0 0 0 0 0 0 0 0\nbct 1 0 0 0 0 0 0 0 0\n" \
+						"tna toto\ntna tutu\nppo 5 0 0 1\nppo 6 0 0 1\n";
 
-	dummy_t_zappy(&var, p);
-	affect_team(&var, p, "GRAPHIC", 7);
-	ck_assert_ptr_eq(&var.teams[2], p->team);
+	dummy_t_zappy_without_board(&var);
+	dummy_t_zappy_add_board(&var);
+	dummy_t_zappy_add_remaining_in_team(&var);
+	dummy_t_player_client(&var, gfx);
+	dummy_t_player(&var, p1);
+	dummy_t_player(&var, p2);
+	var.fd_max = &fd_max;
+	affect_team(&var, gfx, "GRAPHIC", 7);
+	ck_assert_ptr_eq(&var.teams[2], gfx->team);
 	ck_assert_int_eq(0, var.teams[2].remain);
-	ck_assert_int_eq(FD_GFX, p->status);
-	ck_assert_str_eq("", p->snd.buf[p->snd.write]);
-	ck_assert_ptr_eq(var.gfx_client, p);
+	ck_assert_int_eq(FD_GFX, gfx->status);
+	ck_assert_str_eq(gfx->snd.buf[gfx->snd.write], str);
+	ck_assert_ptr_eq(var.gfx_client, gfx);
 	rm_teams(&var.teams, &var.nb_team);
+	rm_board(&var.board, var.board_size, 0, 0);
+	clean_msg_queue(gfx);
 }
 END_TEST
 

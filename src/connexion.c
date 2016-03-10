@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include "serveur.h"
 
+extern int	g_log;
+
 int		close_client(t_zappy *var, t_server *serv, int fd)
 {
 	t_player	*p;
@@ -17,7 +19,8 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 	}
 	p->status = FD_FREE;
 	clean_msg_queue(p);
-	printf("[INFO] Client %d disconnected\n", fd);
+	if (g_log & LOG_I)
+		printf("[\033[0;34mINFO\033[0m] Client %d disconnected\n", fd);
 	// need to clean action of this player from action queue
 	if (fd == serv->fd_max)
 		--serv->fd_max;
@@ -27,26 +30,9 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 void	client_error(t_player *p, char *str)
 {
 	add_msg_to_player(p, str, 0, 1);
-	printf("[WARNING] Client %d: %s\n", p->id, str);
+	if (g_log & LOG_W)
+		printf("[\033[0;33mWARNING\033[0m] Client %d: %s\n", p->id, str);
 	p->status = FD_CLOSE;
-}
-
-/*
- * Those init function will need a little refactor due to dumb protocol imposed
- * by subject..
- */
-void	init_gfx(t_zappy *var, t_player *p)
-{
-	(void)var;
-	if (p->team->remain)
-	{
-		p->status = FD_GFX;
-		--p->team->remain;
-		var->gfx_client = p;
-		// need to send the map
-	}
-	else
-		p->status = FD_CLOSE;
 }
 
 void	init_client(t_zappy *var, t_player *p)
@@ -60,7 +46,9 @@ void	init_client(t_zappy *var, t_player *p)
 	if (p->team->remain)
 	{
 		--p->team->remain;
-		printf("[INFO] Client %d: team %s\n", p->id, p->team->name);
+		if (g_log & LOG_I)
+			printf("[\033[0;34mINFO\033[0m] Client %d: team %s\n", p->id,
+					p->team->name);
 	}
 	else
 		p->status = FD_CLOSE;
@@ -77,9 +65,6 @@ void	affect_team(t_zappy *var, t_player *p, char *str, size_t len)
 		if (!strncmp(var->teams[i].name, str, len))
 		{
 			p->team = &(var->teams[i]);
-			//if (!var->teams[i].remain)
-			//	client_error(p, "EQUIPE PLEINE");
-			//else if (i == var->nb_team - 1)
 			if (i == var->nb_team - 1)
 				init_gfx(var, p);
 			else
