@@ -67,6 +67,10 @@ void	clean_msg_queue(t_player *p)
 		free(p->rcv.remain);
 		p->rcv.remain = NULL;
 	}
+	p->snd.buf[p->snd.write][0] = 0;
+	p->snd.read = 0;
+	p->snd.write = 0;
+	p->snd.pos = p->snd.buf[p->snd.write];
 }
 
 char	*pop_msg(t_lst_head *head)

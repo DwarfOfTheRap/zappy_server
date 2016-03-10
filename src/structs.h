@@ -75,10 +75,17 @@ typedef struct			s_zappy
 	t_player	*gfx_client;
 }						t_zappy;
 
+typedef struct			s_aargs
+{
+	int			nb;
+	int			*pl;
+	char		*str;
+}						t_aargs;
+
 typedef struct			s_action
 {
-	char		*arg;
-	void		(*run)(t_zappy *var, t_player *p, char *arg);
+	t_aargs		arg;
+	void		(*run)(t_zappy *var, t_player *p, t_aargs *arg);
 	t_player	*player;
 	t_tstmp		trigger_t;
 	t_tstmp		creation_t;
@@ -94,7 +101,7 @@ typedef struct			s_cmd
 
 typedef struct			s_action_d
 {
-	void	(*f)(t_zappy*, t_player*, char*);
+	void	(*f)(t_zappy*, t_player*, t_aargs*);
 	int		rel_time;
 }						t_action_d;
 

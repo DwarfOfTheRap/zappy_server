@@ -12,10 +12,10 @@ int		z_error(char *str)
 int		get_opt(const char *str)
 {
 	int			j;
-	const char	arg[6][3] = {"-p", "-x", "-y", "-c", "-t", "-n"};
+	const char	arg[7][4] = {"-p", "-x", "-y", "-c", "-t", "-n", "-v"};
 
 	j = 0;
-	while (j < 6 && strcmp(arg[j], str))
+	while (j < 7 && strcmp(arg[j], str))
 		++j;
 	return (j);
 }
@@ -29,7 +29,7 @@ int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args)
 	first = *i;
 	if (args->teams)
 		rm_teams(&(args->teams), (int *)&(args->nb_team));
-	while (*i < m_arg.ac && get_opt(m_arg.av[*i]) == 6)
+	while (*i < m_arg.ac && get_opt(m_arg.av[*i]) == 7)
 		++(*i);
 	if (*i == first)
 		return (z_error("No team's name given"));
@@ -55,7 +55,7 @@ int		get_opt_int(t_main_arg const m_arg, int *i, int arg, t_arguments *args)
 
 	++(*i);
 	j = 0;
-	if (get_opt(str) != 6)
+	if (*i < m_arg.ac && get_opt(str) != 7)
 	{
 		dprintf(2, "%s: missing argument\n", m_arg.av[*i - 1]);
 		return (1);
@@ -88,6 +88,8 @@ int		read_arguments(int ac, char const **av, t_arguments *args)
 			error += get_opt_int(m_arg, &i, ret, args);
 		else if (ret == 5)
 			error += get_opt_string(m_arg, &i, args);
+		else if (ret == 6)
+			error += get_opt_verbose(m_arg, &i);
 		else
 		{
 			dprintf(2, "%s: unrecognised option\n", av[i]);

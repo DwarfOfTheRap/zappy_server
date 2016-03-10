@@ -9,6 +9,7 @@ install: .ci/install.sh
 os:
   - linux
   - osx
+
 compiler: clang
 
 notifications:

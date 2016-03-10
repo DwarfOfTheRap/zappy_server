@@ -18,11 +18,11 @@ void		process_actions(t_tstmp *start, t_zappy *var)
 	{
 		elem = lst_pop(list, 0);
 		elem_p = lst_pop(cur_action->player->actions, 0);
-		cur_action->run(var, cur_action->player, cur_action->arg);
+		cur_action->run(var, cur_action->player, &cur_action->arg);
 		cur_action->player->pending_actions--;
 		cur_action = (elem->next) ? (t_action*)elem->next->content : NULL;
-		lst_delete_elem(&elem, free);
-		lst_delete_elem(&elem_p, free);
+		lst_delete_elem(&elem, action_free);
+		lst_delete_elem(&elem_p, action_free);
 	}
 }
 
@@ -53,14 +53,14 @@ int			action_add(t_action *action, t_zappy *var)
 	return (0);
 }
 
-t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
-							, t_player *player, t_tstmp *time)
+t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
+				t_aargs*), t_player *player, t_tstmp *time)
 {
 	t_action	*new;
 
 	if (!(new = (t_action*)malloc(sizeof(t_action))))
 		return (NULL);
-	new->arg = arg;
+	memcpy(&new->arg, arg, sizeof(t_aargs));
 	new->run = f;
 	new->player = player;
 	new->creation_t = time[0];
@@ -68,7 +68,8 @@ t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
 	return (new);
 }
 
-void		action_add_wrapper(t_zappy *var, t_player *p, char *args, int act)
+void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
+				int act)
 {
 	t_tstmp		*time;
 	t_action	*new;
