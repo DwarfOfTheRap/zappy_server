@@ -14,7 +14,7 @@ void	command_fork(t_zappy *var, t_player *p, char *args)
 	action_add_wrapper(var, p, &t, FORK);
 	message_gfx_pfk(var, p);
 	if (g_log & LOG_C)
-		printf("[COMMAND] p %d -> fork\n", p->id);
+		printf("[\033[0;32mCOMMAND\033[0m] p %d -> fork\n", p->id);
 }
 
 int		command_incantation_can_incant(t_zappy *var, t_player *p, int nb_player)
@@ -83,5 +83,5 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 	}
 	message_gfx_pic(var, p, t.pl);
 	if (g_log & LOG_C)
-		printf("[COMMAND] p %d -> incantation\n", p->id);
+		printf("[\033[0;32mCOMMAND\033[0m] p %d -> incantation\n", p->id);
 }

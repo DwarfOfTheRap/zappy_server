@@ -37,9 +37,10 @@ int			command_match(t_cmd const cmd, char *str)
 	i = 0;
 	while (cmd.cmd[i] && cmd.cmd[i] == str[i])
 		++i;
-	if ((cmd.cmd[i] == str[i] && !cmd.arg) ||
-		(!cmd.cmd[i] && str[i] == ' ' && cmd.arg))
+	if (cmd.cmd[i] == str[i] && !cmd.arg)
 		return (i);
+	else if (!cmd.cmd[i] && str[i] == ' ' && cmd.arg)
+		return (i + 1);
 	else if (cmd.cmd[i] == str[i] && cmd.arg)
 		return (-1);
 	else if (!cmd.cmd[i] && str[i] == ' ' && !cmd.arg)

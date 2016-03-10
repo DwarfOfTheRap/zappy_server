@@ -20,7 +20,7 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 	p->status = FD_FREE;
 	clean_msg_queue(p);
 	if (g_log & LOG_I)
-		printf("[INFO] Client %d disconnected\n", fd);
+		printf("[\033[0;34mINFO\033[0m] Client %d disconnected\n", fd);
 	// need to clean action of this player from action queue
 	if (fd == serv->fd_max)
 		--serv->fd_max;
@@ -31,7 +31,7 @@ void	client_error(t_player *p, char *str)
 {
 	add_msg_to_player(p, str, 0, 1);
 	if (g_log & LOG_W)
-		printf("[WARNING] Client %d: %s\n", p->id, str);
+		printf("[\033[0;33mWARNING\033[0m] Client %d: %s\n", p->id, str);
 	p->status = FD_CLOSE;
 }
 
@@ -47,7 +47,8 @@ void	init_client(t_zappy *var, t_player *p)
 	{
 		--p->team->remain;
 		if (g_log & LOG_I)
-			printf("[INFO] Client %d: team %s\n", p->id, p->team->name);
+			printf("[\033[0;34mINFO\033[0m] Client %d: team %s\n", p->id,
+					p->team->name);
 	}
 	else
 		p->status = FD_CLOSE;
@@ -64,9 +65,6 @@ void	affect_team(t_zappy *var, t_player *p, char *str, size_t len)
 		if (!strncmp(var->teams[i].name, str, len))
 		{
 			p->team = &(var->teams[i]);
-			//if (!var->teams[i].remain)
-			//	client_error(p, "EQUIPE PLEINE");
-			//else if (i == var->nb_team - 1)
 			if (i == var->nb_team - 1)
 				init_gfx(var, p);
 			else

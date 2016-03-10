@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include "serveur.h"
 
+extern int	g_log;
+
 void	accept_client(t_player *p, int client)
 {
 	bzero(p, sizeof(t_player));
@@ -22,10 +24,12 @@ int		do_accept(t_zappy *var, t_server *serv)
 	cslen = sizeof(csin);
 	if ((cs = accept(serv->sock, (struct sockaddr *)&csin, &cslen)) < 0)
 	{
-		dprintf(2, "\033[0;31mError\033[0m: accept");
+		if (g_log & LOG_E)
+			dprintf(2, "[\033[0;31mError\033[0m]: accept");
 		return (1);
 	}
-	printf("[INFO] New connection from %s\n", inet_ntoa(csin.sin_addr));
+	if (g_log & LOG_I)
+		printf("[\033[0;34mINFO\033[0m] New connection from %s\n", inet_ntoa(csin.sin_addr));
 	accept_client(&var->players[cs], cs);
 	var->players[cs].status = FD_USED;
 	var->players[cs].level = 1;

@@ -64,5 +64,6 @@ void	action_player_broadcast(t_zappy *var, t_player *p, t_aargs *args)
 	}
 	message_player_ok(p);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d broadcast [%s]\n", p->id, args->str);
+		printf("[\033[0;35mACTION\033[0m] p %d broadcast [%s]\n", p->id,
+				args->str);
 }

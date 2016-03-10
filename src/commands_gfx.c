@@ -10,7 +10,7 @@ void	command_msz(t_zappy *var, t_player *p, char *arg)
 	(void)arg;
 	message_gfx_msz(var);
 	if (g_log & LOG_C)
-		printf("[COMMAND] msz\n");
+		printf("[\033[0;32mCOMMAND\033[0m] msz\n");
 }
 
 void	command_bct(t_zappy *var, t_player *p, char *arg)
@@ -31,7 +31,7 @@ void	command_bct(t_zappy *var, t_player *p, char *arg)
 		return (message_gfx_sbp(var));
 	message_gfx_bct(var, pos);
 	if (g_log & LOG_C)
-		printf("[COMMAND] bct %s\n", arg);
+		printf("[\033[0;32mCOMMAND\033[0m] bct %s\n", arg);
 }
 
 void	command_mct(t_zappy *var, t_player *p, char *arg)
@@ -52,7 +52,7 @@ void	command_mct(t_zappy *var, t_player *p, char *arg)
 		action_add(new, var);
 	}
 	if (g_log & LOG_C)
-		printf("[COMMAND] mct\n");
+		printf("[\033[0;32mCOMMAND\033[0m] mct\n");
 }
 
 void	command_tna(t_zappy *var, t_player *p, char *arg)
@@ -61,7 +61,7 @@ void	command_tna(t_zappy *var, t_player *p, char *arg)
 	(void)arg;
 	message_gfx_tna(var);
 	if (g_log & LOG_C)
-		printf("[COMMAND] tna\n");
+		printf("[\033[0;32mCOMMAND\033[0m] tna\n");
 }
 
 void	command_sgt(t_zappy *var, t_player *p, char *arg)
@@ -70,5 +70,5 @@ void	command_sgt(t_zappy *var, t_player *p, char *arg)
 	(void)arg;
 	message_gfx_sgt(var);
 	if (g_log & LOG_C)
-		printf("[COMMAND] sgt\n");
+		printf("[\033[0;32mCOMMAND\033[0m] sgt\n");
 }

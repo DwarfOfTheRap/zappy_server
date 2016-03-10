@@ -43,7 +43,7 @@ void	action_player_voir(t_zappy *var, t_player *p, t_aargs *args)
 	action_player_voir_sub(var, p, k, l);
 	add_msg_to_player(p, "}", 1, 1);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d voir\n", p->id);
+		printf("[\033[0;35mACTION\033[0m] p %d voir\n", p->id);
 }
 
 void	action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args)
@@ -63,7 +63,7 @@ void	action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args)
 		g_ressources[6], p->inv[5]);
 	add_msg_to_player(p, str, ret, 1);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d inventaire\n", p->id);
+		printf("[\033[0;35mACTION\033[0m] p %d inventaire\n", p->id);
 }
 
 void	action_player_prend(t_zappy *var, t_player *p, t_aargs *args)
@@ -92,7 +92,7 @@ void	action_player_prend(t_zappy *var, t_player *p, t_aargs *args)
 	message_gfx_pin(var, p);
 	message_gfx_bct(var, p->coord);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d prend %s\n", p->id, args->str);
+		printf("[\033[0;35mACTION\033[0m] p %d prend %s\n", p->id, args->str);
 }
 
 void	action_player_pose(t_zappy *var, t_player *p, t_aargs *args)
@@ -119,5 +119,5 @@ void	action_player_pose(t_zappy *var, t_player *p, t_aargs *args)
 	message_gfx_pin(var, p);
 	message_gfx_bct(var, p->coord);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d pose %s\n", p->id, args->str);
+		printf("[\033[0;35mACTION\033[0m] p %d pose %s\n", p->id, args->str);
 }

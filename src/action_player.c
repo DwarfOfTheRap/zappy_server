@@ -24,7 +24,7 @@ void	action_player_avance(t_zappy *var, t_player *p, t_aargs *args)
 	action_player_move(var, p, p->facing);
 	message_player_ok(p);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d avance\n", p->id);
+		printf("[\033[0;35mACTION\033[0m] p %d avance\n", p->id);
 }
 
 void	action_player_droite(t_zappy *var, t_player *p, t_aargs *args)
@@ -34,7 +34,7 @@ void	action_player_droite(t_zappy *var, t_player *p, t_aargs *args)
 	p->facing = (p->facing + 1 == 4) ? 0 : p->facing + 1;
 	message_player_ok(p);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d droite\n", p->id);
+		printf("[\033[0;35mACTION\033[0m] p %d droite\n", p->id);
 }
 
 void	action_player_gauche(t_zappy *var, t_player *p, t_aargs *args)
@@ -44,7 +44,7 @@ void	action_player_gauche(t_zappy *var, t_player *p, t_aargs *args)
 	p->facing = (p->facing - 1 < 0) ? 3 : p->facing - 1;
 	message_player_ok(p);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d gauche\n", p->id);
+		printf("[\033[0;35mACTION\033[0m] p %d gauche\n", p->id);
 }
 
 void	action_player_expulse(t_zappy *var, t_player *p, t_aargs *args)
@@ -73,5 +73,5 @@ void	action_player_expulse(t_zappy *var, t_player *p, t_aargs *args)
 	else
 		message_player_ko(p);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d expulse\n", p->id);
+		printf("[\033[0;35mACTION\033[0m] p %d expulse\n", p->id);
 }

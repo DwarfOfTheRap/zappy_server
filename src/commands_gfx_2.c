@@ -18,7 +18,7 @@ void	command_sst(t_zappy *var, t_player *p, char *arg)
 	// trig game speed change
 	message_gfx_sgt(var);
 	if (g_log & LOG_C)
-		printf("[COMMAND] sst %s\n", arg);
+		printf("[\033[0;32mCOMMAND\033[0m] sst %s\n", arg);
 }
 
 void	command_ppo(t_zappy *var, t_player *p, char *arg)
@@ -34,7 +34,7 @@ void	command_ppo(t_zappy *var, t_player *p, char *arg)
 		return (message_gfx_sbp(var));
 	message_gfx_ppo(var, &var->players[p_id]);
 	if (g_log & LOG_C)
-		printf("[COMMAND] ppo %s\n", arg);
+		printf("[\033[0;32mCOMMAND\033[0m] ppo %s\n", arg);
 }
 
 void	command_plv(t_zappy *var, t_player *p, char *arg)
@@ -50,7 +50,7 @@ void	command_plv(t_zappy *var, t_player *p, char *arg)
 		return (message_gfx_sbp(var));
 	message_gfx_plv(var, &var->players[p_id]);
 	if (g_log & LOG_C)
-		printf("[COMMAND] plv %s\n", arg);
+		printf("[\033[0;32mCOMMAND\033[0m] plv %s\n", arg);
 }
 
 void	command_pin(t_zappy *var, t_player *p, char *arg)
@@ -66,5 +66,5 @@ void	command_pin(t_zappy *var, t_player *p, char *arg)
 		return (message_gfx_sbp(var));
 	message_gfx_pin(var, &var->players[p_id]);
 	if (g_log & LOG_C)
-		printf("[COMMAND] pin %s\n", arg);
+		printf("[\033[0;32mCOMMAND\033[0m] pin %s\n", arg);
 }

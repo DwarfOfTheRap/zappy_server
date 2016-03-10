@@ -38,7 +38,8 @@ void	message_unknown_command(t_player *p, char *cmd)
 	else if (p->status == FD_GFX)
 		add_msg_to_player(p, "suc", 3, 1);
 	if (g_log & LOG_E)
-		printf("[ERROR] unknown command: p %d {%s}\n", p->id, cmd);
+		printf("[\033[0;31mERROR\033[0m] unknown command: p %d {%s}\n", p->id,
+				cmd);
 }
 
 void	message_command_format_error(t_player *p, char *cmd, char *args)
@@ -50,9 +51,11 @@ void	message_command_format_error(t_player *p, char *cmd, char *args)
 	if (g_log & LOG_E)
 	{
 		if (args)
-			printf("[ERROR] format error: p %d {%s %s}\n", p->id, cmd, args);
+			printf("[\033[0;31mERROR\033[0m] format error: p %d {%s %s}\n",
+					p->id, cmd, args);
 		else
-			printf("[ERROR] format error: p %d {%s}\n", p->id, cmd);
+			printf("[\033[0;31mERROR\033[0m] format error: p %d {%s}\n",
+					p->id, cmd);
 	}
 }
 
@@ -65,10 +68,11 @@ void	message_unsupported_command(t_player *p, char *cmd, char *args)
 	if (g_log & LOG_E)
 	{
 		if (args)
-			printf("[ERROR] unsupported command: p %d {%s %s}\n", p->id, cmd,
-					args);
+			printf("[\033[0;31mERROR\033[0m] unsupported command: p %d "
+					"{%s %s}\n", p->id, cmd, args);
 		else
-			printf("[ERROR] unsupported command: p %d {%s}\n", p->id, cmd);
+			printf("[\033[0;31mERROR\033[0m] unsupported command: p %d {%s}\n",
+					p->id, cmd);
 	}
 }
 
@@ -81,9 +85,10 @@ void	message_unauthorised_command(t_player *p, char *cmd, char *args)
 	if (g_log & LOG_E)
 	{
 		if (args)
-			printf("[ERROR] unauthorised command: p %d {%s %s}\n", p->id, cmd,
-					args);
+			printf("[\033[0;31mERROR\033[0m] unauthorised command: p %d "
+					"{%s %s}\n", p->id, cmd, args);
 		else
-			printf("[ERROR] unauthorised command: p %d {%s}\n", p->id, cmd);
+			printf("[\033[0;31mERROR\033[0m] unauthorised command: p %d {%s}\n",
+					p->id, cmd);
 	}
 }

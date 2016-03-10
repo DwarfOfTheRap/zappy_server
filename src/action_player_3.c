@@ -25,7 +25,7 @@ void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 		dispatch_incantation_ressources(var, p, g_incant[p->level - 1]);
 	}
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d incantation", p->id);
+		printf("[\033[0;35mACTION\033[0m] p %d incantation", p->id);
 }
 
 void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
@@ -35,7 +35,7 @@ void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 	// add new egg on player coordinate
 	message_player_ok(p);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d fork\n", p->id);
+		printf("[\033[0;35mACTION\033[0m] p %d fork\n", p->id);
 }
 
 void	action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args)
@@ -44,5 +44,5 @@ void	action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args)
 	(void)args;
 	message_player_connect_nbr(p);
 	if (g_log & LOG_A)
-		printf("[ACTION] p %d connect_nbr\n", p->id);
+		printf("[\033[0;35mACTION\033[0m] p %d connect_nbr\n", p->id);
 }
