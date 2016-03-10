@@ -13,6 +13,7 @@ int		main(void)
 	srunner_add_suite(sr, suite_init_test());
 	srunner_add_suite(sr, suite_message_test());
 	srunner_add_suite(sr, suite_message_gfx_test());
+	srunner_add_suite(sr, suite_message_player_test());
 	srunner_add_suite(sr, suite_commands_test());
 	srunner_add_suite(sr, suite_connexion());
 	srunner_run_all(sr, CK_NORMAL);
