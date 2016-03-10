@@ -342,7 +342,7 @@ void		usage(void);
 */
 int			time_compare(t_tstmp *time1, t_tstmp *time2);
 t_tstmp		time_create(double seconds);
-t_tstmp		time_generate(double ref, t_zappy *var);
+t_tstmp		time_generate(int ref, t_zappy *var, t_tstmp start);
 double		time_double(t_tstmp *time);
 void		time_add(t_tstmp *time1, t_tstmp *time2);
 

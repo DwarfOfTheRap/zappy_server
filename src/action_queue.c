@@ -73,10 +73,16 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 {
 	t_tstmp		*time;
 	t_action	*new;
+	t_action	*last;
 
 	time = (t_tstmp*)malloc(sizeof(t_tstmp) * 2);
-	time[0] = var->start_time;
-	time[1] = time_generate(g_action[act].rel_time, var);
+	//last = (t_action*)p->actions->last;
+	last = NULL;
+	if (!last || time_compare(&var->start_time, &last->trigger_t))
+		time[0] = var->start_time;
+	else
+		time[0] = last->trigger_t;
+	time[1] = time_generate(g_action[act].rel_time, var, time[0]);
 	new = action_create(args, g_action[act].f, p, time);
 	free(time);
 	action_add(new, var);
