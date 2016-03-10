@@ -18,7 +18,7 @@ void	message_player_message(t_player *p, int square, char *msg)
 	int		ret;
 	char	str[32];
 
-	ret = sprintf(str, "message %d ", square);
+	ret = sprintf(str, "message %d,", square);
 	add_msg_to_player(p, str, ret, 0);
 	add_msg_to_player(p, msg, 0, 1);
 }
