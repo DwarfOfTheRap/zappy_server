@@ -43,6 +43,7 @@ int			action_add(t_action *action, t_zappy *var)
 	if (new)
 	{
 		lst_insert(var->actions, new, cmp);
+		action->player->pending_actions++;
 		return (1);
 	}
 	return (0);
