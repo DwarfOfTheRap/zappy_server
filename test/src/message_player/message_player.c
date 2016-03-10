@@ -28,6 +28,7 @@ START_TEST(message_player_voir_square_test)
 	message_player_voir_square(&var, p2, square);
 	ck_assert_str_eq(p2->snd.buf[p2->snd.read], str);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
+	rm_teams(&var.teams, &var.nb_team);
 	clean_msg_queue(p2);
 }
 END_TEST

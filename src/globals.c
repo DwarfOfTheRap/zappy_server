@@ -13,7 +13,6 @@ const int			g_incant[7][7] = {
 	{4, 1, 2, 1, 3, 0, 0},
 	{6, 1, 2, 3, 0, 1, 0},
 	{6, 2, 2, 2, 2, 2, 1}};
-	//  9, 8,10, 5, 6, 1
 
 const t_action_d	g_action[12] = {
 	{&action_player_avance, 7},
