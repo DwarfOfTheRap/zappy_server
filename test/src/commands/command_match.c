@@ -38,14 +38,14 @@ END_TEST
 
 START_TEST(commands_command_match_prend)
 {
-	ck_assert_int_eq(command_match(get_cmd_list()[5], "prend sibur"), strlen(get_cmd_list()[5].cmd));
+	ck_assert_int_eq(command_match(get_cmd_list()[5], "prend sibur"), strlen(get_cmd_list()[5].cmd) + 1);
 	ck_assert_int_eq(command_match(get_cmd_list()[5], "prend"), -1);
 }
 END_TEST
 
 START_TEST(commands_command_match_pose)
 {
-	ck_assert_int_eq(command_match(get_cmd_list()[6], "pose sibur"), strlen(get_cmd_list()[6].cmd));
+	ck_assert_int_eq(command_match(get_cmd_list()[6], "pose sibur"), strlen(get_cmd_list()[6].cmd) + 1);
 	ck_assert_int_eq(command_match(get_cmd_list()[6], "pose"), -1);
 }
 END_TEST
@@ -59,7 +59,7 @@ END_TEST
 
 START_TEST(commands_command_match_broadcast)
 {
-	ck_assert_int_eq(command_match(get_cmd_list()[8], "broadcast caca"), strlen(get_cmd_list()[8].cmd));
+	ck_assert_int_eq(command_match(get_cmd_list()[8], "broadcast caca"), strlen(get_cmd_list()[8].cmd) + 1);
 	ck_assert_int_eq(command_match(get_cmd_list()[8], "broadcast"), -1);
 }
 END_TEST
@@ -94,7 +94,7 @@ END_TEST
 
 START_TEST(commands_command_match_bct)
 {
-	ck_assert_int_eq(command_match(get_cmd_list()[13], "bct X Y"), strlen(get_cmd_list()[13].cmd));
+	ck_assert_int_eq(command_match(get_cmd_list()[13], "bct X Y"), strlen(get_cmd_list()[13].cmd) + 1);
 	ck_assert_int_eq(command_match(get_cmd_list()[13], "bct"), -1);
 }
 END_TEST
@@ -115,21 +115,21 @@ END_TEST
 
 START_TEST(commands_command_match_ppo)
 {
-	ck_assert_int_eq(command_match(get_cmd_list()[16], "ppo 4"), strlen(get_cmd_list()[16].cmd));
+	ck_assert_int_eq(command_match(get_cmd_list()[16], "ppo 4"), strlen(get_cmd_list()[16].cmd) + 1);
 	ck_assert_int_eq(command_match(get_cmd_list()[16], "ppo"), -1);
 }
 END_TEST
 
 START_TEST(commands_command_match_plv)
 {
-	ck_assert_int_eq(command_match(get_cmd_list()[17], "plv 4"), strlen(get_cmd_list()[17].cmd));
+	ck_assert_int_eq(command_match(get_cmd_list()[17], "plv 4"), strlen(get_cmd_list()[17].cmd) + 1);
 	ck_assert_int_eq(command_match(get_cmd_list()[17], "plv"), -1);
 }
 END_TEST
 
 START_TEST(commands_command_match_pin)
 {
-	ck_assert_int_eq(command_match(get_cmd_list()[18], "pin 5"), strlen(get_cmd_list()[18].cmd));
+	ck_assert_int_eq(command_match(get_cmd_list()[18], "pin 5"), strlen(get_cmd_list()[18].cmd) + 1);
 	ck_assert_int_eq(command_match(get_cmd_list()[18], "pin"), -1);
 }
 END_TEST
@@ -143,7 +143,7 @@ END_TEST
 
 START_TEST(commands_command_match_sst)
 {
-	ck_assert_int_eq(command_match(get_cmd_list()[20], "sst 4"), strlen(get_cmd_list()[20].cmd));
+	ck_assert_int_eq(command_match(get_cmd_list()[20], "sst 4"), strlen(get_cmd_list()[20].cmd) + 1);
 	ck_assert_int_eq(command_match(get_cmd_list()[20], "sst"), -1);
 }
 END_TEST
