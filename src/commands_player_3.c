@@ -23,14 +23,14 @@ int		command_incantation_can_incant(t_zappy *var, t_player *p, int nb_player)
 	int		can_incant;
 	int		*square;
 
-	if (p->level == 7)
+	if (p->level == 8)
 		return (0);
 	square = var->board[p->coord[0]][p->coord[1]];
-	can_incant = (nb_player >= g_incant[p->level][0]) ? 1 : 0;
+	can_incant = (nb_player >= g_incant[p->level - 1][0]) ? 1 : 0;
 	i = 1;
 	while (i < 8)
 	{
-		if (square[i] < g_incant[p->level][i])
+		if (square[i] < g_incant[p->level - 1][i])
 			can_incant = 0;
 		++i;
 	}

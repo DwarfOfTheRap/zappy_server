@@ -33,7 +33,7 @@ void	message_player_incantation_end(t_player *p)
 	int		ret;
 	char	str[32];
 
-	ret = sprintf(str, "niveau actuel : %d", p->level + 1);
+	ret = sprintf(str, "niveau actuel : %d", p->level);
 	add_msg_to_player(p, str, ret, 1);
 }
 

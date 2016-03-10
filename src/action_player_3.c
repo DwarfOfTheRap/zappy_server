@@ -22,7 +22,7 @@ void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 			}
 			++i;
 		}
-		dispatch_incantation_ressources(var, p, g_incant[p->level - 1]);
+		dispatch_incantation_ressources(var, p, g_incant[p->level - 2]);
 	}
 	if (g_log & LOG_A)
 		printf("[\033[0;35mACTION\033[0m] p %d incantation", p->id);

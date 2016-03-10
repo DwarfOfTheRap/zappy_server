@@ -13,7 +13,7 @@ void	action_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
 	int		square[2];
 
 	i = 0;
-	while (i < p->level + 1)
+	while (i < p->level)
 	{
 		j = 0;
 		count = (i * 2) + 1;
