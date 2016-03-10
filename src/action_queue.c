@@ -48,7 +48,6 @@ int			action_add(t_action *action, t_zappy *var)
 	return (0);
 }
 
-// MIGHT NEED CHANGES TO MATCH MARC'S USAGE
 t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
 				t_aargs*), t_player *player, t_tstmp time)
 {
@@ -71,5 +70,6 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 
 	time = time_generate(g_action[act].rel_time, var);
 	new = action_create(args, g_action[act].f, p, time);
-	action_add(new, var);
+	if (!action_add(new, var))
+		action_free(new);
 }
