@@ -356,4 +356,8 @@ t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
 void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 				int act);
 
+/*
+** src/action_queue_2.c
+*/
+void		action_player_clear(t_player *player, t_zappy *var);
 #endif

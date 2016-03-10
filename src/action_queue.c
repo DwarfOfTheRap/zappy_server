@@ -2,7 +2,8 @@
 #include <string.h>
 #include <sys/time.h>
 #include "serveur.h"
-#include "linked_lists.h"
+
+extern t_action_d	g_action[9];
 
 extern t_action_d	g_action[9];
 
@@ -70,7 +71,7 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 	t_tstmp		time;
 	t_action	*new;
 
-	time = time_generate(g_action[act].t, var);
+	time = time_generate(g_action[act].rel_time, var);
 	new = action_create(args, g_action[act].f, p, time);
 	action_add(new, var);
 }

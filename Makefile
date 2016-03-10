@@ -49,8 +49,10 @@ SRC := \
 	src/usage.c \
 	src/tstmp_calcs.c \
 	src/action_queue.c \
+	src/action_queue_2.c \
 	src/tools.c \
-	src/usage.c
+	src/usage.c \
+	src/globals.c
 
 OBJ := $(SRC:.c=.o)
 
