@@ -5,8 +5,6 @@
 
 extern t_action_d	g_action[9];
 
-extern t_action_d	g_action[9];
-
 void		process_actions(t_tstmp *start, t_zappy *var)
 {
 	t_lst_head	*list;
