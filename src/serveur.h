@@ -178,4 +178,6 @@ void		action_add_wrapper(t_zappy *var, t_player *p, char *args, int act);
 ** src/action_queue_2.c
 */
 void		action_player_clear(t_player *player, t_zappy *var);
+void		check_players_life(t_zappy *var);
+
 #endif
