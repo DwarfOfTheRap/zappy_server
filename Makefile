@@ -19,6 +19,7 @@ SRC := \
 	src/commands_player.c \
 	src/commands_player_2.c \
 	src/commands_player_3.c \
+	src/commands_player_4.c \
 	src/connexion.c \
 	src/connexion_2.c \
 	src/do_accept.c \

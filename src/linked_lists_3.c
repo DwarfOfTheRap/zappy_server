@@ -33,9 +33,7 @@ void*	lst_first_match(t_lst_head *hd, void *dt, int (*cmp)(void*, void*))
 {
 	t_lst_elem	*cursor;
 	t_lst_elem	*prev_save;
-	t_lst_elem	*elem_to_remove;
 
-	elem_to_remove = NULL;
 	if (!hd)
 		return (NULL);
 	cursor = hd->first;
