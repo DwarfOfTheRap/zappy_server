@@ -69,6 +69,7 @@ START_TEST(message_player_incantation_end_test)
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);
+	dummy_t_player_default(p);
 	message_player_incantation_end(p);
 	ck_assert_str_eq(p->snd.buf[p->snd.read], str);
 	clean_msg_queue(p);

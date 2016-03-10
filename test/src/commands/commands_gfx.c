@@ -87,7 +87,7 @@ START_TEST(commands_plv_test)
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "sbp\n");
 	clean_msg_queue(gfx);
 	command_plv(&var, NULL, "5");
-	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "plv 5 2\n");
+	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "plv 5 1\n");
 	clean_msg_queue(gfx);
 }
 END_TEST
