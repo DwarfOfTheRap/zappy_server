@@ -16,12 +16,12 @@ int				time_compare(t_tstmp *time1, t_tstmp *time2)
 	return (1);
 }
 
-t_tstmp			time_create(double seconds)
+t_tstmp			time_create(double microseconds)
 {
 	t_tstmp	result;
 
-	result.tv_sec = seconds;
-	result.tv_usec = ((seconds - (double)result.tv_sec) * 1000000.0);
+	result.tv_sec = microseconds / 1000000;
+	result.tv_usec = microseconds % 1000000;
 	return (result);
 }
 
