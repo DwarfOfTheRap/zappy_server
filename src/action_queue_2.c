@@ -21,4 +21,5 @@ void		action_player_clear(t_player *player, t_zappy *var)
 
 	list = var->actions;
 	lst_free_match(list, player, cmp, free); // change 'free' to 'action_free'
+	player->pending_actions = 0;
 }
