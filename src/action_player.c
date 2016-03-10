@@ -53,26 +53,20 @@ void	action_player_gauche(t_zappy *var, t_player *p, t_aargs *args)
 void	action_player_expulse(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
-	int		has_expulse;
 
-	(void)args;
 	i = 0;
-	has_expulse = 0;
-	while (i < *var->fd_max)
+	while (args->nb && i < *var->fd_max)
 	{
-		if (i != p->id && var->players[i].status == FD_CLIENT &&
-			var->players[i].coord[0] == p->coord[0] &&
-			var->players[i].coord[1] == p->coord[1])
+		if (args->pl[i])
 		{
 			action_player_move(var, &var->players[i], p->facing);
 			message_player_expulsed(p, &var->players[i]);
 			message_gfx_ppo(var, p);
 			action_player_clear(&var->players[i], var);
-			++has_expulse;
 		}
 		++i;
 	}
-	if (has_expulse)
+	if (args->nb)
 		message_player_ok(p);
 	else
 		message_player_ko(p);

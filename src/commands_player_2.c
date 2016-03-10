@@ -29,18 +29,6 @@ void	command_pose(t_zappy *var, t_player *p, char *args)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> pose %s\n", p->id, args);
 }
 
-void	command_expulse(t_zappy *var, t_player *p, char *args)
-{
-	t_aargs		t;
-
-	bzero(&t, sizeof(t_aargs));
-	(void)args;
-	action_add_wrapper(var, p, &t, EXPULSE);
-	message_gfx_pex(var, p);
-	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> expulse\n", p->id);
-}
-
 void	command_broadcast(t_zappy *var, t_player *p, char *args)
 {
 	t_aargs		t;

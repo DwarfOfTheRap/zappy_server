@@ -143,7 +143,6 @@ void		command_inventaire(t_zappy *var, t_player *p, char *args);
 */
 void		command_prend(t_zappy *var, t_player *p, char *args);
 void		command_pose(t_zappy *var, t_player *p, char *args);
-void		command_expulse(t_zappy *var, t_player *p, char *args);
 void		command_broadcast(t_zappy *var, t_player *p, char *args);
 void		command_connect_nbr(t_zappy *var, t_player *p, char *args);
 
@@ -156,6 +155,14 @@ int			command_incantation_can_incant(t_zappy *var, t_player *p,
 int			command_incantation_count_player(t_zappy *var, t_player *p,
 				int *pl);
 void		command_incantation(t_zappy *var, t_player *p, char *args);
+
+/*
+** src/commands_player_4.c
+*/
+void	command_expulse_send_to_gfx(t_zappy *var, t_player *p, t_action *a);
+int		command_expulse_count_player(t_zappy *var, t_player *p, int *pl);
+void		command_expulse(t_zappy *var, t_player *p, char *args);
+
 
 /*
 ** src/connexion.c
@@ -360,4 +367,5 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 ** src/action_queue_2.c
 */
 void		action_player_clear(t_player *player, t_zappy *var);
+t_action*	action_player_first(t_player *player, t_zappy *var);
 #endif

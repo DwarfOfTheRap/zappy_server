@@ -22,3 +22,8 @@ void		action_player_clear(t_player *player, t_zappy *var)
 	list = var->actions;
 	lst_free_match(list, player, cmp, action_free);
 }
+
+t_action*	action_player_first(t_player *player, t_zappy *var)
+{
+	return (lst_first_match(var->actions, player, cmp));
+}
