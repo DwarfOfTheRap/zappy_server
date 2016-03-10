@@ -77,7 +77,7 @@ typedef struct			s_zappy
 typedef struct			s_action
 {
 	char		*arg;
-	void		(*run)(t_zappy *var, t_player *p, char *arg);	
+	void		(*run)(t_zappy *var, t_player *p, char *arg);
 	t_player	*player;
 	t_tstmp		time;
 }						t_action;
