@@ -23,10 +23,11 @@ void	action_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
 		{
 			square[!k] = ((p->coord[!k] - count / 2 + j) + var->board_size[!k])
 				% var->board_size[!k];
+			if (i || j)
+				add_msg_to_player(p, ", ", 2, 0);
 			message_player_voir_square(var, p, square);
 			++j;
 		}
-		add_msg_to_player(p, ", ", 2, 0);
 		++i;
 	}
 }
