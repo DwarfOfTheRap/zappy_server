@@ -11,7 +11,7 @@ START_TEST(message_player_voir_square_test)
 	t_player	*p2 = &var.players[6];
 	t_player	*p3 = &var.players[7];
 	t_player	*p4 = &var.players[8];
-	char		str[] = "joueur joueur joueur nourriture linemate linemate deraumere"
+	char		str[] = "joueur joueur nourriture linemate linemate deraumere"
 		" deraumere deraumere sibur sibur sibur sibur mendiane mendiane mendiane mendiane"
 		" mendiane phiras phiras phiras phiras phiras phiras thystame thystame thystame"
 		" thystame thystame thystame thystame";
