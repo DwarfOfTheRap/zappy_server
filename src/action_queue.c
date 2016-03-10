@@ -13,7 +13,7 @@ void		process_actions(t_tstmp *start, t_zappy *var)
 
 	list = var->actions;
 	cur_action = (list->first) ? (t_action*)list->first->content : NULL;
-	while (list->first && time_compare(&cur_action->time, start))
+	while (list->first && time_compare(&cur_action->trigger_t, start))
 	{
 		elem = lst_pop(list, 0);
 		cur_action->run(var, cur_action->player, cur_action->arg);
@@ -30,7 +30,7 @@ static int	cmp(void *data1, void *data2)
 
 	action1 = (t_action*)data1;
 	action2 = (t_action*)data2;
-	return (time_compare(&action1->time, &action2->time));
+	return (time_compare(&action1->trigger_t, &action2->trigger_t));
 }
 
 int			action_add(t_action *action, t_zappy *var)
@@ -60,7 +60,7 @@ t_action	*action_create(char *arg, void (*f)(t_zappy*, t_player*, char*)
 	new->arg = arg;
 	new->run = f;
 	new->player = player;
-	new->time = time;
+	new->trigger_t = time;
 	return (new);
 }
 
