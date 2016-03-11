@@ -10,7 +10,7 @@ void		check_players_life(t_zappy *var)
 	{
 		if (var->players[i].timeofdeath.tv_sec
 			&& time_compare(var->players[i].timeofdeath, var->start_time))
-			player_die(&var->players[i], var);
+			player_die(&var->players[i]);
 		i++;
 	}
 }
@@ -23,9 +23,8 @@ void		player_spawn(t_player *p, t_zappy *var)
 	p->timeofdeath = timeofdeath;
 }
 
-void		player_die(t_player *p, t_zappy *var)
+void		player_die(t_player *p)
 {
-	action_player_clear(p, var);
 	p->status = FD_CLOSE;
 	message_player_mort(p);
 }
