@@ -349,7 +349,7 @@ void		time_add(t_tstmp *time1, t_tstmp *time2);
 /*
 ** src/action_queue.c
 */
-void		process_actions(t_tstmp *start, t_zappy *var);
+void		process_actions(t_zappy *var);
 int			action_add(t_action *action, t_zappy *var);
 t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
 				t_aargs*), t_player *player, t_tstmp time);

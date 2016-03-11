@@ -3,17 +3,15 @@
 
 int				time_compare(t_tstmp time1, t_tstmp time2)
 {
-	/* if (!(time1 && time2)) */
-	/* 	return (0); */
-	if ((long)time1.tv_sec < (long)time2.tv_sec)
-		return (-1);
-	else if ((long)time1.tv_sec > (long)time2.tv_sec)
+	if (time1.tv_sec < time2.tv_sec)
 		return (1);
+	else if (time1.tv_sec > time2.tv_sec)
+		return (0);
 	else if (time1.tv_usec < time2.tv_usec)
-		return (-1);
-	else if (time1.tv_usec > time2.tv_usec)
 		return (1);
-	return (0);
+	else if (time1.tv_usec > time2.tv_usec)
+		return (0);
+	return (1);
 }
 
 t_tstmp			time_create(double seconds)

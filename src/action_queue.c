@@ -5,20 +5,47 @@
 
 extern t_action_d	g_action[9];
 
-void		process_actions(t_tstmp *start, t_zappy *var)
+/* void		process_actions(t_tstmp *start, t_zappy *var) */
+/* { */
+/* 	t_lst_head	*list; */
+/* 	t_action	*cur_action; */
+/* 	t_lst_elem	*elem; */
+
+/* 	list = var->actions; */
+/* 	cur_action = (list->first) ? (t_action*)list->first->content : NULL; */
+/* 	while (list->first && time_compare(cur_action->time, *start) <= 0) */
+/* 	{ */
+/* 		elem = lst_pop(list, 0); */
+/* 		cur_action->run(var, cur_action->player, &cur_action->arg); */
+/* 		cur_action->player->pending_actions--; */
+/* 		cur_action = (elem->next) ? (t_action*)elem->next->content : NULL; */
+/* 		lst_delete_elem(&elem, action_free); */
+/* 	} */
+/* } */
+static t_action	*get_first_action(t_lst_head *list)
 {
-	t_lst_head	*list;
-	t_action	*cur_action;
 	t_lst_elem	*elem;
 
+	if (!list)
+		return (NULL);
+	if ((elem = list->first))
+		return ((t_action *)elem->content);
+	return (NULL);
+}
+
+void		process_actions(t_zappy *var)
+{
+	t_lst_head	*list;
+	t_lst_elem	*elem;
+	t_action	*action;
+
 	list = var->actions;
-	cur_action = (list->first) ? (t_action*)list->first->content : NULL;
-	while (list->first && time_compare(cur_action->time, *start) <= 0)
+	while ((action = get_first_action(list))
+			&& time_compare(action->time, var->start_time))
 	{
+		action->run(var, action->player, &action->arg);
+		action->player->pending_actions--;
 		elem = lst_pop(list, 0);
-		cur_action->run(var, cur_action->player, &cur_action->arg);
-		cur_action->player->pending_actions--;
-		cur_action = (elem->next) ? (t_action*)elem->next->content : NULL;
 		lst_delete_elem(&elem, action_free);
 	}
 }
@@ -71,5 +98,6 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 
 	time = time_generate(g_action[act].rel_time, var);
 	new = action_create(args, g_action[act].f, p, time);
+	p->pending_actions++;
 	action_add(new, var);
 }
