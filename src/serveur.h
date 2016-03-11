@@ -340,7 +340,7 @@ void		usage(void);
 /*
 ** src/tstmp_calcs.c
 */
-int			time_compare(t_tstmp *time1, t_tstmp *time2);
+int			time_compare(t_tstmp time1, t_tstmp time2);
 t_tstmp		time_create(double seconds);
 t_tstmp		time_generate(double ref, t_zappy *var);
 double		time_double(t_tstmp *time);
