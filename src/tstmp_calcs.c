@@ -32,8 +32,6 @@ t_tstmp			time_generate(int ref, t_zappy *var, t_tstmp start)
 	real_time = time_create((ref / (double)var->tick) * 1000000);
 	new_time = start;
 	time_add(&new_time, &real_time);
-	printf("start_time: %ld\n", start.tv_sec); //
-	printf("trigger_time: %ld\n", real_time.tv_sec); //
 	return (new_time);
 }
 
