@@ -62,6 +62,5 @@ int		main_loop(t_zappy *var, t_server *serv)
 		pre_select(var, serv);
 		do_select(serv);
 		post_select(var, serv);
-		// place loop throttle here
 	}
 }
