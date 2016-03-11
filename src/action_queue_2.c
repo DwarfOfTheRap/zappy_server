@@ -22,27 +22,10 @@ void		action_player_clear(t_player *player, t_zappy *var)
 
 	list = var->actions;
 	list_p = player->actions;
-	lst_free_match(list, player, cmp, free); // change 'free' to 'action_free'
-	lst_delete(list_p, free); // change to action_free
+	lst_free_match(list, player, cmp, action_free);
+	lst_delete(list_p, action_free);
 	player->pending_actions = 0;
 }
-
-/* void		check_players_life(t_zappy *var) */
-/* { */
-/* 	int	i; */
-
-/* 	i = 0; */
-/* 	while (i < MAX_FD) */
-/* 	{ */
-/* 		if (var->players[i].id */
-/* 			&& time_compare(&var->players[i].timeofdeath, &var->start_time)) */
-/* 		{ */
-/* 			action_player_clear(&var->players[i], var); */
-/* 			bzero(&var->players[i], sizeof(t_player)); // not sure if correct implementation */
-/* 		} */
-/* 		i++; */
-/* 	} */
-/* } */
 
 t_action	*get_first_action(t_lst_head *list)
 {
