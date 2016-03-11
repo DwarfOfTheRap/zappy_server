@@ -79,7 +79,7 @@ START_TEST(connexion_affect_team_gfx)
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.write], str);
 	ck_assert_ptr_eq(var.gfx_client, gfx);
 	rm_teams(&var.teams, &var.nb_team);
-	rm_board(&var.board, var.board_size, 0, 0);
+	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 	clean_msg_queue(gfx);
 }
 END_TEST

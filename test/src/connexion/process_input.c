@@ -51,7 +51,7 @@ START_TEST(connexion_process_input_gfx)
 	ck_assert_ptr_eq(p->team, &var.teams[var.nb_team - 1]);
 	ck_assert_int_eq(p->status, FD_GFX);
 	rm_teams(&var.teams, &var.nb_team);
-	rm_board(&var.board, var.board_size, 0, 0);
+	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 }
 END_TEST
 
@@ -100,7 +100,7 @@ START_TEST(connexion_process_input_multiple_commands)
 	ck_assert_ptr_eq(ret, NULL);
 	ck_assert_str_eq(p->snd.buf[p->snd.read], str2);
 	rm_teams(&var.teams, &var.nb_team);
-	rm_board(&var.board, var.board_size, 0, 0);
+	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 }
 END_TEST
 
