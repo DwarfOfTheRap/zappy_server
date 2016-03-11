@@ -71,9 +71,9 @@ void		action_player_expulse(t_zappy *var, t_player *p, t_aargs *args);
 /*
 ** src/action_player_2.c
 */
-void		action_player_voir_sub(t_zappy *var, t_player *p, int k, int l);
+void		action_player_voir_sub_no(t_zappy *var, t_player *p, int k, int l);
+void		action_player_voir_sub_se(t_zappy *var, t_player *p, int k, int l);
 void		action_player_voir(t_zappy *var, t_player *p, t_aargs *args);
-void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_prend(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_pose(t_zappy *var, t_player *p, t_aargs *args);
 
@@ -83,6 +83,7 @@ void		action_player_pose(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_incantation(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_fork(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args);
+void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args);
 
 /*
 ** src/action_player_broadcast.c

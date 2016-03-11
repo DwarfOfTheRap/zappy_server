@@ -77,26 +77,6 @@ void	action_player_voir(t_zappy *var, t_player *p, t_aargs *args)
 		printf("[\033[0;35mACTION\033[0m] p %d voir\n", p->id);
 }
 
-void	action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args)
-{
-	int		ret;
-	char	str[128];
-
-	(void)var;
-	(void)args;
-	ret = sprintf(str, "{%s %d, %s %d, %s %d, %s %d, %s %d, %s %d, %s %d}",
-		g_ressources[0], 0,
-		g_ressources[1], p->inv[0],
-		g_ressources[2], p->inv[1],
-		g_ressources[3], p->inv[2],
-		g_ressources[4], p->inv[3],
-		g_ressources[5], p->inv[4],
-		g_ressources[6], p->inv[5]);
-	add_msg_to_player(p, str, ret, 1);
-	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d inventaire\n", p->id);
-}
-
 void	action_player_prend(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
