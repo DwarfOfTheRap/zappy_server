@@ -364,4 +364,10 @@ void		check_players_life(t_zappy *var);
 t_action	*get_first_action(t_lst_head *list);
 t_action	*get_last_action(t_lst_head *list);
 
+/*
+** src/health.c
+*/
+void		player_spawn(t_player *p, t_zappy *var);
+void		player_die(t_player *p, t_zappy *var);
+
 #endif
