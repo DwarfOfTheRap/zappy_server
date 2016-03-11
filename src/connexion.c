@@ -22,7 +22,7 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 	clean_msg_queue(p);
 	if (g_log & LOG_I)
 		printf("[\033[0;34mINFO\033[0m] Client %d disconnected\n", fd);
-	// need to clean action of this player from action queue
+	action_player_clear(p, var);
 	if (fd == serv->fd_max)
 		--serv->fd_max;
 	return (1);
@@ -47,10 +47,8 @@ void	init_client(t_zappy *var, t_player *p)
 	if (p->team->remain)
 	{
 		--p->team->remain;
-		p->coord[0] = rand() % var->board_size[0];
-		p->coord[1] = rand() % var->board_size[1];
-		p->facing = rand() % 4;
 		message_gfx_pnw(var, p);
+		player_spawn(p, var);
 		if (g_log & LOG_I)
 			printf("[\033[0;34mINFO\033[0m] Client %d: team %s\n", p->id,
 					p->team->name);

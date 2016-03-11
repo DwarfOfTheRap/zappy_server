@@ -350,9 +350,15 @@ void		usage(void);
 */
 int			time_compare(t_tstmp time1, t_tstmp time2);
 t_tstmp		time_create(double seconds);
-t_tstmp		time_generate(double ref, t_zappy *var);
+t_tstmp		time_generate(int ref, t_tstmp start, t_zappy *var);
 double		time_double(t_tstmp *time);
 void		time_add(t_tstmp *time1, t_tstmp *time2);
+
+/*
+** src/tstmp_calcs.c
+*/
+t_tstmp		time_sub(t_tstmp time1, t_tstmp time2);
+double		time_elapsed(t_tstmp time1, t_tstmp time2);
 
 /*
 ** src/action_queue.c
@@ -360,7 +366,7 @@ void		time_add(t_tstmp *time1, t_tstmp *time2);
 void		process_actions(t_zappy *var);
 int			action_add(t_action *action, t_zappy *var);
 t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
-				t_aargs*), t_player *player, t_tstmp time);
+				t_aargs*), t_player *player, t_tstmp *time);
 void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 				int act);
 
@@ -370,4 +376,15 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 void		action_player_clear(t_player *player, t_zappy *var);
 t_action*	action_player_first(t_player *player, t_zappy *var);
 t_action	*get_first_action(t_lst_head *list);
+t_action	*get_last_action(t_lst_head *list);
+
+/*
+** src/health.c
+*/
+void		check_players_life(t_zappy *var);
+void		player_spawn(t_player *p, t_zappy *var);
+void		player_die(t_player *p);
+void		player_eat(t_player *p, t_zappy *var);
+void		player_vomit(t_player *p, t_zappy *var);
+
 #endif

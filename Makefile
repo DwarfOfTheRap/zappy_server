@@ -11,6 +11,8 @@ SRC := \
 	src/action_player_2.c \
 	src/action_player_3.c \
 	src/action_player_broadcast.c \
+	src/action_queue.c \
+	src/action_queue_2.c \
 	src/check_arguments.c \
 	src/cleanup.c \
 	src/commands.c \
@@ -27,6 +29,7 @@ SRC := \
 	src/do_write.c \
 	src/exit.c \
 	src/globals.c \
+	src/health.c \
 	src/init.c \
 	src/linked_lists.c \
 	src/linked_lists_2.c \
@@ -47,13 +50,10 @@ SRC := \
 	src/read_arguments_2.c \
 	src/ressources_management.c \
 	src/serveur.c \
-	src/usage.c \
-	src/tstmp_calcs.c \
-	src/action_queue.c \
-	src/action_queue_2.c \
 	src/tools.c \
-	src/usage.c \
-	src/globals.c
+	src/tstmp_calcs.c \
+	src/tstmp_calcs_2.c \
+	src/usage.c
 
 OBJ := $(SRC:.c=.o)
 

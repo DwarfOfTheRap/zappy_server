@@ -91,7 +91,7 @@ void	action_player_prend(t_zappy *var, t_player *p, t_aargs *args)
 		--var->board[p->coord[0]][p->coord[1]][i];
 		if (i == 0)
 		{
-			; // need to add life to player
+			player_eat(p, var);
 			add_ressource_on_random_square(var, 0);
 		}
 		else
@@ -119,7 +119,7 @@ void	action_player_pose(t_zappy *var, t_player *p, t_aargs *args)
 	if ((i == 0 && 1) || (i > 0 && p->inv[i - 1] > 0))
 	{
 		if (i == 0)
-			; // remove life to player
+			player_vomit(p, var);
 		else
 			--p->inv[i - 1];
 		++var->board[p->coord[0]][p->coord[1]][i];
