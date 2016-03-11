@@ -56,7 +56,7 @@ void	action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args)
 	(void)var;
 	(void)args;
 	ret = sprintf(str, "{%s %d, %s %d, %s %d, %s %d, %s %d, %s %d, %s %d}",
-		g_ressources[0], 0,
+		g_ressources[0], 10,
 		g_ressources[1], p->inv[0],
 		g_ressources[2], p->inv[1],
 		g_ressources[3], p->inv[2],

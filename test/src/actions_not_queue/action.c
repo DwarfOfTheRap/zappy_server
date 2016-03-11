@@ -10,6 +10,6 @@ Suite*	suite_actions(void)
 	s = suite_create("actions");
 	suite_add_tcase(s, action_player_moves());
 	suite_add_tcase(s, action_player_voir_test());
-	suite_add_tcase(s, action_player_inventaire_test());
+	suite_add_tcase(s, action_player_ressources_test());
 	return (s);
 }
