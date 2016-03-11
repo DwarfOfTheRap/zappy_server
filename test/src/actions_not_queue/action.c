@@ -12,5 +12,6 @@ Suite*	suite_actions(void)
 	suite_add_tcase(s, action_player_voir_test());
 	suite_add_tcase(s, action_player_ressources_test());
 	suite_add_tcase(s, action_player_broadcast_test());
+	suite_add_tcase(s, action_player_life_test());
 	return (s);
 }

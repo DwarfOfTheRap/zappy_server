@@ -11,22 +11,23 @@ void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 
 	i = 3;
 	message_gfx_pie(var, p, args->pl[0]);
-	if (args->pl[0])
+	while (i <= *var->fd_max)
 	{
-		while (i <= *(var->fd_max))
+		if (args->pl[i])
 		{
-			if (args->pl[i])
-			{
+			if (args->pl[0])
 				++var->players[i].level;
-				message_player_incantation_end(&var->players[i]);
-				message_gfx_plv(var, &var->players[i]);
-			}
-			++i;
+			message_player_incantation_end(&var->players[i]);
+			message_gfx_plv(var, &var->players[i]);
 		}
-		dispatch_incantation_ressources(var, p, g_incant[p->level - 2]);
+		++i;
 	}
-	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d incantation", p->id);
+	if (args->pl[0])
+		dispatch_incantation_ressources(var, p, g_incant[p->level - 2]);
+	if (g_log & LOG_A && args->pl[0])
+		printf("[\033[0;35mACTION\033[0m] p %d incantation -> OK\n", p->id);
+	if (g_log & LOG_A && !args->pl[0])
+		printf("[\033[0;35mACTION\033[0m] p %d incantation -> KO\n", p->id);
 }
 
 void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
