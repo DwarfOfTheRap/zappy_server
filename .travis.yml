@@ -1,0 +1,17 @@
+sudo: required
+dist: trusty
+language: c
+
+script: .ci/script.sh
+
+install: .ci/install.sh
+
+os:
+  - linux
+  - osx
+
+compiler: clang
+
+notifications:
+  slack: dwarfoftherap:cIctwvXXMVkBmwNLxAkA6Y2g
+  email: false
