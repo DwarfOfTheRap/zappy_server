@@ -77,7 +77,7 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 	t_action	*last_action;
 
 	last_action = get_last_action(var->actions);
-	if (!last_action || time_compare(var->start_time, last_action->trigger_t))
+	if (!last_action /* || time_compare(var->start_time, last_action->trigger_t) */)
 		time[0] = var->start_time;
 	else
 		time[0] = last_action->trigger_t;
