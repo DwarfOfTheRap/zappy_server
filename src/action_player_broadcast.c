@@ -41,7 +41,9 @@ int		broadcast_get_square(int ms[2], t_player *s, t_player *r)
 	int		absolute_dir;
 
 	absolute_dir = broadcast_get_direction(ms, s, r);
-	if (r->facing == 1)
+	if (absolute_dir == 0)
+		return (absolute_dir);
+	else if (r->facing == 1)
 		return ((absolute_dir + 1) % 8 + 1);
 	else if (r->facing == 2)
 		return ((absolute_dir + 3) % 8 + 1);

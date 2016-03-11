@@ -28,7 +28,7 @@ int		command_incantation_can_incant(t_zappy *var, t_player *p, int nb_player)
 	square = var->board[p->coord[0]][p->coord[1]];
 	can_incant = (nb_player >= g_incant[p->level - 1][0]) ? 1 : 0;
 	i = 1;
-	while (i < 8)
+	while (i < 7)
 	{
 		if (square[i] < g_incant[p->level - 1][i])
 			can_incant = 0;
@@ -73,7 +73,6 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 	nb_player = command_incantation_count_player(var, p, t.pl);
 	t.pl[0] = command_incantation_can_incant(var, p, nb_player);
 	action_add_wrapper(var, p, &t, INCANTATION);
-	message_player_incantation_start(p);
 	i = 3;
 	while (i <= *(var->fd_max))
 	{
