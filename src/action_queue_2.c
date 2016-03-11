@@ -22,3 +22,15 @@ void		action_player_clear(t_player *player, t_zappy *var)
 	list = var->actions;
 	lst_free_match(list, player, cmp, free); // change 'free' to 'action_free'
 }
+
+t_action	*get_first_action(t_lst_head *list)
+{
+	t_lst_elem	*elem;
+
+	if (!list)
+		return (NULL);
+	if ((elem = list->first))
+		return ((t_action *)elem->content);
+	return (NULL);
+}
+
