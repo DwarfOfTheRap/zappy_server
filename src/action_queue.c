@@ -47,7 +47,6 @@ int			action_add(t_action *action, t_zappy *var)
 	return (0);
 }
 
-// MIGHT NEED CHANGES TO MATCH MARC'S USAGE
 t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
 				t_aargs*), t_player *player, t_tstmp time)
 {
