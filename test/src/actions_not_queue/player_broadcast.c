@@ -76,7 +76,6 @@ START_TEST(action_player_broadcast_test_1)
 	while (i < 9)
 	{
 		p = &var.players[i + 5];
-		printf("=== p %d {%d, %d} ===\n", i, p->coord[0], p->coord[1]);
 		ret[8] = i + '0';
 		ck_assert_str_eq(p->snd.buf[p->snd.read], ret);
 		++i;
