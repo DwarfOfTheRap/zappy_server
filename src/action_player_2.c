@@ -5,7 +5,7 @@
 extern int			g_log;
 extern const char	g_ressources[7][16];
 
-void	action_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
+void	action_player_voir_sub_no(t_zappy *var, t_player *p, int k, int l)
 {
 	int		i;
 	int		j;
@@ -32,6 +32,33 @@ void	action_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
 	}
 }
 
+void	action_player_voir_sub_se(t_zappy *var, t_player *p, int k, int l)
+{
+	int		i;
+	int		j;
+	int		count;
+	int		square[2];
+
+	i = 0;
+	while (i <= p->level)
+	{
+		count = (i * 2) + 1;
+		j = count - 1;
+		square[k] = ((p->coord[k] + (i * l)) + var->board_size[k]) %
+			var->board_size[k];
+		while (j >= 0)
+		{
+			square[!k] = ((p->coord[!k] - count / 2 + j) + var->board_size[!k])
+				% var->board_size[!k];
+			if (i || j)
+				add_msg_to_player(p, ", ", 2, 0);
+			message_player_voir_square(var, p, square);
+			--j;
+		}
+		++i;
+	}
+}
+
 void	action_player_voir(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		k;
@@ -41,7 +68,10 @@ void	action_player_voir(t_zappy *var, t_player *p, t_aargs *args)
 	add_msg_to_player(p, "{", 1, 0);
 	k = (p->facing == 0 || p->facing == 2) ? 0 : 1;
 	l = (p->facing == 0 || p->facing == 1) ? 1 : -1;
-	action_player_voir_sub(var, p, k, l);
+	if (p->facing == 0 || p->facing == 3)
+		action_player_voir_sub_no(var, p, k, l);
+	else
+		action_player_voir_sub_se(var, p, k, l);
 	add_msg_to_player(p, "}", 1, 1);
 	if (g_log & LOG_A)
 		printf("[\033[0;35mACTION\033[0m] p %d voir\n", p->id);

@@ -7,6 +7,7 @@ START_TEST(player_avance_test)
 {
 	t_zappy		var;
 	t_player	*p = &var.players[5];
+	char		str[] = "ok\nok\n";
 
 	dummy_t_zappy_without_board(&var);
 	var.board_size[0] = 4;
@@ -25,6 +26,8 @@ START_TEST(player_avance_test)
 	ck_assert_int_eq(p->coord[0], 1);
 	ck_assert_int_eq(p->coord[1], 1);
 	ck_assert_int_eq(p->facing, 1);
+	ck_assert_str_eq(p->snd.buf[p->snd.read], str);
+	clean_msg_queue(p);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 	rm_teams(&var.teams, &var.nb_team);
 }
@@ -34,6 +37,7 @@ START_TEST(player_droite_test)
 {
 	t_zappy		var;
 	t_player	*p = &var.players[5];
+	char		str[] = "ok\nok\n";
 
 	dummy_t_zappy_without_board(&var);
 	var.board_size[0] = 4;
@@ -51,6 +55,8 @@ START_TEST(player_droite_test)
 	ck_assert_int_eq(p->coord[0], 0);
 	ck_assert_int_eq(p->coord[1], 0);
 	ck_assert_int_eq(p->facing, 2);
+	ck_assert_str_eq(p->snd.buf[p->snd.read], str);
+	clean_msg_queue(p);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 	rm_teams(&var.teams, &var.nb_team);
 }
@@ -60,6 +66,7 @@ START_TEST(player_gauche_test)
 {
 	t_zappy		var;
 	t_player	*p = &var.players[5];
+	char		str[] = "ok\nok\n";
 
 	dummy_t_zappy_without_board(&var);
 	var.board_size[0] = 4;
@@ -77,6 +84,8 @@ START_TEST(player_gauche_test)
 	ck_assert_int_eq(p->coord[0], 0);
 	ck_assert_int_eq(p->coord[1], 0);
 	ck_assert_int_eq(p->facing, 2);
+	ck_assert_str_eq(p->snd.buf[p->snd.read], str);
+	clean_msg_queue(p);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 	rm_teams(&var.teams, &var.nb_team);
 }
