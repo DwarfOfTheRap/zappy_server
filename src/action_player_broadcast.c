@@ -26,7 +26,7 @@ int		broadcast_get_direction(int ms[2], t_player *s, t_player *r)
 	if (ABS(dist[0]) > ABS(dist[1]))
 		square = (dist[0] > 0) ? 1 : 5;
 	else if (ABS(dist[0]) < ABS(dist[1]))
-		square = (dist[1] > 0) ? 3 : 7;
+		square = (dist[1] > 0) ? 7 : 3;
 	else if (dist[0] == 0)
 		square = 0;
 	else if (dist[0] > 0)
@@ -55,7 +55,7 @@ void	action_player_broadcast(t_zappy *var, t_player *p, t_aargs *args)
 	int		i;
 
 	i = 0;
-	while (i < MAX_FD)
+	while (i <= *var->fd_max)
 	{
 		if (i != p->id && var->players[i].status == FD_CLIENT)
 			message_player_message(&var->players[i], broadcast_get_square(

@@ -55,7 +55,7 @@ void	action_player_expulse(t_zappy *var, t_player *p, t_aargs *args)
 	int		i;
 
 	i = 0;
-	while (args->nb && i < *var->fd_max)
+	while (args->nb && i <= *var->fd_max)
 	{
 		if (args->pl[i])
 		{

@@ -10,7 +10,7 @@ void	init_gfx_sub(t_zappy *var)
 	message_gfx_mct(var, &i);
 	message_gfx_tna(var);
 	i = 3;
-	while (i++ < *var->fd_max)
+	while (i++ <= *var->fd_max)
 	{
 		if (var->players[i].status == FD_CLIENT)
 			message_gfx_pnw(var, &var->players[i]);
