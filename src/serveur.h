@@ -340,7 +340,7 @@ void		usage(void);
 /*
 ** src/tstmp_calcs.c
 */
-int			time_compare(t_tstmp *time1, t_tstmp *time2);
+int			time_compare(t_tstmp time1, t_tstmp time2);
 t_tstmp		time_create(double seconds);
 t_tstmp		time_generate(int ref, t_zappy *var, t_tstmp start);
 double		time_double(t_tstmp *time);
@@ -349,10 +349,10 @@ void		time_add(t_tstmp *time1, t_tstmp *time2);
 /*
 ** src/action_queue.c
 */
-void		process_actions(t_tstmp *start, t_zappy *var);
+void		process_actions(t_zappy *var);
 int			action_add(t_action *action, t_zappy *var);
 t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
-				t_aargs*), t_player *player, t_tstmp *time);
+				t_aargs*), t_player *player, t_tstmp time);
 void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 				int act);
 
@@ -361,5 +361,5 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 */
 void		action_player_clear(t_player *player, t_zappy *var);
 void		check_players_life(t_zappy *var);
-
+t_action	*get_first_action(t_lst_head *list);
 #endif

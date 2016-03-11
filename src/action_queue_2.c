@@ -43,3 +43,15 @@ void		check_players_life(t_zappy *var)
 		i++;
 	}
 }
+
+t_action	*get_first_action(t_lst_head *list)
+{
+	t_lst_elem	*elem;
+
+	if (!list)
+		return (NULL);
+	if ((elem = list->first))
+		return ((t_action *)elem->content);
+	return (NULL);
+}
+
