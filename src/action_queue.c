@@ -5,20 +5,19 @@
 
 extern t_action_d	g_action[9];
 
-void		process_actions(t_tstmp *start, t_zappy *var)
+void		process_actions(t_zappy *var)
 {
 	t_lst_head	*list;
-	t_action	*cur_action;
 	t_lst_elem	*elem;
+	t_action	*action;
 
 	list = var->actions;
-	cur_action = (list->first) ? (t_action*)list->first->content : NULL;
-	while (list->first && time_compare(&cur_action->time, start) <= 0)
+	while ((action = get_first_action(list))
+			&& time_compare(action->time, var->start_time))
 	{
+		action->run(var, action->player, &action->arg);
+		action->player->pending_actions--;
 		elem = lst_pop(list, 0);
-		cur_action->run(var, cur_action->player, &cur_action->arg);
-		cur_action->player->pending_actions--;
-		cur_action = (elem->next) ? (t_action*)elem->next->content : NULL;
 		lst_delete_elem(&elem, action_free);
 	}
 }
@@ -30,7 +29,7 @@ static int	cmp(void *data1, void *data2)
 
 	action1 = (t_action*)data1;
 	action2 = (t_action*)data2;
-	return (time_compare(&action1->time, &action2->time) <= 0);
+	return (time_compare(action1->time, action2->time) <= 0);
 }
 
 int			action_add(t_action *action, t_zappy *var)
@@ -72,4 +71,6 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 	new = action_create(args, g_action[act].f, p, time);
 	if (!action_add(new, var))
 		action_free(new);
+	else
+		p->pending_actions++;
 }
