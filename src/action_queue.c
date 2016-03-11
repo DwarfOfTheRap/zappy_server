@@ -10,14 +10,18 @@ void		process_actions(t_zappy *var)
 	t_lst_head	*list;
 	t_lst_elem	*elem;
 	t_action	*action;
+	t_player	*p;
 
 	list = var->actions;
 	while ((action = get_first_action(list))
 			&& time_compare(action->trigger_t, var->start_time))
 	{
-		action->run(var, action->player, &action->arg);
-		action->player->pending_actions--;
+		p = action->player;
+		action->run(var, p, &action->arg);
+		p->pending_actions--;
 		elem = lst_pop(list, 0);
+		lst_delete_elem(&elem, action_free);
+		elem = lst_pop(p->actions, 0);
 		lst_delete_elem(&elem, action_free);
 	}
 }
@@ -35,13 +39,16 @@ static int	cmp(void *data1, void *data2)
 int			action_add(t_action *action, t_zappy *var)
 {
 	t_lst_elem	*new;
+	t_player	*p;
 
-	if (!action || action->player->pending_actions >= 10)
+	p = action->player;
+	if (!action || p->pending_actions >= 10)
 		return (0);
 	new = lst_create(action, sizeof(t_action));
 	if (new)
 	{
 		lst_insert(var->actions, new, cmp);
+		lst_insert(p->actions, new, cmp);
 		return (1);
 	}
 	return (0);
@@ -65,19 +72,16 @@ t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
 void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 							   int act)
 {
-	t_tstmp		*time;
-	t_action	*new;
-	t_action	*last;
+	t_tstmp		time[2];
+	t_action	*new_action;
+	t_action	*last_action;
 
-	time = (t_tstmp*)malloc(sizeof(t_tstmp) * 2);
-	//last = (t_action*)p->actions->last;
-	last = NULL;
-	if (!last || time_compare(var->start_time, last->trigger_t))
+	last_action = get_last_action(var->actions);
+	if (!last_action || time_compare(var->start_time, last_action->trigger_t))
 		time[0] = var->start_time;
 	else
-		time[0] = last->trigger_t;
+		time[0] = last_action->trigger_t;
 	time[1] = time_generate(g_action[act].rel_time, var, time[0]);
-	new = action_create(args, g_action[act].f, p, time);
-	free(time);
-	action_add(new, var);
+	new_action = action_create(args, g_action[act].f, p, time);
+	action_add(new_action, var);
 }
