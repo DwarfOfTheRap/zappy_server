@@ -347,6 +347,12 @@ double		time_double(t_tstmp *time);
 void		time_add(t_tstmp *time1, t_tstmp *time2);
 
 /*
+** src/tstmp_calcs.c
+*/
+t_tstmp		time_sub(t_tstmp time1, t_tstmp time2);
+double		time_elapsed(t_tstmp time1, t_tstmp time2);
+
+/*
 ** src/action_queue.c
 */
 void		process_actions(t_zappy *var);
@@ -360,14 +366,16 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 ** src/action_queue_2.c
 */
 void		action_player_clear(t_player *player, t_zappy *var);
-void		check_players_life(t_zappy *var);
 t_action	*get_first_action(t_lst_head *list);
 t_action	*get_last_action(t_lst_head *list);
 
 /*
 ** src/health.c
 */
+void		check_players_life(t_zappy *var);
 void		player_spawn(t_player *p, t_zappy *var);
 void		player_die(t_player *p);
+void		player_eat(t_player *p, t_zappy *var);
+void		player_vomit(t_player *p, t_zappy *var);
 
 #endif

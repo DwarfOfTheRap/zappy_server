@@ -28,3 +28,17 @@ void		player_die(t_player *p)
 	p->status = FD_CLOSE;
 	message_player_mort(p);
 }
+
+void		player_eat(t_player *p, t_zappy *var)
+{
+	p->timeofdeath = time_generate(126, p->timeofdeath, var);
+}
+
+void		player_vomit(t_player *p, t_zappy *var)
+{
+	t_tstmp ref;
+
+	ref.tv_sec = 0;
+	ref.tv_usec = 0;
+	p->timeofdeath = time_sub(p->timeofdeath, time_generate(126, ref, var));
+}
