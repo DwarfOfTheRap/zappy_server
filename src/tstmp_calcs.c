@@ -24,7 +24,7 @@ t_tstmp			time_create(double microseconds)
 	return (result);
 }
 
-t_tstmp			time_generate(int ref, t_zappy *var, t_tstmp start)
+t_tstmp			time_generate(int ref, t_tstmp start, t_zappy *var)
 {
 	t_tstmp	real_time;
 	t_tstmp new_time;
