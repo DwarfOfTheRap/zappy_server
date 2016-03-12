@@ -22,7 +22,7 @@ START_TEST(command_player_avance_test)
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(gfx);
 	clean_msg_queue(p);
-	//action_player_clear(p, &var);
+	action_player_clear(p, &var);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 	rm_teams(&var.teams, &var.nb_team);
 }
@@ -48,7 +48,7 @@ START_TEST(command_player_droite_test)
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(gfx);
 	clean_msg_queue(p);
-	//action_player_clear(p, &var);
+	action_player_clear(p, &var);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 	rm_teams(&var.teams, &var.nb_team);
 }
@@ -74,7 +74,7 @@ START_TEST(command_player_gauche_test)
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(gfx);
 	clean_msg_queue(p);
-	//action_player_clear(p, &var);
+	action_player_clear(p, &var);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 	rm_teams(&var.teams, &var.nb_team);
 }
