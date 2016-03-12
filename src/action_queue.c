@@ -39,16 +39,18 @@ static int	cmp(void *data1, void *data2)
 int			action_add(t_action *action, t_zappy *var)
 {
 	t_lst_elem	*new;
+	t_lst_elem	*new_p;
 	t_player	*p;
 
 	p = action->player;
 	if (!action || p->pending_actions >= 10)
 		return (0);
 	new = lst_create(action, sizeof(t_action));
-	if (new)
+	new_p = lst_create(action, sizeof(t_action));
+	if (new && new_p)
 	{
 		lst_insert(var->actions, new, cmp);
-		lst_insert(p->actions, new, cmp);
+		lst_insert(p->actions, new_p, cmp);
 		return (1);
 	}
 	return (0);

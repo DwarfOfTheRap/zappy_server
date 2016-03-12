@@ -30,6 +30,7 @@ SRC := \
 	src/exit.c \
 	src/globals.c \
 	src/health.c \
+	src/health_2.c \
 	src/init.c \
 	src/linked_lists.c \
 	src/linked_lists_2.c \

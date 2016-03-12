@@ -1,3 +1,4 @@
+#include <stdio.h>//
 #include <stdlib.h>
 #include "serveur.h"
 
@@ -6,8 +7,9 @@ void		check_players_life(t_zappy *var)
 	int	i;
 
 	i = 3;
-	while (i < *var->fd_max)
+	while (i <= *var->fd_max)
 	{
+		//printf("food: %d\n", get_food_number(&var->players[i], var));
 		if (var->players[i].status == FD_CLIENT
 			&& var->players[i].timeofdeath.tv_sec
 			&& time_compare(var->players[i].timeofdeath, var->start_time))
