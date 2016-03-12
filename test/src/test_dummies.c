@@ -82,6 +82,7 @@ void	dummy_t_player_client(t_zappy *var, t_player *p)
 	p->id = i;
 	p->snd.pos = p->snd.buf[p->snd.write];
 	p->status = FD_USED;
+	p->actions = lst_init(NULL);
 }
 
 void	dummy_t_player(t_zappy *var, t_player *p)
