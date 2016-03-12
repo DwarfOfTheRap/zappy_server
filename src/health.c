@@ -5,10 +5,11 @@ void		check_players_life(t_zappy *var)
 {
 	int	i;
 
-	i = 0;
-	while (i < MAX_FD)
+	i = 3;
+	while (i < *var->fd_max)
 	{
-		if (var->players[i].timeofdeath.tv_sec
+		if (var->players[i].status == FD_CLIENT
+			&& var->players[i].timeofdeath.tv_sec
 			&& time_compare(var->players[i].timeofdeath, var->start_time))
 			player_die(&var->players[i]);
 		i++;
