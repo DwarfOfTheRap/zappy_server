@@ -115,7 +115,6 @@ void	action_player_pose(t_zappy *var, t_player *p, t_aargs *args)
 		++i;
 	if (i == 7)
 		return (message_command_format_error(p, "pose", args->str));
-	// need to replace the hard code one with correct condition relatif to life
 	if ((i == 0 && get_food_number(p, var)) || (i > 0 && p->inv[i - 1] > 0))
 	{
 		if (i == 0)

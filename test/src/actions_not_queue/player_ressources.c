@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <check.h>
+#include <time.h>
 #include "serveur.h"
 #include "test_dummies.h"
 
@@ -117,6 +118,7 @@ START_TEST(action_player_prend_pose_nourriture_test)
 	t_zappy		var;
 	t_player	*gfx = &var.players[5];
 	t_player	*p = &var.players[6];
+	t_tstmp		player_initial;
 	char		nourriture[] = "nourriture";
 	char		inventaire[] = "inventaire";
 	char		str[] = "{nourriture 10, linemate 0, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0}\nok\n"
@@ -125,16 +127,24 @@ START_TEST(action_player_prend_pose_nourriture_test)
 	char		gstr[] = "pin 6 0 0 11 0 0 0 0 0 0\nbct 0 0 0 2 3 4 5 6 7\n"
 		"pin 6 0 0 10 0 0 0 0 0 0\nbct 0 0 1 2 3 4 5 6 7\n";
 
+	srand(time(NULL));
 	dummy_t_zappy_without_board(&var);
 	dummy_t_zappy_add_board(&var);
 	dummy_t_board_square(var.board[0][0]);
 	dummy_t_player(&var, p);
 	dummy_t_player_gfx(&var, gfx);
+	player_initial = p->timeofdeath;
 	bzero(&a, sizeof(t_aargs));
 	a.str = inventaire;
 	action_player_inventaire(&var, p, &a);
 	a.str = nourriture;
 	action_player_prend(&var, p, &a);
+	ck_assert_ptr_ne(player_initial.tv_sec, p->timeofdeath.tv_sec);
+	if (var.board[0][0][0] == 1)
+	{
+		gstr[33] = '1';
+		gstr[80] = '2';
+	}
 	a.str = inventaire;
 	action_player_inventaire(&var, p, &a);
 	a.str = nourriture;
