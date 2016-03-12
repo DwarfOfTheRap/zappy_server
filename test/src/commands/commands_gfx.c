@@ -25,6 +25,7 @@ START_TEST(commands_bct_test)
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "sbp\n");
 	clean_msg_queue(gfx);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
@@ -45,6 +46,7 @@ START_TEST(commands_sst_test)
 	// will fail when we will be able to change the time
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "sgt 4\n");
 	clean_msg_queue(gfx);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
@@ -67,6 +69,7 @@ START_TEST(commands_ppo_test)
 	command_ppo(&var, NULL, "5");
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "ppo 5 4 3 3\n");
 	clean_msg_queue(gfx);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
@@ -89,6 +92,7 @@ START_TEST(commands_plv_test)
 	command_plv(&var, NULL, "5");
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "plv 5 1\n");
 	clean_msg_queue(gfx);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
@@ -111,6 +115,7 @@ START_TEST(commands_pin_test)
 	command_pin(&var, NULL, "5");
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "pin 5 4 3 0 5 6 7 8 9 10\n");
 	clean_msg_queue(gfx);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 

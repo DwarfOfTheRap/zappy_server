@@ -67,11 +67,30 @@ START_TEST(action_player_incantation_test)
 }
 END_TEST
 
+START_TEST(action_player_connect_nbr_test)
+{
+	t_zappy		var;
+	t_player	*p = &var.players[6];
+	char		str[] = "1\n2\n";
+
+	dummy_t_zappy_without_board(&var);
+	dummy_t_player(&var, p);
+	dummy_t_zappy_add_remaining_in_team(&var);
+	action_player_connect_nbr(&var, p, NULL);
+	dummy_t_zappy_add_remaining_in_team(&var);
+	action_player_connect_nbr(&var, p, NULL);
+	ck_assert_str_eq(p->snd.buf[p->snd.read], str);
+	clean_msg_queue(p);
+	rm_teams(&var.teams, &var.nb_team);
+}
+END_TEST
+
 TCase*	action_player_life_test(void)
 {
 	TCase	*tc;
 
 	tc = tcase_create("player_life");
 	tcase_add_test(tc, action_player_incantation_test);
+	tcase_add_test(tc, action_player_connect_nbr_test);
 	return (tc);
 }

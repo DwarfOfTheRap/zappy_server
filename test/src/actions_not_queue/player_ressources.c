@@ -35,6 +35,7 @@ START_TEST(action_player_prend_test)
 	t_player	*p = &var.players[6];
 	char		ressources[7][16] = {"nourriture", "linemate",
 	"deraumere", "sibur", "mendiane", "phiras", "thystame"};
+	char		str[] = "ok\n";
 	char		gstr[] = "pin 6 0 0 0 0 0 0 0 0 0\nbct 0 0 1 2 3 4 5 6 7\n";
 
 	dummy_t_zappy_without_board(&var);
@@ -48,7 +49,7 @@ START_TEST(action_player_prend_test)
 		gstr[34 + i * 2] = i + 1 + '0';
 		a.str = ressources[i + 1];
 		action_player_prend(&var, p, &a);
-		ck_assert_str_eq(p->snd.buf[p->snd.read], "ok\n");
+		ck_assert_str_eq(p->snd.buf[p->snd.read], str);
 		ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 		clean_msg_queue(p);
 		clean_msg_queue(gfx);
@@ -110,6 +111,45 @@ START_TEST(action_player_pose_test)
 }
 END_TEST
 
+//START_TEST(action_player_prend_pose_nourriture_test)
+//{
+//	t_aargs		a;
+//	t_zappy		var;
+//	t_player	*gfx = &var.players[5];
+//	t_player	*p = &var.players[6];
+//	char		nourriture[] = "nourriture";
+//	char		inventaire[] = "inventaire";
+//	char		str[] = "{nourriture 0, linemate 0, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0}\nok\n"
+//		"{nourriture 126, linemate 0, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0}\nok\n"
+//		"{nourriture 0, linemate 0, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0}\n";
+//	char		gstr[] = "pin 6 0 0 126 0 0 0 0 0 0\nbct 0 0 0 2 3 4 5 6 7\n"
+//		"pin 6 0 0 0 0 0 0 0 0 0\nbct 0 0 1 2 3 4 5 6 7\n";
+//
+//	dummy_t_zappy_without_board(&var);
+//	dummy_t_zappy_add_board(&var);
+//	dummy_t_board_square(var.board[0][0]);
+//	dummy_t_player(&var, p);
+//	dummy_t_player_gfx(&var, gfx);
+//	bzero(&a, sizeof(t_aargs));
+//	a.str = inventaire;
+//	action_player_inventaire(&var, p, &a);
+//	a.str = nourriture;
+//	action_player_prend(&var, p, &a);
+//	a.str = inventaire;
+//	action_player_inventaire(&var, p, &a);
+//	a.str = nourriture;
+//	action_player_pose(&var, p, &a);
+//	a.str = inventaire;
+//	action_player_inventaire(&var, p, &a);
+//	ck_assert_str_eq(p->snd.buf[p->snd.read], str);
+//	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
+//	clean_msg_queue(p);
+//	clean_msg_queue(gfx);
+//	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
+//	rm_teams(&var.teams, &var.nb_team);
+//}
+//END_TEST
+
 TCase*	action_player_ressources_test(void)
 {
 	TCase	*tc;
@@ -118,5 +158,6 @@ TCase*	action_player_ressources_test(void)
 	tcase_add_test(tc, action_player_inventaire_test);
 	tcase_add_test(tc, action_player_prend_test);
 	tcase_add_test(tc, action_player_pose_test);
+	//tcase_add_test(tc, action_player_prend_pose_nourriture_test);
 	return (tc);
 }
