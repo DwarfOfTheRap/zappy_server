@@ -139,7 +139,7 @@ START_TEST(action_player_prend_pose_nourriture_test)
 	action_player_inventaire(&var, p, &a);
 	a.str = nourriture;
 	action_player_prend(&var, p, &a);
-	ck_assert_ptr_ne(player_initial.tv_sec, p->timeofdeath.tv_sec);
+	ck_assert_ptr_ne((void*)player_initial.tv_sec, (void*)p->timeofdeath.tv_sec);
 	if (var.board[0][0][0] == 1)
 	{
 		gstr[33] = '1';
