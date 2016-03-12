@@ -387,4 +387,9 @@ void		player_die(t_player *p);
 void		player_eat(t_player *p, t_zappy *var);
 void		player_vomit(t_player *p, t_zappy *var);
 
+/*
+** src/health_2.c
+*/
+int			get_food_number(t_player *p, t_zappy *var);
+
 #endif
