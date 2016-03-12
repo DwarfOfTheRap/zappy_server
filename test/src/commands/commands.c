@@ -10,5 +10,6 @@ Suite*	suite_commands_test(void)
 	suite_add_tcase(s, commands_find_command());
 	suite_add_tcase(s, commands_gfx());
 	suite_add_tcase(s, commands_moves());
+	suite_add_tcase(s, commands_player_ressources_test());
 	return (s);
 }

@@ -23,7 +23,7 @@ void		action_player_clear(t_player *player, t_zappy *var)
 	list = var->actions;
 	list_p = player->actions;
 	lst_free_match(list, player, cmp, action_free);
-	lst_delete(list_p, action_free);
+	lst_delete(list_p, free);
 	player->pending_actions = 0;
 }
 

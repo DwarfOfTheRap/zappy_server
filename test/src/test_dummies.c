@@ -20,6 +20,7 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	var->teams[1].remain = 0;
 	strcpy(var->teams[2].name, "GRAPHIC");
 	var->teams[2].remain = 0;
+	var->actions = lst_init(NULL);
 }
 
 void	dummy_t_zappy_add_board(t_zappy *var)
