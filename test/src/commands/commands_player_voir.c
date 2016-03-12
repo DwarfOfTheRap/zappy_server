@@ -63,7 +63,7 @@ END_TEST
 //	ck_assert_ptr_eq(action->run, &action_player_prend);
 //	clean_msg_queue(gfx);
 //	clean_msg_queue(p);
-//	//action_player_clear(p, &var);
+//	action_player_clear(p, &var);
 //	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 //	rm_teams(&var.teams, &var.nb_team);
 //}
@@ -76,5 +76,6 @@ TCase*	commands_player_ressources_test(void)
 	tc = tcase_create("player_voir");
 	tcase_add_test(tc, command_player_voir_test);
 	tcase_add_test(tc, command_player_inventaire_test);
+//	tcase_add_test(tc, command_player_prend_test);
 	return (tc);
 }

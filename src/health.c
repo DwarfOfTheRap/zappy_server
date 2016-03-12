@@ -9,7 +9,6 @@ void		check_players_life(t_zappy *var)
 	i = 3;
 	while (i <= *var->fd_max)
 	{
-		//printf("food: %d\n", get_food_number(&var->players[i], var));
 		if (var->players[i].status == FD_CLIENT
 			&& var->players[i].timeofdeath.tv_sec
 			&& time_compare(var->players[i].timeofdeath, var->start_time))
@@ -47,5 +46,5 @@ void		player_vomit(t_player *p, t_zappy *var)
 
 	ref.tv_sec = 0;
 	ref.tv_usec = 0;
-	p->timeofdeath = time_sub(p->timeofdeath, time_generate(126, ref, var));
+	p->timeofdeath = time_sub(time_generate(126, ref, var), p->timeofdeath);
 }
