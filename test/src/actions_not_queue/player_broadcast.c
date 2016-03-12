@@ -7,7 +7,7 @@
 START_TEST(action_player_broadcast_test_1)
 {
 	int			i = 1;
-	int			fd_max = 14;
+	int			fd_max = 24;
 	t_aargs		a;
 	t_zappy		var;
 	t_player	*gfx = &var.players[5];
@@ -20,6 +20,16 @@ START_TEST(action_player_broadcast_test_1)
 	t_player	*p6 = &var.players[12];
 	t_player	*p7 = &var.players[13];
 	t_player	*p8 = &var.players[14];
+	t_player	*p9 = &var.players[15];
+	t_player	*p10 = &var.players[16];
+	t_player	*p11 = &var.players[17];
+	t_player	*p12 = &var.players[18];
+	t_player	*p13 = &var.players[19];
+	t_player	*p14 = &var.players[20];
+	t_player	*p15 = &var.players[21];
+	t_player	*p16 = &var.players[22];
+	t_player	*p17 = &var.players[23];
+	t_player	*p18 = &var.players[24];
 	t_player	*p;
 	char		caster[] = "ok\n";
 	char		broadcast[] = "LEERROOYYYY JJEEENNNKKIINNSSSSS";
@@ -39,6 +49,16 @@ START_TEST(action_player_broadcast_test_1)
 	dummy_t_player(&var, p6);
 	dummy_t_player(&var, p7);
 	dummy_t_player(&var, p8);
+	dummy_t_player(&var, p9);
+	dummy_t_player(&var, p10);
+	dummy_t_player(&var, p11);
+	dummy_t_player(&var, p12);
+	dummy_t_player(&var, p13);
+	dummy_t_player(&var, p14);
+	dummy_t_player(&var, p15);
+	dummy_t_player(&var, p16);
+	dummy_t_player(&var, p17);
+	dummy_t_player(&var, p18);
 	a.str = broadcast;
 	/*
 	p0 {2, 2}
@@ -67,11 +87,47 @@ START_TEST(action_player_broadcast_test_1)
 	p7->coord[1] = 9;
 	p8->coord[0] = 9;
 	p8->coord[1] = 9;
+
+	p9->coord[0] = 2;
+	p9->coord[1] = 2;
+	p10->coord[0] = 2;
+	p10->coord[1] = 2;
+	p11->coord[0] = 2;
+	p11->coord[1] = 2;
+	p12->coord[0] = 2;
+	p12->coord[1] = 2;
+
+	p13->coord[1] = 2;
+	p13->coord[1] = 1;
+	p13->facing = 1;
+	p14->coord[1] = 2;
+	p14->coord[1] = 1;
+	p14->facing = 2;
+	p15->coord[1] = 2;
+	p15->coord[1] = 1;
+	p15->facing = 3;
+
+	p16->coord[0] = 9;
+	p16->coord[1] = 5;
+	p16->facing = 1;
+	p17->coord[0] = 9;
+	p17->coord[1] = 5;
+	p17->facing = 2;
+	p18->coord[0] = 9;
+	p18->coord[1] = 5;
+	p18->facing = 3;
 	action_player_broadcast(&var, p0, &a);
-	while (i < 9)
+	while (i < 19)
 	{
 		p = &var.players[i + 6];
-		ret[8] = i + '0';
+		if (i < 9)
+			ret[8] = i + '0';
+		else if (i < 13)
+			ret[8] = '0';
+		else if (i < 16)
+			ret[8] = (i - 12) * 2 + 1 + '0';
+		else if (i < 19)
+			ret[8] = (i - 14) * 2 + '0';
 		ck_assert_str_eq(p->snd.buf[p->snd.read], ret);
 		clean_msg_queue(p);
 		++i;
