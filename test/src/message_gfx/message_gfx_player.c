@@ -58,7 +58,7 @@ START_TEST(message_gfx_pin_test)
 	t_zappy		var;
 	t_player	*p = &var.players[5];
 	t_player	*gfx = &var.players[6];
-	char		str[] = "pin 5 4 3 0 5 6 7 8 9 10\n";
+	char		str[] = "pin 5 4 3 10 5 6 7 8 9 10\n";
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);

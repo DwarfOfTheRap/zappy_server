@@ -113,7 +113,7 @@ START_TEST(commands_pin_test)
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "sbp\n");
 	clean_msg_queue(gfx);
 	command_pin(&var, NULL, "5");
-	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "pin 5 4 3 0 5 6 7 8 9 10\n");
+	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "pin 5 4 3 10 5 6 7 8 9 10\n");
 	clean_msg_queue(gfx);
 	rm_teams(&var.teams, &var.nb_team);
 }

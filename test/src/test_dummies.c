@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <check.h>
+#include <time.h>
 #include "serveur.h"
 
 void	dummy_t_zappy_without_board(t_zappy *var)
@@ -11,6 +12,7 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	var->board_size[1] = 2;
 	var->team_size = 3;
 	var->tick = 4;
+	gettimeofday(&var->start_time, NULL);
 	var->nb_team = 3;
 	var->teams = (t_team *)malloc(sizeof(t_team) * 3);
 	bzero(var->teams, sizeof(t_team) * 3);
@@ -83,6 +85,7 @@ void	dummy_t_player_client(t_zappy *var, t_player *p)
 	p->id = i;
 	p->snd.pos = p->snd.buf[p->snd.write];
 	p->status = FD_USED;
+	p->timeofdeath = time_generate(1260, var->start_time, var);
 	p->actions = lst_init(NULL);
 }
 

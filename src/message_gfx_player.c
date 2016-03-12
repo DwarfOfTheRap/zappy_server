@@ -45,10 +45,8 @@ void	message_gfx_pin(t_zappy *var, t_player *p)
 	if (!var->gfx_client)
 		return ;
 	ret = sprintf(str, "pin %d %d %d %d %d %d %d %d %d %d", p->id, p->coord[1],
-		p->coord[0], 0, p->inv[0], p->inv[1], p->inv[2], p->inv[3], p->inv[4],
-		p->inv[5]);
-	// need to replace the hard code 0 with life base on timestamp, waiting for
-	// jability part for now
+		p->coord[0], get_food_number(p, var), p->inv[0], p->inv[1], p->inv[2],
+		p->inv[3], p->inv[4], p->inv[5]);
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
