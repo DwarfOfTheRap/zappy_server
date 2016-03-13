@@ -43,8 +43,7 @@ START_TEST(commands_sst_test)
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "sbp\n");
 	clean_msg_queue(gfx);
 	command_sst(&var, NULL, "1");
-	// will fail when we will be able to change the time
-	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "sgt 4\n");
+	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "sgt 1\n");
 	clean_msg_queue(gfx);
 	rm_teams(&var.teams, &var.nb_team);
 }

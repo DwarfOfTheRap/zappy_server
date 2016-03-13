@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <sys/time.h>
 #include "serveur.h"
 
@@ -35,9 +34,9 @@ t_tstmp			time_generate(int ref, t_tstmp start, t_zappy *var)
 	return (new_time);
 }
 
-double			time_double(t_tstmp *time)
+double			time_double(t_tstmp time)
 {
-	return (time->tv_sec + (time->tv_usec / 1000000.0));
+	return (time.tv_sec + (time.tv_usec / 1000000.0));
 }
 
 void			time_add(t_tstmp *time1, t_tstmp *time2)

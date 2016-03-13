@@ -372,7 +372,7 @@ void		usage(void);
 int			time_compare(t_tstmp time1, t_tstmp time2);
 t_tstmp		time_create(double seconds);
 t_tstmp		time_generate(int ref, t_tstmp start, t_zappy *var);
-double		time_double(t_tstmp *time);
+double		time_double(t_tstmp time);
 void		time_add(t_tstmp *time1, t_tstmp *time2);
 
 /*
@@ -412,5 +412,19 @@ void		player_vomit(t_player *p, t_zappy *var);
 ** src/health_2.c
 */
 int			get_food_number(t_player *p, t_zappy *var);
+
+/*
+** src/time.c
+*/
+void	update_queue(t_zappy *var);
+void	update_player_actions(t_player *p, t_zappy *var);
+void	update_player_timeofdeath(t_player *p, int old_tick, t_zappy *var);
+void	zappy_update_tick(int tick, t_zappy *var);
+
+/*
+** src/time_compute.c
+*/
+void	compute_action_new_time(t_action *action, t_zappy *var);
+void	compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
 
 #endif

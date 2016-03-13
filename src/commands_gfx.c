@@ -38,7 +38,7 @@ void	command_mct(t_zappy *var, t_player *p, char *arg)
 {
 	t_aargs		t;
 	t_action	*new;
-	t_tstmp		*time;
+	t_tstmp		time[2];
 
 	(void)p;
 	(void)arg;
@@ -46,7 +46,6 @@ void	command_mct(t_zappy *var, t_player *p, char *arg)
 	message_gfx_mct(var, &t.nb);
 	if (t.nb != -1)
 	{
-		time = (t_tstmp*)malloc(sizeof(t_tstmp) * 2);
 		time[0] = var->start_time;
 		time[1] = var->start_time;
 		time[1].tv_usec++;
