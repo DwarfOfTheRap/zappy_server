@@ -38,6 +38,7 @@ void		lst_delete_elem(t_lst_elem **elem, void (*del)(void*))
 	if (elem && *elem)
 	{
 		del((*elem)->content);
+		(*elem)->content = NULL;
 		free(*elem);
 		*elem = NULL;
 	}

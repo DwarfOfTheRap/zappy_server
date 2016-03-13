@@ -21,7 +21,7 @@ void		process_actions(t_zappy *var)
 		elem = lst_pop(list, 0);
 		lst_delete_elem(&elem, action_free);
 		elem = lst_pop(p->actions, 0);
-		lst_delete_elem(&elem, action_free);
+		lst_delete_elem(&elem, action_free_player);
 	}
 }
 
@@ -77,7 +77,7 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 	t_action	*new_action;
 	t_action	*last_action;
 
-	last_action = get_last_action(var->actions);
+	last_action = get_last_action(p->actions);
 	if (!last_action)
 		time[0] = var->start_time;
 	else
