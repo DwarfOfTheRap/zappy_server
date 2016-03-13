@@ -36,9 +36,9 @@ void	command_broadcast(t_zappy *var, t_player *p, char *args)
 
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
-	action_add_wrapper(var, p, &t, BROADCAST);
 	if (!p->actions->size)
 		pre_action_broadcast(var, p, &t);
+	action_add_wrapper(var, p, &t, BROADCAST);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> broadcast %s\n", p->id,
 				args);

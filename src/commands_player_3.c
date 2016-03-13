@@ -94,9 +94,9 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 
 	(void)args;
 	bzero(&t, sizeof(t_aargs));
-	action_add_wrapper(var, p, &t, INCANTATION);
 	if (!p->actions->size)
 		pre_action_incantation(var, p, &t);
+	action_add_wrapper(var, p, &t, INCANTATION);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> incantation\n", p->id);
 }
