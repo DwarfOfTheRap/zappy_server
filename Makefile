@@ -51,6 +51,8 @@ SRC := \
 	src/read_arguments_2.c \
 	src/ressources_management.c \
 	src/serveur.c \
+	src/time.c \
+	src/time_compute.c \
 	src/tools.c \
 	src/tstmp_calcs.c \
 	src/tstmp_calcs_2.c \

@@ -392,4 +392,18 @@ void		player_vomit(t_player *p, t_zappy *var);
 */
 int			get_food_number(t_player *p, t_zappy *var);
 
+/*
+** src/time.c
+*/
+void	update_queue(int old_tick, t_zappy *var);
+void	update_player_actions(t_player *p, int old_tick, t_zappy *var);
+void	update_player_timeofdeath(t_player *p, int old_tick, t_zappy *var);
+void	zappy_change_tick(int tick, t_zappy *var);
+
+/*
+** src/time_compute.c
+*/
+void	compute_action_new_time(t_action *action, int old_tick, t_zappy *var);
+void	compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
+
 #endif
