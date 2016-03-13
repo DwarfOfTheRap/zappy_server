@@ -38,7 +38,7 @@ void	update_player_timeofdeath(t_player *p, int old_tick, t_zappy *var)
 	compute_death_new_time(p, old_tick, var);
 }
 
-void	zappy_change_tick(int tick, t_zappy *var)
+void	zappy_update_tick(int tick, t_zappy *var)
 {
 	int	old_tick;
 	int	i;

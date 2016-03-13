@@ -398,7 +398,7 @@ int			get_food_number(t_player *p, t_zappy *var);
 void	update_queue(int old_tick, t_zappy *var);
 void	update_player_actions(t_player *p, int old_tick, t_zappy *var);
 void	update_player_timeofdeath(t_player *p, int old_tick, t_zappy *var);
-void	zappy_change_tick(int tick, t_zappy *var);
+void	zappy_update_tick(int tick, t_zappy *var);
 
 /*
 ** src/time_compute.c
