@@ -127,6 +127,23 @@ START_TEST(command_player_expulse_test)
 }
 END_TEST
 
+START_TEST(command_player_connect_nbr_test)
+{
+	t_zappy		var;
+	t_player	*p = &var.players[6];
+	t_action	*action;
+
+	dummy_t_zappy_without_board(&var);
+	dummy_t_player(&var, p);
+	command_connect_nbr(&var, p, NULL);
+	action = p->actions->first->content;
+	ck_assert_ptr_eq(action->run, &action_player_connect_nbr);
+	clean_msg_queue(p);
+	action_player_clear(p, &var);
+	rm_teams(&var.teams, &var.nb_team);
+}
+END_TEST
+
 TCase*	commands_player_life(void)
 {
 	TCase	*tc;
@@ -135,5 +152,6 @@ TCase*	commands_player_life(void)
 	tcase_add_test(tc, command_player_broadcast_test);
 	tcase_add_test(tc, command_player_incantation_test);
 	tcase_add_test(tc, command_player_expulse_test);
+	tcase_add_test(tc, command_player_connect_nbr_test);
 	return (tc);
 }
