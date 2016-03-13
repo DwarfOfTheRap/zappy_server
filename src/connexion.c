@@ -23,6 +23,7 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 	if (g_log & LOG_I)
 		printf("[\033[0;34mINFO\033[0m] Client %d disconnected\n", fd);
 	action_player_clear(p, var);
+	free(p->actions);
 	if (fd == serv->fd_max)
 		--serv->fd_max;
 	return (1);

@@ -26,6 +26,7 @@ void		player_spawn(t_player *p, t_zappy *var)
 	p->coord[0] = rand() % var->board_size[0];
 	p->coord[1] = rand() % var->board_size[1];
 	p->facing = rand() % 4;
+	p->actions = lst_init(NULL);
 }
 
 void		player_die(t_player *p)
