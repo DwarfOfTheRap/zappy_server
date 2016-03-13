@@ -24,8 +24,9 @@ void		process_actions(t_zappy *var)
 		lst_delete_elem(&elem, action_free);
 		if (p->actions->size)
 		{
-			action = p->actions->first->content;
-			action->pre(var, p, &action->arg);
+			action = get_first_action(p->actions);
+			if (action->pre)
+				action->pre(var, p, &action->arg);
 		}
 	}
 }

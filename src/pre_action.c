@@ -4,18 +4,6 @@
 
 extern int	g_log;
 
-void	pre_action(t_zappy *var, t_player *p)
-{
-	t_action	*action;
-
-	if (p->actions->size > 1)
-	{
-		action = p->actions->first->next->content;
-		if (action->pre)
-			action->pre(var, p, &action->arg);
-	}
-}
-
 void	pre_action_avance(t_zappy *var, t_player *p, t_aargs *args)
 {
 	t_player	dummy;

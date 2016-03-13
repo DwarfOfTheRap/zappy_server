@@ -316,7 +316,6 @@ void		message_player_mort(t_player *p);
 /*
 ** src/pre_action.c
 */
-void		pre_action_send(t_zappy *var, t_player *p);
 void		pre_action_avance(t_zappy *var, t_player *p, t_aargs *args);
 void		pre_action_droite(t_zappy *var, t_player *p, t_aargs *args);
 void		pre_action_gauche(t_zappy *var, t_player *p, t_aargs *args);

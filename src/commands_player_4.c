@@ -56,10 +56,10 @@ void	command_expulse(t_zappy *var, t_player *p, char *args)
 	t_aargs		t;
 
 	(void)args;
+	if (g_log & LOG_C)
+		printf("[\033[0;32mCOMMAND\033[0m] p %d -> expulse\n", p->id);
 	bzero(&t, sizeof(t_aargs));
 	if (!p->actions->size)
 		pre_action_expulse(var, p, &t);
 	action_add_wrapper(var, p, &t, EXPULSE);
-	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> expulse\n", p->id);
 }

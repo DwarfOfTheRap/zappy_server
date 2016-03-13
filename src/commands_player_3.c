@@ -9,13 +9,13 @@ void	command_fork(t_zappy *var, t_player *p, char *args)
 {
 	t_aargs		t;
 
+	if (g_log & LOG_C)
+		printf("[\033[0;32mCOMMAND\033[0m] p %d -> fork\n", p->id);
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
 	action_add_wrapper(var, p, &t, FORK);
 	if (!p->actions->size)
 		pre_action_fork(var, p, NULL);
-	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> fork\n", p->id);
 }
 
 int		command_incantation_can_incant(t_zappy *var, t_player *p, int nb_player)
@@ -74,7 +74,7 @@ void	command_incantation_notification(t_zappy *var, t_aargs *args)
 			p = &var->players[i];
 			if (p->actions->size)
 			{
-				a = p->actions->first->content;
+				a = get_first_action(p->actions);
 				if (a->run == &action_player_avance ||
 						a->run == &action_player_droite ||
 						a->run == &action_player_gauche)
@@ -93,10 +93,10 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 	t_aargs	t;
 
 	(void)args;
+	if (g_log & LOG_C)
+		printf("[\033[0;32mCOMMAND\033[0m] p %d -> incantation\n", p->id);
 	bzero(&t, sizeof(t_aargs));
 	if (!p->actions->size)
 		pre_action_incantation(var, p, &t);
 	action_add_wrapper(var, p, &t, INCANTATION);
-	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> incantation\n", p->id);
 }
