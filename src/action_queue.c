@@ -18,7 +18,6 @@ void		process_actions(t_zappy *var)
 	{
 		p = action->player;
 		action->run(var, p, &action->arg);
-		p->pending_actions--;
 		elem = lst_pop(list, 0);
 		lst_delete_elem(&elem, action_free);
 		elem = lst_pop(p->actions, 0);
@@ -43,7 +42,7 @@ int			action_add(t_action *action, t_zappy *var)
 	t_player	*p;
 
 	p = action->player;
-	if (!action || p->pending_actions >= 10)
+	if (!action || p->actions->size >= 10)
 		return (0);
 	new = lst_create(action, sizeof(t_action));
 	new_p = lst_create(action, sizeof(t_action));
@@ -87,6 +86,4 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 	new_action = action_create(args, g_action[act].f, p, time);
 	if (!action_add(new_action, var))
 		action_free(new_action);
-	else
-		p->pending_actions++;
 }

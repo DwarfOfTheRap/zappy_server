@@ -24,7 +24,7 @@ void		action_player_clear(t_player *player, t_zappy *var)
 	list_p = player->actions;
 	lst_free_match(list, player, cmp, action_free);
 	lst_delete(list_p, free);
-	player->pending_actions = 0;
+	player->actions->size = 0;
 }
 
 t_action*	action_player_first(t_player *player, t_zappy *var)
