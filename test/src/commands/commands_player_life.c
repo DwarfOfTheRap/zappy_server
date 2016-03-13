@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <check.h>
+#include <stdio.h>
 #include "serveur.h"
 #include "test_dummies.h"
 
@@ -35,7 +36,7 @@ START_TEST(command_player_incantation_test)
 	t_player	*p;
 	char		stop_action_incant_start[] = "ko\nelevation en cours\n";
 	char		incant_start[] = "elevation en cours\n";
-	char		g_str[] = "ppo 9 0 1 1\nppo 9 0 0 1\npic 0 0 1 8 6 7 9 10\n";
+	char		g_str[] = "ppo 9 0 1 1\nppo 9 0 0 1\npic 0 0 1 8 6 9 10\n";
 
 	dummy_t_zappy_without_board(&var);
 	var.board_size[0] = 2;
@@ -49,6 +50,7 @@ START_TEST(command_player_incantation_test)
 		var.players[i].level = 1;
 		++i;
 	}
+	var.players[7].coord[0] = 1;
 	command_avance(&var, &var.players[9], NULL);
 	command_incantation(&var, &var.players[8], NULL);
 	i = 6;
@@ -57,12 +59,67 @@ START_TEST(command_player_incantation_test)
 		p = &var.players[i];
 		if (i == 9)
 			ck_assert_str_eq(p->snd.buf[p->snd.read], stop_action_incant_start);
+		else if (i == 7)
+			ck_assert_str_eq(p->snd.buf[p->snd.read], "");
 		else
 			ck_assert_str_eq(p->snd.buf[p->snd.read], incant_start);
 		action_player_clear(&var.players[i], &var);
 		clean_msg_queue(&var.players[i]);
 		++i;
 	}
+	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], g_str);
+	clean_msg_queue(gfx);
+	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
+	rm_teams(&var.teams, &var.nb_team);
+}
+END_TEST
+
+START_TEST(command_player_expulse_test)
+{
+	int			i;
+	int			fd_max = 12;
+	t_zappy		var;
+	t_player	*gfx = &var.players[5];
+	t_player	*p8 = &var.players[8];
+	t_aargs		*args;
+	char		g_str[] = "ppo 9 0 1 1\nppo 11 0 0 3\npex 8\nppo 6 1 0 1\nppo 10 1 0 2\nppo 11 1 0 3\nppo 12 1 0 4\n";
+
+	dummy_t_zappy_without_board(&var);
+	var.board_size[0] = 2;
+	var.board_size[1] = 2;
+	dummy_t_zappy_add_board(&var);
+	var.fd_max = &fd_max;
+	dummy_t_player_gfx(&var, gfx);
+	i = 6;
+	while (i <= fd_max)
+	{
+		dummy_t_player(&var, &var.players[i]);
+		var.players[i].level = 1;
+		++i;
+	}
+	var.players[7].coord[0] = 1;
+	var.players[8].facing = 1;
+	var.players[10].facing = 1;
+	var.players[11].facing = 1;
+	var.players[12].facing = 3;
+	command_avance(&var, &var.players[9], NULL);
+	command_droite(&var, &var.players[11], NULL);
+	command_expulse(&var, &var.players[8], NULL);
+	ck_assert_int_eq(p8->actions->size, 1);
+	args = &((t_action *)p8->actions->first->content)->arg;
+	i = 6;
+	while (i <= fd_max)
+	{
+		if (i == 6 || i > 9)
+			ck_assert_int_eq(args->pl[i], 1);
+		else
+			ck_assert_int_eq(args->pl[i], 0);
+		if (i != 8)
+			action_player_clear(&var.players[i], &var);
+		clean_msg_queue(&var.players[i]);
+		++i;
+	}
+	action_player_clear(p8, &var);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], g_str);
 	clean_msg_queue(gfx);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
@@ -77,5 +134,6 @@ TCase*	commands_player_life(void)
 	tc = tcase_create("player_ressources");
 	tcase_add_test(tc, command_player_broadcast_test);
 	tcase_add_test(tc, command_player_incantation_test);
+	tcase_add_test(tc, command_player_expulse_test);
 	return (tc);
 }

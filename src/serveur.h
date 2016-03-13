@@ -160,8 +160,9 @@ void		command_incantation(t_zappy *var, t_player *p, char *args);
 /*
 ** src/commands_player_4.c
 */
-void	command_expulse_send_to_gfx(t_zappy *var, t_player *p, t_action *a);
-int		command_expulse_count_player(t_zappy *var, t_player *p, int *pl);
+void		command_expulse_send_to_gfx(t_zappy *var, t_player *p, t_player *p2,
+				t_action *a);
+int			command_expulse_count_player(t_zappy *var, t_player *p, int *pl);
 void		command_expulse(t_zappy *var, t_player *p, char *args);
 
 
