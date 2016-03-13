@@ -13,7 +13,6 @@ void	action_gfx_mct(t_zappy *var, t_player *p, t_aargs *args)
 		time[1] = var->start_time;
 		time[1].tv_usec++;
 		new = action_create(args, &action_gfx_mct, NULL, time);
-		free(time);
 		action_add(new, var);
 	}
 }
