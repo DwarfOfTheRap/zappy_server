@@ -61,7 +61,7 @@ void	action_player_expulse(t_zappy *var, t_player *p, t_aargs *args)
 		{
 			action_player_move(var, &var->players[i], p->facing);
 			message_player_expulsed(p, &var->players[i]);
-			message_gfx_ppo(var, p);
+			message_gfx_ppo(var, &var->players[i]);
 			action_player_clear(&var->players[i], var);
 		}
 		++i;
