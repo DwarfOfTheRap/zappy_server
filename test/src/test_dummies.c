@@ -5,6 +5,8 @@
 
 void	dummy_t_zappy_without_board(t_zappy *var)
 {
+	int i = 0;
+
 	bzero(var, sizeof(t_zappy));
 	var->actions = lst_init(NULL);
 	var->board = (int ***)0xdeadbeaf;
@@ -12,6 +14,7 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	var->board_size[1] = 2;
 	var->team_size = 3;
 	var->tick = 4;
+	var->fd_max = &i;
 	gettimeofday(&var->start_time, NULL);
 	var->nb_team = 3;
 	var->teams = (t_team *)malloc(sizeof(t_team) * 3);
@@ -22,7 +25,6 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	var->teams[1].remain = 0;
 	strcpy(var->teams[2].name, "GRAPHIC");
 	var->teams[2].remain = 0;
-	var->actions = lst_init(NULL);
 }
 
 void	dummy_t_zappy_add_board(t_zappy *var)
