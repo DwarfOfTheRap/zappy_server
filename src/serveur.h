@@ -45,6 +45,7 @@
 # define LOG_I		4
 # define LOG_C		8
 # define LOG_A		16
+# define LOG_P		32
 
 # define ABS(x)		(x < 0 ? -x : x)
 
@@ -155,6 +156,7 @@ int			command_incantation_can_incant(t_zappy *var, t_player *p,
 				int nb_player);
 int			command_incantation_count_player(t_zappy *var, t_player *p,
 				int *pl);
+void		command_incantation_notification(t_zappy *var, t_aargs *args);
 void		command_incantation(t_zappy *var, t_player *p, char *args);
 
 /*
@@ -310,6 +312,24 @@ void		message_player_message(t_player *p, int square, char *msg);
 ** src/message_player_3.c
 */
 void		message_player_mort(t_player *p);
+
+/*
+** src/pre_action.c
+*/
+void		pre_action_send(t_zappy *var, t_player *p);
+void		pre_action_avance(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_droite(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_gauche(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_expulse(t_zappy *var, t_player *p, t_aargs *args);
+
+/*
+** src/pre_action_2.c
+*/
+void		pre_action_prend(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_pose(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_broadcast(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_fork(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_incantation(t_zappy *var, t_player *p, t_aargs *args);
 
 /*
 ** src/read_arguments.c

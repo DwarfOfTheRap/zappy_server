@@ -23,6 +23,11 @@ void		process_actions(t_zappy *var)
 		lst_delete_elem(&elem, action_free);
 		elem = lst_pop(p->actions, 0);
 		lst_delete_elem(&elem, action_free);
+		if (p->actions->size)
+		{
+			action = p->actions->first->content;
+			action->pre(var, p, &action->arg);
+		}
 	}
 }
 
@@ -88,5 +93,8 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 	if (!action_add(new_action, var))
 		action_free(new_action);
 	else
+	{
 		p->pending_actions++;
+		new_action->pre = g_action[act].pre;
+	}
 }

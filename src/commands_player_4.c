@@ -41,10 +41,10 @@ int		command_expulse_count_player(t_zappy *var, t_player *p, int *pl)
 			(!p2->actions->size || ((a = p2->actions->first->content) &&
 									a->run != &action_player_avance)))
 		{
-			++pl[i];
-			++nb_player;
 			if (var->gfx_client)
 				command_expulse_send_to_gfx(var, p, p2, a);
+			++pl[i];
+			++nb_player;
 		}
 		++i;
 	}
@@ -57,11 +57,8 @@ void	command_expulse(t_zappy *var, t_player *p, char *args)
 
 	(void)args;
 	bzero(&t, sizeof(t_aargs));
-	if (!(t.pl = (int *)malloc(sizeof(int) * MAX_FD)))
-		return (message_player_ko(p));
-	bzero(t.pl, sizeof(int) * MAX_FD);
-	message_gfx_pex(var, p);
-	t.nb = command_expulse_count_player(var, p, t.pl);
+	if (!p->actions->size)
+		pre_action_expulse(var, p, &t);
 	action_add_wrapper(var, p, &t, EXPULSE);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> expulse\n", p->id);

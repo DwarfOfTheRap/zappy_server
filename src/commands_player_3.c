@@ -12,7 +12,8 @@ void	command_fork(t_zappy *var, t_player *p, char *args)
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
 	action_add_wrapper(var, p, &t, FORK);
-	message_gfx_pfk(var, p);
+	if (!p->actions->size)
+		pre_action_fork(var, p, NULL);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> fork\n", p->id);
 }
@@ -89,19 +90,13 @@ void	command_incantation_notification(t_zappy *var, t_aargs *args)
 
 void	command_incantation(t_zappy *var, t_player *p, char *args)
 {
-	int		nb_player;
 	t_aargs	t;
 
 	(void)args;
 	bzero(&t, sizeof(t_aargs));
-	if (!(t.pl = (int *)malloc(sizeof(int) * MAX_FD)))
-		return (message_player_ko(p));
-	bzero(t.pl, sizeof(int) * MAX_FD);
-	nb_player = command_incantation_count_player(var, p, t.pl);
-	t.pl[0] = command_incantation_can_incant(var, p, nb_player);
-	command_incantation_notification(var, &t);
 	action_add_wrapper(var, p, &t, INCANTATION);
-	message_gfx_pic(var, p, t.pl);
+	if (!p->actions->size)
+		pre_action_incantation(var, p, &t);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> incantation\n", p->id);
 }
