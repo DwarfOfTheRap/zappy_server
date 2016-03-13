@@ -49,7 +49,7 @@ t_action	*get_last_action(t_lst_head *list)
 
 	if (!list)
 		return (NULL);
-	if ((elem = list->first))
+	if ((elem = list->last))
 		return ((t_action *)elem->content);
 	return (NULL);
 }

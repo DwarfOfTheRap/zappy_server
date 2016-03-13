@@ -106,6 +106,7 @@ void		rm_teams(t_team **teams, int *nb_team);
 void		rm_board(int ****board, int board_size[2], int i, int j);
 void		cleanup_game(t_zappy *var, t_server *serv);
 void		action_free(void *action);
+void		action_free_player(void *action);
 
 /*
 ** src/commands.c
@@ -415,15 +416,15 @@ int			get_food_number(t_player *p, t_zappy *var);
 /*
 ** src/time.c
 */
-void	update_queue(t_zappy *var);
-void	update_player_actions(t_player *p, t_zappy *var);
-void	update_player_timeofdeath(t_player *p, int old_tick, t_zappy *var);
-void	zappy_update_tick(int tick, t_zappy *var);
+void		update_queue(t_zappy *var);
+void		update_player_actions(t_player *p, t_zappy *var);
+void		update_player_timeofdeath(t_player *p, int old_tick, t_zappy *var);
+void		zappy_update_tick(int tick, t_zappy *var);
 
 /*
 ** src/time_compute.c
 */
-void	compute_action_new_time(t_action *action, t_zappy *var);
-void	compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
+void		compute_action_new_time(t_action *action, t_zappy *var);
+void		compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
 
 #endif

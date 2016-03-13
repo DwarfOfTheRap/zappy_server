@@ -46,14 +46,28 @@ void	cleanup_game(t_zappy *var, t_server *serv)
 		close(serv->sock);
 }
 
+void	action_free_player(void *action)
+{
+	t_action	*a;
+
+	a = (t_action*)action;
+	free(a);
+}
+
 void	action_free(void *action)
 {
 	t_action	*a;
 
 	a = (t_action*)action;
 	if (a->arg.str)
+	{
 		free(a->arg.str);
+		a->arg.str = NULL;
+	}
 	if (a->arg.pl)
+	{
 		free(a->arg.pl);
+		a->arg.pl = NULL;
+	}
 	free(action);
 }
