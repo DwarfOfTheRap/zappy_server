@@ -10,9 +10,9 @@ void	command_prend(t_zappy *var, t_player *p, char *args)
 
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
-	action_add_wrapper(var, p, &t, PREND);
 	if (!p->actions->size)
 		pre_action_prend(var, p, &t);
+	action_add_wrapper(var, p, &t, PREND);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> prend %s\n", p->id, args);
 }
@@ -23,9 +23,9 @@ void	command_pose(t_zappy *var, t_player *p, char *args)
 
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
-	action_add_wrapper(var, p, &t, POSE);
 	if (!p->actions->size)
 		pre_action_pose(var, p, &t);
+	action_add_wrapper(var, p, &t, POSE);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> pose %s\n", p->id, args);
 }
