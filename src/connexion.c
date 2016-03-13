@@ -47,8 +47,8 @@ void	init_client(t_zappy *var, t_player *p)
 	if (p->team->remain)
 	{
 		--p->team->remain;
-		message_gfx_pnw(var, p);
 		player_spawn(p, var);
+		message_gfx_pnw(var, p);
 		if (g_log & LOG_I)
 			printf("[\033[0;34mINFO\033[0m] Client %d: team %s\n", p->id,
 					p->team->name);
