@@ -24,6 +24,7 @@ void	init_gfx(t_zappy *var, t_player *p)
 	{
 		p->status = FD_GFX;
 		--p->team->remain;
+		p->actions = lst_init(NULL);
 		var->gfx_client = p;
 		// save the current time to reverbate it on action queue
 		init_gfx_sub(var);
