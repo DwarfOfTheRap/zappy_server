@@ -14,7 +14,7 @@ void	command_avance(t_zappy *var, t_player *p, char *args)
 	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
 		return ;
 	bzero(t, sizeof(t_aargs));
-	if (!p->actions->size)
+	if (!p->actions.size)
 		pre_action_avance(var, p, NULL);
 	action_add_wrapper(var, p, t, AVANCE);
 }
@@ -29,7 +29,7 @@ void	command_droite(t_zappy *var, t_player *p, char *args)
 	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
 		return ;
 	bzero(t, sizeof(t_aargs));
-	if (!p->actions->size)
+	if (!p->actions.size)
 		pre_action_droite(var, p, NULL);
 	action_add_wrapper(var, p, t, DROITE);
 }
@@ -44,7 +44,7 @@ void	command_gauche(t_zappy *var, t_player *p, char *args)
 	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
 		return ;
 	bzero(t, sizeof(t_aargs));
-	if (!p->actions->size)
+	if (!p->actions.size)
 		pre_action_gauche(var, p, NULL);
 	action_add_wrapper(var, p, t, GAUCHE);
 }
@@ -72,7 +72,7 @@ void	command_inventaire(t_zappy *var, t_player *p, char *args)
 	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
 		return ;
 	bzero(t, sizeof(t_aargs));
-	if (!p->actions->size)
+	if (!p->actions.size)
 		pre_action_inventaire(var, p, NULL);
 	action_add_wrapper(var, p, t, INVENTAIRE);
 }

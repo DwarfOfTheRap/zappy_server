@@ -8,7 +8,7 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	int i = 0;
 
 	bzero(var, sizeof(t_zappy));
-	var->actions = lst_init(NULL);
+	bzero(&var->actions, sizeof(t_lst_head));
 	var->board = (int ***)0xdeadbeaf;
 	var->board_size[0] = 1;
 	var->board_size[1] = 2;
@@ -88,7 +88,7 @@ void	dummy_t_player_client(t_zappy *var, t_player *p)
 	p->snd.pos = p->snd.buf[p->snd.write];
 	p->status = FD_USED;
 	p->timeofdeath = time_generate(1260, var->start_time, var);
-	p->actions = lst_init(NULL);
+	bzero(&p->actions, sizeof(t_lst_head));
 }
 
 void	dummy_t_player(t_zappy *var, t_player *p)
