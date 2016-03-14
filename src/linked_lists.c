@@ -50,10 +50,7 @@ t_lst_elem	*lst_create_no_malloc(void *content)
 
 	if (!(new = (t_lst_elem *)malloc(sizeof(t_lst_elem))))
 		return (NULL);
-	if (!content)
-		new->content = NULL;
-	else
-		new->content = content;
+	new->content = content;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
