@@ -157,7 +157,8 @@ int			command_incantation_can_incant(t_zappy *var, t_player *p,
 				int nb_player);
 int			command_incantation_count_player(t_zappy *var, t_player *p,
 				int *pl);
-void		command_incantation_notification(t_zappy *var, t_aargs *args);
+void		command_incantation_notification(t_zappy *var, t_player *p,
+				int *pl);
 void		command_incantation(t_zappy *var, t_player *p, char *args);
 
 /*
