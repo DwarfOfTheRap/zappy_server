@@ -29,3 +29,5 @@ const t_action_d	g_action[12] = {
 	{&action_player_connect_nbr, NULL, 0}};
 
 int					g_log = 0;
+
+int					g_continue = 1;

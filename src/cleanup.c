@@ -44,6 +44,7 @@ void	cleanup_game(t_zappy *var, t_server *serv)
 	// cleanup action lists
 	if (serv->sock > 0)
 		close(serv->sock);
+	free(var);
 }
 
 void	action_free_player(void *action)

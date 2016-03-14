@@ -220,7 +220,7 @@ int			init(t_zappy *var, t_server *serv, t_arguments *args);
 void		pre_select(t_zappy *var, t_server *serv);
 void		do_select(t_server *serv);
 void		post_select(t_zappy *var, t_server *serv);
-int			main_loop(t_zappy *var, t_server *serv);
+void		main_loop(t_zappy *var, t_server *serv);
 
 /*
 ** src/message.c

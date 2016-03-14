@@ -16,5 +16,6 @@ int		main(int ac, const char **av)
 		exit_arg_error(ret, &args);
 	if (!init(var, &serv, &args))
 		main_loop(var, &serv);
+	cleanup_game(var, &serv);
 	return (0);
 }
