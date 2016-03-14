@@ -34,7 +34,7 @@ START_TEST(message_gfx_pic_test)
 	t_player	*p7 = &var.players[11];
 	t_player	*p8 = &var.players[12];
 	t_player	*gfx = &var.players[13];
-	char		str[] = "pic 4 3 2 9 5 7 11 12\n";
+	char		str[] = "pic 4 3 1 9 5 7 11 12\n";
 
 	dummy_t_zappy_without_board(&var);
 	memset(pl, 0, sizeof(int) * MAX_FD);

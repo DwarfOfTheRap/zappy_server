@@ -11,6 +11,8 @@ SRC := \
 	src/action_player_2.c \
 	src/action_player_3.c \
 	src/action_player_broadcast.c \
+	src/action_queue.c \
+	src/action_queue_2.c \
 	src/check_arguments.c \
 	src/cleanup.c \
 	src/commands.c \
@@ -19,6 +21,7 @@ SRC := \
 	src/commands_player.c \
 	src/commands_player_2.c \
 	src/commands_player_3.c \
+	src/commands_player_4.c \
 	src/connexion.c \
 	src/connexion_2.c \
 	src/do_accept.c \
@@ -26,6 +29,8 @@ SRC := \
 	src/do_write.c \
 	src/exit.c \
 	src/globals.c \
+	src/health.c \
+	src/health_2.c \
 	src/init.c \
 	src/linked_lists.c \
 	src/linked_lists_2.c \
@@ -42,17 +47,18 @@ SRC := \
 	src/message_player.c \
 	src/message_player_2.c \
 	src/message_player_3.c \
+	src/pre_action.c \
+	src/pre_action_2.c \
 	src/read_arguments.c \
 	src/read_arguments_2.c \
 	src/ressources_management.c \
 	src/serveur.c \
-	src/usage.c \
-	src/tstmp_calcs.c \
-	src/action_queue.c \
-	src/action_queue_2.c \
+	src/time.c \
+	src/time_compute.c \
 	src/tools.c \
-	src/usage.c \
-	src/globals.c
+	src/tstmp_calcs.c \
+	src/tstmp_calcs_2.c \
+	src/usage.c
 
 OBJ := $(SRC:.c=.o)
 

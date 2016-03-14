@@ -45,6 +45,7 @@
 # define LOG_I		4
 # define LOG_C		8
 # define LOG_A		16
+# define LOG_P		32
 
 # define ABS(x)		(x < 0 ? -x : x)
 
@@ -71,9 +72,9 @@ void		action_player_expulse(t_zappy *var, t_player *p, t_aargs *args);
 /*
 ** src/action_player_2.c
 */
-void		action_player_voir_sub(t_zappy *var, t_player *p, int k, int l);
+void		action_player_voir_sub_no(t_zappy *var, t_player *p, int k, int l);
+void		action_player_voir_sub_se(t_zappy *var, t_player *p, int k, int l);
 void		action_player_voir(t_zappy *var, t_player *p, t_aargs *args);
-void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_prend(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_pose(t_zappy *var, t_player *p, t_aargs *args);
 
@@ -83,6 +84,7 @@ void		action_player_pose(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_incantation(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_fork(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args);
+void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args);
 
 /*
 ** src/action_player_broadcast.c
@@ -104,6 +106,7 @@ void		rm_teams(t_team **teams, int *nb_team);
 void		rm_board(int ****board, int board_size[2], int i, int j);
 void		cleanup_game(t_zappy *var, t_server *serv);
 void		action_free(void *action);
+void		action_free_player(void *action);
 
 /*
 ** src/commands.c
@@ -143,7 +146,6 @@ void		command_inventaire(t_zappy *var, t_player *p, char *args);
 */
 void		command_prend(t_zappy *var, t_player *p, char *args);
 void		command_pose(t_zappy *var, t_player *p, char *args);
-void		command_expulse(t_zappy *var, t_player *p, char *args);
 void		command_broadcast(t_zappy *var, t_player *p, char *args);
 void		command_connect_nbr(t_zappy *var, t_player *p, char *args);
 
@@ -155,7 +157,18 @@ int			command_incantation_can_incant(t_zappy *var, t_player *p,
 				int nb_player);
 int			command_incantation_count_player(t_zappy *var, t_player *p,
 				int *pl);
+void		command_incantation_notification(t_zappy *var, t_player *p,
+				int *pl);
 void		command_incantation(t_zappy *var, t_player *p, char *args);
+
+/*
+** src/commands_player_4.c
+*/
+void		command_expulse_send_to_gfx(t_zappy *var, t_player *p, t_player *p2,
+				t_action *a);
+int			command_expulse_count_player(t_zappy *var, t_player *p, int *pl);
+void		command_expulse(t_zappy *var, t_player *p, char *args);
+
 
 /*
 ** src/connexion.c
@@ -303,6 +316,24 @@ void		message_player_message(t_player *p, int square, char *msg);
 void		message_player_mort(t_player *p);
 
 /*
+** src/pre_action.c
+*/
+void		pre_action_avance(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_droite(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_gauche(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_expulse(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_inventaire(t_zappy *var, t_player *p, t_aargs *args);
+
+/*
+** src/pre_action_2.c
+*/
+void		pre_action_prend(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_pose(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_broadcast(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_fork(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_incantation(t_zappy *var, t_player *p, t_aargs *args);
+
+/*
 ** src/read_arguments.c
 */
 int			z_error(char *str);
@@ -340,19 +371,25 @@ void		usage(void);
 /*
 ** src/tstmp_calcs.c
 */
-int			time_compare(t_tstmp *time1, t_tstmp *time2);
+int			time_compare(t_tstmp time1, t_tstmp time2);
 t_tstmp		time_create(double seconds);
-t_tstmp		time_generate(double ref, t_zappy *var);
-double		time_double(t_tstmp *time);
+t_tstmp		time_generate(int ref, t_tstmp start, t_zappy *var);
+double		time_double(t_tstmp time);
 void		time_add(t_tstmp *time1, t_tstmp *time2);
+
+/*
+** src/tstmp_calcs.c
+*/
+t_tstmp		time_sub(t_tstmp time1, t_tstmp time2);
+double		time_elapsed(t_tstmp time1, t_tstmp time2);
 
 /*
 ** src/action_queue.c
 */
-void		process_actions(t_tstmp *start, t_zappy *var);
+void		process_actions(t_zappy *var);
 int			action_add(t_action *action, t_zappy *var);
 t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
-				t_aargs*), t_player *player, t_tstmp time);
+				t_aargs*), t_player *player, t_tstmp *time);
 void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 				int act);
 
@@ -360,4 +397,36 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 ** src/action_queue_2.c
 */
 void		action_player_clear(t_player *player, t_zappy *var);
+t_action*	action_player_first(t_player *player, t_zappy *var);
+t_action	*get_first_action(t_lst_head *list);
+t_action	*get_last_action(t_lst_head *list);
+
+/*
+** src/health.c
+*/
+void		check_players_life(t_zappy *var);
+void		player_spawn(t_player *p, t_zappy *var);
+void		player_die(t_zappy *var, t_player *p);
+void		player_eat(t_player *p, t_zappy *var);
+void		player_vomit(t_player *p, t_zappy *var);
+
+/*
+** src/health_2.c
+*/
+int			get_food_number(t_player *p, t_zappy *var);
+
+/*
+** src/time.c
+*/
+void		update_queue(int old_tick, t_zappy *var);
+void		update_player_actions(t_player *p, int old_tick, t_zappy *var);
+void		update_player_timeofdeath(t_player *p, int old_tick, t_zappy *var);
+void		zappy_update_tick(int tick, t_zappy *var);
+
+/*
+** src/time_compute.c
+*/
+void		compute_action_new_time(t_action *action,int old_tick, t_zappy *var);
+void		compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
+
 #endif

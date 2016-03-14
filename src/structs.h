@@ -49,7 +49,7 @@ typedef struct			s_player
 	int			id;
 	int			inv[6];
 	int			coord[2];
-	int			pending_actions;
+	t_lst_head	*actions;
 	t_team		*team;
 	t_tstmp		timeofdeath;
 	u_short		facing:2;
@@ -83,10 +83,12 @@ typedef struct			s_aargs
 
 typedef struct			s_action
 {
-	t_aargs		arg;
+	t_aargs		*arg;
 	void		(*run)(t_zappy *var, t_player *p, t_aargs *arg);
+	void		(*pre)(t_zappy *var, t_player *p, t_aargs *arg);
 	t_player	*player;
-	t_tstmp		time;
+	t_tstmp		trigger_t;
+	t_tstmp		creation_t;
 }						t_action;
 
 typedef struct			s_cmd
@@ -100,6 +102,7 @@ typedef struct			s_cmd
 typedef struct			s_action_d
 {
 	void	(*f)(t_zappy*, t_player*, t_aargs*);
+	void	(*pre)(t_zappy*, t_player*, t_aargs*);
 	int		rel_time;
 }						t_action_d;
 

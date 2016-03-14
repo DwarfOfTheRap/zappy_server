@@ -61,14 +61,16 @@ START_TEST(connexion_affect_team_gfx)
 	t_player	*p1 = &var.players[5];
 	t_player	*p2 = &var.players[6];
 	char		str[] = "msz 2 1\nsgt 4\nbct 0 0 0 0 0 0 0 0 0\nbct 1 0 0 0 0 0 0 0 0\n" \
-						"tna toto\ntna tutu\nppo 5 0 0 1\nppo 6 0 0 1\n";
+						"tna toto\ntna tutu\npnw 5 4 3 3 1 toto\npnw 6 4 3 3 1 toto\n";
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_zappy_add_board(&var);
 	dummy_t_zappy_add_remaining_in_team(&var);
 	dummy_t_player_client(&var, gfx);
 	dummy_t_player(&var, p1);
+	dummy_t_player_default(p1);
 	dummy_t_player(&var, p2);
+	dummy_t_player_default(p2);
 	var.fd_max = &fd_max;
 	affect_team(&var, gfx, "GRAPHIC", 7);
 	ck_assert_ptr_eq(&var.teams[2], gfx->team);
@@ -77,7 +79,7 @@ START_TEST(connexion_affect_team_gfx)
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.write], str);
 	ck_assert_ptr_eq(var.gfx_client, gfx);
 	rm_teams(&var.teams, &var.nb_team);
-	rm_board(&var.board, var.board_size, 0, 0);
+	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 	clean_msg_queue(gfx);
 }
 END_TEST

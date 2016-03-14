@@ -18,7 +18,38 @@ static int	cmp(void *data1, void *data2)
 void		action_player_clear(t_player *player, t_zappy *var)
 {
 	t_lst_head	*list;
+	t_lst_head	*list_p;
 
 	list = var->actions;
-	lst_free_match(list, player, cmp, free); // change 'free' to 'action_free'
+	list_p = player->actions;
+	lst_free_match(list, player, cmp, action_free);
+	lst_delete(list_p, free);
+	player->actions->size = 0;
+}
+
+t_action*	action_player_first(t_player *player, t_zappy *var)
+{
+	return (lst_first_match(var->actions, player, cmp));
+}
+
+t_action	*get_first_action(t_lst_head *list)
+{
+	t_lst_elem	*elem;
+
+	if (!list)
+		return (NULL);
+	if ((elem = list->first))
+		return ((elem->content) ? (t_action *)elem->content : NULL);
+	return (NULL);
+}
+
+t_action	*get_last_action(t_lst_head *list)
+{
+	t_lst_elem	*elem;
+
+	if (!list)
+		return (NULL);
+	if ((elem = list->last))
+		return ((elem->content) ? (t_action *)elem->content : NULL);
+	return (NULL);
 }

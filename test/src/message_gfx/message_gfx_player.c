@@ -7,7 +7,7 @@ START_TEST(message_gfx_pnw_test)
 	t_zappy		var;
 	t_player	*p = &var.players[5];
 	t_player	*gfx = &var.players[6];
-	char		str[] = "pnw 5 4 3 3 2 toto\n";
+	char		str[] = "pnw 5 4 3 3 1 toto\n";
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);
@@ -41,7 +41,7 @@ START_TEST(message_gfx_plv_test)
 	t_zappy		var;
 	t_player	*p = &var.players[5];
 	t_player	*gfx = &var.players[6];
-	char		str[] = "plv 5 2\n";
+	char		str[] = "plv 5 1\n";
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);
@@ -58,7 +58,7 @@ START_TEST(message_gfx_pin_test)
 	t_zappy		var;
 	t_player	*p = &var.players[5];
 	t_player	*gfx = &var.players[6];
-	char		str[] = "pin 5 4 3 0 5 6 7 8 9 10\n";
+	char		str[] = "pin 5 4 3 10 5 6 7 8 9 10\n";
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);

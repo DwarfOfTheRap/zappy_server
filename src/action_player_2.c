@@ -5,7 +5,7 @@
 extern int			g_log;
 extern const char	g_ressources[7][16];
 
-void	action_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
+void	action_player_voir_sub_no(t_zappy *var, t_player *p, int k, int l)
 {
 	int		i;
 	int		j;
@@ -13,7 +13,7 @@ void	action_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
 	int		square[2];
 
 	i = 0;
-	while (i < p->level + 1)
+	while (i <= p->level)
 	{
 		j = 0;
 		count = (i * 2) + 1;
@@ -32,6 +32,33 @@ void	action_player_voir_sub(t_zappy *var, t_player *p, int k, int l)
 	}
 }
 
+void	action_player_voir_sub_se(t_zappy *var, t_player *p, int k, int l)
+{
+	int		i;
+	int		j;
+	int		count;
+	int		square[2];
+
+	i = 0;
+	while (i <= p->level)
+	{
+		count = (i * 2) + 1;
+		j = count - 1;
+		square[k] = ((p->coord[k] + (i * l)) + var->board_size[k]) %
+			var->board_size[k];
+		while (j >= 0)
+		{
+			square[!k] = ((p->coord[!k] - count / 2 + j) + var->board_size[!k])
+				% var->board_size[!k];
+			if (i || j)
+				add_msg_to_player(p, ", ", 2, 0);
+			message_player_voir_square(var, p, square);
+			--j;
+		}
+		++i;
+	}
+}
+
 void	action_player_voir(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		k;
@@ -41,30 +68,13 @@ void	action_player_voir(t_zappy *var, t_player *p, t_aargs *args)
 	add_msg_to_player(p, "{", 1, 0);
 	k = (p->facing == 0 || p->facing == 2) ? 0 : 1;
 	l = (p->facing == 0 || p->facing == 1) ? 1 : -1;
-	action_player_voir_sub(var, p, k, l);
+	if (p->facing == 0 || p->facing == 3)
+		action_player_voir_sub_no(var, p, k, l);
+	else
+		action_player_voir_sub_se(var, p, k, l);
 	add_msg_to_player(p, "}", 1, 1);
 	if (g_log & LOG_A)
 		printf("[\033[0;35mACTION\033[0m] p %d voir\n", p->id);
-}
-
-void	action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args)
-{
-	int		ret;
-	char	str[128];
-
-	(void)var;
-	(void)args;
-	ret = sprintf(str, "{%s %d, %s %d, %s %d, %s %d, %s %d, %s %d, %s %d}",
-		g_ressources[0], 0,
-		g_ressources[1], p->inv[0],
-		g_ressources[2], p->inv[1],
-		g_ressources[3], p->inv[2],
-		g_ressources[4], p->inv[3],
-		g_ressources[5], p->inv[4],
-		g_ressources[6], p->inv[5]);
-	add_msg_to_player(p, str, ret, 1);
-	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d inventaire\n", p->id);
 }
 
 void	action_player_prend(t_zappy *var, t_player *p, t_aargs *args)
@@ -81,7 +91,7 @@ void	action_player_prend(t_zappy *var, t_player *p, t_aargs *args)
 		--var->board[p->coord[0]][p->coord[1]][i];
 		if (i == 0)
 		{
-			; // need to add life to player
+			player_eat(p, var);
 			add_ressource_on_random_square(var, 0);
 		}
 		else
@@ -105,11 +115,10 @@ void	action_player_pose(t_zappy *var, t_player *p, t_aargs *args)
 		++i;
 	if (i == 7)
 		return (message_command_format_error(p, "pose", args->str));
-	// need to replace the hard code one with correct condition relatif to life
-	if ((i == 0 && 1) && (i > 0 && p->inv[i - 1] > 0))
+	if ((i == 0 && get_food_number(p, var)) || (i > 0 && p->inv[i - 1] > 0))
 	{
 		if (i == 0)
-			; // remove life to player
+			player_vomit(p, var);
 		else
 			--p->inv[i - 1];
 		++var->board[p->coord[0]][p->coord[1]][i];

@@ -45,7 +45,7 @@ void	message_player_voir_square(t_zappy *var, t_player *p, int square[2])
 	int		i;
 
 	i = 0;
-	while (i < MAX_FD)
+	while (i <= *var->fd_max)
 	{
 		if (i != p->id && var->players[i].status == FD_CLIENT &&
 			var->players[i].coord[0] == square[0] &&

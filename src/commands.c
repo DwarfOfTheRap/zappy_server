@@ -54,9 +54,11 @@ void		find_command(t_zappy *var, t_player *p, char *str, size_t len)
 	int				ret;
 	t_cmd const		*cmd = get_cmd_list();
 
-	i = 0;
+	if (p->actions->size >= 10)
+		return ;
+	i = -1;
 	str[len] = '\0';
-	while (i < 21)
+	while (++i < 21)
 	{
 		if ((ret = command_match(cmd[i], str)))
 		{
@@ -70,7 +72,6 @@ void		find_command(t_zappy *var, t_player *p, char *str, size_t len)
 				cmd[i].run(var, p, str + ret);
 			return ;
 		}
-		++i;
 	}
 	if (i == 21)
 		message_unknown_command(p, str);

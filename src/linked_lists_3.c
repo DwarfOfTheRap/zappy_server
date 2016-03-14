@@ -28,3 +28,21 @@ void	lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*, void*))
 	}
 	head->size++;
 }
+
+void*	lst_first_match(t_lst_head *hd, void *dt, int (*cmp)(void*, void*))
+{
+	t_lst_elem	*cursor;
+	t_lst_elem	*prev_save;
+
+	if (!hd)
+		return (NULL);
+	cursor = hd->first;
+	while (cursor)
+	{
+		prev_save = cursor;
+		cursor = cursor->next;
+		if (cmp(prev_save->content, dt))
+			return (prev_save->content);
+	}
+	return (NULL);
+}

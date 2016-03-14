@@ -11,6 +11,7 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 	t_player	*p;
 
 	p = &var->players[fd];
+	message_gfx_pdi(var, p);
 	close(fd);
 	if (p->status == FD_GFX)
 	{
@@ -21,7 +22,8 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 	clean_msg_queue(p);
 	if (g_log & LOG_I)
 		printf("[\033[0;34mINFO\033[0m] Client %d disconnected\n", fd);
-	// need to clean action of this player from action queue
+	action_player_clear(p, var);
+	free(p->actions);
 	if (fd == serv->fd_max)
 		--serv->fd_max;
 	return (1);
@@ -46,6 +48,8 @@ void	init_client(t_zappy *var, t_player *p)
 	if (p->team->remain)
 	{
 		--p->team->remain;
+		player_spawn(p, var);
+		message_gfx_pnw(var, p);
 		if (g_log & LOG_I)
 			printf("[\033[0;34mINFO\033[0m] Client %d: team %s\n", p->id,
 					p->team->name);

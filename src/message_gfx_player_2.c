@@ -23,7 +23,7 @@ void	message_gfx_pic(t_zappy *var, t_player *p, int *pl)
 	if (!var->gfx_client)
 		return ;
 	ret = sprintf(str, "pic %d %d %d %d", p->coord[1], p->coord[0],
-		p->level + 1, p->id);
+		p->level, p->id);
 	add_msg_to_player(var->gfx_client, str, ret, 0);
 	i = 3;
 	while (i <= *(var->fd_max))

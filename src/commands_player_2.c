@@ -3,65 +3,63 @@
 #include "serveur.h"
 
 extern int			g_log;
-extern const char	g_ressources[7][16];
 
 void	command_prend(t_zappy *var, t_player *p, char *args)
 {
-	t_aargs		t;
+	t_aargs		*t;
 
-	bzero(&t, sizeof(t_aargs));
-	t.str = strdup(args);
-	action_add_wrapper(var, p, &t, PREND);
-	message_gfx_pgt(var, p, 0);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> prend %s\n", p->id, args);
+	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
+		return ;
+	bzero(t, sizeof(t_aargs));
+	t->str = strdup(args);
+	if (!p->actions->size)
+		pre_action_prend(var, p, t);
+	action_add_wrapper(var, p, t, PREND);
 }
 
 void	command_pose(t_zappy *var, t_player *p, char *args)
 {
-	t_aargs		t;
+	t_aargs		*t;
 
-	bzero(&t, sizeof(t_aargs));
-	t.str = strdup(args);
-	action_add_wrapper(var, p, &t, POSE);
-	message_gfx_pdr(var, p, 0);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> pose %s\n", p->id, args);
-}
-
-void	command_expulse(t_zappy *var, t_player *p, char *args)
-{
-	t_aargs		t;
-
-	bzero(&t, sizeof(t_aargs));
-	(void)args;
-	action_add_wrapper(var, p, &t, EXPULSE);
-	message_gfx_pex(var, p);
-	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> expulse\n", p->id);
+	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
+		return ;
+	bzero(t, sizeof(t_aargs));
+	t->str = strdup(args);
+	if (!p->actions->size)
+		pre_action_pose(var, p, t);
+	action_add_wrapper(var, p, t, POSE);
 }
 
 void	command_broadcast(t_zappy *var, t_player *p, char *args)
 {
-	t_aargs		t;
+	t_aargs		*t;
 
-	bzero(&t, sizeof(t_aargs));
-	t.str = strdup(args);
-	action_add_wrapper(var, p, &t, BROADCAST);
-	message_gfx_pbc(var, p, args);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> broadcast %s\n", p->id,
 				args);
+	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
+		return ;
+	bzero(t, sizeof(t_aargs));
+	t->str = strdup(args);
+	if (!p->actions->size)
+		pre_action_broadcast(var, p, t);
+	action_add_wrapper(var, p, t, BROADCAST);
 }
 
 void	command_connect_nbr(t_zappy *var, t_player *p, char *args)
 {
-	t_aargs		t;
+	t_aargs		*t;
 
-	bzero(&t, sizeof(t_aargs));
-	(void)args;
-	(void)var;
-	action_add_wrapper(var, p, &t, CONNECT_NBR);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> connect_nbr\n", p->id);
+	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
+		return ;
+	bzero(t, sizeof(t_aargs));
+	(void)args;
+	(void)var;
+	action_add_wrapper(var, p, t, CONNECT_NBR);
 }

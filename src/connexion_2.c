@@ -10,10 +10,10 @@ void	init_gfx_sub(t_zappy *var)
 	message_gfx_mct(var, &i);
 	message_gfx_tna(var);
 	i = 3;
-	while (i++ < *var->fd_max)
+	while (i++ <= *var->fd_max)
 	{
 		if (var->players[i].status == FD_CLIENT)
-			message_gfx_ppo(var, &var->players[i]);
+			message_gfx_pnw(var, &var->players[i]);
 	}
 	// need to iter on the eggs
 }
@@ -24,6 +24,7 @@ void	init_gfx(t_zappy *var, t_player *p)
 	{
 		p->status = FD_GFX;
 		--p->team->remain;
+		p->actions = lst_init(NULL);
 		var->gfx_client = p;
 		// save the current time to reverbate it on action queue
 		init_gfx_sub(var);
