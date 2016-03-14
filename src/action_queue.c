@@ -12,7 +12,7 @@ void		process_actions(t_zappy *var)
 	t_action	*action;
 	t_player	*p;
 
-	list = var->actions;
+	list = &var->actions;
 	while ((action = get_first_action(list))
 			&& time_compare(action->trigger_t, var->start_time))
 	{
@@ -20,11 +20,11 @@ void		process_actions(t_zappy *var)
 		action->run(var, p, action->arg);
 		elem = lst_pop(list, 0);
 		lst_delete_elem(&elem, action_free);
-		elem = lst_pop(p->actions, 0);
+		elem = lst_pop(&p->actions, 0);
 		lst_delete_elem(&elem, action_free_player);
-		if (p->actions->size)
+		if (p->actions.size)
 		{
-			action = get_first_action(p->actions);
+			action = get_first_action(&p->actions);
 			if (action && action->pre)
 				action->pre(var, p, action->arg);
 		}
@@ -48,14 +48,14 @@ int			action_add(t_action *action, t_zappy *var)
 	t_player	*p;
 
 	p = action->player;
-	if (!action || p->actions->size >= 10)
+	if (!action || p->actions.size >= 10)
 		return (0);
 	new = lst_create(action, sizeof(t_action));
 	new_p = lst_create_no_malloc(action);
 	if (new && new_p)
 	{
-		lst_insert(var->actions, new, cmp);
-		lst_insert(p->actions, new_p, cmp);
+		lst_insert(&var->actions, new, cmp);
+		lst_insert(&p->actions, new_p, cmp);
 		return (1);
 	}
 	return (0);
@@ -83,7 +83,7 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 	t_action	*new_action;
 	t_action	*last_action;
 
-	last_action = get_last_action(p->actions);
+	last_action = get_last_action(&p->actions);
 	if (!last_action)
 		time[0] = var->start_time;
 	else

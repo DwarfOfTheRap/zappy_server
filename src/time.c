@@ -6,7 +6,7 @@ void	update_queue(int old_tick, t_zappy *var)
 	t_lst_elem	*cursor;
 	t_action	*action;
 
-	list = var->actions;
+	list = &var->actions;
 	cursor = list->first;
 	while (cursor)
 	{
@@ -22,7 +22,7 @@ void	update_player_actions(t_player *p, int old_tick, t_zappy *var)
 	t_lst_elem	*cursor;
 	t_action	*action;
 
-	list = p->actions;
+	list = &p->actions;
 	cursor = list->first;
 	while(cursor)
 	{

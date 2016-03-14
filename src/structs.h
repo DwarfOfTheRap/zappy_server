@@ -49,7 +49,7 @@ typedef struct			s_player
 	int			id;
 	int			inv[6];
 	int			coord[2];
-	t_lst_head	*actions;
+	t_lst_head	actions;
 	t_team		*team;
 	t_tstmp		timeofdeath;
 	u_short		facing:2;
@@ -68,7 +68,7 @@ typedef struct			s_zappy
 	int			nb_team;
 	int			*fd_max;
 	t_team		*teams;
-	t_lst_head	*actions;
+	t_lst_head	actions;
 	t_tstmp		start_time;
 	t_player	players[MAX_FD];
 	t_player	*gfx_client;
