@@ -5,11 +5,32 @@ extern int			g_log;
 extern const int	g_incant[7][7];
 extern const char	g_ressources[7][16];
 
+void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
+{
+	int		i;
+	int		nb_player;
+
+	i = 3;
+	nb_player = 0;
+	while (i <= *var->fd_max)
+	{
+		if (args->pl[i])
+		{
+			if (var->players[i].status == FD_CLIENT)
+				++nb_player;
+			var->actions->size = (i == p->id) ? 1 : 0;
+		}
+		++i;
+	}
+	args->pl[0] = nb_player >= g_incant[p->level - 1][0];
+}
+
 void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 
 	i = 3;
+	action_player_incantation_sub(var, p, args);
 	message_gfx_pie(var, p, args->pl[0]);
 	while (i <= *var->fd_max)
 	{

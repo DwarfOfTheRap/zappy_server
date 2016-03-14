@@ -85,6 +85,7 @@ void	command_incantation_notification(t_zappy *var, t_player *p, int *pl)
 				message_player_ko(p2);
 				action_player_clear(p2, var);
 			}
+			p2->actions->size = 10;
 			message_player_incantation_start(p2);
 		}
 		++i;
