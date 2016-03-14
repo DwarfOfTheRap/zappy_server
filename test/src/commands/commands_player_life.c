@@ -105,7 +105,7 @@ START_TEST(command_player_expulse_test)
 	command_droite(&var, &var.players[11], NULL);
 	command_expulse(&var, &var.players[8], NULL);
 	ck_assert_int_eq(p8->actions->size, 1);
-	args = &((t_action *)p8->actions->first->content)->arg;
+	args = get_first_action(p8->actions)->arg;
 	ck_assert_int_eq(args->nb, 4);
 	i = 6;
 	while (i <= fd_max)

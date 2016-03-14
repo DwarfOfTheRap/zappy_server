@@ -51,7 +51,7 @@ int			action_add(t_action *action, t_zappy *var)
 	if (!action || p->actions->size >= 10)
 		return (0);
 	new = lst_create(action, sizeof(t_action));
-	new_p = lst_create(action, sizeof(t_action));
+	new_p = lst_create_no_malloc(action);
 	if (new && new_p)
 	{
 		lst_insert(var->actions, new, cmp);
@@ -68,12 +68,7 @@ t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
 
 	if (!(new = (t_action*)malloc(sizeof(t_action))))
 		return (NULL);
-	if (!(new->arg = (t_aargs*)malloc(sizeof(t_aargs))))
-	{
-		free(new);
-		return (NULL);
-	}
-	memcpy(&new->arg, arg, sizeof(t_aargs));
+	new->arg = arg;
 	new->run = f;
 	new->player = player;
 	new->creation_t = time[0];
