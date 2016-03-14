@@ -26,3 +26,10 @@ void	strdel(char **str)
 	free(*str);
 	*str = NULL;
 }
+
+int		same_square(int *s1, int *s2)
+{
+	if (s1[0] == s2[0] && s1[1] == s2[1])
+		return (1);
+	return (0);
+}

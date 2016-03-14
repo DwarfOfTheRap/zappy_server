@@ -362,6 +362,7 @@ void		dispatch_incantation_ressources(t_zappy *var, t_player *p,
 */
 char		*strjoin(char *str1, char *str2);
 void		strdel(char **str);
+int			same_square(int *s1, int *s2);
 
 /*
 ** src/usage.c

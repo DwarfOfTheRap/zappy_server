@@ -37,7 +37,7 @@ int		command_expulse_count_player(t_zappy *var, t_player *p, int *pl)
 		p2 = &var->players[i];
 		a = NULL;
 		if (p2->status == FD_CLIENT && i != p->id &&
-			p2->coord[0] == p->coord[0] && p2->coord[0] == p->coord[0] &&
+			same_square(p2->coord, p->coord) &&
 			(!p2->actions->size || ((a = p2->actions->first->content) &&
 									a->run != &action_player_avance)))
 		{

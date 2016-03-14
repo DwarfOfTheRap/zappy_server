@@ -51,8 +51,7 @@ int		command_incantation_count_player(t_zappy *var, t_player *p, int *pl)
 	{
 		if (var->players[i].status == FD_CLIENT &&
 			var->players[i].level == p->level &&
-			var->players[i].coord[0] == p->coord[0] &&
-			var->players[i].coord[0] == p->coord[0])
+			same_square(var->players[i].coord, p->coord))
 		{
 			++pl[i];
 			++nb_player;
