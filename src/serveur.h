@@ -406,7 +406,7 @@ t_action	*get_last_action(t_lst_head *list);
 */
 void		check_players_life(t_zappy *var);
 void		player_spawn(t_player *p, t_zappy *var);
-void		player_die(t_player *p);
+void		player_die(t_zappy *var, t_player *p);
 void		player_eat(t_player *p, t_zappy *var);
 void		player_vomit(t_player *p, t_zappy *var);
 
