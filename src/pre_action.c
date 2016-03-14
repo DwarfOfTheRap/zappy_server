@@ -50,3 +50,11 @@ void	pre_action_expulse(t_zappy *var, t_player *p, t_aargs *args)
 	if (g_log & LOG_P)
 		printf("[\033[0;36mPRE-ACTION\033[0m] p %d -> expulse\n", p->id);
 }
+
+void	pre_action_inventaire(t_zappy *var, t_player *p, t_aargs *args)
+{
+	(void)args;
+	message_gfx_pin(var, p);
+	if (g_log & LOG_P)
+		printf("[\033[0;36mPRE-ACTION\033[0m] p %d -> inventaire\n", p->id);
+}

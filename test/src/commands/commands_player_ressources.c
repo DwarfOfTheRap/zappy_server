@@ -27,15 +27,20 @@ END_TEST
 START_TEST(command_player_inventaire_test)
 {
 	t_zappy		var;
+	t_player	*gfx = &var.players[5];
 	t_player	*p = &var.players[6];
 	t_action	*action;
+	char		gstr[] = "pin 6 0 0 10 0 0 0 0 0 0\n";
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);
+	dummy_t_player_gfx(&var, gfx);
 	command_inventaire(&var, p, NULL);
 	action = p->actions->first->content;
 	ck_assert_ptr_eq(action->run, &action_player_inventaire);
+	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(p);
+	clean_msg_queue(gfx);
 	action_player_clear(p, &var);
 	rm_teams(&var.teams, &var.nb_team);
 }

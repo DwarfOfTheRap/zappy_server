@@ -72,5 +72,7 @@ void	command_inventaire(t_zappy *var, t_player *p, char *args)
 	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
 		return ;
 	bzero(t, sizeof(t_aargs));
+	if (!p->actions->size)
+		pre_action_inventaire(var, p, NULL);
 	action_add_wrapper(var, p, t, INVENTAIRE);
 }

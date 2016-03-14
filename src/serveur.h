@@ -322,6 +322,7 @@ void		pre_action_avance(t_zappy *var, t_player *p, t_aargs *args);
 void		pre_action_droite(t_zappy *var, t_player *p, t_aargs *args);
 void		pre_action_gauche(t_zappy *var, t_player *p, t_aargs *args);
 void		pre_action_expulse(t_zappy *var, t_player *p, t_aargs *args);
+void		pre_action_inventaire(t_zappy *var, t_player *p, t_aargs *args);
 
 /*
 ** src/pre_action_2.c

@@ -19,7 +19,7 @@ const t_action_d	g_action[12] = {
 	{&action_player_droite, &pre_action_droite, 7},
 	{&action_player_gauche, &pre_action_gauche, 7},
 	{&action_player_voir, NULL, 7},
-	{&action_player_inventaire, NULL, 1},
+	{&action_player_inventaire, &pre_action_inventaire, 1},
 	{&action_player_prend, &pre_action_prend, 7},
 	{&action_player_pose, &pre_action_pose, 7},
 	{&action_player_expulse, &pre_action_expulse, 7},
