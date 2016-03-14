@@ -52,8 +52,8 @@ void	message_gfx_pin(t_zappy *var, t_player *p)
 
 void	message_gfx_pex(t_zappy *var, t_player *p)
 {
-	int		ret;
-	char	str[64];
+	int			ret;
+	char		str[64];
 
 	if (!var->gfx_client)
 		return ;

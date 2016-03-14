@@ -9,7 +9,7 @@ int			get_opt_verbose(t_main_arg const m_arg, int *i)
 	int			j;
 	int			error;
 	char		*ret;
-	const char	arg[6] = "weica";
+	const char	arg[7] = "weicap";
 
 	++(*i);
 	if ((*i < m_arg.ac && get_opt(m_arg.av[*i]) != 7) || *i >= m_arg.ac)

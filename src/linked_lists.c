@@ -44,6 +44,21 @@ t_lst_elem	*lst_create(void *content, size_t content_size)
 	return (new);
 }
 
+t_lst_elem	*lst_create_no_malloc(void *content)
+{
+	t_lst_elem		*new;
+
+	if (!(new = (t_lst_elem *)malloc(sizeof(t_lst_elem))))
+		return (NULL);
+	if (!content)
+		new->content = NULL;
+	else
+		new->content = content;
+	new->next = NULL;
+	new->prev = NULL;
+	return (new);
+}
+
 void		lst_pushfront(t_lst_head *head, t_lst_elem *new)
 {
 	if (head && new)

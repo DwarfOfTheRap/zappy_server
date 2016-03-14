@@ -59,15 +59,16 @@ void	action_free(void *action)
 	t_action	*a;
 
 	a = (t_action*)action;
-	if (a->arg.str)
+	if (a->arg->str)
 	{
-		free(a->arg.str);
-		a->arg.str = NULL;
+		free(a->arg->str);
+		a->arg->str = NULL;
 	}
-	if (a->arg.pl)
+	if (a->arg->pl)
 	{
-		free(a->arg.pl);
-		a->arg.pl = NULL;
+		free(a->arg->pl);
+		a->arg->pl = NULL;
 	}
+	free(a->arg);
 	free(action);
 }

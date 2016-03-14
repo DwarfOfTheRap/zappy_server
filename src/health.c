@@ -11,7 +11,7 @@ void		check_players_life(t_zappy *var)
 		if (var->players[i].status == FD_CLIENT
 			&& var->players[i].timeofdeath.tv_sec
 			&& time_compare(var->players[i].timeofdeath, var->start_time))
-			player_die(&var->players[i]);
+			player_die(var, &var->players[i]);
 		i++;
 	}
 }
@@ -26,12 +26,19 @@ void		player_spawn(t_player *p, t_zappy *var)
 	p->coord[0] = rand() % var->board_size[0];
 	p->coord[1] = rand() % var->board_size[1];
 	p->facing = rand() % 4;
-	p->actions = lst_init(NULL);
 }
 
-void		player_die(t_player *p)
+void		player_die(t_zappy *var, t_player *p)
 {
+	int		i;
+
 	p->status = FD_CLOSE;
+	i = 1;
+	while (i < 7)
+	{
+		var->board[p->coord[0]][p->coord[1]][i] += p->inv[i - 1];
+		++i;
+	}
 	message_player_mort(p);
 }
 

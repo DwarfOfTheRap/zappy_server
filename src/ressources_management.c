@@ -7,6 +7,7 @@ void	add_ressource_on_random_square(t_zappy *var, int res)
 	pos[0] = rand() % var->board_size[0];
 	pos[1] = rand() % var->board_size[1];
 	++var->board[pos[0]][pos[1]][res];
+	message_gfx_bct(var, pos);
 }
 
 void	add_ressource(t_zappy *var, int res, int nb)

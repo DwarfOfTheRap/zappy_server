@@ -7,14 +7,17 @@ extern const int	g_incant[7][7];
 
 void	command_fork(t_zappy *var, t_player *p, char *args)
 {
-	t_aargs		t;
+	t_aargs		*t;
 
-	bzero(&t, sizeof(t_aargs));
-	t.str = strdup(args);
-	action_add_wrapper(var, p, &t, FORK);
-	message_gfx_pfk(var, p);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> fork\n", p->id);
+	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
+		return ;
+	bzero(t, sizeof(t_aargs));
+	t->str = strdup(args);
+	action_add_wrapper(var, p, t, FORK);
+	if (!p->actions->size)
+		pre_action_fork(var, p, NULL);
 }
 
 int		command_incantation_can_incant(t_zappy *var, t_player *p, int nb_player)
@@ -54,34 +57,36 @@ int		command_incantation_count_player(t_zappy *var, t_player *p, int *pl)
 			++pl[i];
 			++nb_player;
 		}
+		else
+			pl[i] = 0;
 		++i;
 	}
 	return (nb_player);
 }
 
-void	command_incantation_notification(t_zappy *var, t_aargs *args)
+void	command_incantation_notification(t_zappy *var, t_player *p, int *pl)
 {
 	int			i;
-	t_player	*p;
+	t_player	*p2;
 	t_action	*a;
 
 	i = 3;
-	while (i <= *(var->fd_max))
+	while (i <= *var->fd_max)
 	{
-		if (args->pl[i])
+		if (pl[i])
 		{
-			p = &var->players[i];
-			if (p->actions->size)
+			p2 = &var->players[i];
+			if (p2 != p && p2->actions->size)
 			{
-				a = p->actions->first->content;
+				a = get_first_action(p2->actions);
 				if (a->run == &action_player_avance ||
 						a->run == &action_player_droite ||
 						a->run == &action_player_gauche)
-					message_gfx_ppo(var, p);
-				message_player_ko(p);
-				action_player_clear(p, var);
+					message_gfx_ppo(var, p2);
+				message_player_ko(p2);
+				action_player_clear(p2, var);
 			}
-			message_player_incantation_start(p);
+			message_player_incantation_start(p2);
 		}
 		++i;
 	}
@@ -89,19 +94,15 @@ void	command_incantation_notification(t_zappy *var, t_aargs *args)
 
 void	command_incantation(t_zappy *var, t_player *p, char *args)
 {
-	int		nb_player;
-	t_aargs	t;
+	t_aargs		*t;
 
 	(void)args;
-	bzero(&t, sizeof(t_aargs));
-	if (!(t.pl = (int *)malloc(sizeof(int) * MAX_FD)))
-		return (message_player_ko(p));
-	bzero(t.pl, sizeof(int) * MAX_FD);
-	nb_player = command_incantation_count_player(var, p, t.pl);
-	t.pl[0] = command_incantation_can_incant(var, p, nb_player);
-	command_incantation_notification(var, &t);
-	action_add_wrapper(var, p, &t, INCANTATION);
-	message_gfx_pic(var, p, t.pl);
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> incantation\n", p->id);
+	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
+		return ;
+	bzero(t, sizeof(t_aargs));
+	if (!p->actions->size)
+		pre_action_incantation(var, p, t);
+	action_add_wrapper(var, p, t, INCANTATION);
 }

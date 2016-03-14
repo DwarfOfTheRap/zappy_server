@@ -47,6 +47,8 @@ SRC := \
 	src/message_player.c \
 	src/message_player_2.c \
 	src/message_player_3.c \
+	src/pre_action.c \
+	src/pre_action_2.c \
 	src/read_arguments.c \
 	src/read_arguments_2.c \
 	src/ressources_management.c \
