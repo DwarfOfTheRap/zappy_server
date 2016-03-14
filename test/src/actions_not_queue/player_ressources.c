@@ -124,13 +124,14 @@ START_TEST(action_player_prend_pose_nourriture_test)
 	char		str[] = "{nourriture 10, linemate 0, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0}\nok\n"
 		"{nourriture 11, linemate 0, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0}\nok\n"
 		"{nourriture 10, linemate 0, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0}\n";
-	char		gstr[] = "pin 6 0 0 11 0 0 0 0 0 0\nbct 0 0 0 2 3 4 5 6 7\n"
-		"pin 6 0 0 10 0 0 0 0 0 0\nbct 0 0 1 2 3 4 5 6 7\n";
+	char		gstr[] = "bct 1 0 1 2 3 4 5 6 7\npin 6 0 0 11 0 0 0 0 0 0\n"
+		"bct 0 0 0 2 3 4 5 6 7\npin 6 0 0 10 0 0 0 0 0 0\nbct 0 0 1 2 3 4 5 6 7\n";
 
 	srand(time(NULL));
 	dummy_t_zappy_without_board(&var);
 	dummy_t_zappy_add_board(&var);
 	dummy_t_board_square(var.board[0][0]);
+	dummy_t_board_square(var.board[0][1]);
 	dummy_t_player(&var, p);
 	dummy_t_player_gfx(&var, gfx);
 	player_initial = p->timeofdeath;
@@ -142,9 +143,12 @@ START_TEST(action_player_prend_pose_nourriture_test)
 	ck_assert_ptr_ne((void*)player_initial.tv_sec, (void*)p->timeofdeath.tv_sec);
 	if (var.board[0][0][0] == 1)
 	{
-		gstr[33] = '1';
-		gstr[80] = '2';
+		gstr[4] = '0';
+		gstr[55] = '1';
+		gstr[102] = '2';
 	}
+	else
+		gstr[8] = '2';
 	a.str = inventaire;
 	action_player_inventaire(&var, p, &a);
 	a.str = nourriture;

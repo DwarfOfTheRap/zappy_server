@@ -1,3 +1,4 @@
+#include <time.h>
 #include <stdlib.h>
 #include <check.h>
 #include "serveur.h"
@@ -14,8 +15,9 @@ START_TEST(action_player_incantation_test)
 	t_aargs		a;
 	char		str[] = "niveau actuel : 2\n";
 	char		gstr[] = "pie 0 0 1\nplv 6 2\nplv 7 2\nplv 8 2\nplv 9 2\n"
-		"plv 10 2\nplv 11 2\nplv 12 2\nplv 13 2\n";
+		"plv 10 2\nplv 11 2\nplv 12 2\nplv 13 2\nbct 0 0 0 1 0 0 0 0 0\n";
 
+	srand(time(NULL));
 	dummy_t_zappy_without_board(&var);
 	var.board_size[0] = 10;
 	var.board_size[1] = 10;
@@ -46,6 +48,8 @@ START_TEST(action_player_incantation_test)
 		clean_msg_queue(p);
 		++i;
 	}
+	gstr[82] = gfx->snd.buf[gfx->snd.read][82];
+	gstr[84] = gfx->snd.buf[gfx->snd.read][84];
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(gfx);
 	pl[0] = 0;
@@ -60,6 +64,7 @@ START_TEST(action_player_incantation_test)
 		++i;
 	}
 	gstr[8] = '0';
+	gstr[78] = '\0';
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(gfx);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
