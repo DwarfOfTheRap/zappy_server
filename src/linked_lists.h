@@ -32,5 +32,6 @@ void			lst_insert(t_lst_head *head, t_lst_elem *new \
 							, int (*f)(void*, void*));
 void*			lst_first_match(t_lst_head *hd, void *dt \
 							, int (*cmp)(void*, void*));
+void			lst_recompute_length(t_lst_head *hd);
 
 #endif
