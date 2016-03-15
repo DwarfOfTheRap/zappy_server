@@ -21,7 +21,8 @@ void		process_actions(t_zappy *var)
 		elem = lst_pop(list, 0);
 		lst_delete_elem(&elem, action_free);
 		elem = lst_pop(&p->actions, 0);
-		lst_delete_elem(&elem, action_free_player);
+		free(elem);
+		//lst_delete_elem(&elem, action_free_player);
 		if (p->actions.size)
 		{
 			action = get_first_action(&p->actions);
@@ -50,12 +51,13 @@ int			action_add(t_action *action, t_zappy *var)
 	p = action->player;
 	if (!action || p->actions.size >= 10)
 		return (0);
-	new = lst_create(action, sizeof(t_action));
+	//new = lst_create(action, sizeof(t_action));
+	new = lst_create_no_malloc(action);
 	new_p = lst_create_no_malloc(action);
 	if (new && new_p)
 	{
-		lst_insert(&var->actions, new, cmp); // never freed
-		lst_pushback(&p->actions, new_p); // never freed
+		lst_insert(&var->actions, new, cmp);
+		lst_pushback(&p->actions, new_p);
 		return (1);
 	}
 	return (0);

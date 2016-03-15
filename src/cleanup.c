@@ -48,16 +48,19 @@ void	cleanup_game(t_zappy *var, t_server *serv)
 
 void	action_free_player(void *action)
 {
-	t_action	*a;
+	//t_action	*a;
 
-	a = (t_action*)action;
-	free(a);
+	(void)action;
+	//a = (t_action*)action;
+	//free(a);
 }
 
 void	action_free(void *action)
 {
 	t_action	*a;
 
+	if (!action)
+		return ;
 	a = (t_action*)action;
 	if (a->arg->str)
 	{

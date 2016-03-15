@@ -79,9 +79,9 @@ void	command_incantation_notification(t_zappy *var, t_player *p,
 			if (p2 != p && p2->actions.size)
 			{
 				a = get_first_action(&p2->actions);
-				if (a->run == &action_player_avance ||
+				if (a && (a->run == &action_player_avance ||
 						a->run == &action_player_droite ||
-						a->run == &action_player_gauche)
+						a->run == &action_player_gauche))
 					message_gfx_ppo(var, p2);
 				message_player_ko(p2);
 				action_player_clear(p2, var);

@@ -15,15 +15,41 @@ static int	cmp(void *data1, void *data2)
 	return (player == data2);
 }
 
+void		lst_delete_content(t_lst_head *h, void *content)
+{
+	t_lst_elem	*e;
+
+	if (!h)
+		return ;
+	e = h->first;
+	while (e && e->content != content)
+		e = e->next;
+	if (e)
+	{
+		lst_remove(h, e);
+		free(e);
+	}
+}
+
 void		action_player_clear(t_player *player, t_zappy *var)
 {
 	t_lst_head	*list;
 	t_lst_head	*list_p;
+	t_lst_elem	*e;
+	t_lst_elem	*en;
 
 	list = &var->actions;
 	list_p = &player->actions;
-	lst_free_match(list, player, cmp, action_free);
-	lst_delete(list_p, free);
+	//lst_free_match(list, player, cmp, action_free);
+	e = list_p->first;
+	while (e)
+	{
+		en = e->next;
+		lst_delete_content(list, e->content);
+		action_free(e->content);
+		free(e);
+		e = en;
+	}
 	player->actions.size = 0;
 }
 
