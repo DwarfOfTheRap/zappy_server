@@ -56,6 +56,6 @@ void		player_vomit(t_player *p, t_zappy *var)
 	ref.tv_sec = 0;
 	ref.tv_usec = 0;
 	timeofdeath = time_long(p->timeofdeath);
-	new_time = timeofdeath + time_long(time_generate(126, ref, var));
+	new_time = timeofdeath - time_long(time_generate(126, ref, var));
 	p->timeofdeath = time_long_create(new_time);
 }
