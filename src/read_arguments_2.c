@@ -12,7 +12,7 @@ int			get_opt_verbose(t_main_arg const m_arg, int *i)
 	const char	arg[7] = "weicap";
 
 	++(*i);
-	if ((*i < m_arg.ac && get_opt(m_arg.av[*i]) != 7) || *i >= m_arg.ac)
+	if (*i >= m_arg.ac || get_opt(m_arg.av[*i]) != 7)
 		return (z_error("-v: missing argument"));
 	j = 0;
 	error = 0;

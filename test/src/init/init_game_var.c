@@ -13,7 +13,7 @@ START_TEST(init_game_var_valid)
 	t_arguments	args;
 	t_server	serv;
 
-	bzero(&var.actions, sizeof(t_lst_head));
+	bzero(&var, sizeof(t_zappy));
 	bzero(&serv, sizeof(t_server));
 	bzero(&args, sizeof(t_arguments));
 	read_arguments(ac, (const char **)av, &args);
@@ -31,7 +31,10 @@ START_TEST(init_game_var_valid)
 	i = 0;
 	while (i < var.nb_team)
 	{
-		ck_assert_int_eq(args.nb_clients, var.teams[i].remain);
+		if (i == var.nb_team - 1)
+			ck_assert_int_eq(var.teams[i].remain, 1);
+		else
+			ck_assert_int_eq(var.teams[i].remain, args.nb_clients);
 		++i;
 	}
 	cleanup_game(&var, &serv);

@@ -32,5 +32,8 @@ void	init_gfx(t_zappy *var, t_player *p)
 		// iter on action queue to update tmstmp
 	}
 	else
+	{
 		p->status = FD_CLOSE;
+		p->team = NULL;
+	}
 }

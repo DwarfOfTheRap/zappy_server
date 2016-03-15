@@ -11,13 +11,14 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 	t_player	*p;
 
 	p = &var->players[fd];
-	message_gfx_pdi(var, p);
 	close(fd);
-	if (p->status == FD_GFX)
+	if (p->team == &var->teams[var->nb_team - 1])
 	{
 		++p->team->remain;
 		var->gfx_client = NULL;
 	}
+	else if (p->team)
+		message_gfx_pdi(var, p);
 	p->status = FD_FREE;
 	clean_msg_queue(p);
 	if (g_log & LOG_I)
@@ -55,7 +56,10 @@ void	init_client(t_zappy *var, t_player *p)
 					p->team->name);
 	}
 	else
+	{
 		p->status = FD_CLOSE;
+		p->team = NULL;
+	}
 	add_msg_to_player(p, str, len, 1);
 }
 

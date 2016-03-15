@@ -12,7 +12,7 @@ int		z_error(char *str)
 int		get_opt(const char *str)
 {
 	int			j;
-	const char	arg[7][4] = {"-p", "-x", "-y", "-c", "-t", "-n", "-v"};
+	const char	arg[7][3] = {"-p", "-x", "-y", "-c", "-t", "-n", "-v"};
 
 	j = 0;
 	while (j < 7 && strcmp(arg[j], str))
@@ -55,7 +55,7 @@ int		get_opt_int(t_main_arg const m_arg, int *i, int arg, t_arguments *args)
 
 	++(*i);
 	j = 0;
-	if (*i < m_arg.ac && get_opt(str) != 7)
+	if (*i >= m_arg.ac || get_opt(str) != 7)
 	{
 		dprintf(2, "%s: missing argument\n", m_arg.av[*i - 1]);
 		return (1);
