@@ -14,7 +14,7 @@ void	command_fork(t_zappy *var, t_player *p, char *args)
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
 	action_add_wrapper(var, p, &t, FORK);
-	if (!p->actions.size)
+	if (!p->pending_actions)
 		pre_action_fork(var, p, NULL);
 }
 
@@ -74,9 +74,9 @@ void	command_incantation_notification(t_zappy *var, t_player *p,
 		if (args->pl[i])
 		{
 			p2 = &var->players[i];
-			if (p2 != p && p2->actions.size)
+			if (p2 != p && p2->pending_actions)
 			{
-				a = get_first_action(&p2->actions);
+				a = find_player_first_action(p2, var);
 				if (a && (a->run == &action_player_avance ||
 						a->run == &action_player_droite ||
 						a->run == &action_player_gauche))
@@ -84,8 +84,8 @@ void	command_incantation_notification(t_zappy *var, t_player *p,
 				message_player_ko(p2);
 				action_player_clear(p2, var);
 			}
-			args->nb = (p2 == p) ? (int)p->actions.size + 1: args->nb;
-			p2->actions.size = (p2 == p) ? 9 : 10;
+			args->nb = (p2 == p) ? (int)p->pending_actions + 1: args->nb;
+			p2->pending_actions = (p2 == p) ? 9 : 10;
 			message_player_incantation_start(p2);
 		}
 	}
@@ -99,7 +99,7 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> incantation\n", p->id);
 	bzero(&t, sizeof(t_aargs));
-	if (!p->actions.size)
+	if (!p->pending_actions)
 		pre_action_incantation(var, p, &t);
 	action_add_wrapper(var, p, &t, INCANTATION);
 }

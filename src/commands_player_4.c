@@ -38,7 +38,7 @@ int		command_expulse_count_player(t_zappy *var, t_player *p, int *pl)
 		a = NULL;
 		if (p2->status == FD_CLIENT && i != p->id &&
 			same_square(p2->coord, p->coord) &&
-			(!p2->actions.size || ((a = p2->actions.first->content) &&
+			(!p2->pending_actions || ((a = find_player_first_action(p2, var)) &&
 									a->run != &action_player_avance)))
 		{
 			if (var->gfx_client)
@@ -59,7 +59,7 @@ void	command_expulse(t_zappy *var, t_player *p, char *args)
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> expulse\n", p->id);
 	bzero(&t, sizeof(t_aargs));
-	if (!p->actions.size)
+	if (!p->pending_actions)
 		pre_action_expulse(var, p, &t);
 	action_add_wrapper(var, p, &t, EXPULSE);
 }

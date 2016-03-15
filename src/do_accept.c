@@ -10,7 +10,6 @@ extern int	g_log;
 void	accept_client(t_player *p, int client)
 {
 	bzero(p, sizeof(t_player));
-	bzero(&p->actions, sizeof(t_lst_head));
 	p->id = client;
 	p->snd.pos = p->snd.buf[0];
 	p->status = FD_USED;

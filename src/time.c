@@ -17,22 +17,6 @@ void	update_queue(int old_tick, t_zappy *var)
 	}
 }
 
-void	update_player_actions(t_player *p, int old_tick, t_zappy *var)
-{
-	t_lst_head	*list;
-	t_lst_elem	*cursor;
-	t_action	*action;
-
-	list = &p->actions;
-	cursor = list->first;
-	while(cursor)
-	{
-		action = (t_action *)cursor->content;
-		compute_action_new_time(action, old_tick, var);
-		cursor = cursor->next;
-	}
-}
-
 void	update_player_timeofdeath(t_player *p, int old_tick, t_zappy *var)
 {
 	compute_death_new_time(p, old_tick, var);
@@ -50,11 +34,7 @@ void	zappy_update_tick(int tick, t_zappy *var)
 	while(i <= *var->fd_max)
 	{
 		if (var->players[i].status == FD_CLIENT)
-		{
-			update_player_actions(&var->players[i], old_tick, var);
-			printf("i %d\n", i);
 			update_player_timeofdeath(&var->players[i], old_tick, var);
-		}
 		i++;
 	}
 }

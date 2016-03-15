@@ -13,6 +13,7 @@ SRC := \
 	src/action_player_broadcast.c \
 	src/action_queue.c \
 	src/action_queue_2.c \
+	src/action_queue_3.c \
 	src/check_arguments.c \
 	src/cleanup.c \
 	src/commands.c \

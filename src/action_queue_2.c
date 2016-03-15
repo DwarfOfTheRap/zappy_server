@@ -34,27 +34,10 @@ void		lst_delete_content(t_lst_head *h, void *content)
 void		action_player_clear(t_player *player, t_zappy *var)
 {
 	t_lst_head	*list;
-	t_lst_head	*list_p;
-	t_lst_elem	*e;
-	t_lst_elem	*en;
 
 	list = &var->actions;
-	list_p = &player->actions;
-	e = list_p->first;
-	while (e)
-	{
-		en = e->next;
-		lst_delete_content(list, e->content);
-		action_free(e->content);
-		free(e);
-		e = en;
-	}
-	bzero(&player->actions, sizeof(t_lst_head));
-}
-
-t_action*	action_player_first(t_player *player, t_zappy *var)
-{
-	return (lst_first_match(&var->actions, player, cmp));
+	lst_free_match(list, player, cmp, action_free);
+	player->pending_actions = 0;
 }
 
 t_action	*get_first_action(t_lst_head *list)
