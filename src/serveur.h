@@ -106,7 +106,6 @@ void		rm_teams(t_team **teams, int *nb_team);
 void		rm_board(int ****board, int board_size[2], int i, int j);
 void		cleanup_game(t_zappy *var, t_server *serv);
 void		action_free(void *action);
-void		action_free_player(void *action);
 
 /*
 ** src/commands.c
