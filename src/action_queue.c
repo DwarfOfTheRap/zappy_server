@@ -54,8 +54,8 @@ int			action_add(t_action *action, t_zappy *var)
 	new_p = lst_create_no_malloc(action);
 	if (new && new_p)
 	{
-		lst_insert(&var->actions, new, cmp);
-		lst_insert(&p->actions, new_p, cmp);
+		lst_insert(&var->actions, new, cmp); // never freed
+		lst_pushback(&p->actions, new_p); // never freed
 		return (1);
 	}
 	return (0);

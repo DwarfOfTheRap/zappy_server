@@ -1,4 +1,5 @@
 #include "serveur.h"
+#include <stdio.h>
 
 void	update_queue(int old_tick, t_zappy *var)
 {
@@ -48,10 +49,12 @@ void	zappy_update_tick(int tick, t_zappy *var)
 	update_queue(old_tick, var);
 	while(i <= *var->fd_max)
 	{
-		if (var->players[i++].status == FD_CLIENT)
+		if (var->players[i].status == FD_CLIENT)
 		{
 			update_player_actions(&var->players[i], old_tick, var);
+			printf("i %d\n", i);
 			update_player_timeofdeath(&var->players[i], old_tick, var);
 		}
+		i++;
 	}
 }
