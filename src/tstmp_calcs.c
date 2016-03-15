@@ -14,7 +14,7 @@ int				time_compare(t_tstmp time1, t_tstmp time2)
 	return (1);
 }
 
-t_tstmp			time_long_create(unsigned long long ms)
+t_tstmp			time_long_create(long long ms)
 {
 	t_tstmp result;
 
@@ -23,15 +23,15 @@ t_tstmp			time_long_create(unsigned long long ms)
 	return (result);
 }
 
-unsigned long long		time_long(t_tstmp time)
+long long		time_long(t_tstmp time)
 {
 	return (time.tv_sec * 1000000 + time.tv_usec);
 }
 
 t_tstmp			time_generate(int ref, t_tstmp start, t_zappy *var)
 {
-	unsigned long long	real;
-	unsigned long long	new;
+	long long	real;
+	long long	new;
 
 	real = ref * 1000000 / var->tick;
 	new = time_long(start) + real;

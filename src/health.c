@@ -50,8 +50,8 @@ void		player_eat(t_player *p, t_zappy *var)
 void		player_vomit(t_player *p, t_zappy *var)
 {
 	t_tstmp		ref;
-	unsigned long long	timeofdeath;
-	unsigned long long	new_time;
+	long long	timeofdeath;
+	long long	new_time;
 
 	ref.tv_sec = 0;
 	ref.tv_usec = 0;

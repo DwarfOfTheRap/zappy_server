@@ -4,8 +4,8 @@
 
 void		compute_action_new_time(t_action *action, int old_tick, t_zappy *var)
 {
-	unsigned long long	action_ref;
-	unsigned long long	start;
+	long long	action_ref;
+	long long	start;
 
 	if (!action)
 		return ;
@@ -17,8 +17,8 @@ void		compute_action_new_time(t_action *action, int old_tick, t_zappy *var)
 
 void		compute_death_new_time(t_player *p, int old_tick, t_zappy *var)
 {
-	unsigned long long	death_ref;
-	unsigned long long	start;
+	long long	death_ref;
+	long long	start;
 
 	if (!p)
 		return ;
