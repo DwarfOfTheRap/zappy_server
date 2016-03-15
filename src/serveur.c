@@ -7,7 +7,7 @@ extern int	g_continue;
 
 void intHandler(int dummy) {
 	(void)dummy;
-    g_continue = 0;
+	g_continue = 0;
 }
 
 int		main(int ac, const char **av)
