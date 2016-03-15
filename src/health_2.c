@@ -2,7 +2,7 @@
 
 int		get_food_number(t_player *p, t_zappy *var)
 {
-	double	elapsed;
+	unsigned long long	elapsed;
 
 	if (time_compare(p->timeofdeath, var->start_time))
 		return (0);

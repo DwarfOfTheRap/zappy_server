@@ -372,16 +372,16 @@ void		usage(void);
 ** src/tstmp_calcs.c
 */
 int			time_compare(t_tstmp time1, t_tstmp time2);
-t_tstmp		time_create(double seconds);
+t_tstmp		time_long_create(unsigned long long ms);
 t_tstmp		time_generate(int ref, t_tstmp start, t_zappy *var);
-double		time_double(t_tstmp time);
+unsigned long long	time_long(t_tstmp time);
 void		time_add(t_tstmp *time1, t_tstmp *time2);
 
 /*
 ** src/tstmp_calcs.c
 */
 t_tstmp		time_sub(t_tstmp time1, t_tstmp time2);
-double		time_elapsed(t_tstmp time1, t_tstmp time2);
+unsigned long long	time_elapsed(t_tstmp time1, t_tstmp time2);
 
 /*
 ** src/action_queue.c

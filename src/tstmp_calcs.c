@@ -14,38 +14,37 @@ int				time_compare(t_tstmp time1, t_tstmp time2)
 	return (1);
 }
 
-t_tstmp			time_create(double microseconds)
+t_tstmp			time_long_create(unsigned long long ms)
 {
-	t_tstmp	result;
+	t_tstmp result;
 
-	result.tv_sec = microseconds / 1000000;
-	result.tv_usec = (long long)microseconds % 1000000;
+	result.tv_sec = ms / 1000000;
+	result.tv_usec = ms % 1000000;
 	return (result);
+}
+
+unsigned long long		time_long(t_tstmp time)
+{
+	return (time.tv_sec * 1000000 + time.tv_usec);
 }
 
 t_tstmp			time_generate(int ref, t_tstmp start, t_zappy *var)
 {
-	t_tstmp	real_time;
-	t_tstmp new_time;
+	unsigned long long	real;
+	unsigned long long	new;
 
-	real_time = time_create((ref / (double)var->tick) * 1000000);
-	new_time = start;
-	time_add(&new_time, &real_time);
-	return (new_time);
-}
-
-double			time_double(t_tstmp time)
-{
-	return (time.tv_sec + (time.tv_usec / 1000000.0));
+	real = ref * 1000000 / var->tick;
+	new = time_long(start) + real;
+	return (time_long_create(new));
 }
 
 void			time_add(t_tstmp *time1, t_tstmp *time2)
 {
 	time1->tv_sec += time2->tv_sec;
 	time1->tv_usec += time2->tv_usec;
-	while (time1->tv_usec >= 1000000)
+	while (time1->tv_usec >= 1000000L)
 	{
 		time1->tv_sec++;
-		time1->tv_usec -= 1000000;
+		time1->tv_usec -= 1000000L;
 	}
 }
