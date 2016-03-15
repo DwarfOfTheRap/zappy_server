@@ -58,14 +58,13 @@ t_lst_elem	*lst_create_no_malloc(void *content)
 
 void		lst_pushfront(t_lst_head *head, t_lst_elem *new)
 {
-	if (head && new)
-	{
-		if (!head->first)
-			head->last = new;
-		new->next = head->first;
-		head->first = new;
-		head->size++;
-	}
+	if (!(head && new))
+		return ;
+	new->next = head->first;
+	if (!head->first)
+		head->last = new;
+	head->first = new;
+	head->size++;
 }
 
 void		lst_pushback(t_lst_head *head, t_lst_elem *new)
@@ -74,14 +73,9 @@ void		lst_pushback(t_lst_head *head, t_lst_elem *new)
 		return ;
 	new->prev = head->last;
 	if (!head->first)
-	{
 		head->first = new;
-		head->last = new;
-	}
 	else
-	{
 		head->last->next = new;
-		head->last = new;
-	}
+	head->last = new;
 	head->size++;
 }
