@@ -20,16 +20,16 @@ void		action_player_clear(t_player *player, t_zappy *var)
 	t_lst_head	*list;
 	t_lst_head	*list_p;
 
-	list = var->actions;
-	list_p = player->actions;
+	list = &var->actions;
+	list_p = &player->actions;
 	lst_free_match(list, player, cmp, action_free);
 	lst_delete(list_p, free);
-	player->actions->size = 0;
+	player->actions.size = 0;
 }
 
 t_action*	action_player_first(t_player *player, t_zappy *var)
 {
-	return (lst_first_match(var->actions, player, cmp));
+	return (lst_first_match(&var->actions, player, cmp));
 }
 
 t_action	*get_first_action(t_lst_head *list)

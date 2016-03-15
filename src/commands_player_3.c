@@ -16,7 +16,7 @@ void	command_fork(t_zappy *var, t_player *p, char *args)
 	bzero(t, sizeof(t_aargs));
 	t->str = strdup(args);
 	action_add_wrapper(var, p, t, FORK);
-	if (!p->actions->size)
+	if (!p->actions.size)
 		pre_action_fork(var, p, NULL);
 }
 
@@ -75,9 +75,9 @@ void	command_incantation_notification(t_zappy *var, t_player *p, int *pl)
 		if (pl[i])
 		{
 			p2 = &var->players[i];
-			if (p2 != p && p2->actions->size)
+			if (p2 != p && p2->actions.size)
 			{
-				a = get_first_action(p2->actions);
+				a = get_first_action(&p2->actions);
 				if (a->run == &action_player_avance ||
 						a->run == &action_player_droite ||
 						a->run == &action_player_gauche)
@@ -85,7 +85,7 @@ void	command_incantation_notification(t_zappy *var, t_player *p, int *pl)
 				message_player_ko(p2);
 				action_player_clear(p2, var);
 			}
-			p2->actions->size = 10;
+			p2->actions.size = 10;
 			message_player_incantation_start(p2);
 		}
 		++i;
@@ -102,7 +102,7 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
 		return ;
 	bzero(t, sizeof(t_aargs));
-	if (!p->actions->size)
+	if (!p->actions.size)
 		pre_action_incantation(var, p, t);
 	action_add_wrapper(var, p, t, INCANTATION);
 }

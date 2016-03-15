@@ -17,5 +17,6 @@ int		main(int ac, const char **av)
 	if (!init(var, &serv, &args))
 		main_loop(var, &serv);
 	cleanup_game(var, &serv);
+	free(var);
 	return (0);
 }

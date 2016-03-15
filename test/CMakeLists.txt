@@ -46,7 +46,7 @@ list(
 list(
     APPEND
     CMAKE_C_FLAGS
-    "-Wall -Werror -Wextra ${CMAKE_C_FLAGS}"
+    "-Wall -Werror -Wextra ${CMAKE_C_FLAGS} -g"
     )
 
 add_executable(

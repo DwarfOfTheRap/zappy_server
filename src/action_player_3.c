@@ -14,15 +14,16 @@ void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
 	nb_player = 0;
 	while (i <= *var->fd_max)
 	{
+		printf("p %d lvl:%d\n", i, var->players[i].level);
 		if (args->pl[i])
 		{
 			if (var->players[i].status == FD_CLIENT)
 				++nb_player;
-			var->actions->size = (i == p->id) ? 1 : 0;
+			var->actions.size = (i == p->id) ? 1 : 0;
 		}
 		++i;
 	}
-	args->pl[0] = nb_player >= g_incant[p->level - 1][0];
+	args->pl[0] = (nb_player >= g_incant[p->level - 1][0]) ? args->pl[0] : 0;
 }
 
 void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
