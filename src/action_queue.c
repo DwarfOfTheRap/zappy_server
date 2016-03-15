@@ -17,17 +17,16 @@ void		process_actions(t_zappy *var)
 			&& time_compare(action->trigger_t, var->start_time))
 	{
 		p = action->player;
-		action->run(var, p, action->arg);
+		action->run(var, p, &action->arg);
 		elem = lst_pop(list, 0);
 		lst_delete_elem(&elem, action_free);
 		elem = lst_pop(&p->actions, 0);
 		free(elem);
-		//lst_delete_elem(&elem, action_free_player);
 		if (p->actions.size)
 		{
 			action = get_first_action(&p->actions);
 			if (action && action->pre)
-				action->pre(var, p, action->arg);
+				action->pre(var, p, &action->arg);
 		}
 	}
 }
@@ -51,7 +50,6 @@ int			action_add(t_action *action, t_zappy *var)
 	p = action->player;
 	if (!action || p->actions.size >= 10)
 		return (0);
-	//new = lst_create(action, sizeof(t_action));
 	new = lst_create_no_malloc(action);
 	new_p = lst_create_no_malloc(action);
 	if (new && new_p)
@@ -70,7 +68,8 @@ t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
 
 	if (!(new = (t_action*)malloc(sizeof(t_action))))
 		return (NULL);
-	new->arg = arg;
+	bzero(new, sizeof(t_action));
+	memcpy(&new->arg, arg, sizeof(t_aargs));
 	new->run = f;
 	new->player = player;
 	new->creation_t = time[0];

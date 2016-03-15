@@ -83,7 +83,7 @@ typedef struct			s_aargs
 
 typedef struct			s_action
 {
-	t_aargs		*arg;
+	t_aargs		arg;
 	void		(*run)(t_zappy *var, t_player *p, t_aargs *arg);
 	void		(*pre)(t_zappy *var, t_player *p, t_aargs *arg);
 	t_player	*player;

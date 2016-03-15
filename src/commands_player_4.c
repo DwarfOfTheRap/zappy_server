@@ -53,15 +53,13 @@ int		command_expulse_count_player(t_zappy *var, t_player *p, int *pl)
 
 void	command_expulse(t_zappy *var, t_player *p, char *args)
 {
-	t_aargs		*t;
+	t_aargs		t;
 
 	(void)args;
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> expulse\n", p->id);
-	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
-		return ;
-	bzero(t, sizeof(t_aargs));
+	bzero(&t, sizeof(t_aargs));
 	if (!p->actions.size)
-		pre_action_expulse(var, p, t);
-	action_add_wrapper(var, p, t, EXPULSE);
+		pre_action_expulse(var, p, &t);
+	action_add_wrapper(var, p, &t, EXPULSE);
 }

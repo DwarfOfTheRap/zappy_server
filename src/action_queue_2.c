@@ -40,7 +40,6 @@ void		action_player_clear(t_player *player, t_zappy *var)
 
 	list = &var->actions;
 	list_p = &player->actions;
-	//lst_free_match(list, player, cmp, action_free);
 	e = list_p->first;
 	while (e)
 	{
@@ -50,7 +49,7 @@ void		action_player_clear(t_player *player, t_zappy *var)
 		free(e);
 		e = en;
 	}
-	player->actions.size = 0;
+	bzero(&player->actions, sizeof(t_lst_head));
 }
 
 t_action*	action_player_first(t_player *player, t_zappy *var)
