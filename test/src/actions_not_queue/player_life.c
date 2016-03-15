@@ -79,14 +79,16 @@ START_TEST(action_player_connect_nbr_test)
 {
 	t_zappy		var;
 	t_player	*p = &var.players[6];
+	t_aargs		t;
 	char		str[] = "1\n2\n";
 
+	bzero(&t, sizeof(t_aargs));
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);
 	dummy_t_zappy_add_remaining_in_team(&var);
-	action_player_connect_nbr(&var, p, NULL);
+	action_player_connect_nbr(&var, p, &t);
 	dummy_t_zappy_add_remaining_in_team(&var);
-	action_player_connect_nbr(&var, p, NULL);
+	action_player_connect_nbr(&var, p, &t);
 	ck_assert_str_eq(p->snd.buf[p->snd.read], str);
 	clean_msg_queue(p);
 	rm_teams(&var.teams, &var.nb_team);

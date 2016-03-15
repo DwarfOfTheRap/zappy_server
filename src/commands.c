@@ -15,7 +15,7 @@ t_cmd const	*get_cmd_list(void)
 		{"expulse", FD_CLIENT, 0, &command_expulse},
 		{"broadcast", FD_CLIENT, 1, &command_broadcast},
 		{"incantation", FD_CLIENT, 0, &command_incantation},
-		{"fork", FD_CLIENT, 0, &command_fork},
+		{"fork", FD_CLIENT, 0, NULL},
 		{"connect_nbr", FD_CLIENT, 0, &command_connect_nbr},
 		{"msz", FD_GFX, 0, &command_msz},
 		{"bct", FD_GFX, 1, &command_bct},

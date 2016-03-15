@@ -58,6 +58,11 @@ int			action_add(t_action *action, t_zappy *var)
 		lst_pushback(&p->actions, new_p);
 		return (1);
 	}
+	else if (new)
+		free(lst_remove(&var->actions, new));
+	else if (new_p)
+		free(lst_remove(&p->actions, new_p));
+	action_free(action);
 	return (0);
 }
 

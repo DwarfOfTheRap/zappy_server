@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "serveur.h"
 
 extern int			g_log;
@@ -64,7 +65,7 @@ void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 void	action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args)
 {
 	(void)var;
-	(void)args;
+	bzero(args, sizeof(t_aargs));
 	message_player_connect_nbr(p);
 	if (g_log & LOG_A)
 		printf("[\033[0;35mACTION\033[0m] p %d connect_nbr\n", p->id);

@@ -19,7 +19,7 @@ void	command_bct(t_zappy *var, t_player *p, char *arg)
 	int		pos[2];
 
 	(void)p;
-	bzero(end_arg, sizeof(void *) * 2);
+	bzero(end_arg, sizeof(char *) * 2);
 	pos[1] = (int)strtol(arg, &end_arg[1], 10);
 	if (end_arg[1] == arg)
 		return (message_gfx_sbp(var));
