@@ -63,16 +63,17 @@ int		command_incantation_count_player(t_zappy *var, t_player *p, int *pl)
 	return (nb_player);
 }
 
-void	command_incantation_notification(t_zappy *var, t_player *p, int *pl)
+void	command_incantation_notification(t_zappy *var, t_player *p,
+		t_aargs *args)
 {
 	int			i;
 	t_player	*p2;
 	t_action	*a;
 
 	i = 3;
-	while (i <= *var->fd_max)
+	while (++i <= *var->fd_max)
 	{
-		if (pl[i])
+		if (args->pl[i])
 		{
 			p2 = &var->players[i];
 			if (p2 != p && p2->actions.size)
@@ -85,10 +86,10 @@ void	command_incantation_notification(t_zappy *var, t_player *p, int *pl)
 				message_player_ko(p2);
 				action_player_clear(p2, var);
 			}
-			p2->actions.size = 10;
+			args->nb = (p2 == p) ? (int)p->actions.size + 1: args->nb;
+			p2->actions.size = (p2 == p) ? 9 : 10;
 			message_player_incantation_start(p2);
 		}
-		++i;
 	}
 }
 

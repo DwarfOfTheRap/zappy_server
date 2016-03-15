@@ -38,6 +38,7 @@ START_TEST(action_player_incantation_test)
 		++i;
 	}
 	a.pl = pl;
+	a.nb = 1;
 	pl[0] = 1;
 	action_player_incantation(&var, p, &a);
 	i = 6;

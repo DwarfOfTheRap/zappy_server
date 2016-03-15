@@ -18,7 +18,7 @@ void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
 		{
 			if (var->players[i].status == FD_CLIENT)
 				++nb_player;
-			var->players[i].actions.size = (i == p->id) ? 1 : 0;
+			var->players[i].actions.size = (i == p->id) ? args->nb : 0;
 		}
 		++i;
 	}
