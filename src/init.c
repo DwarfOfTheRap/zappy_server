@@ -44,7 +44,7 @@ int		init_game_var(t_zappy *var, t_arguments *args)
 	var->tick = args->tick;
 	var->nb_team = (int)args->nb_team;
 	var->teams = args->teams;
-	bzero(&var->actions, sizeof(t_lst_head));//
+	bzero(&var->actions, sizeof(t_lst_head));
 	if ((var->board = (int ***)malloc(sizeof(int **) * var->board_size[0])))
 		init_board(&(var->board), var->board_size, 0, 0);
 	if (!var->board)

@@ -46,20 +46,3 @@ void*	lst_first_match(t_lst_head *hd, void *dt, int (*cmp)(void*, void*))
 	}
 	return (NULL);
 }
-
-void	lst_recompute_length(t_lst_head *hd)
-{
-	size_t		len;
-	t_lst_elem	*e;
-
-	if (!hd)
-		return ;
-	len = 0;
-	e = hd->first;
-	while (e)
-	{
-		++len;
-		e = e->next;
-	}
-	hd->size = len;
-}

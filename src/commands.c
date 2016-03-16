@@ -54,7 +54,7 @@ void		find_command(t_zappy *var, t_player *p, char *str, size_t len)
 	int				ret;
 	t_cmd const		*cmd = get_cmd_list();
 
-	if (p->actions.size >= 10)
+	if (p->pending_actions >= 10)
 		return ;
 	i = -1;
 	str[len] = '\0';

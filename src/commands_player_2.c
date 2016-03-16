@@ -12,7 +12,7 @@ void	command_prend(t_zappy *var, t_player *p, char *args)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> prend %s\n", p->id, args);
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
-	if (!p->actions.size)
+	if (!p->pending_actions)
 		pre_action_prend(var, p, &t);
 	action_add_wrapper(var, p, &t, PREND);
 }
@@ -25,7 +25,7 @@ void	command_pose(t_zappy *var, t_player *p, char *args)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> pose %s\n", p->id, args);
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
-	if (!p->actions.size)
+	if (!p->pending_actions)
 		pre_action_pose(var, p, &t);
 	action_add_wrapper(var, p, &t, POSE);
 }
@@ -39,7 +39,7 @@ void	command_broadcast(t_zappy *var, t_player *p, char *args)
 				args);
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
-	if (!p->actions.size)
+	if (!p->pending_actions)
 		pre_action_broadcast(var, p, &t);
 	action_add_wrapper(var, p, &t, BROADCAST);
 }

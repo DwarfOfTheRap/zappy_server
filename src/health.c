@@ -23,6 +23,7 @@ void		player_spawn(t_player *p, t_zappy *var)
 	timeofdeath = time_generate(1260, var->start_time, var);
 	p->timeofdeath = timeofdeath;
 	p->level = 1;
+	p->pending_actions = 0;
 	p->coord[0] = rand() % var->board_size[0];
 	p->coord[1] = rand() % var->board_size[1];
 	p->facing = rand() % 4;

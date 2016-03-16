@@ -153,14 +153,42 @@ END_TEST
 
 START_TEST(message_add_msg_to_player_all_buffer_overflow_multiple)
 {
+	int			i;
 	t_zappy		var;
-	t_player	*p = &var.players[5];
+	t_player	*p1 = &var.players[5];
+	t_player	*p2;
 
 	dummy_t_zappy_without_board(&var);
-	dummy_t_player(&var, p);
-	test_snd_overflow(p, 1, 0);
-	test_snd_overflow(p, 1, 0);
-	test_snd_overflow(p, 1, 0);
+	dummy_t_player(&var, p1);
+	i = 6;
+	while (i < MAX_FD)
+	{
+		dummy_t_player(&var, &var.players[i]);
+		++i;
+	}
+	test_snd_overflow(p1, 1, 0);
+	test_snd_overflow(p1, 1, 0);
+	test_snd_overflow(p1, 1, 0);
+	i = 6;
+	while (i < MAX_FD)
+ 	{
+		p2 = &var.players[i];
+		ck_assert_int_eq(p2->id, i);
+		ck_assert_int_eq(p2->inv[0], 0);
+		ck_assert_int_eq(p2->inv[1], 0);
+		ck_assert_int_eq(p2->inv[2], 0);
+		ck_assert_int_eq(p2->inv[3], 0);
+		ck_assert_int_eq(p2->inv[4], 0);
+		ck_assert_int_eq(p2->inv[5], 0);
+		ck_assert_int_eq(p2->coord[0], 0);
+		ck_assert_int_eq(p2->coord[1], 0);
+		ck_assert_int_eq(p2->pending_actions, 0);
+		ck_assert_ptr_eq(p2->team, &var.teams[0]);
+		ck_assert_int_eq(p2->facing, 0);
+		ck_assert_int_eq(p2->status, FD_CLIENT);
+		ck_assert_int_eq(p2->level, 0);
+		++i;
+	}
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST

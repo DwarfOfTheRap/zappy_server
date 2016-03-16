@@ -49,6 +49,6 @@ void	do_write(t_zappy *var, t_server *serv, int fd)
 	p = &var->players[fd];
 	if (!(ret_normal_buffer = do_write_normal_buffer(p)))
 		ret_extended_buffer = do_write_extended_buffer(p);
-	if (!ret_normal_buffer && ! ret_extended_buffer && p->status == FD_CLOSE)
+	if (!ret_normal_buffer && !ret_extended_buffer && p->status == FD_CLOSE)
 		close_client(var, serv, fd);
 }
