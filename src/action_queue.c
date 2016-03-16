@@ -44,13 +44,18 @@ int			action_add(t_action *action, t_zappy *var)
 {
 	t_lst_elem	*new;
 	t_player	*p;
+	t_action	*last_action;
 
 	p = action->player;
 	if (!action || p->pending_actions >= 10)
 		return (0);
 	if ((new = lst_create_no_malloc(action)))
 	{
-		lst_insert(&var->actions, new, cmp);
+		last_action = get_last_action(&var->actions);
+		if (!last_action || time_compare(last_action->trigger_t, action->trigger_t))
+			lst_pushback(&var->actions, new);
+		else
+			lst_insert(&var->actions, new, cmp);
 		p->pending_actions++;
 		return (1);
 	}
