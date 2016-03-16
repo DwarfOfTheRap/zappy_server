@@ -2,7 +2,7 @@ NAME := serveur
 ifeq ($(CC),cc)
 	CC := clang
 endif
-CFLAGS := -Wall -Wextra -Werror -g -O0
+CFLAGS := -Wall -Wextra -Werror
 CPPFLAGS := -I src
 LDFLAGS :=
 SRC := \

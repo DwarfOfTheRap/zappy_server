@@ -23,6 +23,7 @@ void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
 		}
 		++i;
 	}
+	// maybe did we need to recalculate this
 	args->pl[0] = (nb_player >= g_incant[p->level - 1][0]) ? args->pl[0] : 0;
 }
 

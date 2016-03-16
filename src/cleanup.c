@@ -36,23 +36,34 @@ void	rm_board(int ****board, int board_size[2], int i, int j)
 	*board = NULL;
 }
 
+void	cleanup_client(t_zappy *var, int sockfd)
+{
+	int			i;
+	t_player	*p;
+
+	i = sockfd + 1;
+	while (i < MAX_FD)
+	{
+		p = &var->players[i];
+		if (p->status == FD_CLIENT)
+			write(var->players[i].id, "mort\n", 5);
+		if (p->status == FD_GFX || p->status == FD_CLIENT ||
+				p->status == FD_USED)
+			close(var->players[i].id);
+		clean_msg_queue(p);
+		++i;
+	}
+}
+
 void	cleanup_game(t_zappy *var, t_server *serv)
 {
 	rm_teams(&(var->teams), &(var->nb_team));
 	rm_board(&(var->board), var->board_size, var->board_size[0],
 			var->board_size[1]);
-	// cleanup action lists
+	lst_delete(&var->actions, action_free);
+	cleanup_client(var, serv->sock);
 	if (serv->sock > 0)
 		close(serv->sock);
-}
-
-void	action_free_player(void *action)
-{
-	//t_action	*a;
-
-	(void)action;
-	//a = (t_action*)action;
-	//free(a);
 }
 
 void	action_free(void *action)
