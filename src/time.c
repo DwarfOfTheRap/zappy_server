@@ -28,6 +28,8 @@ void	zappy_update_tick(int tick, t_zappy *var)
 	int	i;
 
 	i = 3;
+	if (tick == var->tick)
+		return ;
 	old_tick = var->tick;
 	var->tick = tick;
 	update_queue(old_tick, var);
