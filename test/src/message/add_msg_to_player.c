@@ -182,9 +182,7 @@ START_TEST(message_add_msg_to_player_all_buffer_overflow_multiple)
 		ck_assert_int_eq(p2->inv[5], 0);
 		ck_assert_int_eq(p2->coord[0], 0);
 		ck_assert_int_eq(p2->coord[1], 0);
-		ck_assert_int_eq(p2->actions.size, 0);
-		ck_assert_ptr_eq(p2->actions.first, NULL);
-		ck_assert_ptr_eq(p2->actions.last, NULL);
+		ck_assert_int_eq(p2->pending_actions, 0);
 		ck_assert_ptr_eq(p2->team, &var.teams[0]);
 		ck_assert_int_eq(p2->facing, 0);
 		ck_assert_int_eq(p2->status, FD_CLIENT);

@@ -32,7 +32,7 @@ START_TEST(action_player_incantation_test)
 	{
 		p = &var.players[i];
 		dummy_t_player(&var, p);
-		p->actions.size = 10;
+		p->pending_actions = 10;
 		p->level = 1;
 		pl[i] = 1;
 		++i;
@@ -47,7 +47,7 @@ START_TEST(action_player_incantation_test)
 		p = &var.players[i];
 		ck_assert_str_eq(p->snd.buf[p->snd.read], str);
 		ck_assert_int_eq(p->level, 2);
-		ck_assert_int_eq(p->actions.size, (i == 13) ? 1 : 0);
+		ck_assert_int_eq(p->pending_actions, (i == 13) ? 1 : 0);
 		clean_msg_queue(p);
 		++i;
 	}
@@ -143,7 +143,7 @@ START_TEST(action_player_expulse_test)
 			str[12] = (i - 9) * 2 + 1 + '0';
 		if (i == 6 || i > 9)
 			ck_assert_str_eq(p->snd.buf[p->snd.read], str);
-		ck_assert_int_eq(p->actions.size, 0);
+		ck_assert_int_eq(p->pending_actions, 0);
 		clean_msg_queue(p);
 		++i;
 	}

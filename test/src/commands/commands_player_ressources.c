@@ -15,7 +15,7 @@ START_TEST(command_player_voir_test)
 	dummy_t_zappy_add_board(&var);
 	dummy_t_player(&var, p);
 	command_voir(&var, p, NULL);
-	action = get_first_action(&p->actions);
+	action = find_player_first_action(p, &var);
 	ck_assert_ptr_eq(action->run, &action_player_voir);
 	clean_msg_queue(p);
 	action_player_clear(p, &var);
@@ -36,7 +36,7 @@ START_TEST(command_player_inventaire_test)
 	dummy_t_player(&var, p);
 	dummy_t_player_gfx(&var, gfx);
 	command_inventaire(&var, p, NULL);
-	action = get_first_action(&p->actions);
+	action = find_player_first_action(p, &var);
 	ck_assert_ptr_eq(action->run, &action_player_inventaire);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(p);
@@ -68,7 +68,7 @@ START_TEST(command_player_prend_test)
 		else
 			gstr[6] = '0';
 		command_prend(&var, p, ressources[i]);
-		action = get_first_action(&p->actions);
+		action = find_player_first_action(p, &var);
 		ck_assert_ptr_eq(action->run, &action_player_prend);
 		ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 		action_player_clear(p, &var);
@@ -103,7 +103,7 @@ START_TEST(command_player_pose_test)
 		else
 			gstr[6] = '0';
 		command_pose(&var, p, ressources[i]);
-		action = get_first_action(&p->actions);
+		action = find_player_first_action(p, &var);
 		ck_assert_ptr_eq(action->run, &action_player_pose);
 		ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 		action_player_clear(p, &var);

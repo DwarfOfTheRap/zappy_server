@@ -16,7 +16,7 @@ START_TEST(command_player_broadcast_test)
 	dummy_t_player_gfx(&var, gfx);
 	dummy_t_player(&var, p);
 	command_broadcast(&var, p, message);
-	action = get_first_action(&p->actions);
+	action = find_player_first_action(p, &var);
 	ck_assert_ptr_eq(action->run, &action_player_broadcast);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(p);
@@ -104,8 +104,8 @@ START_TEST(command_player_expulse_test)
 	command_avance(&var, &var.players[9], NULL);
 	command_droite(&var, &var.players[11], NULL);
 	command_expulse(&var, &var.players[8], NULL);
-	ck_assert_int_eq(p8->actions.size, 1);
-	args = &get_first_action(&p8->actions)->arg;
+	ck_assert_int_eq(p8->pending_actions, 1);
+	args = &find_player_first_action(p8, &var)->arg;
 	ck_assert_int_eq(args->nb, 4);
 	i = 6;
 	while (i <= fd_max)
@@ -136,7 +136,7 @@ START_TEST(command_player_connect_nbr_test)
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);
 	command_connect_nbr(&var, p, NULL);
-	action = get_first_action(&p->actions);
+	action = find_player_first_action(p, &var);
 	ck_assert_ptr_eq(action->run, &action_player_connect_nbr);
 	clean_msg_queue(p);
 	action_player_clear(p, &var);
