@@ -32,9 +32,9 @@ int		do_write_normal_buffer(t_player *p)
 		ret = write(p->id, p->snd.buf[p->snd.read], len);
 		if (len != ret)
 			return (rearrange_message_queue(p, ret, 1));
-		p->snd.full = 0;
-		if (p->snd.read == p->snd.write)
+		if (!p->snd.full && p->snd.read == p->snd.write)
 			update_pos_pointer(&p->snd);
+		p->snd.full = 0;
 		p->snd.read = (p->snd.read + 1 == NB_SND) ? 0 : p->snd.read + 1;
 	}
 	return (0);
