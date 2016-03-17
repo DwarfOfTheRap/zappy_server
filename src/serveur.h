@@ -426,7 +426,6 @@ int			get_food_number(t_player *p, t_zappy *var);
 */
 void		update_queue(int old_tick, t_zappy *var);
 void		update_eggs(int old_tick, t_zappy *var);
-void		update_player_actions(t_player *p, int old_tick, t_zappy *var);
 void		update_player_timeofdeath(t_player *p, int old_tick, t_zappy *var);
 void		zappy_update_tick(int tick, t_zappy *var);
 
@@ -441,8 +440,9 @@ void		compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
 /*
 ** src/eggs.c
 */
-t_egg		*egg_add_wrapper(t_zappy *var, t_player *p);
+void		egg_set_rotten_time(t_egg *egg, t_zappy *var);
 void		check_eggs(t_zappy *var);
+t_egg		*egg_add_wrapper(t_zappy *var, t_player *p);
 
 /*
 ** src/egg_utils.c
