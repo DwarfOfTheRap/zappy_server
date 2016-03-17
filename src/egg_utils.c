@@ -33,7 +33,7 @@ int		egg_add(t_egg *egg, t_zappy *var)
 		if (!last_egg || time_compare(last_egg->hatching_time, egg->hatching_time))
 			lst_pushback(&var->eggs, new);
 		else
-			lst_insert(&var->actions, new, cmp);
+			lst_insert(&var->eggs, new, cmp);
 		return (1);
 	}
 	return (0);
