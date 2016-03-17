@@ -16,11 +16,14 @@ void	check_if_team_win(t_zappy *var, t_server *serv)
 		}
 		++i;
 	}
-	g_continue = !var->game_won;
-	i = 3;
-	while (var->game_won && i <= serv->fd_max)
+	if (var->game_won && g_continue)
 	{
-		g_continue = (var->players[i].status = FD_CLIENT) ? 1 : g_continue;
-		++i;
+		g_continue = 0;
+		i = 3;
+		while (i <= serv->fd_max)
+		{
+			g_continue = (var->players[i].status == FD_CLIENT) ? 1 : g_continue;
+			++i;
+		}
 	}
 }

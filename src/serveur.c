@@ -1,14 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include <signal.h>
 #include "serveur.h"
-
-extern int	g_continue;
-
-void intHandler(int dummy) {
-	(void)dummy;
-	g_continue = 0;
-}
 
 int		main(int ac, const char **av)
 {
@@ -22,7 +14,6 @@ int		main(int ac, const char **av)
 		exit_arg_error(ret, &args);
 	if (!(var = (t_zappy *)malloc(sizeof(t_zappy))))
 		return (1);
-	signal(SIGINT, intHandler);
 	if (!init(var, &serv, &args))
 		main_loop(var, &serv);
 	cleanup_game(var, &serv);

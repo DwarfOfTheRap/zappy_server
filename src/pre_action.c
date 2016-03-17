@@ -37,7 +37,7 @@ void	pre_action_gauche(t_zappy *var, t_player *p, t_aargs *args)
 	dummy.facing = (dummy.facing - 1 < 0) ? 3 : dummy.facing - 1;
 	message_gfx_ppo(var, &dummy);
 	if (g_log & LOG_P)
-		printf("[\033[0;36mPRE-ACTION\033[0m] p %d ->gauche\n", p->id);
+		printf("[\033[0;36mPRE-ACTION\033[0m] p %d -> gauche\n", p->id);
 }
 
 void	pre_action_expulse(t_zappy *var, t_player *p, t_aargs *args)
