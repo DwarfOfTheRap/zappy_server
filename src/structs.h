@@ -60,6 +60,15 @@ typedef struct			s_player
 	t_snd_buf	snd;
 }						t_player;
 
+typedef struct			s_egg
+{
+	int			id;
+	int			coord[2];
+	t_player	*mother;
+	t_tstmp		laying_time;
+	t_tstmp		hatching_time;
+}						t_egg;
+
 typedef struct			s_zappy
 {
 	int			***board;
@@ -70,6 +79,8 @@ typedef struct			s_zappy
 	int			*fd_max;
 	t_team		*teams;
 	t_lst_head	actions;
+	t_lst_head	eggs;
+	int			egg_id_index;
 	t_tstmp		start_time;
 	t_player	players[MAX_FD];
 	t_player	*gfx_client;
