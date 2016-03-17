@@ -62,8 +62,8 @@ void	init_client(t_zappy *var, t_player *p)
 	size_t	len;
 
 	p->status = FD_CLIENT;
-	len = sprintf(str, "%d\n%d %d", p->team->remain, var->board_size[1],
-			var->board_size[0]);
+	len = sprintf(str, "%d\n%d %d", p->team->remain + p->team->egg_slot_number
+					, var->board_size[1], var->board_size[0]);
 	if (p->team->remain)
 	{
 		--p->team->remain;
