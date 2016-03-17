@@ -56,8 +56,7 @@ void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 {
 	(void)args;
-	(void)var;
-	// add new egg on player coordinate
+	egg_add_wrapper(var, p);
 	message_player_ok(p);
 	if (g_log & LOG_A)
 		printf("[\033[0;35mACTION\033[0m] p %d fork\n", p->id);

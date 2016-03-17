@@ -1,6 +1,24 @@
 #include "serveur.h"
 
-void			egg_add_wrapper(t_zappy *var, t_player *p)
+void	check_eggs(t_zappy *var)
+{
+	t_lst_head	*list;
+	t_lst_elem	*cursor;
+	t_egg		*egg;
+
+	list = &var->eggs;
+	cursor = list->first;
+	while (cursor)
+	{
+		egg = (t_egg*)cursor->content;
+		if (time_compare(egg->hatching_time, var->start_time))
+			// eclosion
+			;
+		cursor = cursor->next;
+	}
+}
+
+void	egg_add_wrapper(t_zappy *var, t_player *p)
 {
 	t_egg		*new_egg;
 	t_tstmp		time[2];

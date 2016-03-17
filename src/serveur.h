@@ -439,7 +439,7 @@ void		compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
 ** src/eggs.c
 */
 void		egg_add_wrapper(t_zappy *var, t_player *p);
-void		check_egg(t_zappy *var);
+void		check_eggs(t_zappy *var);
 
 /*
 ** src/egg_utils.c
