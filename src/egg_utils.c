@@ -1,14 +1,14 @@
 #include <string.h>
 #include "serveur.h"
 
-static int		cmp(void *data_list, void *new_data)
+static int		cmp(void *new_data, void *list_data)
 {
 	t_egg	*egg_list;
 	t_egg	*egg_new;
 
-	egg_list = (t_egg*)data_list;
+	egg_list = (t_egg*)list_data;
 	egg_new = (t_egg*)new_data;
-	return (time_compare(egg_list->hatching_time, egg_new->hatching_time));
+	return (time_compare(egg_new->hatching_time, egg_list->hatching_time));
 }
 
 t_egg	*get_first_egg(t_lst_head *list)
@@ -44,7 +44,7 @@ int		egg_add(t_egg *egg, t_zappy *var)
 		if (!last_egg || time_compare(last_egg->hatching_time, egg->hatching_time))
 			lst_pushback(&var->eggs, new);
 		else
-			lst_insert(&var->eggs, new, cmp);
+			lst_insert_end(&var->eggs, new, cmp);
 		return (1);
 	}
 	return (0);
