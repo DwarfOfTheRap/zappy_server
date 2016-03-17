@@ -50,7 +50,7 @@
 # define ABS(x)		(x < 0 ? -x : x)
 
 enum		e_action {AVANCE, DROITE, GAUCHE, VOIR, INVENTAIRE, PREND, POSE,
-				EXPULSE, BROADCAST, INCANTATION, FORK, CONNECT_NBR, SND_MSG};
+				EXPULSE, BROADCAST, INCANTATION, FORK, CONNECT_NBR};
 
 # include "linked_lists.h"
 # include "structs.h"
