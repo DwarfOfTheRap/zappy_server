@@ -60,8 +60,8 @@ void	main_loop(t_zappy *var, t_server *serv)
 	while (g_continue)
 	{
 		gettimeofday(&var->start_time, NULL);
-		check_players_life(var);
 		check_eggs(var);
+		check_players_life(var);
 		pre_select(var, serv);
 		do_select(serv);
 		post_select(var, serv);

@@ -42,6 +42,7 @@ typedef struct			s_team
 {
 	char		name[TEAM_LEN + 1];
 	int			remain;
+	int			egg_slot_number;
 }						t_team;
 
 typedef struct			s_player
@@ -65,6 +66,7 @@ typedef struct			s_egg
 	int			id;
 	int			coord[2];
 	t_player	*mother;
+	t_team		*team;
 	t_tstmp		laying_time;
 	t_tstmp		hatching_time;
 }						t_egg;
@@ -80,6 +82,7 @@ typedef struct			s_zappy
 	t_team		*teams;
 	t_lst_head	actions;
 	t_lst_head	eggs;
+	t_lst_head	eggs_hatched;
 	int			egg_id_index;
 	t_tstmp		start_time;
 	t_player	players[MAX_FD];

@@ -61,6 +61,7 @@ t_egg	*egg_create(t_player *p, t_zappy *var, t_tstmp *time)
 	new_egg->coord[0] = p->coord[0];
 	new_egg->coord[1] = p->coord[1];
 	new_egg->mother = p;
+	new_egg->team = p->team;
 	new_egg->laying_time = time[0];
 	new_egg->hatching_time = time[1];
 	return (new_egg);
