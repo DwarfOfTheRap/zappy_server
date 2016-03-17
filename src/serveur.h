@@ -174,6 +174,7 @@ void		command_expulse(t_zappy *var, t_player *p, char *args);
 */
 int			close_client(t_zappy *var, t_server *serv, int fd);
 void		client_error(t_player *p, char *str);
+void		player_hatched(t_player *p, t_zappy *var);
 void		init_client(t_zappy *var, t_player *p);
 void		affect_team(t_zappy *var, t_player *p, char *str, size_t len);
 
@@ -410,7 +411,7 @@ t_action	*find_player_last_action(t_player *p, t_zappy *var);
 ** src/health.c
 */
 void		check_players_life(t_zappy *var);
-void		player_spawn(t_player *p, t_zappy *var);
+void		player_spawn(t_player *p, t_zappy *var, int* coord);
 void		player_die(t_zappy *var, t_player *p);
 void		player_eat(t_player *p, t_zappy *var);
 void		player_vomit(t_player *p, t_zappy *var);

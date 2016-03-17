@@ -37,6 +37,25 @@ void	client_error(t_player *p, char *str)
 	p->status = FD_CLOSE;
 }
 
+void	player_hatched(t_player *p, t_zappy *var)
+{
+	t_lst_head	*list;
+	t_lst_elem	*cursor;
+	t_egg		*egg;
+
+	list = &var->eggs_hatched;
+	cursor = list->first;
+	while (cursor && (egg = (t_egg*)cursor->content) && egg->team != p->team)
+		cursor = cursor->next;
+	if (!(cursor && egg))
+		return;
+	lst_remove(list, cursor);
+	--p->team->egg_slot_number;
+	player_spawn(p, var, egg->coord);
+	message_gfx_ebo(var, egg);
+	lst_delete_elem(&cursor, free);
+}
+
 void	init_client(t_zappy *var, t_player *p)
 {
 	char	str[128];
@@ -48,12 +67,14 @@ void	init_client(t_zappy *var, t_player *p)
 	if (p->team->remain)
 	{
 		--p->team->remain;
-		player_spawn(p, var);
+		player_spawn(p, var, NULL);
 		message_gfx_pnw(var, p);
 		if (g_log & LOG_I)
 			printf("[\033[0;34mINFO\033[0m] Client %d: team %s\n", p->id,
 					p->team->name);
 	}
+	else if (p->team->egg_slot_number)
+		player_hatched(p, var);
 	else
 	{
 		p->status = FD_CLOSE;
