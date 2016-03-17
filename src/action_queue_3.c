@@ -59,7 +59,7 @@ t_action	*find_player_first_action(t_player *p, t_zappy *var)
 	cursor = list->first;
 	while (cursor)
 	{
-		if (( action = (t_action*)cursor->content ) && action->player == p)
+		if ((action = (t_action*)cursor->content) && action->player == p)
 			return (action);
 		cursor = cursor->next;
 	}

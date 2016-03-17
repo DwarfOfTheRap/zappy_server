@@ -1,5 +1,4 @@
 #include "serveur.h"
-#include <stdio.h>
 #include <unistd.h>
 
 t_cmd const	*get_cmd_list(void)
