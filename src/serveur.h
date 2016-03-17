@@ -443,6 +443,7 @@ void		check_eggs(t_zappy *var);
 /*
 ** src/egg_utils.c
 */
+t_egg		*get_first_egg(t_lst_head *list);
 t_egg		*get_last_egg(t_lst_head *list);
 int			egg_add(t_egg *egg, t_zappy *var);
 t_egg		*egg_create(t_player *p, t_zappy *var, t_tstmp *time);

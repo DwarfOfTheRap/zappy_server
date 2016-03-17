@@ -3,18 +3,16 @@
 void	check_eggs(t_zappy *var)
 {
 	t_lst_head	*list;
-	t_lst_elem	*cursor;
+	t_lst_elem	*elem;
 	t_egg		*egg;
 
 	list = &var->eggs;
-	cursor = list->first;
-	while (cursor)
+	while ((egg = get_first_egg(list))
+		   && time_compare(egg->hatching_time, var->start_time))
 	{
-		egg = (t_egg*)cursor->content;
-		if (time_compare(egg->hatching_time, var->start_time))
-			// eclosion
-			;
-		cursor = cursor->next;
+		message_gfx_eht(var, egg);
+		elem = lst_pop(list, 0);
+		lst_delete_elem(&elem, free);
 	}
 }
 
