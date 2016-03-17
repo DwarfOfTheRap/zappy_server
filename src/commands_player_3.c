@@ -54,8 +54,6 @@ int		command_incantation_count_player(t_zappy *var, t_player *p, int *pl)
 			++pl[i];
 			++nb_player;
 		}
-		else
-			pl[i] = 0;
 		++i;
 	}
 	return (nb_player);
