@@ -37,6 +37,7 @@ int		get_opt_string(t_main_arg const m_arg, int *i, t_arguments *args)
 	if (!(args->teams = (t_team *)malloc(sizeof(t_team) * args->nb_team)))
 		return (z_error("Can't allocate memory"));
 	j = 0;
+	bzero(args->teams, sizeof(t_team) * args->nb_team);
 	while (first < *i)
 	{
 		stpncpy(args->teams[j].name, m_arg.av[first], TEAM_LEN);
