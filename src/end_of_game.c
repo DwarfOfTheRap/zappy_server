@@ -2,16 +2,32 @@
 
 extern int	g_continue;
 
+void	disconnect_loser(t_zappy *var, t_team *team)
+{
+	int			i;
+	t_player	*p;
+
+	i = 3;
+	while (i <= *var->fd_max)
+	{
+		p = &var->players[i];
+		if (p->status == FD_CLIENT && (p->team != team || p->level != 8))
+			player_die(var, p);
+		++i;
+	}
+}
+
 void	check_if_team_win(t_zappy *var, t_server *serv)
 {
 	int			i;
 
 	i = 0;
-	while (!var->game_won && i < var->nb_team - 2)
+	while (!var->game_won && i < var->nb_team - 1)
 	{
 		if (var->teams[i].max_level >= 6)
 		{
 			message_gfx_seg(var, &var->teams[i]);
+			disconnect_loser(var, &var->teams[i]);
 			var->game_won = 1;
 		}
 		++i;

@@ -42,7 +42,6 @@ void		player_die(t_zappy *var, t_player *p)
 		++i;
 	}
 	message_player_mort(p);
-	printf("p %d is dead\n", p->id);
 }
 
 void		player_eat(t_player *p, t_zappy *var)
