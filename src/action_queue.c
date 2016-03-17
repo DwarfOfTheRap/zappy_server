@@ -55,7 +55,7 @@ int			action_add(t_action *action, t_zappy *var)
 		if (!last_action || time_compare(last_action->trigger_t, action->trigger_t))
 			lst_pushback(&var->actions, new);
 		else
-			lst_insert(&var->actions, new, cmp);
+			lst_insert_end(&var->actions, new, cmp);
 		p->pending_actions++;
 		return (1);
 	}
