@@ -1,5 +1,8 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "serveur.h"
+
+extern int	g_log;
 
 void		check_players_life(t_zappy *var)
 {
@@ -41,6 +44,9 @@ void		player_die(t_zappy *var, t_player *p)
 		++i;
 	}
 	message_player_mort(p);
+	action_player_clear(p, var);
+	if (g_log & LOG_I)
+		printf("[\033[0;34mINFO\033[0m] Client %d die\n", p->id);
 }
 
 void		player_eat(t_player *p, t_zappy *var)

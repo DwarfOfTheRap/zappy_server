@@ -30,6 +30,7 @@ SRC := \
 	src/do_write.c \
 	src/eggs.c \
 	src/egg_utils.c \
+	src/end_of_game.c \
 	src/exit.c \
 	src/globals.c \
 	src/health.c \

@@ -42,6 +42,7 @@ typedef struct			s_team
 {
 	char		name[TEAM_LEN + 1];
 	int			remain;
+	int			max_level;
 	int			egg_slot_number;
 }						t_team;
 
@@ -79,6 +80,7 @@ typedef struct			s_zappy
 	int			tick;
 	int			nb_team;
 	int			*fd_max;
+	char		game_won;
 	t_team		*teams;
 	t_lst_head	actions;
 	t_lst_head	eggs;

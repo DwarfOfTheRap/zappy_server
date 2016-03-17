@@ -11,6 +11,11 @@ void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
 	int		i;
 	int		nb_player;
 
+	if (var->game_won)
+	{
+		args->pl[0] = 0;
+		return ;
+	}
 	i = 3;
 	nb_player = 0;
 	while (i <= *var->fd_max)
@@ -30,19 +35,22 @@ void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 
-	i = 3;
+	i = 2;
 	action_player_incantation_sub(var, p, args);
 	message_gfx_pie(var, p, args->pl[0]);
-	while (i <= *var->fd_max)
+	while (++i <= *var->fd_max)
 	{
 		if (args->pl[i])
 		{
 			if (args->pl[0])
+			{
 				++var->players[i].level;
+				if (var->players[i].level == 8)
+					++var->players[i].team->max_level;
+			}
 			message_player_incantation_end(&var->players[i]);
 			message_gfx_plv(var, &var->players[i]);
 		}
-		++i;
 	}
 	if (args->pl[0])
 		dispatch_incantation_ressources(var, p, g_incant[p->level - 2]);
@@ -57,9 +65,12 @@ void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 	t_egg	*egg;
 
 	(void)args;
-	egg = egg_add_wrapper(var, p);
+	if (!var->game_won)
+	{
+		egg = egg_add_wrapper(var, p);
+		message_gfx_enw(var, egg);
+	}
 	message_player_ok(p);
-	message_gfx_enw(var, egg);
 	if (g_log & LOG_A)
 		printf("[\033[0;35mACTION\033[0m] p %d fork\n", p->id);
 }

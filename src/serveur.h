@@ -202,6 +202,11 @@ int			do_read(t_zappy *var, t_server *serv, int fd);
 void		do_write(t_zappy *var, t_server *serv, int fd);
 
 /*
+** src/end_of_game.c
+*/
+void		check_if_team_win(t_zappy *var, t_server *serv);
+
+/*
 ** src/exit.c
 */
 void		exit_arg_error(int error, t_arguments *args);
