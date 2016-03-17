@@ -53,6 +53,10 @@ void	player_hatched(t_player *p, t_zappy *var)
 	--p->team->egg_slot_number;
 	player_spawn(p, var, egg->coord);
 	message_gfx_ebo(var, egg);
+	message_gfx_pnw(var, p);
+	if (g_log & LOG_I)
+		printf("[\033[0;34mINFO\033[0m] Client %d: team %s\n", p->id,
+			   p->team->name);
 	lst_delete_elem(&cursor, free);
 }
 
