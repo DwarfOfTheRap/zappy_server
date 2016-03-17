@@ -174,6 +174,7 @@ void		command_expulse(t_zappy *var, t_player *p, char *args);
 */
 int			close_client(t_zappy *var, t_server *serv, int fd);
 void		client_error(t_player *p, char *str);
+void		player_hatched(t_player *p, t_zappy *var);
 void		init_client(t_zappy *var, t_player *p);
 void		affect_team(t_zappy *var, t_player *p, char *str, size_t len);
 
@@ -248,10 +249,10 @@ void		message_unauthorised_command(t_player *p, char *str, char *args);
 /*
 ** src/message_gfx_egg.c
 */
-void		message_gfx_ebo(t_zappy *var, t_player *egg);
-void		message_gfx_edi(t_zappy *var, t_player *egg);
-void		message_gfx_eht(t_zappy *var, t_player *egg);
-void		message_gfx_enw(t_zappy *var, t_player *p, t_player *egg);
+void		message_gfx_ebo(t_zappy *var, t_egg *egg);
+void		message_gfx_edi(t_zappy *var, t_egg *egg);
+void		message_gfx_eht(t_zappy *var, t_egg *egg);
+void		message_gfx_enw(t_zappy *var, t_egg *egg);
 
 /*
 ** src/message_gfx_player.c
@@ -416,7 +417,7 @@ void		reset_players_pending_action_count(t_zappy *var);
 ** src/health.c
 */
 void		check_players_life(t_zappy *var);
-void		player_spawn(t_player *p, t_zappy *var);
+void		player_spawn(t_player *p, t_zappy *var, int* coord);
 void		player_die(t_zappy *var, t_player *p);
 void		player_eat(t_player *p, t_zappy *var);
 void		player_vomit(t_player *p, t_zappy *var);
@@ -430,14 +431,32 @@ int			get_food_number(t_player *p, t_zappy *var);
 ** src/time.c
 */
 void		update_queue(int old_tick, t_zappy *var);
-void		update_player_actions(t_player *p, int old_tick, t_zappy *var);
+void		update_eggs(int old_tick, t_zappy *var);
 void		update_player_timeofdeath(t_player *p, int old_tick, t_zappy *var);
 void		zappy_update_tick(int tick, t_zappy *var);
 
 /*
 ** src/time_compute.c
 */
-void		compute_action_new_time(t_action *action,int old_tick, t_zappy *var);
+t_tstmp		compute_new_time(t_tstmp trigger, int old_tick, t_zappy *var);
+void		compute_action_new_time(t_action *action, int old_tick, t_zappy *var);
+void		compute_egg_new_time(t_egg *egg, int old_tick, t_zappy *var);
 void		compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
+
+/*
+** src/eggs.c
+*/
+void		egg_set_rotten_time(t_egg *egg, t_zappy *var);
+void		check_eggs(t_zappy *var);
+t_egg		*egg_add_wrapper(t_zappy *var, t_player *p);
+
+/*
+** src/egg_utils.c
+*/
+t_egg		*get_first_egg(t_lst_head *list);
+t_egg		*get_last_egg(t_lst_head *list);
+int			egg_add(t_egg *egg, t_zappy *var);
+t_egg		*egg_create(t_player *p, t_zappy *var, t_tstmp *time);
+
 
 #endif

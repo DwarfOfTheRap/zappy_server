@@ -62,11 +62,13 @@ void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 
 void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 {
+	t_egg	*egg;
+
 	(void)args;
-	(void)var;
 	if (!var->game_won)
 	{
-		// add new egg on player coordinate
+		egg = egg_add_wrapper(var, p);
+		message_gfx_enw(var, egg);
 	}
 	message_player_ok(p);
 	if (g_log & LOG_A)

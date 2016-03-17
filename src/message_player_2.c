@@ -45,6 +45,6 @@ void	message_player_connect_nbr(t_player *p)
 	if (!p->team)
 		ret = sprintf(str, "%d", 0);
 	else
-		ret = sprintf(str, "%d", p->team->remain);
+		ret = sprintf(str, "%d", p->team->remain + p->team->egg_slot_number);
 	add_msg_to_player(p, str, ret, 1);
 }

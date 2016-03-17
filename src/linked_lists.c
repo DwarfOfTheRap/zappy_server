@@ -61,6 +61,7 @@ void		lst_pushfront(t_lst_head *head, t_lst_elem *new)
 	if (!(head && new))
 		return ;
 	new->next = head->first;
+	new->prev = NULL;
 	if (!head->first)
 		head->last = new;
 	head->first = new;
@@ -72,6 +73,7 @@ void		lst_pushback(t_lst_head *head, t_lst_elem *new)
 	if (!(head && new))
 		return ;
 	new->prev = head->last;
+	new->next = NULL;
 	if (!head->first)
 		head->first = new;
 	else

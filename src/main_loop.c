@@ -68,6 +68,7 @@ void	main_loop(t_zappy *var, t_server *serv)
 	{
 		signal(SIGINT, intHandler);
 		gettimeofday(&var->start_time, NULL);
+		check_eggs(var);
 		check_players_life(var);
 		pre_select(var, serv);
 		do_select(serv);
