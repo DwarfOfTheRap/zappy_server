@@ -50,7 +50,7 @@
 # define ABS(x)		(x < 0 ? -x : x)
 
 enum		e_action {AVANCE, DROITE, GAUCHE, VOIR, INVENTAIRE, PREND, POSE,
-				EXPULSE, BROADCAST, INCANTATION, FORK, CONNECT_NBR};
+				EXPULSE, BROADCAST, INCANTATION, FORK, CONNECT_NBR, SND_MSG};
 
 # include "linked_lists.h"
 # include "structs.h"
@@ -85,6 +85,12 @@ void		action_player_incantation(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_fork(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args);
+
+/*
+** src/action_player_4.c
+*/
+void		action_player_send_message(t_zappy *var, t_player *p,
+				t_aargs *args);
 
 /*
 ** src/action_player_broadcast.c
@@ -199,6 +205,11 @@ int			do_read(t_zappy *var, t_server *serv, int fd);
 ** src/do_write.c
 */
 void		do_write(t_zappy *var, t_server *serv, int fd);
+
+/*
+** src/end_of_game.c
+*/
+void		check_if_team_win(t_zappy *var, t_server *serv);
 
 /*
 ** src/exit.c

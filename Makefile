@@ -10,6 +10,7 @@ SRC := \
 	src/action_player.c \
 	src/action_player_2.c \
 	src/action_player_3.c \
+	src/action_player_4.c \
 	src/action_player_broadcast.c \
 	src/action_queue.c \
 	src/action_queue_2.c \
@@ -28,6 +29,7 @@ SRC := \
 	src/do_accept.c \
 	src/do_read.c \
 	src/do_write.c \
+	src/end_of_game.c \
 	src/exit.c \
 	src/globals.c \
 	src/health.c \

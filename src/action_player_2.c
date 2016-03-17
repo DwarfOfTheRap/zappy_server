@@ -89,7 +89,7 @@ void	action_player_prend(t_zappy *var, t_player *p, t_aargs *args)
 	if (var->board[p->coord[0]][p->coord[1]][i] > 0)
 	{
 		--var->board[p->coord[0]][p->coord[1]][i];
-		if (i == 0)
+		if (i == 0 && !var->game_won)
 		{
 			player_eat(p, var);
 			add_ressource_on_random_square(var, 0);

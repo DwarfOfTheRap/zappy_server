@@ -11,6 +11,11 @@ void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
 	int		i;
 	int		nb_player;
 
+	if (var->game_won)
+	{
+		args->pl[0] = 0;
+		return ;
+	}
 	i = 3;
 	nb_player = 0;
 	while (i <= *var->fd_max)
@@ -19,11 +24,11 @@ void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
 		{
 			if (var->players[i].status == FD_CLIENT)
 				++nb_player;
+			// maybe did we need to recalculate this
 			var->players[i].pending_actions = (i == p->id) ? args->nb : 0;
 		}
 		++i;
 	}
-	// maybe did we need to recalculate this
 	args->pl[0] = (nb_player >= g_incant[p->level - 1][0]) ? args->pl[0] : 0;
 }
 
@@ -31,19 +36,22 @@ void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 
-	i = 3;
+	i = 2;
 	action_player_incantation_sub(var, p, args);
 	message_gfx_pie(var, p, args->pl[0]);
-	while (i <= *var->fd_max)
+	while (++i <= *var->fd_max)
 	{
 		if (args->pl[i])
 		{
 			if (args->pl[0])
+			{
 				++var->players[i].level;
+				if (var->players[i].level == 8)
+					++var->players[i].team->max_level;
+			}
 			message_player_incantation_end(&var->players[i]);
 			message_gfx_plv(var, &var->players[i]);
 		}
-		++i;
 	}
 	if (args->pl[0])
 		dispatch_incantation_ressources(var, p, g_incant[p->level - 2]);
@@ -57,7 +65,10 @@ void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 {
 	(void)args;
 	(void)var;
-	// add new egg on player coordinate
+	if (!var->game_won)
+	{
+		// add new egg on player coordinate
+	}
 	message_player_ok(p);
 	if (g_log & LOG_A)
 		printf("[\033[0;35mACTION\033[0m] p %d fork\n", p->id);

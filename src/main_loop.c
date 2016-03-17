@@ -65,5 +65,6 @@ void	main_loop(t_zappy *var, t_server *serv)
 		do_select(serv);
 		post_select(var, serv);
 		process_actions(var);
+		check_if_team_win(var, serv);
 	}
 }
