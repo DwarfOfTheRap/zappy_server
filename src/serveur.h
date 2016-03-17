@@ -410,6 +410,7 @@ t_action	*get_last_action(t_lst_head *list);
 int			count_player_actions(t_player *p, t_zappy *var);
 t_action	*find_player_first_action(t_player *p, t_zappy *var);
 t_action	*find_player_last_action(t_player *p, t_zappy *var);
+void		reset_players_pending_action_count(t_zappy *var);
 
 /*
 ** src/health.c
