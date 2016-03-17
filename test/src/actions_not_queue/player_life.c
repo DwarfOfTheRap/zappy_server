@@ -47,7 +47,7 @@ START_TEST(action_player_incantation_test)
 		p = &var.players[i];
 		ck_assert_str_eq(p->snd.buf[p->snd.read], str);
 		ck_assert_int_eq(p->level, 2);
-		ck_assert_int_eq(p->pending_actions, (i == 13) ? 1 : 0);
+		ck_assert_int_eq(p->pending_actions, 0);
 		clean_msg_queue(p);
 		++i;
 	}

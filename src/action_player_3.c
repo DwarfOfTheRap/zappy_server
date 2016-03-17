@@ -19,12 +19,11 @@ void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
 		{
 			if (var->players[i].status == FD_CLIENT)
 				++nb_player;
-			var->players[i].pending_actions = (i == p->id) ? args->nb : 0;
 		}
 		++i;
 	}
-	// maybe did we need to recalculate this
 	args->pl[0] = (nb_player >= g_incant[p->level - 1][0]) ? args->pl[0] : 0;
+	reset_players_pending_action_count(var);
 }
 
 void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
