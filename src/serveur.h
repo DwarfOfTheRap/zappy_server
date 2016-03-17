@@ -243,10 +243,10 @@ void		message_unauthorised_command(t_player *p, char *str, char *args);
 /*
 ** src/message_gfx_egg.c
 */
-void		message_gfx_ebo(t_zappy *var, t_player *egg);
-void		message_gfx_edi(t_zappy *var, t_player *egg);
-void		message_gfx_eht(t_zappy *var, t_player *egg);
-void		message_gfx_enw(t_zappy *var, t_player *p, t_player *egg);
+void		message_gfx_ebo(t_zappy *var, t_egg *egg);
+void		message_gfx_edi(t_zappy *var, t_egg *egg);
+void		message_gfx_eht(t_zappy *var, t_egg *egg);
+void		message_gfx_enw(t_zappy *var, t_egg *egg);
 
 /*
 ** src/message_gfx_player.c
@@ -437,7 +437,7 @@ void		compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
 /*
 ** src/eggs.c
 */
-void		egg_add_wrapper(t_zappy *var, t_player *p);
+t_egg		*egg_add_wrapper(t_zappy *var, t_player *p);
 void		check_eggs(t_zappy *var);
 
 /*

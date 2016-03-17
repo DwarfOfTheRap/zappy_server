@@ -55,9 +55,12 @@ void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 
 void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 {
+	t_egg	*egg;
+
 	(void)args;
-	egg_add_wrapper(var, p);
+	egg = egg_add_wrapper(var, p);
 	message_player_ok(p);
+	message_gfx_enw(var, egg);
 	if (g_log & LOG_A)
 		printf("[\033[0;35mACTION\033[0m] p %d fork\n", p->id);
 }
