@@ -14,7 +14,7 @@ const int			g_incant[7][7] = {
 	{6, 1, 2, 3, 0, 1, 0},
 	{6, 2, 2, 2, 2, 2, 1}};
 
-const t_action_d	g_action[13] = {
+const t_action_d	g_action[12] = {
 	{&action_player_avance, &pre_action_avance, 7},
 	{&action_player_droite, &pre_action_droite, 7},
 	{&action_player_gauche, &pre_action_gauche, 7},
@@ -26,8 +26,7 @@ const t_action_d	g_action[13] = {
 	{&action_player_broadcast, &pre_action_broadcast, 7},
 	{&action_player_incantation, &pre_action_incantation, 300},
 	{&action_player_fork, &pre_action_fork, 42},
-	{&action_player_connect_nbr, NULL, 0},
-	{&action_player_send_message, NULL, 0}};
+	{&action_player_connect_nbr, NULL, 0}};
 
 int					g_log = 0;
 

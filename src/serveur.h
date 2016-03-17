@@ -87,12 +87,6 @@ void		action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args);
 
 /*
-** src/action_player_4.c
-*/
-void		action_player_send_message(t_zappy *var, t_player *p,
-				t_aargs *args);
-
-/*
 ** src/action_player_broadcast.c
 */
 int			broadcast_get_distance(int ms[2], int s[2], int r[2], int i);
