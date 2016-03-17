@@ -29,8 +29,8 @@ START_TEST(connexion_affect_team_full)
 	dummy_t_player_client(&var, p);
 	var.teams[1].remain = 0;
 	affect_team(&var, p, "tutu", 4);
-	ck_assert_ptr_eq(&var.teams[1], p->team);
-	ck_assert_int_eq(0, var.teams[1].remain);
+	ck_assert_ptr_eq(p->team, NULL);
+	ck_assert_int_eq(var.teams[1].remain, 0);
 	ck_assert_int_eq(FD_CLOSE, p->status);
 	ck_assert_str_eq("0\n2 1\n", p->snd.buf[p->snd.write]);
 	rm_teams(&var.teams, &var.nb_team);

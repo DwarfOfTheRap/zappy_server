@@ -2,6 +2,8 @@
 #include <sys/time.h>
 #include "serveur.h"
 
+extern int	g_continue;
+
 void	pre_select(t_zappy *var, t_server *serv)
 {
 	int		i;
@@ -53,9 +55,9 @@ void	post_select(t_zappy *var, t_server *serv)
 	}
 }
 
-int		main_loop(t_zappy *var, t_server *serv)
+void	main_loop(t_zappy *var, t_server *serv)
 {
-	while (1)
+	while (g_continue)
 	{
 		gettimeofday(&var->start_time, NULL);
 		check_players_life(var);

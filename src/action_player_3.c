@@ -1,15 +1,38 @@
 #include <stdio.h>
+#include <string.h>
 #include "serveur.h"
 
 extern int			g_log;
 extern const int	g_incant[7][7];
 extern const char	g_ressources[7][16];
 
+void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
+{
+	int		i;
+	int		nb_player;
+
+	i = 3;
+	nb_player = 0;
+	while (i <= *var->fd_max)
+	{
+		if (args->pl[i])
+		{
+			if (var->players[i].status == FD_CLIENT)
+				++nb_player;
+			var->players[i].pending_actions = (i == p->id) ? args->nb : 0;
+		}
+		++i;
+	}
+	// maybe did we need to recalculate this
+	args->pl[0] = (nb_player >= g_incant[p->level - 1][0]) ? args->pl[0] : 0;
+}
+
 void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 
 	i = 3;
+	action_player_incantation_sub(var, p, args);
 	message_gfx_pie(var, p, args->pl[0]);
 	while (i <= *var->fd_max)
 	{
@@ -43,7 +66,7 @@ void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 void	action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args)
 {
 	(void)var;
-	(void)args;
+	bzero(args, sizeof(t_aargs));
 	message_player_connect_nbr(p);
 	if (g_log & LOG_A)
 		printf("[\033[0;35mACTION\033[0m] p %d connect_nbr\n", p->id);

@@ -4,6 +4,7 @@
 #include <sys/socket.h>
 #include <stdio.h>
 #include <time.h>
+#include <errno.h>
 #include "serveur.h"
 #include "linked_lists.h"
 
@@ -43,7 +44,7 @@ int		init_game_var(t_zappy *var, t_arguments *args)
 	var->tick = args->tick;
 	var->nb_team = (int)args->nb_team;
 	var->teams = args->teams;
-	bzero(&var->actions, sizeof(t_lst_head));//
+	bzero(&var->actions, sizeof(t_lst_head));
 	if ((var->board = (int ***)malloc(sizeof(int **) * var->board_size[0])))
 		init_board(&(var->board), var->board_size, 0, 0);
 	if (!var->board)
@@ -53,7 +54,10 @@ int		init_game_var(t_zappy *var, t_arguments *args)
 	}
 	i = 0;
 	while (i < var->nb_team)
-		var->teams[i++].remain = args->nb_clients;
+	{
+		var->teams[i].remain = (i == var->nb_team - 1) ? 1 : args->nb_clients;
+		++i;
+	}
 	return (0);
 }
 
@@ -72,7 +76,9 @@ int		init_server(t_zappy *var, t_server *serv, t_arguments *args)
 	sin.sin_addr.s_addr = htonl(INADDR_ANY);
 	if (bind(serv->sock, (const struct sockaddr *)&sin, sizeof(sin)) < 0)
 	{
+		serv->fd_max = errno;
 		dprintf(2, "Bind error on port %d\n", serv->port);
+		perror(strerror(serv->fd_max));
 		return (1);
 	}
 	listen(serv->sock, MAX_FD);

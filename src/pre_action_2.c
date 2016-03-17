@@ -49,13 +49,12 @@ void	pre_action_fork(t_zappy *var, t_player *p, t_aargs *args)
 
 void	pre_action_incantation(t_zappy *var, t_player *p, t_aargs *args)
 {
-	int		nb_player;
-
 	if (!(args->pl = (int *)malloc(sizeof(int) * MAX_FD)))
 		return (message_player_ko(p));
-	nb_player = command_incantation_count_player(var, p, args->pl);
-	args->pl[0] = command_incantation_can_incant(var, p, nb_player);
-	command_incantation_notification(var, p, args->pl);
+	bzero(args->pl, sizeof(int) * MAX_FD);
+	args->nb = command_incantation_count_player(var, p, args->pl);
+	args->pl[0] = command_incantation_can_incant(var, p, args->nb);
+	command_incantation_notification(var, p, args);
 	message_gfx_pic(var, p, args->pl);
 	if (g_log & LOG_P)
 		printf("[\033[0;36mPRE-ACTION\033[0m] p %d -> incantation\n", p->id);

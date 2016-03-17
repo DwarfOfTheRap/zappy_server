@@ -106,7 +106,6 @@ void		rm_teams(t_team **teams, int *nb_team);
 void		rm_board(int ****board, int board_size[2], int i, int j);
 void		cleanup_game(t_zappy *var, t_server *serv);
 void		action_free(void *action);
-void		action_free_player(void *action);
 
 /*
 ** src/commands.c
@@ -158,7 +157,7 @@ int			command_incantation_can_incant(t_zappy *var, t_player *p,
 int			command_incantation_count_player(t_zappy *var, t_player *p,
 				int *pl);
 void		command_incantation_notification(t_zappy *var, t_player *p,
-				int *pl);
+				t_aargs *args);
 void		command_incantation(t_zappy *var, t_player *p, char *args);
 
 /*
@@ -220,7 +219,7 @@ int			init(t_zappy *var, t_server *serv, t_arguments *args);
 void		pre_select(t_zappy *var, t_server *serv);
 void		do_select(t_server *serv);
 void		post_select(t_zappy *var, t_server *serv);
-int			main_loop(t_zappy *var, t_server *serv);
+void		main_loop(t_zappy *var, t_server *serv);
 
 /*
 ** src/message.c
@@ -362,6 +361,7 @@ void		dispatch_incantation_ressources(t_zappy *var, t_player *p,
 */
 char		*strjoin(char *str1, char *str2);
 void		strdel(char **str);
+int			same_square(int *s1, int *s2);
 
 /*
 ** src/usage.c
@@ -372,16 +372,15 @@ void		usage(void);
 ** src/tstmp_calcs.c
 */
 int			time_compare(t_tstmp time1, t_tstmp time2);
-t_tstmp		time_create(double seconds);
+t_tstmp		time_long_create(long long ms);
 t_tstmp		time_generate(int ref, t_tstmp start, t_zappy *var);
-double		time_double(t_tstmp time);
+long long	time_long(t_tstmp time);
 void		time_add(t_tstmp *time1, t_tstmp *time2);
 
 /*
 ** src/tstmp_calcs.c
 */
-t_tstmp		time_sub(t_tstmp time1, t_tstmp time2);
-double		time_elapsed(t_tstmp time1, t_tstmp time2);
+long long	time_elapsed(t_tstmp time1, t_tstmp time2);
 
 /*
 ** src/action_queue.c
@@ -397,9 +396,15 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 ** src/action_queue_2.c
 */
 void		action_player_clear(t_player *player, t_zappy *var);
-t_action*	action_player_first(t_player *player, t_zappy *var);
 t_action	*get_first_action(t_lst_head *list);
 t_action	*get_last_action(t_lst_head *list);
+
+/*
+** src/action_queue_3.c
+*/
+int			count_player_actions(t_player *p, t_zappy *var);
+t_action	*find_player_first_action(t_player *p, t_zappy *var);
+t_action	*find_player_last_action(t_player *p, t_zappy *var);
 
 /*
 ** src/health.c

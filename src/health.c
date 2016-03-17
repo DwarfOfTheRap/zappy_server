@@ -23,6 +23,7 @@ void		player_spawn(t_player *p, t_zappy *var)
 	timeofdeath = time_generate(1260, var->start_time, var);
 	p->timeofdeath = timeofdeath;
 	p->level = 1;
+	p->pending_actions = 0;
 	p->coord[0] = rand() % var->board_size[0];
 	p->coord[1] = rand() % var->board_size[1];
 	p->facing = rand() % 4;
@@ -49,9 +50,13 @@ void		player_eat(t_player *p, t_zappy *var)
 
 void		player_vomit(t_player *p, t_zappy *var)
 {
-	t_tstmp ref;
+	t_tstmp		ref;
+	long long	timeofdeath;
+	long long	new_time;
 
 	ref.tv_sec = 0;
 	ref.tv_usec = 0;
-	p->timeofdeath = time_sub(time_generate(126, ref, var), p->timeofdeath);
+	timeofdeath = time_long(p->timeofdeath);
+	new_time = timeofdeath - time_long(time_generate(126, ref, var));
+	p->timeofdeath = time_long_create(new_time);
 }

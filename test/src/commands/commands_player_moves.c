@@ -17,7 +17,7 @@ START_TEST(command_player_avance_test)
 	dummy_t_player_gfx(&var, gfx);
 	dummy_t_player(&var, p);
 	command_avance(&var, p, NULL);
-	action = get_first_action(&p->actions);
+	action = find_player_first_action(p, &var);
 	ck_assert_ptr_eq(action->run, &action_player_avance);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(gfx);
@@ -43,7 +43,7 @@ START_TEST(command_player_droite_test)
 	dummy_t_player_gfx(&var, gfx);
 	dummy_t_player(&var, p);
 	command_droite(&var, p, NULL);
-	action = get_first_action(&p->actions);
+	action = find_player_first_action(p, &var);
 	ck_assert_ptr_eq(action->run, &action_player_droite);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(gfx);
@@ -69,7 +69,7 @@ START_TEST(command_player_gauche_test)
 	dummy_t_player_gfx(&var, gfx);
 	dummy_t_player(&var, p);
 	command_gauche(&var, p, NULL);
-	action = get_first_action(&p->actions);
+	action = find_player_first_action(p, &var);
 	ck_assert_ptr_eq(action->run, &action_player_gauche);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(gfx);

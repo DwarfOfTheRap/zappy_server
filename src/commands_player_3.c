@@ -7,16 +7,14 @@ extern const int	g_incant[7][7];
 
 void	command_fork(t_zappy *var, t_player *p, char *args)
 {
-	t_aargs		*t;
+	t_aargs		t;
 
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> fork\n", p->id);
-	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
-		return ;
-	bzero(t, sizeof(t_aargs));
-	t->str = strdup(args);
-	action_add_wrapper(var, p, t, FORK);
-	if (!p->actions.size)
+	bzero(&t, sizeof(t_aargs));
+	t.str = strdup(args);
+	action_add_wrapper(var, p, &t, FORK);
+	if (!p->pending_actions)
 		pre_action_fork(var, p, NULL);
 }
 
@@ -51,58 +49,56 @@ int		command_incantation_count_player(t_zappy *var, t_player *p, int *pl)
 	{
 		if (var->players[i].status == FD_CLIENT &&
 			var->players[i].level == p->level &&
-			var->players[i].coord[0] == p->coord[0] &&
-			var->players[i].coord[0] == p->coord[0])
+			same_square(var->players[i].coord, p->coord))
 		{
 			++pl[i];
 			++nb_player;
 		}
-		else
-			pl[i] = 0;
 		++i;
 	}
 	return (nb_player);
 }
 
-void	command_incantation_notification(t_zappy *var, t_player *p, int *pl)
+void	command_incantation_notification(t_zappy *var, t_player *p,
+		t_aargs *args)
 {
 	int			i;
 	t_player	*p2;
 	t_action	*a;
 
 	i = 3;
-	while (i <= *var->fd_max)
+	while (++i <= *var->fd_max)
 	{
-		if (pl[i])
+		if (args->pl[i])
 		{
 			p2 = &var->players[i];
-			if (p2 != p && p2->actions.size)
+			if (p2 != p && p2->pending_actions)
 			{
-				a = get_first_action(&p2->actions);
-				if (a->run == &action_player_avance ||
+				a = find_player_first_action(p2, var);
+				if (a && (a->run == &action_player_avance ||
 						a->run == &action_player_droite ||
-						a->run == &action_player_gauche)
+						a->run == &action_player_gauche))
 					message_gfx_ppo(var, p2);
 				message_player_ko(p2);
 				action_player_clear(p2, var);
 			}
+			// maybe did we need to recalculate this
+			args->nb = (p2 == p) ? (int)p->pending_actions + 1: args->nb;
+			p2->pending_actions = (p2 == p) ? 9 : 10;
 			message_player_incantation_start(p2);
 		}
-		++i;
 	}
 }
 
 void	command_incantation(t_zappy *var, t_player *p, char *args)
 {
-	t_aargs		*t;
+	t_aargs		t;
 
 	(void)args;
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> incantation\n", p->id);
-	if (!(t = (t_aargs *)malloc(sizeof(t_aargs))))
-		return ;
-	bzero(t, sizeof(t_aargs));
-	if (!p->actions.size)
-		pre_action_incantation(var, p, t);
-	action_add_wrapper(var, p, t, INCANTATION);
+	bzero(&t, sizeof(t_aargs));
+	if (!p->pending_actions)
+		pre_action_incantation(var, p, &t);
+	action_add_wrapper(var, p, &t, INCANTATION);
 }

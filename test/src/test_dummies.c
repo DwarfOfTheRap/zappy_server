@@ -88,7 +88,7 @@ void	dummy_t_player_client(t_zappy *var, t_player *p)
 	p->snd.pos = p->snd.buf[p->snd.write];
 	p->status = FD_USED;
 	p->timeofdeath = time_generate(1260, var->start_time, var);
-	bzero(&p->actions, sizeof(t_lst_head));
+	p->pending_actions = 0;
 }
 
 void	dummy_t_player(t_zappy *var, t_player *p)

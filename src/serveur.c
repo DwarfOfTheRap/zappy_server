@@ -1,6 +1,14 @@
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 #include "serveur.h"
+
+extern int	g_continue;
+
+void intHandler(int dummy) {
+	(void)dummy;
+	g_continue = 0;
+}
 
 int		main(int ac, const char **av)
 {
@@ -9,12 +17,15 @@ int		main(int ac, const char **av)
 	t_zappy		*var;
 	t_server	serv;
 
-	bzero(&args, sizeof(args));
-	if (!(var = (t_zappy *)malloc(sizeof(t_zappy))))
-		return (1);
+	bzero(&args, sizeof(t_arguments));
 	if ((ret = read_arguments(ac, av, &args)))
 		exit_arg_error(ret, &args);
+	if (!(var = (t_zappy *)malloc(sizeof(t_zappy))))
+		return (1);
+	signal(SIGINT, intHandler);
 	if (!init(var, &serv, &args))
 		main_loop(var, &serv);
+	cleanup_game(var, &serv);
+	free(var);
 	return (0);
 }

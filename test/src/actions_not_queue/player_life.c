@@ -32,11 +32,13 @@ START_TEST(action_player_incantation_test)
 	{
 		p = &var.players[i];
 		dummy_t_player(&var, p);
+		p->pending_actions = 10;
 		p->level = 1;
 		pl[i] = 1;
 		++i;
 	}
 	a.pl = pl;
+	a.nb = 1;
 	pl[0] = 1;
 	action_player_incantation(&var, p, &a);
 	i = 6;
@@ -45,6 +47,7 @@ START_TEST(action_player_incantation_test)
 		p = &var.players[i];
 		ck_assert_str_eq(p->snd.buf[p->snd.read], str);
 		ck_assert_int_eq(p->level, 2);
+		ck_assert_int_eq(p->pending_actions, (i == 13) ? 1 : 0);
 		clean_msg_queue(p);
 		++i;
 	}
@@ -58,8 +61,8 @@ START_TEST(action_player_incantation_test)
 	while (i < 14)
 	{
 		p = &var.players[i];
-		ck_assert_str_eq(p->snd.buf[p->snd.read], str);
 		ck_assert_int_eq(p->level, 2);
+		ck_assert_str_eq(p->snd.buf[p->snd.read], str);
 		clean_msg_queue(p);
 		++i;
 	}
@@ -76,14 +79,16 @@ START_TEST(action_player_connect_nbr_test)
 {
 	t_zappy		var;
 	t_player	*p = &var.players[6];
+	t_aargs		t;
 	char		str[] = "1\n2\n";
 
+	bzero(&t, sizeof(t_aargs));
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player(&var, p);
 	dummy_t_zappy_add_remaining_in_team(&var);
-	action_player_connect_nbr(&var, p, NULL);
+	action_player_connect_nbr(&var, p, &t);
 	dummy_t_zappy_add_remaining_in_team(&var);
-	action_player_connect_nbr(&var, p, NULL);
+	action_player_connect_nbr(&var, p, &t);
 	ck_assert_str_eq(p->snd.buf[p->snd.read], str);
 	clean_msg_queue(p);
 	rm_teams(&var.teams, &var.nb_team);
@@ -138,7 +143,7 @@ START_TEST(action_player_expulse_test)
 			str[12] = (i - 9) * 2 + 1 + '0';
 		if (i == 6 || i > 9)
 			ck_assert_str_eq(p->snd.buf[p->snd.read], str);
-		ck_assert_int_eq(p->actions.size, 0);
+		ck_assert_int_eq(p->pending_actions, 0);
 		clean_msg_queue(p);
 		++i;
 	}

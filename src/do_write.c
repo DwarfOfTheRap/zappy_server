@@ -32,9 +32,9 @@ int		do_write_normal_buffer(t_player *p)
 		ret = write(p->id, p->snd.buf[p->snd.read], len);
 		if (len != ret)
 			return (rearrange_message_queue(p, ret, 1));
-		p->snd.full = 0;
-		if (p->snd.read == p->snd.write)
+		if (!p->snd.full && p->snd.read == p->snd.write)
 			update_pos_pointer(&p->snd);
+		p->snd.full = 0;
 		p->snd.read = (p->snd.read + 1 == NB_SND) ? 0 : p->snd.read + 1;
 	}
 	return (0);
@@ -49,6 +49,6 @@ void	do_write(t_zappy *var, t_server *serv, int fd)
 	p = &var->players[fd];
 	if (!(ret_normal_buffer = do_write_normal_buffer(p)))
 		ret_extended_buffer = do_write_extended_buffer(p);
-	if (!ret_normal_buffer && ! ret_extended_buffer && p->status == FD_CLOSE)
+	if (!ret_normal_buffer && !ret_extended_buffer && p->status == FD_CLOSE)
 		close_client(var, serv, fd);
 }
