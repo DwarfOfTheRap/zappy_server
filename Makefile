@@ -28,6 +28,8 @@ SRC := \
 	src/do_accept.c \
 	src/do_read.c \
 	src/do_write.c \
+	src/eggs.c \
+	src/egg_utils.c \
 	src/exit.c \
 	src/globals.c \
 	src/health.c \

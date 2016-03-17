@@ -13,9 +13,9 @@ void	command_fork(t_zappy *var, t_player *p, char *args)
 		printf("[\033[0;32mCOMMAND\033[0m] p %d -> fork\n", p->id);
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
-	action_add_wrapper(var, p, &t, FORK);
 	if (!p->pending_actions)
 		pre_action_fork(var, p, NULL);
+	action_add_wrapper(var, p, &t, FORK);
 }
 
 int		command_incantation_can_incant(t_zappy *var, t_player *p, int nb_player)

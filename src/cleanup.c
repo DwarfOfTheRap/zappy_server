@@ -61,6 +61,8 @@ void	cleanup_game(t_zappy *var, t_server *serv)
 	rm_board(&(var->board), var->board_size, var->board_size[0],
 			var->board_size[1]);
 	lst_delete(&var->actions, action_free);
+	lst_delete(&var->eggs, free);
+	lst_delete(&var->eggs_hatched, free);
 	cleanup_client(var, serv->sock);
 	if (serv->sock > 0)
 		close(serv->sock);

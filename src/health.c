@@ -16,7 +16,7 @@ void		check_players_life(t_zappy *var)
 	}
 }
 
-void		player_spawn(t_player *p, t_zappy *var)
+void		player_spawn(t_player *p, t_zappy *var, int *coord)
 {
 	t_tstmp	timeofdeath;
 
@@ -24,8 +24,8 @@ void		player_spawn(t_player *p, t_zappy *var)
 	p->timeofdeath = timeofdeath;
 	p->level = 1;
 	p->pending_actions = 0;
-	p->coord[0] = rand() % var->board_size[0];
-	p->coord[1] = rand() % var->board_size[1];
+	p->coord[0] = (!coord) ? rand() % var->board_size[0] : coord[0];
+	p->coord[1] = (!coord) ? rand() % var->board_size[1] : coord[1];
 	p->facing = rand() % 4;
 }
 
