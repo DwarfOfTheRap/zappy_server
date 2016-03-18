@@ -34,15 +34,7 @@ void		player_spawn(t_player *p, t_zappy *var, int *coord)
 
 void		player_die(t_zappy *var, t_player *p)
 {
-	int		i;
-
 	p->status = FD_CLOSE;
-	i = 1;
-	while (i < 7)
-	{
-		var->board[p->coord[0]][p->coord[1]][i] += p->inv[i - 1];
-		++i;
-	}
 	message_player_mort(p);
 	action_player_clear(p, var);
 	if (g_log & LOG_I)

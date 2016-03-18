@@ -408,6 +408,7 @@ void		add_ressource(t_zappy *var, int res, int nb);
 void		init_ressources(t_zappy *var);
 void		dispatch_incantation_ressources(t_zappy *var, t_player *p,
 				const int *res);
+void		drop_ressource_on_death(t_zappy *var, t_player *p);
 
 /*
 ** src/time.c
