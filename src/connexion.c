@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "serveur.h"
 
-extern		 int	g_log;
+extern int			g_log;
 extern const char	g_log_level[7][24];
 
 int					close_client(t_zappy *var, t_server *serv, int fd)
