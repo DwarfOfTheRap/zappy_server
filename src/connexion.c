@@ -48,7 +48,7 @@ void	player_hatched(t_player *p, t_zappy *var)
 	while (cursor && (egg = (t_egg*)cursor->content) && egg->team != p->team)
 		cursor = cursor->next;
 	if (!(cursor && egg))
-		return;
+		return ;
 	lst_remove(list, cursor);
 	--p->team->egg_slot_number;
 	player_spawn(p, var, egg->coord);
@@ -56,7 +56,7 @@ void	player_hatched(t_player *p, t_zappy *var)
 	message_gfx_pnw(var, p);
 	if (g_log & LOG_I)
 		printf("[\033[0;34mINFO\033[0m] Client %d: team %s\n", p->id,
-			   p->team->name);
+			p->team->name);
 	lst_delete_elem(&cursor, free);
 }
 

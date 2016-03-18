@@ -8,7 +8,7 @@ void		check_players_life(t_zappy *var)
 {
 	int	i;
 
-	i = 3;
+	i = 4;
 	while (i <= *var->fd_max)
 	{
 		if (var->players[i].status == FD_CLIENT

@@ -75,7 +75,7 @@ void		reset_players_pending_action_count(t_zappy *var)
 
 	if (!var)
 		return ;
-	i = 3;
+	i = 4;
 	while (i <= *var->fd_max)
 		var->players[i++].pending_actions = 0;
 	list = &var->actions;
