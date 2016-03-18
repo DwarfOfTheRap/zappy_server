@@ -72,8 +72,6 @@ void		action_player_expulse(t_zappy *var, t_player *p, t_aargs *args);
 /*
 ** src/action_player_2.c
 */
-void		action_player_voir_sub_no(t_zappy *var, t_player *p, int k, int l);
-void		action_player_voir_sub_se(t_zappy *var, t_player *p, int k, int l);
 void		action_player_voir(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_prend(t_zappy *var, t_player *p, t_aargs *args);
 void		action_player_pose(t_zappy *var, t_player *p, t_aargs *args);
@@ -89,10 +87,32 @@ void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args);
 /*
 ** src/action_player_broadcast.c
 */
-int			broadcast_get_distance(int ms[2], int s[2], int r[2], int i);
-int			broadcast_get_direction(int ms[2], t_player *s, t_player *r);
-int			broadcast_get_square(int ms[2], t_player *s, t_player *r);
 void		action_player_broadcast(t_zappy *var, t_player *p, t_aargs *args);
+
+/*
+** src/action_queue.c
+*/
+void		process_actions(t_zappy *var);
+int			action_add(t_action *action, t_zappy *var);
+t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
+				t_aargs*), t_player *player, t_tstmp *time);
+void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
+				int act);
+
+/*
+** src/action_queue_2.c
+*/
+void		action_player_clear(t_player *player, t_zappy *var);
+t_action	*get_first_action(t_lst_head *list);
+t_action	*get_last_action(t_lst_head *list);
+
+/*
+** src/action_queue_3.c
+*/
+int			count_player_actions(t_player *p, t_zappy *var);
+t_action	*find_player_first_action(t_player *p, t_zappy *var);
+t_action	*find_player_last_action(t_player *p, t_zappy *var);
+void		reset_players_pending_action_count(t_zappy *var);
 
 /*
 ** src/check_arguments.c
@@ -168,7 +188,6 @@ void		command_expulse_send_to_gfx(t_zappy *var, t_player *p, t_player *p2,
 int			command_expulse_count_player(t_zappy *var, t_player *p, int *pl);
 void		command_expulse(t_zappy *var, t_player *p, char *args);
 
-
 /*
 ** src/connexion.c
 */
@@ -186,7 +205,6 @@ void		init_gfx(t_zappy *var, t_player *p);
 /*
 ** src/do_accept.c
 */
-void		accept_client(t_player *p, int client);
 int			do_accept(t_zappy *var, t_server *serv);
 
 /*
@@ -202,6 +220,21 @@ int			do_read(t_zappy *var, t_server *serv, int fd);
 void		do_write(t_zappy *var, t_server *serv, int fd);
 
 /*
+** src/eggs.c
+*/
+void		egg_set_rotten_time(t_egg *egg, t_zappy *var);
+void		check_eggs(t_zappy *var);
+t_egg		*egg_add_wrapper(t_zappy *var, t_player *p);
+
+/*
+** src/egg_utils.c
+*/
+t_egg		*get_first_egg(t_lst_head *list);
+t_egg		*get_last_egg(t_lst_head *list);
+int			egg_add(t_egg *egg, t_zappy *var);
+t_egg		*egg_create(t_player *p, t_zappy *var, t_tstmp *time);
+
+/*
 ** src/end_of_game.c
 */
 void		check_if_team_win(t_zappy *var, t_server *serv);
@@ -210,6 +243,20 @@ void		check_if_team_win(t_zappy *var, t_server *serv);
 ** src/exit.c
 */
 void		exit_arg_error(int error, t_arguments *args);
+
+/*
+** src/health.c
+*/
+void		check_players_life(t_zappy *var);
+void		player_spawn(t_player *p, t_zappy *var, int* coord);
+void		player_die(t_zappy *var, t_player *p);
+void		player_eat(t_player *p, t_zappy *var);
+void		player_vomit(t_player *p, t_zappy *var);
+
+/*
+** src/health_2.c
+*/
+int			get_food_number(t_player *p, t_zappy *var);
 
 /*
 ** src/init.c
@@ -304,7 +351,8 @@ void		message_player_ok(t_player *p);
 void		message_player_separator(t_player *p, int sep);
 void		message_player_voir_square_sub(t_zappy *var, t_player *p,
 				int square[2]);
-void		message_player_voir_square(t_zappy *var, t_player *p, int square[2]);
+void		message_player_voir_square(t_zappy *var, t_player *p,
+				int square[2]);
 
 /*
 ** src/message_player_2.c
@@ -363,71 +411,6 @@ void		dispatch_incantation_ressources(t_zappy *var, t_player *p,
 				const int *res);
 
 /*
-** src/tools
-*/
-char		*strjoin(char *str1, char *str2);
-void		strdel(char **str);
-int			same_square(int *s1, int *s2);
-
-/*
-** src/usage.c
-*/
-void		usage(void);
-
-/*
-** src/tstmp_calcs.c
-*/
-int			time_compare(t_tstmp time1, t_tstmp time2);
-t_tstmp		time_long_create(long long ms);
-t_tstmp		time_generate(int ref, t_tstmp start, t_zappy *var);
-long long	time_long(t_tstmp time);
-void		time_add(t_tstmp *time1, t_tstmp *time2);
-
-/*
-** src/tstmp_calcs.c
-*/
-long long	time_elapsed(t_tstmp time1, t_tstmp time2);
-
-/*
-** src/action_queue.c
-*/
-void		process_actions(t_zappy *var);
-int			action_add(t_action *action, t_zappy *var);
-t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
-				t_aargs*), t_player *player, t_tstmp *time);
-void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
-				int act);
-
-/*
-** src/action_queue_2.c
-*/
-void		action_player_clear(t_player *player, t_zappy *var);
-t_action	*get_first_action(t_lst_head *list);
-t_action	*get_last_action(t_lst_head *list);
-
-/*
-** src/action_queue_3.c
-*/
-int			count_player_actions(t_player *p, t_zappy *var);
-t_action	*find_player_first_action(t_player *p, t_zappy *var);
-t_action	*find_player_last_action(t_player *p, t_zappy *var);
-void		reset_players_pending_action_count(t_zappy *var);
-
-/*
-** src/health.c
-*/
-void		check_players_life(t_zappy *var);
-void		player_spawn(t_player *p, t_zappy *var, int* coord);
-void		player_die(t_zappy *var, t_player *p);
-void		player_eat(t_player *p, t_zappy *var);
-void		player_vomit(t_player *p, t_zappy *var);
-
-/*
-** src/health_2.c
-*/
-int			get_food_number(t_player *p, t_zappy *var);
-
-/*
 ** src/time.c
 */
 void		update_queue(int old_tick, t_zappy *var);
@@ -439,24 +422,35 @@ void		zappy_update_tick(int tick, t_zappy *var);
 ** src/time_compute.c
 */
 t_tstmp		compute_new_time(t_tstmp trigger, int old_tick, t_zappy *var);
-void		compute_action_new_time(t_action *action, int old_tick, t_zappy *var);
+void		compute_action_new_time(t_action *action, int old_tick,
+				t_zappy *var);
 void		compute_egg_new_time(t_egg *egg, int old_tick, t_zappy *var);
 void		compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
 
 /*
-** src/eggs.c
+** src/tstmp_calcs.c
 */
-void		egg_set_rotten_time(t_egg *egg, t_zappy *var);
-void		check_eggs(t_zappy *var);
-t_egg		*egg_add_wrapper(t_zappy *var, t_player *p);
+int			time_compare(t_tstmp time1, t_tstmp time2);
+t_tstmp		time_long_create(long long ms);
+t_tstmp		time_generate(int ref, t_tstmp start, t_zappy *var);
+long long	time_long(t_tstmp time);
+void		time_add(t_tstmp *time1, t_tstmp *time2);
 
 /*
-** src/egg_utils.c
+** src/tstmp_calcs_2.c
 */
-t_egg		*get_first_egg(t_lst_head *list);
-t_egg		*get_last_egg(t_lst_head *list);
-int			egg_add(t_egg *egg, t_zappy *var);
-t_egg		*egg_create(t_player *p, t_zappy *var, t_tstmp *time);
+long long	time_elapsed(t_tstmp time1, t_tstmp time2);
 
+/*
+** src/tools
+*/
+char		*strjoin(char *str1, char *str2);
+void		strdel(char **str);
+int			same_square(int *s1, int *s2);
+
+/*
+** src/usage.c
+*/
+void		usage(void);
 
 #endif

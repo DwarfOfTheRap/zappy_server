@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include "serveur.h"
 
-void	rm_teams(t_team **teams, int *nb_team)
+void		rm_teams(t_team **teams, int *nb_team)
 {
 	*nb_team = 0;
 	if (!*teams)
@@ -11,7 +11,7 @@ void	rm_teams(t_team **teams, int *nb_team)
 	*teams = NULL;
 }
 
-void	rm_board(int ****board, int board_size[2], int i, int j)
+void		rm_board(int ****board, int board_size[2], int i, int j)
 {
 	if (!*board)
 		return ;
@@ -36,7 +36,7 @@ void	rm_board(int ****board, int board_size[2], int i, int j)
 	*board = NULL;
 }
 
-void	cleanup_client(t_zappy *var, int sockfd)
+static void	cleanup_client(t_zappy *var, int sockfd)
 {
 	int			i;
 	t_player	*p;
@@ -54,7 +54,7 @@ void	cleanup_client(t_zappy *var, int sockfd)
 	}
 }
 
-void	cleanup_game(t_zappy *var, t_server *serv)
+void		cleanup_game(t_zappy *var, t_server *serv)
 {
 	rm_teams(&(var->teams), &(var->nb_team));
 	rm_board(&(var->board), var->board_size, var->board_size[0],
@@ -67,7 +67,7 @@ void	cleanup_game(t_zappy *var, t_server *serv)
 		close(serv->sock);
 }
 
-void	action_free(void *action)
+void		action_free(void *action)
 {
 	t_action	*a;
 

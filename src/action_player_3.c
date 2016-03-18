@@ -6,7 +6,7 @@ extern int			g_log;
 extern const int	g_incant[7][7];
 extern const char	g_ressources[7][16];
 
-void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
+static void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 	int		nb_player;
@@ -31,7 +31,7 @@ void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
 	reset_players_pending_action_count(var);
 }
 
-void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
+void		action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 
@@ -60,7 +60,7 @@ void	action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 		printf("[\033[0;35mACTION\033[0m] p %d incantation -> KO\n", p->id);
 }
 
-void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
+void		action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 {
 	t_egg	*egg;
 
@@ -75,7 +75,7 @@ void	action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 		printf("[\033[0;35mACTION\033[0m] p %d fork\n", p->id);
 }
 
-void	action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args)
+void		action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args)
 {
 	(void)var;
 	bzero(args, sizeof(t_aargs));
@@ -84,7 +84,7 @@ void	action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args)
 		printf("[\033[0;35mACTION\033[0m] p %d connect_nbr\n", p->id);
 }
 
-void	action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args)
+void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		ret;
 	char	str[128];

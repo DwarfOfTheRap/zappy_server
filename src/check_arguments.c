@@ -3,13 +3,13 @@
 #include <ctype.h>
 #include "serveur.h"
 
-int		check_error_int(char *str, int value)
+static int	check_error_int(char *str, int value)
 {
 	dprintf(2, "%s %d not in range.\n", str, value);
 	return (1);
 }
 
-int		check_team_names_characters(t_arguments *args)
+static int	check_team_names_characters(t_arguments *args)
 {
 	u_int	i;
 	u_int	j;
@@ -37,7 +37,7 @@ int		check_team_names_characters(t_arguments *args)
 	return (error);
 }
 
-int		check_team_names(t_arguments *args)
+static int	check_team_names(t_arguments *args)
 {
 	u_int	i;
 	u_int	j;
@@ -63,7 +63,7 @@ int		check_team_names(t_arguments *args)
 	return (error);
 }
 
-int		check_arguments(t_arguments *args, int error)
+int			check_arguments(t_arguments *args, int error)
 {
 	if (args->port < MIN_PORT || args->port > MAX_PORT)
 		error += check_error_int("Port", args->port);
