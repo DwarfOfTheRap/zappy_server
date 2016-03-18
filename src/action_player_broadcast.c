@@ -56,7 +56,7 @@ void		action_player_broadcast(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 
-	i = 0;
+	i = 4;
 	while (i <= *var->fd_max)
 	{
 		if (i != p->id && var->players[i].status == FD_CLIENT)

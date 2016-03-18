@@ -17,7 +17,7 @@ static void	action_player_incantation_sub(t_zappy *var, t_player *p,
 		args->pl[0] = 0;
 		return ;
 	}
-	i = 3;
+	i = 4;
 	nb_player = 0;
 	while (i <= *var->fd_max)
 	{
@@ -36,7 +36,7 @@ void		action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 
-	i = 2;
+	i = 3;
 	action_player_incantation_sub(var, p, args);
 	message_gfx_pie(var, p, args->pl[0]);
 	while (++i <= *var->fd_max)

@@ -18,7 +18,7 @@ void	pre_select(t_zappy *var, t_server *serv)
 	i = 3;
 	FD_ZERO(&serv->fd_read);
 	FD_ZERO(&serv->fd_write);
-	while (i < serv->fd_max + 1)
+	while (i <= serv->fd_max)
 	{
 		if (var->players[i].status != FD_FREE)
 		{
@@ -44,8 +44,8 @@ void	post_select(t_zappy *var, t_server *serv)
 {
 	int		i;
 
-	i = 0;
-	while ((i <= serv->fd_max) && (serv->fd_sel))
+	i = 3;
+	while (i <= serv->fd_max && serv->fd_sel)
 	{
 		if (FD_ISSET(i, &serv->fd_read))
 		{

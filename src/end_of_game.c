@@ -7,7 +7,7 @@ void	disconnect_loser(t_zappy *var, t_team *team)
 	int			i;
 	t_player	*p;
 
-	i = 3;
+	i = 4;
 	while (i <= *var->fd_max)
 	{
 		p = &var->players[i];
@@ -35,7 +35,7 @@ void	check_if_team_win(t_zappy *var, t_server *serv)
 	if (var->game_won && g_continue)
 	{
 		g_continue = 0;
-		i = 3;
+		i = 4;
 		while (i <= serv->fd_max)
 		{
 			g_continue = (var->players[i].status == FD_CLIENT) ? 1 : g_continue;

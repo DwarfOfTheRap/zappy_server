@@ -30,7 +30,7 @@ int		command_expulse_count_player(t_zappy *var, t_player *p, int *pl)
 	t_player	*p2;
 	t_action	*a;
 
-	i = 3;
+	i = 4;
 	nb_player = 0;
 	while (i <= *(var->fd_max))
 	{
