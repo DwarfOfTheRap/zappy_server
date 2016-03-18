@@ -8,6 +8,7 @@ extern int	g_log;
 
 int		close_client(t_zappy *var, t_server *serv, int fd)
 {
+	int			i;
 	t_player	*p;
 
 	p = &var->players[fd];
@@ -19,6 +20,9 @@ int		close_client(t_zappy *var, t_server *serv, int fd)
 	}
 	else if (p->team)
 		message_gfx_pdi(var, p);
+	i = 0;
+	while (++i < 7)
+		var->board[p->coord[0]][p->coord[1]][i] += p->inv[i - 1];
 	p->status = FD_FREE;
 	clean_msg_queue(p);
 	if (g_log & LOG_I)
