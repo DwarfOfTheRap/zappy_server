@@ -48,7 +48,11 @@ void	player_hatched(t_player *p, t_zappy *var)
 	while (cursor && (egg = (t_egg*)cursor->content) && egg->team != p->team)
 		cursor = cursor->next;
 	if (!(cursor && egg))
+	{
+		p->status = FD_CLOSE;
+		p->team = NULL;
 		return ;
+	}
 	lst_remove(list, cursor);
 	--p->team->egg_slot_number;
 	player_spawn(p, var, egg->coord);
