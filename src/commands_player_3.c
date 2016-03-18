@@ -66,7 +66,7 @@ void	command_incantation_notification(t_zappy *var, t_player *p,
 	t_player	*p2;
 	t_action	*a;
 
-	i = 4;
+	i = 3;
 	while (++i <= *var->fd_max)
 	{
 		if (args->pl[i])
