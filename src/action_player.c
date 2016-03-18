@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "serveur.h"
 
 extern int			g_log;

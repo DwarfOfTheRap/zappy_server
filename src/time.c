@@ -1,5 +1,4 @@
 #include "serveur.h"
-#include <stdio.h>
 
 void	update_queue(int old_tick, t_zappy *var)
 {
