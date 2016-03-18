@@ -59,8 +59,8 @@ void	player_hatched(t_player *p, t_zappy *var)
 	message_gfx_ebo(var, egg);
 	message_gfx_pnw(var, p);
 	if (g_log & LOG_I)
-		printf("[\033[0;34mINFO\033[0m] Client %d: team %s\n", p->id,
-			p->team->name);
+		printf("[\033[0;34mINFO\033[0m] Client %d: team %s on egg %d\n",
+			p->id, p->team->name, egg->id);
 	lst_delete_elem(&cursor, free);
 }
 
