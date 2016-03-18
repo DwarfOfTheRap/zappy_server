@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "serveur.h"
 
 extern int	g_log;
@@ -24,7 +23,7 @@ static void	check_eggs_sub(t_zappy *var)
 		elem = lst_pop(list_hatched, 0);
 		lst_delete_elem(&elem, free);
 		if (g_log & LOG_I)
-			printf("[\033[0;34mINFO\033[0m] Egg %d rot\n", egg->id);
+			log_egg(egg->id, "rot");
 	}
 }
 
@@ -46,7 +45,7 @@ void		check_eggs(t_zappy *var)
 		elem = lst_pop(list, 0);
 		lst_pushback(list_hatched, elem);
 		if (g_log & LOG_I)
-			printf("[\033[0;34mINFO\033[0m] Egg %d hatched\n", egg->id);
+			log_egg(egg->id, "hatched");
 	}
 	check_eggs_sub(var);
 }

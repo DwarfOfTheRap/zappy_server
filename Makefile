@@ -39,6 +39,7 @@ SRC := \
 	src/linked_lists.c \
 	src/linked_lists_2.c \
 	src/linked_lists_3.c \
+	src/log.c \
 	src/main_loop.c \
 	src/message.c \
 	src/message_2.c \

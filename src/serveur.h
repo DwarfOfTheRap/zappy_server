@@ -267,6 +267,15 @@ int			init_server(t_zappy *var, t_server *serv, t_arguments *args);
 int			init(t_zappy *var, t_server *serv, t_arguments *args);
 
 /*
+** src/log.c
+*/
+void		log_simple_message(t_player *p, int type, char *str);
+void		log_message_str(t_player *p, int type, char *str, char *arg);
+void		log_gfx(char *str);
+void		log_gfx_str(char *str, char *arg);
+void		log_egg(int id, char *str);
+
+/*
 ** src/main_loop.c
 */
 void		pre_select(t_zappy *var, t_server *serv);

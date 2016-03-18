@@ -50,7 +50,7 @@ int				egg_add(t_egg *egg, t_zappy *var)
 		else
 			lst_insert(&var->eggs, new, cmp);
 		if (g_log & LOG_I)
-			printf("[\033[0;34mINFO\033[0m] Egg %d layed\n", egg->id);
+			log_egg(egg->id, "layed");
 		return (1);
 	}
 	return (0);

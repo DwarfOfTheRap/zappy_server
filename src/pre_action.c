@@ -13,7 +13,7 @@ void	pre_action_avance(t_zappy *var, t_player *p, t_aargs *args)
 	action_player_move(var, &dummy, dummy.facing);
 	message_gfx_ppo(var, &dummy);
 	if (g_log & LOG_P)
-		printf("[\033[0;36mPRE-ACTION\033[0m] p %d -> avance\n", p->id);
+		log_simple_message(p, LOG_P, "avance");
 }
 
 void	pre_action_droite(t_zappy *var, t_player *p, t_aargs *args)
@@ -25,7 +25,7 @@ void	pre_action_droite(t_zappy *var, t_player *p, t_aargs *args)
 	dummy.facing = (dummy.facing + 1 == 4) ? 0 : dummy.facing + 1;
 	message_gfx_ppo(var, &dummy);
 	if (g_log & LOG_P)
-		printf("[\033[0;36mPRE-ACTION\033[0m] p %d -> droite\n", p->id);
+		log_simple_message(p, LOG_P, "droite");
 }
 
 void	pre_action_gauche(t_zappy *var, t_player *p, t_aargs *args)
@@ -37,7 +37,7 @@ void	pre_action_gauche(t_zappy *var, t_player *p, t_aargs *args)
 	dummy.facing = (dummy.facing - 1 < 0) ? 3 : dummy.facing - 1;
 	message_gfx_ppo(var, &dummy);
 	if (g_log & LOG_P)
-		printf("[\033[0;36mPRE-ACTION\033[0m] p %d -> gauche\n", p->id);
+		log_simple_message(p, LOG_P, "gauche");
 }
 
 void	pre_action_expulse(t_zappy *var, t_player *p, t_aargs *args)
@@ -48,7 +48,7 @@ void	pre_action_expulse(t_zappy *var, t_player *p, t_aargs *args)
 	message_gfx_pex(var, p);
 	args->nb = command_expulse_count_player(var, p, args->pl);
 	if (g_log & LOG_P)
-		printf("[\033[0;36mPRE-ACTION\033[0m] p %d -> expulse\n", p->id);
+		log_simple_message(p, LOG_P, "expulse");
 }
 
 void	pre_action_inventaire(t_zappy *var, t_player *p, t_aargs *args)
@@ -56,5 +56,5 @@ void	pre_action_inventaire(t_zappy *var, t_player *p, t_aargs *args)
 	(void)args;
 	message_gfx_pin(var, p);
 	if (g_log & LOG_P)
-		printf("[\033[0;36mPRE-ACTION\033[0m] p %d -> inventaire\n", p->id);
+		log_simple_message(p, LOG_P, "inventaire");
 }
