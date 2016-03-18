@@ -12,7 +12,8 @@ t_tstmp		compute_new_time(t_tstmp trigger, int old_tick, t_zappy *var)
 	return (time_long_create(start + trigger_ref));
 }
 
-void		compute_action_new_time(t_action *action, int old_tick, t_zappy *var)
+void		compute_action_new_time(t_action *action, int old_tick,
+				t_zappy *var)
 {
 	if (!action)
 		return ;

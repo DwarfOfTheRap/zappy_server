@@ -6,7 +6,8 @@ extern int			g_log;
 extern const int	g_incant[7][7];
 extern const char	g_ressources[7][16];
 
-static void	action_player_incantation_sub(t_zappy *var, t_player *p, t_aargs *args)
+static void	action_player_incantation_sub(t_zappy *var, t_player *p,
+		t_aargs *args)
 {
 	int		i;
 	int		nb_player;

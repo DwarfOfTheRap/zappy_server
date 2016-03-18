@@ -16,7 +16,7 @@ void	check_eggs(t_zappy *var)
 	list = &var->eggs;
 	list_hatched = &var->eggs_hatched;
 	while ((egg = get_first_egg(list))
-		   && time_compare(egg->hatching_time, var->start_time))
+		&& time_compare(egg->hatching_time, var->start_time))
 	{
 		message_gfx_eht(var, egg);
 		egg->team->egg_slot_number++;

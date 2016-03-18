@@ -49,11 +49,11 @@
 
 # define ABS(x)		(x < 0 ? -x : x)
 
-enum		e_action {AVANCE, DROITE, GAUCHE, VOIR, INVENTAIRE, PREND, POSE,
-				EXPULSE, BROADCAST, INCANTATION, FORK, CONNECT_NBR};
-
 # include "linked_lists.h"
 # include "structs.h"
+
+enum		e_action {AVANCE, DROITE, GAUCHE, VOIR, INVENTAIRE, PREND, POSE,
+	EXPULSE, BROADCAST, INCANTATION, FORK, CONNECT_NBR};
 
 /*
 ** src/action_gfx.c
@@ -248,7 +248,7 @@ void		exit_arg_error(int error, t_arguments *args);
 ** src/health.c
 */
 void		check_players_life(t_zappy *var);
-void		player_spawn(t_player *p, t_zappy *var, int* coord);
+void		player_spawn(t_player *p, t_zappy *var, int *coord);
 void		player_die(t_zappy *var, t_player *p);
 void		player_eat(t_player *p, t_zappy *var);
 void		player_vomit(t_player *p, t_zappy *var);
@@ -324,7 +324,6 @@ void		message_gfx_pie(t_zappy *var, t_player *p, int success);
 */
 void		message_gfx_pdi(t_zappy *var, t_player *p);
 void		message_gfx_pgt(t_zappy *var, t_player *p, int res_id);
-
 
 /*
 ** src/message_gfx_server.c

@@ -82,8 +82,6 @@ void	command_incantation_notification(t_zappy *var, t_player *p,
 				message_player_ko(p2);
 				action_player_clear(p2, var);
 			}
-			// maybe did we need to recalculate this
-			args->nb = (p2 == p) ? (int)p->pending_actions + 1: args->nb;
 			p2->pending_actions = (p2 == p) ? 9 : 10;
 			message_player_incantation_start(p2);
 		}

@@ -51,7 +51,6 @@ typedef struct			s_player
 	int			id;
 	int			inv[6];
 	int			coord[2];
-//	t_lst_head	actions;
 	int			pending_actions;
 	t_team		*team;
 	t_tstmp		timeofdeath;
