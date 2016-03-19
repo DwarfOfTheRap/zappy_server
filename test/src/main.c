@@ -17,6 +17,7 @@ int		main(void)
 	srunner_add_suite(sr, suite_commands_test());
 	srunner_add_suite(sr, suite_actions());
 	srunner_add_suite(sr, suite_connexion());
+	srunner_add_suite(sr, suite_queue());
 	srunner_run_all(sr, CK_NORMAL);
 	nb_failed = srunner_ntests_failed(sr);
 	srunner_free(sr);
