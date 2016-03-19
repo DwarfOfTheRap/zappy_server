@@ -18,7 +18,7 @@ static void	check_eggs_sub(t_zappy *var)
 	while ((egg = get_first_egg(list_hatched))
 			&& time_compare(egg->hatching_time, var->start_time))
 	{
-		message_gfx_edi(var, egg);
+		message_gfx_edi(var, NULL, egg);
 		egg->team->egg_slot_number--;
 		elem = lst_pop(list_hatched, 0);
 		lst_delete_elem(&elem, free);
@@ -39,7 +39,7 @@ void		check_eggs(t_zappy *var)
 	while ((egg = get_first_egg(list))
 		&& time_compare(egg->hatching_time, var->start_time))
 	{
-		message_gfx_eht(var, egg);
+		message_gfx_eht(var, NULL, egg);
 		egg->team->egg_slot_number++;
 		egg_set_rotten_time(egg, var);
 		elem = lst_pop(list, 0);

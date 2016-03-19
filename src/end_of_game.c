@@ -26,7 +26,7 @@ void	check_if_team_win(t_zappy *var, t_server *serv)
 	{
 		if (var->teams[i].max_level >= 6)
 		{
-			message_gfx_seg(var, &var->teams[i]);
+			message_gfx_seg(var, NULL, &var->teams[i]);
 			disconnect_loser(var, &var->teams[i]);
 			var->game_won = 1;
 		}

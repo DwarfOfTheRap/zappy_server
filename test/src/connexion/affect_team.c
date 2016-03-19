@@ -74,10 +74,10 @@ START_TEST(connexion_affect_team_gfx)
 	var.fd_max = &fd_max;
 	affect_team(&var, gfx, "GRAPHIC", 7);
 	ck_assert_ptr_eq(&var.teams[2], gfx->team);
-	ck_assert_int_eq(0, var.teams[2].remain);
+	ck_assert_int_eq(NB_GFX - 1, var.teams[2].remain);
 	ck_assert_int_eq(FD_GFX, gfx->status);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.write], str);
-	ck_assert_ptr_eq(var.gfx_client, gfx);
+	ck_assert_ptr_eq(var.gfx_client[0], gfx);
 	rm_teams(&var.teams, &var.nb_team);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 	clean_msg_queue(gfx);

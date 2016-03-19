@@ -19,7 +19,7 @@ void	command_expulse_send_to_gfx(t_zappy *var, t_player *p, t_player *p2,
 			dummy.facing = (dummy.facing + 1 == 4) ? 0 : dummy.facing + 1;
 	}
 	action_player_move(var, &dummy, p->facing);
-	message_gfx_ppo(var, &dummy);
+	message_gfx_ppo(var, NULL, &dummy);
 }
 
 int		command_expulse_count_player(t_zappy *var, t_player *p, int *pl)
@@ -40,7 +40,7 @@ int		command_expulse_count_player(t_zappy *var, t_player *p, int *pl)
 			(!p2->pending_actions || ((a = find_player_first_action(p2, var)) &&
 									a->run != &action_player_avance)))
 		{
-			if (var->gfx_client)
+			if (var->teams[var->nb_team - 1].remain != NB_GFX)
 				command_expulse_send_to_gfx(var, p, p2, a);
 			++pl[i];
 			++nb_player;

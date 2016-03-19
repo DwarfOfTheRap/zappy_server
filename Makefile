@@ -43,6 +43,7 @@ SRC := \
 	src/main_loop.c \
 	src/message.c \
 	src/message_2.c \
+	src/message_3.c \
 	src/message_gfx_egg.c \
 	src/message_gfx_player.c \
 	src/message_gfx_player_2.c \

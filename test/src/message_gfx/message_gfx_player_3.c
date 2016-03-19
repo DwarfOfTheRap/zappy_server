@@ -13,7 +13,7 @@ START_TEST(message_gfx_pgt_test)
 	dummy_t_player(&var, p);
 	dummy_t_player_default(p);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_pgt(&var, p, 2);
+	message_gfx_pgt(&var, gfx, p, 2);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
 }
@@ -30,7 +30,7 @@ START_TEST(message_gfx_pdi_test)
 	dummy_t_player(&var, p);
 	dummy_t_player_default(p);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_pdi(&var, p);
+	message_gfx_pdi(&var, gfx, p);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
 }
