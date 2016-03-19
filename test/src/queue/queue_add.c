@@ -19,7 +19,7 @@ START_TEST(queue_process)
 	t_lst_head	*list;
 	t_lst_elem	*cursor;
 	t_action	*action;
-	const char	str[] = "p1.inventaire 101 - p2.avance 108 - p2.inventaire 109 - p3.voir 110 - p4.voir - p1.incantation";
+	const char	str[] = "p1.inventaire 101 - p2.avance 108 - p2.inventaire 109 - p3.voir 110 - p4.voir 112 - p1.incantation 401";
 
 	bzero(arg, sizeof(t_aargs) * 6);
 	dummy_t_zappy_without_board(&var);
