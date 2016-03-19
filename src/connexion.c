@@ -9,6 +9,7 @@ extern const char	g_log_level[7][24];
 
 int					close_client(t_zappy *var, t_server *serv, int fd)
 {
+	int			i;
 	t_player	*p;
 
 	p = &var->players[fd];
@@ -16,10 +17,13 @@ int					close_client(t_zappy *var, t_server *serv, int fd)
 	if (p->team == &var->teams[var->nb_team - 1])
 	{
 		++p->team->remain;
-		var->gfx_client = NULL;
+		i = 0;
+		while (i < NB_GFX && var->gfx_client[i] != p)
+			++i;
+		var->gfx_client[i] = NULL;
 	}
 	else if (p->team)
-		message_gfx_pdi(var, p);
+		message_gfx_pdi(var, NULL, p);
 	drop_ressource_on_death(var, p);
 	p->status = FD_FREE;
 	clean_msg_queue(p);
@@ -59,8 +63,8 @@ void				player_hatched(t_player *p, t_zappy *var)
 	lst_remove(list, cursor);
 	--p->team->egg_slot_number;
 	player_spawn(p, var, egg->coord);
-	message_gfx_ebo(var, egg);
-	message_gfx_pnw(var, p);
+	message_gfx_ebo(var, NULL, egg);
+	message_gfx_pnw(var, NULL, p);
 	if (g_log & LOG_I)
 		printf("[%s] Client %d (%d): team %s on egg %d\n", g_log_level[3],
 			p->id, p->unique_id, p->team->name, egg->id);
@@ -79,7 +83,7 @@ void				init_client(t_zappy *var, t_player *p)
 	{
 		--p->team->remain;
 		player_spawn(p, var, NULL);
-		message_gfx_pnw(var, p);
+		message_gfx_pnw(var, NULL, p);
 		if (g_log & LOG_I)
 			printf("[%s] Client %d (%d): team %s\n", g_log_level[3], p->id,
 					p->unique_id, p->team->name);

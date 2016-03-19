@@ -31,10 +31,12 @@ END_TEST
 
 START_TEST(commands_sst_test)
 {
+	int			fd_max = 6;
 	t_zappy		var;
 	t_player	*gfx = &var.players[6];
 
 	dummy_t_zappy_without_board(&var);
+	var.fd_max = &fd_max;
 	dummy_t_player_gfx(&var, gfx);
 	command_sst(&var, NULL, "");
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], "sbp\n");

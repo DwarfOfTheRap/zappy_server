@@ -38,7 +38,7 @@ void		action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 
 	i = 3;
 	action_player_incantation_sub(var, p, args);
-	message_gfx_pie(var, p, args->pl[0]);
+	message_gfx_pie(var, NULL, p, args->pl[0]);
 	while (++i <= *var->fd_max)
 	{
 		if (args->pl[i])
@@ -50,7 +50,7 @@ void		action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 					++var->players[i].team->max_level;
 			}
 			message_player_incantation_end(&var->players[i]);
-			message_gfx_plv(var, &var->players[i]);
+			message_gfx_plv(var, NULL, &var->players[i]);
 		}
 	}
 	if (args->pl[0])
@@ -69,7 +69,7 @@ void		action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 	if (!var->game_won)
 	{
 		egg = egg_add_wrapper(var, p);
-		message_gfx_enw(var, egg);
+		message_gfx_enw(var, NULL, egg);
 	}
 	message_player_ok(p);
 	if (g_log & LOG_A)
