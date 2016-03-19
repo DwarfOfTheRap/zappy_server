@@ -10,7 +10,7 @@ static int		cmp(void *new_data, void *list_data)
 
 	egg_list = (t_egg*)list_data;
 	egg_new = (t_egg*)new_data;
-	return (time_compare(egg_new->hatching_time, egg_list->hatching_time));
+	return (time_compare(egg_list->hatching_time, egg_new->hatching_time));
 }
 
 t_egg			*get_first_egg(t_lst_head *list)
