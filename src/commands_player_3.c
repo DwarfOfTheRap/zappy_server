@@ -1,5 +1,4 @@
 #include <string.h>
-#include <stdio.h>
 #include "serveur.h"
 
 extern int			g_log;
@@ -10,7 +9,7 @@ void	command_fork(t_zappy *var, t_player *p, char *args)
 	t_aargs		t;
 
 	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> fork\n", p->id);
+		log_simple_message(p, LOG_C, "fork");
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
 	if (!p->pending_actions)
@@ -43,7 +42,7 @@ int		command_incantation_count_player(t_zappy *var, t_player *p, int *pl)
 	int		i;
 	int		nb_player;
 
-	i = 3;
+	i = 4;
 	nb_player = 0;
 	while (i <= *var->fd_max)
 	{
@@ -82,8 +81,6 @@ void	command_incantation_notification(t_zappy *var, t_player *p,
 				message_player_ko(p2);
 				action_player_clear(p2, var);
 			}
-			// maybe did we need to recalculate this
-			args->nb = (p2 == p) ? (int)p->pending_actions + 1: args->nb;
 			p2->pending_actions = (p2 == p) ? 9 : 10;
 			message_player_incantation_start(p2);
 		}
@@ -96,7 +93,7 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 
 	(void)args;
 	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> incantation\n", p->id);
+		log_simple_message(p, LOG_C, "incantation");
 	bzero(&t, sizeof(t_aargs));
 	if (!p->pending_actions)
 		pre_action_incantation(var, p, &t);

@@ -52,7 +52,8 @@ int			action_add(t_action *action, t_zappy *var)
 	if ((new = lst_create_no_malloc(action)))
 	{
 		last_action = get_last_action(&var->actions);
-		if (!last_action || time_compare(last_action->trigger_t, action->trigger_t))
+		if (!last_action || time_compare(last_action->trigger_t,
+					action->trigger_t))
 			lst_pushback(&var->actions, new);
 		else
 			lst_insert_end(&var->actions, new, cmp);

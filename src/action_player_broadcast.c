@@ -1,9 +1,8 @@
-#include <stdio.h>
 #include "serveur.h"
 
 extern int	g_log;
 
-int		broadcast_get_distance(int ms[2], int s[2], int r[2], int i)
+static int	broadcast_get_distance(int ms[2], int s[2], int r[2], int i)
 {
 	int		dist;
 	int		mid;
@@ -16,7 +15,7 @@ int		broadcast_get_distance(int ms[2], int s[2], int r[2], int i)
 		return ((dist < -mid) ? dist + ms[i] : dist);
 }
 
-int		broadcast_get_direction(int ms[2], t_player *s, t_player *r)
+static int	broadcast_get_direction(int ms[2], t_player *s, t_player *r)
 {
 	int		dist[2];
 	int		square;
@@ -36,7 +35,7 @@ int		broadcast_get_direction(int ms[2], t_player *s, t_player *r)
 	return (square);
 }
 
-int		broadcast_get_square(int ms[2], t_player *s, t_player *r)
+static int	broadcast_get_square(int ms[2], t_player *s, t_player *r)
 {
 	int		absolute_dir;
 
@@ -52,11 +51,11 @@ int		broadcast_get_square(int ms[2], t_player *s, t_player *r)
 	return (absolute_dir);
 }
 
-void	action_player_broadcast(t_zappy *var, t_player *p, t_aargs *args)
+void		action_player_broadcast(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 
-	i = 0;
+	i = 4;
 	while (i <= *var->fd_max)
 	{
 		if (i != p->id && var->players[i].status == FD_CLIENT)
@@ -66,6 +65,5 @@ void	action_player_broadcast(t_zappy *var, t_player *p, t_aargs *args)
 	}
 	message_player_ok(p);
 	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d broadcast [%s]\n", p->id,
-				args->str);
+		log_message_str(p, LOG_A, "broadcast", args->str);
 }

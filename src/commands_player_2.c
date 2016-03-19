@@ -1,5 +1,4 @@
 #include <string.h>
-#include <stdio.h>
 #include "serveur.h"
 
 extern int			g_log;
@@ -9,7 +8,7 @@ void	command_prend(t_zappy *var, t_player *p, char *args)
 	t_aargs		t;
 
 	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> prend %s\n", p->id, args);
+		log_message_str(p, LOG_C, "prend", args);
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
 	if (!p->pending_actions)
@@ -22,7 +21,7 @@ void	command_pose(t_zappy *var, t_player *p, char *args)
 	t_aargs		t;
 
 	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> pose %s\n", p->id, args);
+		log_message_str(p, LOG_C, "pose", args);
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
 	if (!p->pending_actions)
@@ -35,8 +34,7 @@ void	command_broadcast(t_zappy *var, t_player *p, char *args)
 	t_aargs		t;
 
 	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> broadcast %s\n", p->id,
-				args);
+		log_message_str(p, LOG_C, "broadcast", args);
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
 	if (!p->pending_actions)
@@ -49,7 +47,7 @@ void	command_connect_nbr(t_zappy *var, t_player *p, char *args)
 	t_aargs		t;
 
 	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> connect_nbr\n", p->id);
+		log_simple_message(p, LOG_C, "connect_nbr");
 	bzero(&t, sizeof(t_aargs));
 	(void)args;
 	(void)var;

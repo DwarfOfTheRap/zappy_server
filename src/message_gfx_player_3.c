@@ -9,7 +9,7 @@ void	message_gfx_pgt(t_zappy *var, t_player *p, int res_id)
 
 	if (!var->gfx_client)
 		return ;
-	ret = sprintf(str, "pgt %d %d", p->id, res_id);
+	ret = sprintf(str, "pgt %d %d", p->unique_id, res_id);
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }
 
@@ -20,6 +20,6 @@ void	message_gfx_pdi(t_zappy *var, t_player *p)
 
 	if (!var->gfx_client)
 		return ;
-	ret = sprintf(str, "pdi %d", p->id);
+	ret = sprintf(str, "pdi %d", p->unique_id);
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }

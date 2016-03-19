@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "serveur.h"
 
 extern int			g_log;
@@ -25,7 +24,7 @@ void	action_player_avance(t_zappy *var, t_player *p, t_aargs *args)
 	message_player_ok(p);
 	message_gfx_ppo(var, p);
 	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d avance\n", p->id);
+		log_simple_message(p, LOG_A, "avance");
 }
 
 void	action_player_droite(t_zappy *var, t_player *p, t_aargs *args)
@@ -36,7 +35,7 @@ void	action_player_droite(t_zappy *var, t_player *p, t_aargs *args)
 	message_player_ok(p);
 	message_gfx_ppo(var, p);
 	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d droite\n", p->id);
+		log_simple_message(p, LOG_A, "droite");
 }
 
 void	action_player_gauche(t_zappy *var, t_player *p, t_aargs *args)
@@ -47,14 +46,14 @@ void	action_player_gauche(t_zappy *var, t_player *p, t_aargs *args)
 	message_player_ok(p);
 	message_gfx_ppo(var, p);
 	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d gauche\n", p->id);
+		log_simple_message(p, LOG_A, "gauche");
 }
 
 void	action_player_expulse(t_zappy *var, t_player *p, t_aargs *args)
 {
 	int		i;
 
-	i = 0;
+	i = 4;
 	while (args->nb && i <= *var->fd_max)
 	{
 		if (args->pl[i])
@@ -71,5 +70,5 @@ void	action_player_expulse(t_zappy *var, t_player *p, t_aargs *args)
 	else
 		message_player_ko(p);
 	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d expulse\n", p->id);
+		log_simple_message(p, LOG_A, "expulse");
 }

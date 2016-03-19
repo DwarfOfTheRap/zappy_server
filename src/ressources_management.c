@@ -54,3 +54,16 @@ void	dispatch_incantation_ressources(t_zappy *var, t_player *p,
 		++i;
 	}
 }
+
+void	drop_ressource_on_death(t_zappy *var, t_player *p)
+{
+	int		i;
+
+	i = 1;
+	while (i < 7)
+	{
+		var->board[p->coord[0]][p->coord[1]][i] += p->inv[i - 1];
+		++i;
+	}
+	message_gfx_bct(var, p->coord);
+}

@@ -30,6 +30,7 @@ SRC := \
 	src/do_write.c \
 	src/eggs.c \
 	src/egg_utils.c \
+	src/end_of_game.c \
 	src/exit.c \
 	src/globals.c \
 	src/health.c \
@@ -38,6 +39,7 @@ SRC := \
 	src/linked_lists.c \
 	src/linked_lists_2.c \
 	src/linked_lists_3.c \
+	src/log.c \
 	src/main_loop.c \
 	src/message.c \
 	src/message_2.c \

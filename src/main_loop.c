@@ -1,17 +1,24 @@
 #include <stdlib.h>
+#include <signal.h>
 #include <sys/time.h>
 #include "serveur.h"
 
 extern int	g_continue;
 
+void	int_handler(int dummy)
+{
+	(void)dummy;
+	g_continue = 0;
+}
+
 void	pre_select(t_zappy *var, t_server *serv)
 {
 	int		i;
 
-	i = 0;
+	i = 3;
 	FD_ZERO(&serv->fd_read);
 	FD_ZERO(&serv->fd_write);
-	while (i < serv->fd_max + 1)
+	while (i <= serv->fd_max)
 	{
 		if (var->players[i].status != FD_FREE)
 		{
@@ -37,8 +44,8 @@ void	post_select(t_zappy *var, t_server *serv)
 {
 	int		i;
 
-	i = 0;
-	while ((i <= serv->fd_max) && (serv->fd_sel))
+	i = 3;
+	while (i <= serv->fd_max && serv->fd_sel)
 	{
 		if (FD_ISSET(i, &serv->fd_read))
 		{
@@ -59,6 +66,7 @@ void	main_loop(t_zappy *var, t_server *serv)
 {
 	while (g_continue)
 	{
+		signal(SIGINT, int_handler);
 		gettimeofday(&var->start_time, NULL);
 		check_eggs(var);
 		check_players_life(var);
@@ -66,5 +74,6 @@ void	main_loop(t_zappy *var, t_server *serv)
 		do_select(serv);
 		post_select(var, serv);
 		process_actions(var);
+		check_if_team_win(var, serv);
 	}
 }
