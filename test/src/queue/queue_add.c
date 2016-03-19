@@ -13,15 +13,15 @@ START_TEST(queue_process)
 	t_player	*p2 = &var.players[6];
 	t_player	*p3 = &var.players[7];
 	t_player	*p4 = &var.players[8];
-	t_aargs		arg[6];
+	t_aargs		arg[8];
 	char		result[1024] = {0};
 	char		temp[512] = {0};
 	t_lst_head	*list;
 	t_lst_elem	*cursor;
 	t_action	*action;
-	const char	str[] = "p1.inventaire 101 - p2.avance 108 - p2.inventaire 109 - p3.voir 110 - p4.voir 112 - p1.incantation 401";
+	const char	str[] = "p1.inventaire 101 - p2.avance 108 - p2.inventaire 109 - p3.voir 110 - p4.voir 112 - p4.connect_nbr 112 - p4.broadcast 119 - p1.incantation 401";
 
-	bzero(arg, sizeof(t_aargs) * 6);
+	bzero(arg, sizeof(t_aargs) * 8);
 	dummy_t_zappy_without_board(&var);
 	var.start_time.tv_sec = 100;
 	var.start_time.tv_usec = 0;
@@ -45,6 +45,10 @@ START_TEST(queue_process)
 	var.start_time.tv_sec = 105;
 	arg[5].str = "p4.voir";
 	action_add_wrapper(&var, p4, &arg[5], 3);
+	arg[6].str = "p4.connect_nbr";
+	action_add_wrapper(&var, p4, &arg[6], 11);
+	arg[7].str = "p4.broadcast";
+	action_add_wrapper(&var, p4, &arg[7], 8);
 
 	list = &var.actions;
 	cursor = list->first;
