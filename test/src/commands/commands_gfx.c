@@ -51,11 +51,13 @@ END_TEST
 
 START_TEST(commands_ppo_test)
 {
+	int			fd_max = 6;
 	t_zappy		var;
 	t_player	*p = &var.players[5];
 	t_player	*gfx = &var.players[6];
 
 	dummy_t_zappy_without_board(&var);
+	var.fd_max = &fd_max;
 	dummy_t_player(&var, p);
 	dummy_t_player_default(p);
 	dummy_t_player_gfx(&var, gfx);
@@ -74,11 +76,13 @@ END_TEST
 
 START_TEST(commands_plv_test)
 {
+	int			fd_max = 6;
 	t_zappy		var;
 	t_player	*p = &var.players[5];
 	t_player	*gfx = &var.players[6];
 
 	dummy_t_zappy_without_board(&var);
+	var.fd_max = &fd_max;
 	dummy_t_player(&var, p);
 	dummy_t_player_default(p);
 	dummy_t_player_gfx(&var, gfx);
@@ -97,11 +101,13 @@ END_TEST
 
 START_TEST(commands_pin_test)
 {
+	int			fd_max = 6;
 	t_zappy		var;
 	t_player	*p = &var.players[5];
 	t_player	*gfx = &var.players[6];
 
 	dummy_t_zappy_without_board(&var);
+	var.fd_max = &fd_max;
 	dummy_t_player(&var, p);
 	dummy_t_player_default(p);
 	dummy_t_player_gfx(&var, gfx);
