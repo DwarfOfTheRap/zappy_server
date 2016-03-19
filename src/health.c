@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include "serveur.h"
 
-extern int	g_log;
+extern int			g_log;
+extern const char	g_log_level[7][24];
 
-void		check_players_life(t_zappy *var)
+void				check_players_life(t_zappy *var)
 {
 	int	i;
 
@@ -19,42 +20,37 @@ void		check_players_life(t_zappy *var)
 	}
 }
 
-void		player_spawn(t_player *p, t_zappy *var, int *coord)
+void				player_spawn(t_player *p, t_zappy *var, int *coord)
 {
-	t_tstmp	timeofdeath;
+	static int	unique_id = 1;
+	t_tstmp		timeofdeath;
 
 	timeofdeath = time_generate(1260, var->start_time, var);
 	p->timeofdeath = timeofdeath;
 	p->level = 1;
+	p->unique_id = unique_id++;
 	p->pending_actions = 0;
 	p->coord[0] = (!coord) ? rand() % var->board_size[0] : coord[0];
 	p->coord[1] = (!coord) ? rand() % var->board_size[1] : coord[1];
 	p->facing = rand() % 4;
 }
 
-void		player_die(t_zappy *var, t_player *p)
+void				player_die(t_zappy *var, t_player *p)
 {
-	int		i;
-
 	p->status = FD_CLOSE;
-	i = 1;
-	while (i < 7)
-	{
-		var->board[p->coord[0]][p->coord[1]][i] += p->inv[i - 1];
-		++i;
-	}
 	message_player_mort(p);
 	action_player_clear(p, var);
 	if (g_log & LOG_I)
-		printf("[\033[0;34mINFO\033[0m] Client %d die\n", p->id);
+		printf("[%s] Client %d (%d) die\n", g_log_level[3], p->id,
+				p->unique_id);
 }
 
-void		player_eat(t_player *p, t_zappy *var)
+void				player_eat(t_player *p, t_zappy *var)
 {
 	p->timeofdeath = time_generate(126, p->timeofdeath, var);
 }
 
-void		player_vomit(t_player *p, t_zappy *var)
+void				player_vomit(t_player *p, t_zappy *var)
 {
 	t_tstmp		ref;
 	long long	timeofdeath;

@@ -9,7 +9,7 @@ void	message_gfx_enw(t_zappy *var, t_egg *egg)
 
 	if (!(var->gfx_client && egg))
 		return ;
-	ret = sprintf(str, "enw %d %d %d %d", egg->id, egg->mother->id,
+	ret = sprintf(str, "enw %d %d %d %d", egg->id, egg->mother->unique_id,
 			egg->coord[1], egg->coord[0]);
 	add_msg_to_player(var->gfx_client, str, ret, 1);
 }

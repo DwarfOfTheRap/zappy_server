@@ -1,5 +1,4 @@
 #include <string.h>
-#include <stdio.h>
 #include "serveur.h"
 
 extern int			g_log;
@@ -57,7 +56,7 @@ void	command_expulse(t_zappy *var, t_player *p, char *args)
 
 	(void)args;
 	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> expulse\n", p->id);
+		log_simple_message(p, LOG_C, "expulse");
 	bzero(&t, sizeof(t_aargs));
 	if (!p->pending_actions)
 		pre_action_expulse(var, p, &t);

@@ -1,6 +1,8 @@
 #include <string.h>
 #include "serveur.h"
 
+extern int		g_log;
+
 static int		cmp(void *data_list, void *new_data)
 {
 	t_egg	*egg_list;
@@ -46,6 +48,8 @@ int				egg_add(t_egg *egg, t_zappy *var)
 			lst_pushback(&var->eggs, new);
 		else
 			lst_insert(&var->eggs, new, cmp);
+		if (g_log & LOG_I)
+			log_egg(egg->id, "layed");
 		return (1);
 	}
 	return (0);

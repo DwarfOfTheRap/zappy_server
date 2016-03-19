@@ -56,9 +56,9 @@ void		action_player_incantation(t_zappy *var, t_player *p, t_aargs *args)
 	if (args->pl[0])
 		dispatch_incantation_ressources(var, p, g_incant[p->level - 2]);
 	if (g_log & LOG_A && args->pl[0])
-		printf("[\033[0;35mACTION\033[0m] p %d incantation -> OK\n", p->id);
+		log_simple_message(p, LOG_A, "incantation OK");
 	if (g_log & LOG_A && !args->pl[0])
-		printf("[\033[0;35mACTION\033[0m] p %d incantation -> KO\n", p->id);
+		log_simple_message(p, LOG_A, "incantation KO");
 }
 
 void		action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
@@ -73,7 +73,7 @@ void		action_player_fork(t_zappy *var, t_player *p, t_aargs *args)
 	}
 	message_player_ok(p);
 	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d fork\n", p->id);
+		log_simple_message(p, LOG_A, "fork");
 }
 
 void		action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args)
@@ -82,7 +82,7 @@ void		action_player_connect_nbr(t_zappy *var, t_player *p, t_aargs *args)
 	bzero(args, sizeof(t_aargs));
 	message_player_connect_nbr(p);
 	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d connect_nbr\n", p->id);
+		log_simple_message(p, LOG_A, "connect_nbr");
 }
 
 void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args)
@@ -102,5 +102,5 @@ void		action_player_inventaire(t_zappy *var, t_player *p, t_aargs *args)
 		g_ressources[6], p->inv[5]);
 	add_msg_to_player(p, str, ret, 1);
 	if (g_log & LOG_A)
-		printf("[\033[0;35mACTION\033[0m] p %d inventaire\n", p->id);
+		log_simple_message(p, LOG_A, "inventaire");
 }

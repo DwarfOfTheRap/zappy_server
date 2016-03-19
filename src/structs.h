@@ -49,6 +49,7 @@ typedef struct			s_team
 typedef struct			s_player
 {
 	int			id;
+	int			unique_id;
 	int			inv[6];
 	int			coord[2];
 	int			pending_actions;

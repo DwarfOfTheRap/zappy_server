@@ -28,6 +28,15 @@ const t_action_d	g_action[12] = {
 	{&action_player_fork, &pre_action_fork, 42},
 	{&action_player_connect_nbr, NULL, 0}};
 
+const char			g_log_level[7][24] = {
+	"NOPE",
+	"\033[0;33mWARNING\033[0m",
+	"\033[0;31mERROR\033[0m",
+	"\033[0;34mINFO\033[0m",
+	"\033[0;32mCOMMAND\033[0m",
+	"\033[0;35mACTION\033[0m",
+	"\033[0;36mPRE-ACTION\033[0m" };
+
 int					g_log = 0;
 
 int					g_continue = 1;

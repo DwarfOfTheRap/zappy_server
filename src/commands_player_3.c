@@ -1,5 +1,4 @@
 #include <string.h>
-#include <stdio.h>
 #include "serveur.h"
 
 extern int			g_log;
@@ -10,7 +9,7 @@ void	command_fork(t_zappy *var, t_player *p, char *args)
 	t_aargs		t;
 
 	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> fork\n", p->id);
+		log_simple_message(p, LOG_C, "fork");
 	bzero(&t, sizeof(t_aargs));
 	t.str = strdup(args);
 	if (!p->pending_actions)
@@ -94,7 +93,7 @@ void	command_incantation(t_zappy *var, t_player *p, char *args)
 
 	(void)args;
 	if (g_log & LOG_C)
-		printf("[\033[0;32mCOMMAND\033[0m] p %d -> incantation\n", p->id);
+		log_simple_message(p, LOG_C, "incantation");
 	bzero(&t, sizeof(t_aargs));
 	if (!p->pending_actions)
 		pre_action_incantation(var, p, &t);

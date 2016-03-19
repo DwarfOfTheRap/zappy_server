@@ -5,9 +5,10 @@
 #include <stdio.h>
 #include "serveur.h"
 
-extern int	g_log;
+extern int			g_log;
+extern const char	g_log_level[7][24];
 
-static void	accept_client(t_player *p, int client)
+static void			accept_client(t_player *p, int client)
 {
 	bzero(p, sizeof(t_player));
 	p->id = client;
@@ -16,7 +17,7 @@ static void	accept_client(t_player *p, int client)
 	add_msg_to_player(p, "BIENVENUE", 9, 1);
 }
 
-int			do_accept(t_zappy *var, t_server *serv)
+int					do_accept(t_zappy *var, t_server *serv)
 {
 	int					cs;
 	struct sockaddr_in	csin;
@@ -26,11 +27,11 @@ int			do_accept(t_zappy *var, t_server *serv)
 	if ((cs = accept(serv->sock, (struct sockaddr *)&csin, &cslen)) < 0)
 	{
 		if (g_log & LOG_E)
-			dprintf(2, "[\033[0;31mError\033[0m]: accept");
+			dprintf(2, "[%s]: accept", g_log_level[2]);
 		return (1);
 	}
 	if (g_log & LOG_I)
-		printf("[\033[0;34mINFO\033[0m] New connection from %s\n",
+		printf("[%s] New connection from %s\n", g_log_level[3],
 				inet_ntoa(csin.sin_addr));
 	accept_client(&var->players[cs], cs);
 	if (cs > serv->fd_max)
