@@ -328,17 +328,22 @@ void		message_gfx_ppo(t_zappy *var, t_player *gfx, t_player *p);
 /*
 ** src/message_gfx_player_2.c
 */
-void		message_gfx_pbc(t_zappy *var, t_player *gfx, t_player *p, char *msg);
-void		message_gfx_pdr(t_zappy *var, t_player *gfx, t_player *p, int res_id);
+void		message_gfx_pbc(t_zappy *var, t_player *gfx, t_player *p,
+				char *msg);
+void		message_gfx_pie(t_zappy *var, t_player *gfx, t_player *p,
+				int success);
 void		message_gfx_pfk(t_zappy *var, t_player *gfx, t_player *p);
-void		message_gfx_pic(t_zappy *var, t_player *gfx, t_player *p, int *pl);
-void		message_gfx_pie(t_zappy *var, t_player *gfx, t_player *p, int success);
+void		message_gfx_pgt(t_zappy *var, t_player *gfx, t_player *p,
+				int res_id);
+void		message_gfx_pdr(t_zappy *var, t_player *gfx, t_player *p,
+				int res_id);
 
 /*
 ** src/message_gfx_player_3.c
 */
 void		message_gfx_pdi(t_zappy *var, t_player *gfx, t_player *p);
-void		message_gfx_pgt(t_zappy *var, t_player *gfx, t_player *p, int res_id);
+void		message_gfx_pic(t_zappy *var, t_player *gfx, t_player *p,
+				int *pl);
 
 /*
 ** src/message_gfx_server.c

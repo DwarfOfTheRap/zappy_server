@@ -3,7 +3,7 @@
 
 extern int	g_log;
 
-void	command_sst(t_zappy *var, t_player *p, char *arg)
+void		command_sst(t_zappy *var, t_player *p, char *arg)
 {
 	int		tick;
 	char	*end;
@@ -32,7 +32,7 @@ static int	get_player_from_unique_id(t_zappy *var, int unique_id)
 	return (0);
 }
 
-void	command_ppo(t_zappy *var, t_player *p, char *arg)
+void		command_ppo(t_zappy *var, t_player *p, char *arg)
 {
 	int		p_id;
 	char	*end;
@@ -48,7 +48,7 @@ void	command_ppo(t_zappy *var, t_player *p, char *arg)
 		log_gfx_str("ppo", arg);
 }
 
-void	command_plv(t_zappy *var, t_player *p, char *arg)
+void		command_plv(t_zappy *var, t_player *p, char *arg)
 {
 	int		p_id;
 	char	*end;
@@ -64,7 +64,7 @@ void	command_plv(t_zappy *var, t_player *p, char *arg)
 		log_gfx_str("plv", arg);
 }
 
-void	command_pin(t_zappy *var, t_player *p, char *arg)
+void		command_pin(t_zappy *var, t_player *p, char *arg)
 {
 	int		p_id;
 	char	*end;

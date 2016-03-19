@@ -22,39 +22,6 @@ void	message_gfx_pbc(t_zappy *var, t_player *gfx, t_player *p, char *msg)
 	}
 }
 
-void	message_gfx_pic(t_zappy *var, t_player *gfx, t_player *p, int *pl)
-{
-	int		i;
-	int		ret;
-	char	str[64];
-
-	if (var->teams[var->nb_team - 1].remain == NB_GFX)
-		return ;
-	ret = sprintf(str, "pic %d %d %d %d", p->coord[1], p->coord[0],
-		p->level, p->unique_id);
-	if (gfx)
-		add_msg_to_player(gfx, str, ret, 0);
-	else
-		add_msg_to_gfx(var, str, ret, 0);
-	i = 3;
-	while (i <= *(var->fd_max))
-	{
-		if (pl[i] && i != p->id)
-		{
-			ret = sprintf(str, " %d", var->players[i].unique_id);
-			if (gfx)
-				add_msg_to_player(gfx, str, ret, 0);
-			else
-				add_msg_to_gfx(var, str, ret, 0);
-		}
-		++i;
-	}
-	if (gfx)
-		add_msg_to_player(gfx, "", 0, 1);
-	else
-		add_msg_to_gfx(var, "", 0, 1);
-}
-
 void	message_gfx_pie(t_zappy *var, t_player *gfx, t_player *p, int success)
 {
 	int		ret;
@@ -77,6 +44,20 @@ void	message_gfx_pfk(t_zappy *var, t_player *gfx, t_player *p)
 	if (var->teams[var->nb_team - 1].remain == NB_GFX)
 		return ;
 	ret = sprintf(str, "pfk %d", p->unique_id);
+	if (gfx)
+		add_msg_to_player(gfx, str, ret, 1);
+	else
+		add_msg_to_gfx(var, str, ret, 1);
+}
+
+void	message_gfx_pgt(t_zappy *var, t_player *gfx, t_player *p, int res_id)
+{
+	int		ret;
+	char	str[64];
+
+	if (var->teams[var->nb_team - 1].remain == NB_GFX)
+		return ;
+	ret = sprintf(str, "pgt %d %d", p->unique_id, res_id);
 	if (gfx)
 		add_msg_to_player(gfx, str, ret, 1);
 	else
