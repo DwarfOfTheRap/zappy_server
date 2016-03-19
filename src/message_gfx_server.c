@@ -34,35 +34,6 @@ void	message_gfx_bct(t_zappy *var, t_player *gfx, int pos[2])
 		add_msg_to_gfx(var, str, ret, 1);
 }
 
-void	message_gfx_mct(t_zappy *var, t_player *gfx, int *square)
-{
-	int		i;
-	int		pos[2];
-	int		bypass;
-
-	if (var->teams[var->nb_team - 1].remain == NB_GFX)
-		return ;
-	i = 0;
-	while (i < NB_GFX && !var->gfx_client[i])
-		++i;
-	bypass = (*square == -1) ? 1 : 0;
-	*square = (*square == -1) ? 0 : *square;
-	pos[0] = *square / var->board_size[1] - 1;
-	pos[1] = *square - var->board_size[1] * (pos[0] + 1) - 1;
-	while (++pos[0] < var->board_size[0])
-	{
-		while (++pos[1] < var->board_size[1])
-		{
-			message_gfx_bct(var, gfx, pos);
-			if (!bypass && var->gfx_client[i]->snd.full)
-				break ;
-			++(*square);
-		}
-		pos[1] = -1;
-	}
-	*square = -1;
-}
-
 void	message_gfx_tna(t_zappy *var, t_player *gfx)
 {
 	int		i;
@@ -93,6 +64,20 @@ void	message_gfx_sgt(t_zappy *var, t_player *gfx)
 	if (var->teams[var->nb_team - 1].remain == NB_GFX)
 		return ;
 	ret = sprintf(str, "sgt %d", var->tick);
+	if (gfx)
+		add_msg_to_player(gfx, str, ret, 1);
+	else
+		add_msg_to_gfx(var, str, ret, 1);
+}
+
+void	message_gfx_seg(t_zappy *var, t_player *gfx, t_team *team)
+{
+	int		ret;
+	char	str[64];
+
+	if (var->teams[var->nb_team - 1].remain == NB_GFX)
+		return ;
+	ret = sprintf(str, "seg %s", team->name);
 	if (gfx)
 		add_msg_to_player(gfx, str, ret, 1);
 	else

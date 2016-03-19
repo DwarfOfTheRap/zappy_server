@@ -350,17 +350,17 @@ void		message_gfx_pic(t_zappy *var, t_player *gfx, t_player *p,
 */
 void		message_gfx_msz(t_zappy *var, t_player *gfx);
 void		message_gfx_bct(t_zappy *var, t_player *gfx, int pos[2]);
-void		message_gfx_mct(t_zappy *var, t_player *gfx, int *square);
 void		message_gfx_sgt(t_zappy *var, t_player *gfx);
 void		message_gfx_tna(t_zappy *var, t_player *gfx);
+void		message_gfx_seg(t_zappy *var, t_player *gfx, t_team *team);
 
 /*
 ** src/message_gfx_server_2.c
 */
 void		message_gfx_sbp(t_zappy *var, t_player *gfx);
-void		message_gfx_seg(t_zappy *var, t_player *gfx, t_team *team);
 void		message_gfx_smg(t_zappy *var, t_player *gfx, char *msg);
 void		message_gfx_suc(t_zappy *var, t_player *gfx);
+void		message_gfx_mct(t_zappy *var, t_player *gfx, int *square);
 
 /*
 ** src/message_player.c
