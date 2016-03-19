@@ -7,7 +7,7 @@ void	add_ressource_on_random_square(t_zappy *var, int res)
 	pos[0] = rand() % var->board_size[0];
 	pos[1] = rand() % var->board_size[1];
 	++var->board[pos[0]][pos[1]][res];
-	message_gfx_bct(var, pos);
+	message_gfx_bct(var, NULL, pos);
 }
 
 void	add_ressource(t_zappy *var, int res, int nb)
@@ -65,5 +65,5 @@ void	drop_ressource_on_death(t_zappy *var, t_player *p)
 		var->board[p->coord[0]][p->coord[1]][i] += p->inv[i - 1];
 		++i;
 	}
-	message_gfx_bct(var, p->coord);
+	message_gfx_bct(var, NULL, p->coord);
 }

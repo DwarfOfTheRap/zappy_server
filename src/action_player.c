@@ -22,7 +22,7 @@ void	action_player_avance(t_zappy *var, t_player *p, t_aargs *args)
 	(void)args;
 	action_player_move(var, p, p->facing);
 	message_player_ok(p);
-	message_gfx_ppo(var, p);
+	message_gfx_ppo(var, NULL, p);
 	if (g_log & LOG_A)
 		log_simple_message(p, LOG_A, "avance");
 }
@@ -33,7 +33,7 @@ void	action_player_droite(t_zappy *var, t_player *p, t_aargs *args)
 	(void)args;
 	p->facing = (p->facing + 1 == 4) ? 0 : p->facing + 1;
 	message_player_ok(p);
-	message_gfx_ppo(var, p);
+	message_gfx_ppo(var, NULL, p);
 	if (g_log & LOG_A)
 		log_simple_message(p, LOG_A, "droite");
 }
@@ -44,7 +44,7 @@ void	action_player_gauche(t_zappy *var, t_player *p, t_aargs *args)
 	(void)args;
 	p->facing = (p->facing - 1 < 0) ? 3 : p->facing - 1;
 	message_player_ok(p);
-	message_gfx_ppo(var, p);
+	message_gfx_ppo(var, NULL, p);
 	if (g_log & LOG_A)
 		log_simple_message(p, LOG_A, "gauche");
 }
@@ -60,7 +60,7 @@ void	action_player_expulse(t_zappy *var, t_player *p, t_aargs *args)
 		{
 			action_player_move(var, &var->players[i], p->facing);
 			message_player_expulsed(p, &var->players[i]);
-			message_gfx_ppo(var, &var->players[i]);
+			message_gfx_ppo(var, NULL, &var->players[i]);
 			action_player_clear(&var->players[i], var);
 		}
 		++i;
