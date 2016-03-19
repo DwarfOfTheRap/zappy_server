@@ -63,6 +63,8 @@ START_TEST(queue_process)
 		cursor = cursor->next;
 	}
 	ck_assert_str_eq(result, str);
+	rm_teams(&var.teams, &var.nb_team);
+	lst_delete(&var.actions, free);
 }
 END_TEST
 
