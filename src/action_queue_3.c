@@ -15,7 +15,7 @@ t_action	*find_player_last_action(t_player *p, t_zappy *var)
 	{
 		if ((action = (t_action*)cursor->content) && action->player == p)
 			return (action);
-		cursor = cursor->next;
+		cursor = cursor->prev;
 	}
 	return (NULL);
 }

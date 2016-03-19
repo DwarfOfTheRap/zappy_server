@@ -37,7 +37,7 @@ static int	cmp(void *new_data, void *list_data)
 
 	action_list = (t_action*)list_data;
 	action_new = (t_action*)new_data;
-	return (time_compare(action_new->trigger_t, action_list->trigger_t));
+	return (time_compare(action_list->trigger_t, action_new->trigger_t));
 }
 
 int			action_add(t_action *action, t_zappy *var)
