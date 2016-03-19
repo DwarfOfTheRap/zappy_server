@@ -40,7 +40,7 @@ int		command_expulse_count_player(t_zappy *var, t_player *p, int *pl)
 			(!p2->pending_actions || ((a = find_player_first_action(p2, var)) &&
 									a->run != &action_player_avance)))
 		{
-			if (var->gfx_client)
+			if (var->teams[var->nb_team - 1].remain != NB_GFX)
 				command_expulse_send_to_gfx(var, p, p2, a);
 			++pl[i];
 			++nb_player;

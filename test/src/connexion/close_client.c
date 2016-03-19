@@ -76,18 +76,16 @@ START_TEST(connexion_close_client_gfx)
 	dummy_t_zappy_without_board(&var);
 	dummy_t_zappy_add_board(&var);
 	dummy_t_serv(&serv);
-	dummy_t_player(&var, p);
+	dummy_t_player_gfx(&var, p);
 	dummy_t_player_fill_buffer(p);
 
-	p->team = &(var.teams[2]);
-	p->status = FD_GFX;
 	ck_assert_int_eq(1, close_client(&var, &serv, 5));
 	ck_assert_int_eq(1, var.board_size[0]);
 	ck_assert_int_eq(2, var.board_size[1]);
 	ck_assert_int_eq(3, var.team_size);
 	ck_assert_int_eq(4, var.tick);
 	ck_assert_ptr_eq((void *)&(var.teams[0]), (void *)var.teams);
-	ck_assert_int_eq(var.teams[2].remain, 1);
+	ck_assert_int_eq(var.teams[2].remain, NB_GFX);
 	ck_assert_int_eq(5, serv.sock);
 	ck_assert_int_eq(6, serv.port);
 	ck_assert_int_eq(7, serv.fd_max);
@@ -97,7 +95,7 @@ START_TEST(connexion_close_client_gfx)
 	ck_assert_ptr_eq(NULL, p->snd.lst.first);
 	ck_assert_ptr_eq(NULL, p->snd.lst.last);
 	ck_assert_ptr_eq(NULL, p->rcv.remain);
-	ck_assert_ptr_eq(NULL, var.gfx_client);
+	ck_assert_ptr_eq(NULL, var.gfx_client[0]);
 	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST

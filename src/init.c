@@ -54,7 +54,8 @@ int		init_game_var(t_zappy *var, t_arguments *args)
 	i = 0;
 	while (i < var->nb_team)
 	{
-		var->teams[i].remain = (i == var->nb_team - 1) ? 1 : args->nb_clients;
+		var->teams[i].remain = (i == var->nb_team - 1) ? NB_GFX :
+			args->nb_clients;
 		++i;
 	}
 	return (0);

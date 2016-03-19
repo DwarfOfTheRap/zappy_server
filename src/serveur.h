@@ -18,6 +18,7 @@
 # define FOOD_RATIO	100
 # define RES_RATIO	100
 # define TEAM_LEN	32
+# define NB_GFX		2
 
 /*
 ** client status
@@ -301,6 +302,11 @@ void		message_unknown_command(t_player *p, char *str);
 void		message_command_format_error(t_player *p, char *str, char *args);
 void		message_unsupported_command(t_player *p, char *str, char *args);
 void		message_unauthorised_command(t_player *p, char *str, char *args);
+
+/*
+** src/message_3.c
+*/
+void		add_msg_to_gfx(t_zappy *var, char *msg, size_t len, int cr);
 
 /*
 ** src/message_gfx_egg.c

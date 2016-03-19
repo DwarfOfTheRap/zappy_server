@@ -32,7 +32,7 @@ START_TEST(init_game_var_valid)
 	while (i < var.nb_team)
 	{
 		if (i == var.nb_team - 1)
-			ck_assert_int_eq(var.teams[i].remain, 1);
+			ck_assert_int_eq(var.teams[i].remain, NB_GFX);
 		else
 			ck_assert_int_eq(var.teams[i].remain, args.nb_clients);
 		++i;
