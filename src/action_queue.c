@@ -30,14 +30,14 @@ void		process_actions(t_zappy *var)
 	}
 }
 
-static int	cmp(void *data1, void *data2)
+static int	cmp(void *new_data, void *list_data)
 {
-	t_action	*action1;
-	t_action	*action2;
+	t_action	*action_list;
+	t_action	*action_new;
 
-	action1 = (t_action*)data1;
-	action2 = (t_action*)data2;
-	return (time_compare(action1->trigger_t, action2->trigger_t));
+	action_list = (t_action*)list_data;
+	action_new = (t_action*)new_data;
+	return (time_compare(action_list->trigger_t, action_new->trigger_t));
 }
 
 int			action_add(t_action *action, t_zappy *var)
@@ -56,7 +56,7 @@ int			action_add(t_action *action, t_zappy *var)
 					action->trigger_t))
 			lst_pushback(&var->actions, new);
 		else
-			lst_insert(&var->actions, new, cmp);
+			lst_insert_end(&var->actions, new, cmp);
 		p->pending_actions++;
 		return (1);
 	}

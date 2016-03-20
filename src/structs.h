@@ -88,7 +88,7 @@ typedef struct			s_zappy
 	int			egg_id_index;
 	t_tstmp		start_time;
 	t_player	players[MAX_FD];
-	t_player	*gfx_client;
+	t_player	*gfx_client[NB_GFX];
 }						t_zappy;
 
 typedef struct			s_aargs

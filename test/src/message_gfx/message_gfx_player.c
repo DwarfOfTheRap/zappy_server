@@ -13,7 +13,7 @@ START_TEST(message_gfx_pnw_test)
 	dummy_t_player(&var, p);
 	dummy_t_player_default(p);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_pnw(&var, p);
+	message_gfx_pnw(&var, gfx, p);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
 }
@@ -30,7 +30,7 @@ START_TEST(message_gfx_ppo_test)
 	dummy_t_player(&var, p);
 	dummy_t_player_default(p);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_ppo(&var, p);
+	message_gfx_ppo(&var, gfx, p);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
 }
@@ -47,7 +47,7 @@ START_TEST(message_gfx_plv_test)
 	dummy_t_player(&var, p);
 	dummy_t_player_default(p);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_plv(&var, p);
+	message_gfx_plv(&var, gfx, p);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
 }
@@ -64,7 +64,7 @@ START_TEST(message_gfx_pin_test)
 	dummy_t_player(&var, p);
 	dummy_t_player_default(p);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_pin(&var, p);
+	message_gfx_pin(&var, gfx, p);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
 }
@@ -81,7 +81,7 @@ START_TEST(message_gfx_pex_test)
 	dummy_t_player(&var, p);
 	dummy_t_player_default(p);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_pex(&var, p);
+	message_gfx_pex(&var, gfx, p);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
 }

@@ -6,7 +6,7 @@ void	action_gfx_mct(t_zappy *var, t_player *p, t_aargs *args)
 	t_tstmp		time[2];
 
 	(void)p;
-	message_gfx_mct(var, &args->nb);
+	message_gfx_mct(var, NULL, &args->nb);
 	if (args->nb != -1)
 	{
 		time[0] = var->start_time;

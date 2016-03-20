@@ -24,7 +24,7 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	strcpy(var->teams[1].name, "tutu");
 	var->teams[1].remain = 0;
 	strcpy(var->teams[2].name, "GRAPHIC");
-	var->teams[2].remain = 0;
+	var->teams[2].remain = NB_GFX;
 }
 
 void	dummy_t_zappy_add_board(t_zappy *var)
@@ -62,7 +62,7 @@ void	dummy_t_zappy_add_remaining_in_team(t_zappy *var)
 {
 	int	i = 0;
 
-	while (i < var->nb_team)
+	while (i < var->nb_team - 1)
 	{
 		++var->teams[i].remain;
 		++i;
@@ -102,8 +102,10 @@ void	dummy_t_player(t_zappy *var, t_player *p)
 void	dummy_t_player_gfx(t_zappy *var, t_player *p)
 {
 	dummy_t_player(var, p);
-	var->gfx_client = p;
+	var->gfx_client[0] = p;
 	p->status = FD_GFX;
+	p->team = &var->teams[var->nb_team - 1];
+	--p->team->remain;
 }
 
 void	dummy_t_player_fill_buffer(t_player *p)

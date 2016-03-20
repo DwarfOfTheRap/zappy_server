@@ -10,9 +10,10 @@ START_TEST(message_gfx_msz_test)
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_msz(&var);
+	message_gfx_msz(&var, gfx);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
@@ -27,10 +28,11 @@ START_TEST(message_gfx_bct_test)
 	dummy_t_zappy_add_board(&var);
 	dummy_t_board_square(var.board[0][1]);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_bct(&var, pos);
+	message_gfx_bct(&var, gfx, pos);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	rm_board(&var.board, var.board_size, var.board_size[0], var.board_size[1]);
 	clean_msg_queue(gfx);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
@@ -42,9 +44,10 @@ START_TEST(message_gfx_tna_test)
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_tna(&var);
+	message_gfx_tna(&var, gfx);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 
@@ -56,9 +59,10 @@ START_TEST(message_gfx_sgt_test)
 
 	dummy_t_zappy_without_board(&var);
 	dummy_t_player_gfx(&var, gfx);
-	message_gfx_sgt(&var);
+	message_gfx_sgt(&var, gfx);
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], str);
 	clean_msg_queue(gfx);
+	rm_teams(&var.teams, &var.nb_team);
 }
 END_TEST
 

@@ -99,8 +99,8 @@ void		action_player_prend(t_zappy *var, t_player *p, t_aargs *args)
 	}
 	else
 		message_player_ko(p);
-	message_gfx_pin(var, p);
-	message_gfx_bct(var, p->coord);
+	message_gfx_pin(var, NULL, p);
+	message_gfx_bct(var, NULL, p->coord);
 	if (g_log & LOG_A)
 		log_message_str(p, LOG_A, "prend", args->str);
 }
@@ -125,8 +125,8 @@ void		action_player_pose(t_zappy *var, t_player *p, t_aargs *args)
 	}
 	else
 		message_player_ko(p);
-	message_gfx_pin(var, p);
-	message_gfx_bct(var, p->coord);
+	message_gfx_pin(var, NULL, p);
+	message_gfx_bct(var, NULL, p->coord);
 	if (g_log & LOG_A)
 		log_message_str(p, LOG_A, "pose", args->str);
 }
