@@ -30,6 +30,8 @@ void			lst_free_match(t_lst_head *hd, void *dt \
 void			lst_delete(t_lst_head *head, void (*del)(void *));
 void			lst_insert(t_lst_head *head, t_lst_elem *new \
 							, int (*f)(void*, void*));
+void			lst_insert_end(t_lst_head *head, t_lst_elem *new \
+						   , int (*f)(void*, void*));
 void			*lst_first_match(t_lst_head *hd, void *dt \
 							, int (*cmp)(void*, void*));
 

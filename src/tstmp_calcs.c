@@ -11,7 +11,7 @@ int				time_compare(t_tstmp time1, t_tstmp time2)
 		return (1);
 	else if (time1.tv_usec > time2.tv_usec)
 		return (0);
-	return (0);
+	return (1);
 }
 
 t_tstmp			time_long_create(long long ms)
