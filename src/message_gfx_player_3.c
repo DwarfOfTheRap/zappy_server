@@ -2,7 +2,7 @@
 #include <string.h>
 #include "serveur.h"
 
-void	message_gfx_pdi(t_zappy *var, t_player *gfx, t_player *p)
+void			message_gfx_pdi(t_zappy *var, t_player *gfx, t_player *p)
 {
 	int		ret;
 	char	str[64];
@@ -17,7 +17,7 @@ void	message_gfx_pdi(t_zappy *var, t_player *gfx, t_player *p)
 }
 
 static void		message_gfx_pic_sub(t_zappy *var, t_player *p, int *pl,
-		char *str)
+					char *str)
 {
 	int		i;
 	int		ret;
@@ -37,7 +37,8 @@ static void		message_gfx_pic_sub(t_zappy *var, t_player *p, int *pl,
 	add_msg_to_gfx(var, "", 0, 1);
 }
 
-void	message_gfx_pic(t_zappy *var, t_player *gfx, t_player *p, int *pl)
+void			message_gfx_pic(t_zappy *var, t_player *gfx, t_player *p,
+					int *pl)
 {
 	int		i;
 	int		ret;

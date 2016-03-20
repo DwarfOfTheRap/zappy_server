@@ -29,7 +29,8 @@ void	lst_insert(t_lst_head *head, t_lst_elem *new, int (*f)(void*, void*))
 	head->size++;
 }
 
-void	lst_insert_end(t_lst_head *head, t_lst_elem *new, int (*f)(void*, void*))
+void	lst_insert_end(t_lst_head *head, t_lst_elem *new,
+			int (*f)(void*, void*))
 {
 	t_lst_elem	*cursor;
 	t_lst_elem	*next;
