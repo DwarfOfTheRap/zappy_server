@@ -53,6 +53,16 @@ START_TEST(action_player_incantation_test)
 	}
 	gstr[82] = gfx->snd.buf[gfx->snd.read][82];
 	gstr[84] = gfx->snd.buf[gfx->snd.read][84];
+	if (gstr[82] == '0' && gstr[84] == '0')
+	{
+		gstr[86] = '1';
+		gstr[88] = '2';
+		gstr[90] = '3';
+		gstr[92] = '4';
+		gstr[94] = '5';
+		gstr[96] = '6';
+		gstr[98] = '7';
+	}
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(gfx);
 	pl[0] = 0;

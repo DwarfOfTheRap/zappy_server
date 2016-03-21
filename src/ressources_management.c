@@ -47,8 +47,8 @@ void	dispatch_incantation_ressources(t_zappy *var, t_player *p,
 		j = res[i];
 		while (j && square[i])
 		{
-			add_ressource_on_random_square(var, i);
 			--square[i];
+			add_ressource_on_random_square(var, i);
 			--j;
 		}
 		++i;
