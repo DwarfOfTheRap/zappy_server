@@ -118,7 +118,7 @@ START_TEST(action_player_prend_pose_nourriture_test)
 	t_zappy		var;
 	t_player	*gfx = &var.players[5];
 	t_player	*p = &var.players[6];
-	t_tstmp		player_initial;
+	long long	player_initial;
 	char		nourriture[] = "nourriture";
 	char		inventaire[] = "inventaire";
 	char		str[] = "{nourriture 10, linemate 0, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0}\nok\n"
@@ -140,7 +140,7 @@ START_TEST(action_player_prend_pose_nourriture_test)
 	action_player_inventaire(&var, p, &a);
 	a.str = nourriture;
 	action_player_prend(&var, p, &a);
-	ck_assert_ptr_ne((void*)player_initial.tv_sec, (void*)p->timeofdeath.tv_sec);
+	ck_assert_ptr_ne((void*)player_initial, (void*)p->timeofdeath);
 	if (var.board[0][0][0] == 1)
 	{
 		gstr[4] = '0';

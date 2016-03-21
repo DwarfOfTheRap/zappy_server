@@ -91,7 +91,6 @@ START_TEST(connexion_process_input_multiple_commands)
 	var.board_size[0] = 10;
 	var.board_size[1] = 10;
 	var.fd_max = &fd_max;
-	gettimeofday(&var.start_time, NULL);
 	dummy_t_zappy_add_board(&var);
 	dummy_t_zappy_add_remaining_in_team(&var);
 	dummy_t_player(&var, p);

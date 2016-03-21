@@ -30,14 +30,14 @@ void		process_actions(t_zappy *var)
 	}
 }
 
-static int	cmp(void *data1, void *data2)
+static int	cmp(void *new_data, void *list_data)
 {
-	t_action	*action1;
-	t_action	*action2;
+	t_action	*action_list;
+	t_action	*action_new;
 
-	action1 = (t_action*)data1;
-	action2 = (t_action*)data2;
-	return (time_compare(action1->trigger_t, action2->trigger_t));
+	action_list = (t_action*)list_data;
+	action_new = (t_action*)new_data;
+	return (time_compare(action_list->trigger_t, action_new->trigger_t));
 }
 
 int			action_add(t_action *action, t_zappy *var)
@@ -56,7 +56,7 @@ int			action_add(t_action *action, t_zappy *var)
 					action->trigger_t))
 			lst_pushback(&var->actions, new);
 		else
-			lst_insert(&var->actions, new, cmp);
+			lst_insert_end(&var->actions, new, cmp);
 		p->pending_actions++;
 		return (1);
 	}
@@ -64,7 +64,7 @@ int			action_add(t_action *action, t_zappy *var)
 }
 
 t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
-				t_aargs*), t_player *player, t_tstmp *time)
+				t_aargs*), t_player *player, long long time)
 {
 	t_action	*new;
 
@@ -74,15 +74,14 @@ t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
 	memcpy(&new->arg, arg, sizeof(t_aargs));
 	new->run = f;
 	new->player = player;
-	new->creation_t = time[0];
-	new->trigger_t = time[1];
+	new->trigger_t = time;
 	return (new);
 }
 
 void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 								int act)
 {
-	t_tstmp		time[2];
+	long long	time[2];
 	t_action	*new_action;
 	t_action	*last_action;
 
@@ -92,7 +91,7 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 	else
 		time[0] = last_action->trigger_t;
 	time[1] = time_generate(g_action[act].rel_time, time[0], var);
-	new_action = action_create(args, g_action[act].f, p, time);
+	new_action = action_create(args, g_action[act].f, p, time[1]);
 	if (!action_add(new_action, var))
 		action_free(new_action);
 	else
