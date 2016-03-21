@@ -12,7 +12,7 @@ void		check_players_life(t_zappy *var)
 	while (i <= *var->fd_max)
 	{
 		if (var->players[i].status == FD_CLIENT
-			&& var->players[i].timeofdeath.tv_sec
+			&& var->players[i].timeofdeath
 			&& time_compare(var->players[i].timeofdeath, var->start_time))
 			player_die(var, &var->players[i]);
 		i++;
@@ -21,7 +21,7 @@ void		check_players_life(t_zappy *var)
 
 void		player_spawn(t_player *p, t_zappy *var, int *coord)
 {
-	t_tstmp	timeofdeath;
+	long long	timeofdeath;
 
 	timeofdeath = time_generate(1260, var->start_time, var);
 	p->timeofdeath = timeofdeath;
@@ -48,13 +48,10 @@ void		player_eat(t_player *p, t_zappy *var)
 
 void		player_vomit(t_player *p, t_zappy *var)
 {
-	t_tstmp		ref;
 	long long	timeofdeath;
 	long long	new_time;
 
-	ref.tv_sec = 0;
-	ref.tv_usec = 0;
-	timeofdeath = time_long(p->timeofdeath);
-	new_time = timeofdeath - time_long(time_generate(126, ref, var));
-	p->timeofdeath = time_long_create(new_time);
+	timeofdeath = p->timeofdeath;
+	new_time = timeofdeath - time_generate(126, 0, var);
+	p->timeofdeath = new_time;
 }

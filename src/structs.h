@@ -53,7 +53,7 @@ typedef struct			s_player
 	int			coord[2];
 	int			pending_actions;
 	t_team		*team;
-	t_tstmp		timeofdeath;
+	long long	timeofdeath;
 	u_short		facing:2;
 	u_short		status:3;
 	u_short		level:4;
@@ -67,8 +67,7 @@ typedef struct			s_egg
 	int			coord[2];
 	t_player	*mother;
 	t_team		*team;
-	t_tstmp		laying_time;
-	t_tstmp		hatching_time;
+	long long	hatching_time;
 }						t_egg;
 
 typedef struct			s_zappy
@@ -85,7 +84,7 @@ typedef struct			s_zappy
 	t_lst_head	eggs;
 	t_lst_head	eggs_hatched;
 	int			egg_id_index;
-	t_tstmp		start_time;
+	long long	start_time;
 	t_player	players[MAX_FD];
 	t_player	*gfx_client;
 }						t_zappy;
@@ -103,8 +102,7 @@ typedef struct			s_action
 	void		(*run)(t_zappy *var, t_player *p, t_aargs *arg);
 	void		(*pre)(t_zappy *var, t_player *p, t_aargs *arg);
 	t_player	*player;
-	t_tstmp		trigger_t;
-	t_tstmp		creation_t;
+	long long	trigger_t;
 }						t_action;
 
 typedef struct			s_cmd
