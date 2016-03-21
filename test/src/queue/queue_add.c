@@ -19,12 +19,11 @@ START_TEST(queue_process)
 	t_lst_head	*list;
 	t_lst_elem	*cursor;
 	t_action	*action;
-	const char	str[] = "p1.inventaire 101 - p2.avance 108 - p2.inventaire 109 - p3.voir 110 - p4.voir 112 - p4.connect_nbr 112 - p4.broadcast 119 - p1.incantation 401";
+	const char	str[] = "p1.inventaire 101000000 - p2.avance 108000000 - p2.inventaire 109000000 - p3.voir 110000000 - p4.voir 112000000 - p4.connect_nbr 112000000 - p4.broadcast 119000000 - p1.incantation 401000000";
 
 	bzero(arg, sizeof(t_aargs) * 8);
 	dummy_t_zappy_without_board(&var);
-	var.start_time.tv_sec = 100;
-	var.start_time.tv_usec = 0;
+	var.start_time = 100 * 1000000;
 	var.tick = 1;
 	dummy_t_player(&var, p1);
 	dummy_t_player(&var, p2);
@@ -34,15 +33,15 @@ START_TEST(queue_process)
 	action_add_wrapper(&var, p1, &arg[0], 4);
 	arg[1].str = "p1.incantation";
 	action_add_wrapper(&var, p1, &arg[1], 9);
-	var.start_time.tv_sec = 101;
+	var.start_time = 101 * 1000000;
 	arg[2].str = "p2.avance";
 	action_add_wrapper(&var, p2, &arg[2], 0);
-	var.start_time.tv_sec = 103;
+	var.start_time = 103 * 1000000;
 	arg[3].str = "p3.voir";
 	action_add_wrapper(&var, p3, &arg[3], 3);
 	arg[4].str = "p2.inventaire";
 	action_add_wrapper(&var, p2, &arg[4], 4);
-	var.start_time.tv_sec = 105;
+	var.start_time = 105 * 1000000;
 	arg[5].str = "p4.voir";
 	action_add_wrapper(&var, p4, &arg[5], 3);
 	arg[6].str = "p4.connect_nbr";
@@ -55,7 +54,7 @@ START_TEST(queue_process)
 	while (cursor)
 	{
 		action = (t_action*)cursor->content;
-		sprintf(temp, "%s %ld", action->arg.str, action->trigger_t.tv_sec);
+		sprintf(temp, "%s %lld", action->arg.str, action->trigger_t);
 		strcat(result, temp);
 		bzero(temp, 512);
 		if (cursor->next)
