@@ -42,6 +42,8 @@ void	read_buffer(t_zappy *var, t_player *p)
 			strdel(&tmp);
 		if ((ret = process_input(var, p, buf)))
 			tmp = (buf == p->rcv.buf[p->rcv.read]) ? NULL : buf;
+		else if (buf != p->rcv.buf[p->rcv.read])
+			strdel(&buf);
 		p->rcv.full = 0;
 		p->rcv.read = (p->rcv.read + 1 == NB_RCV) ? 0 : p->rcv.read + 1;
 	}
