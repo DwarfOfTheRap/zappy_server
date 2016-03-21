@@ -4,12 +4,12 @@
 
 extern int		g_log;
 
-static int		cmp(void *data_list, void *new_data)
+static int		cmp(void *new_data, void *list_data)
 {
 	t_egg	*egg_list;
 	t_egg	*egg_new;
 
-	egg_list = (t_egg*)data_list;
+	egg_list = (t_egg*)list_data;
 	egg_new = (t_egg*)new_data;
 	return (time_compare(egg_list->hatching_time, egg_new->hatching_time));
 }
@@ -48,7 +48,7 @@ int				egg_add(t_egg *egg, t_zappy *var)
 					egg->hatching_time))
 			lst_pushback(&var->eggs, new);
 		else
-			lst_insert(&var->eggs, new, cmp);
+			lst_insert_end(&var->eggs, new, cmp);
 		if (g_log & LOG_I)
 			printf("[\033[0;34mINFO\033[0m] Egg %d layed\n", egg->id);
 		return (1);
