@@ -5,7 +5,6 @@ extern int	g_log;
 
 void		egg_set_rotten_time(t_egg *egg, t_zappy *var)
 {
-	egg->laying_time = var->start_time;
 	egg->hatching_time = time_generate(1260, var->start_time, var);
 }
 
@@ -54,10 +53,9 @@ void		check_eggs(t_zappy *var)
 t_egg		*egg_add_wrapper(t_zappy *var, t_player *p)
 {
 	t_egg		*new_egg;
-	t_tstmp		time[2];
+	long long	time;
 
-	time[0] = var->start_time;
-	time[1] = time_generate(600, time[0], var);
+	time = time_generate(600, var->start_time, var);
 	new_egg = egg_create(p, var, time);
 	if (!egg_add(new_egg, var))
 	{

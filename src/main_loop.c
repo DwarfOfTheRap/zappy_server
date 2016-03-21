@@ -64,10 +64,13 @@ void	post_select(t_zappy *var, t_server *serv)
 
 void	main_loop(t_zappy *var, t_server *serv)
 {
+	t_tstmp		loop_time;
+
 	while (g_continue)
 	{
 		signal(SIGINT, int_handler);
-		gettimeofday(&var->start_time, NULL);
+		gettimeofday(&loop_time, NULL);
+		var->start_time = time_long(loop_time);
 		check_eggs(var);
 		check_players_life(var);
 		pre_select(var, serv);

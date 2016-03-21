@@ -64,7 +64,7 @@ int			action_add(t_action *action, t_zappy *var)
 }
 
 t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
-				t_aargs*), t_player *player, t_tstmp *time)
+				t_aargs*), t_player *player, long long time)
 {
 	t_action	*new;
 
@@ -74,15 +74,14 @@ t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
 	memcpy(&new->arg, arg, sizeof(t_aargs));
 	new->run = f;
 	new->player = player;
-	new->creation_t = time[0];
-	new->trigger_t = time[1];
+	new->trigger_t = time;
 	return (new);
 }
 
 void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 								int act)
 {
-	t_tstmp		time[2];
+	long long	time[2];
 	t_action	*new_action;
 	t_action	*last_action;
 
@@ -92,7 +91,7 @@ void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 	else
 		time[0] = last_action->trigger_t;
 	time[1] = time_generate(g_action[act].rel_time, time[0], var);
-	new_action = action_create(args, g_action[act].f, p, time);
+	new_action = action_create(args, g_action[act].f, p, time[1]);
 	if (!action_add(new_action, var))
 		action_free(new_action);
 	else

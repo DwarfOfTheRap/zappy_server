@@ -1,17 +1,9 @@
 #include <sys/time.h>
 #include "serveur.h"
 
-int				time_compare(t_tstmp time1, t_tstmp time2)
+int				time_compare(long long time1, long long time2)
 {
-	if (time1.tv_sec < time2.tv_sec)
-		return (1);
-	else if (time1.tv_sec > time2.tv_sec)
-		return (0);
-	else if (time1.tv_usec < time2.tv_usec)
-		return (1);
-	else if (time1.tv_usec > time2.tv_usec)
-		return (0);
-	return (1);
+	return (time1 <= time2);
 }
 
 t_tstmp			time_long_create(long long ms)
@@ -28,14 +20,14 @@ long long		time_long(t_tstmp time)
 	return (time.tv_sec * 1000000 + time.tv_usec);
 }
 
-t_tstmp			time_generate(int ref, t_tstmp start, t_zappy *var)
+long long		time_generate(int ref, long long start, t_zappy *var)
 {
 	long long	real;
 	long long	new;
 
 	real = ref * 1000000 / var->tick;
-	new = time_long(start) + real;
-	return (time_long_create(new));
+	new = start + real;
+	return (new);
 }
 
 void			time_add(t_tstmp *time1, t_tstmp *time2)

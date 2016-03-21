@@ -14,7 +14,7 @@
 # define MIN_MAP	10
 # define MAX_MAP	50
 # define MIN_TICK	1
-# define MAX_TICK	500
+# define MAX_TICK	300
 # define FOOD_RATIO	100
 # define RES_RATIO	100
 # define TEAM_LEN	32
@@ -95,7 +95,7 @@ void		action_player_broadcast(t_zappy *var, t_player *p, t_aargs *args);
 void		process_actions(t_zappy *var);
 int			action_add(t_action *action, t_zappy *var);
 t_action	*action_create(t_aargs *arg, void (*f)(t_zappy*, t_player*,
-				t_aargs*), t_player *player, t_tstmp *time);
+				t_aargs*), t_player *player, long long time);
 void		action_add_wrapper(t_zappy *var, t_player *p, t_aargs *args,
 				int act);
 
@@ -232,7 +232,7 @@ t_egg		*egg_add_wrapper(t_zappy *var, t_player *p);
 t_egg		*get_first_egg(t_lst_head *list);
 t_egg		*get_last_egg(t_lst_head *list);
 int			egg_add(t_egg *egg, t_zappy *var);
-t_egg		*egg_create(t_player *p, t_zappy *var, t_tstmp *time);
+t_egg		*egg_create(t_player *p, t_zappy *var, long long time);
 
 /*
 ** src/end_of_game.c
@@ -421,7 +421,7 @@ void		zappy_update_tick(int tick, t_zappy *var);
 /*
 ** src/time_compute.c
 */
-t_tstmp		compute_new_time(t_tstmp trigger, int old_tick, t_zappy *var);
+long long	compute_new_time(long long trigger, int old_tick, t_zappy *var);
 void		compute_action_new_time(t_action *action, int old_tick,
 				t_zappy *var);
 void		compute_egg_new_time(t_egg *egg, int old_tick, t_zappy *var);
@@ -430,9 +430,9 @@ void		compute_death_new_time(t_player *p, int old_tick, t_zappy *var);
 /*
 ** src/tstmp_calcs.c
 */
-int			time_compare(t_tstmp time1, t_tstmp time2);
+int			time_compare(long long time1, long long time2);
 t_tstmp		time_long_create(long long ms);
-t_tstmp		time_generate(int ref, t_tstmp start, t_zappy *var);
+long long	time_generate(int ref, long long start, t_zappy *var);
 long long	time_long(t_tstmp time);
 void		time_add(t_tstmp *time1, t_tstmp *time2);
 

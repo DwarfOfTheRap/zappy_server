@@ -38,7 +38,7 @@ void	command_mct(t_zappy *var, t_player *p, char *arg)
 {
 	t_aargs		t;
 	t_action	*new;
-	t_tstmp		time[2];
+	long long	time;
 
 	(void)p;
 	(void)arg;
@@ -46,11 +46,11 @@ void	command_mct(t_zappy *var, t_player *p, char *arg)
 	message_gfx_mct(var, &t.nb);
 	if (t.nb != -1)
 	{
-		time[0] = var->start_time;
-		time[1] = var->start_time;
-		time[1].tv_usec++;
+		time = var->start_time;
+		time++;
 		new = action_create(&t, &action_gfx_mct, NULL, time);
-		action_add(new, var);
+		if (!action_add(new, var))
+			action_free(new);
 	}
 	if (g_log & LOG_C)
 		printf("[\033[0;32mCOMMAND\033[0m] mct\n");

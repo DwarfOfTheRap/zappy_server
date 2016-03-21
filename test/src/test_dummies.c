@@ -6,6 +6,7 @@
 void	dummy_t_zappy_without_board(t_zappy *var)
 {
 	int i = 0;
+	t_tstmp	loop_time;
 
 	bzero(var, sizeof(t_zappy));
 	bzero(&var->actions, sizeof(t_lst_head));
@@ -15,7 +16,8 @@ void	dummy_t_zappy_without_board(t_zappy *var)
 	var->team_size = 3;
 	var->tick = 4;
 	var->fd_max = &i;
-	gettimeofday(&var->start_time, NULL);
+	gettimeofday(&loop_time, NULL);
+	var->start_time = time_long(loop_time);
 	var->nb_team = 3;
 	var->teams = (t_team *)malloc(sizeof(t_team) * 3);
 	bzero(var->teams, sizeof(t_team) * 3);
