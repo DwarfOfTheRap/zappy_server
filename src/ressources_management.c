@@ -59,6 +59,7 @@ void	dispatch_incantation_ressources(t_zappy *var, t_player *p,
 		}
 		++i;
 	}
+	message_gfx_bct(var, p->coord);
 }
 
 void	drop_ressource_on_death(t_zappy *var, t_player *p)

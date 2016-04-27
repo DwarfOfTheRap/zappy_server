@@ -48,9 +48,9 @@ int				egg_add(t_egg *egg, t_zappy *var)
 					egg->hatching_time))
 			lst_pushback(&var->eggs, new);
 		else
-			lst_insert_end(&var->eggs, new, cmp);
+			lst_insert(&var->eggs, new, cmp);
 		if (g_log & LOG_I)
-			printf("[\033[0;34mINFO\033[0m] Egg %d layed\n", egg->id);
+			printf("[\033[0;34mINFO\033[0m] Egg %d laid\n", egg->id);
 		return (1);
 	}
 	return (0);

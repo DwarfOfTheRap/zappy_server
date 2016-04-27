@@ -56,7 +56,7 @@ int			action_add(t_action *action, t_zappy *var)
 					action->trigger_t))
 			lst_pushback(&var->actions, new);
 		else
-			lst_insert_end(&var->actions, new, cmp);
+			lst_insert(&var->actions, new, cmp);
 		p->pending_actions++;
 		return (1);
 	}

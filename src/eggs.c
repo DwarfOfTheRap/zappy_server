@@ -21,9 +21,9 @@ static void	check_eggs_sub(t_zappy *var)
 		message_gfx_edi(var, egg);
 		egg->team->egg_slot_number--;
 		elem = lst_pop(list_hatched, 0);
-		lst_delete_elem(&elem, free);
 		if (g_log & LOG_I)
 			printf("[\033[0;34mINFO\033[0m] Egg %d rot\n", egg->id);
+		lst_delete_elem(&elem, free);
 	}
 }
 
