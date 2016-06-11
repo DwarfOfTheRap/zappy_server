@@ -39,7 +39,7 @@ void	lst_insert_end(t_lst_head *head, t_lst_elem *new,
 		return ;
 	if (!(cursor = head->last))
 		return (lst_pushback(head, new));
-	while (cursor && !f(new->content, cursor->content))
+	while (cursor && f(new->content, cursor->content))
 		cursor = cursor->prev;
 	if (!cursor)
 		return (lst_pushfront(head, new));

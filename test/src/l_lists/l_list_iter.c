@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <check.h>
 #include "linked_lists_test.h"
 
@@ -16,13 +17,13 @@ static t_lst_head	*push_sample_list()
 static int	find_bonjour(void *data, void *data2)
 {
 	(void)data;
-	return (!strcmp((char*)data2, "Bonjour"));
+	return (strcmp((char*)data2, "Bonjour"));
 }
 
 static int	find_aurevoir(void *data, void *data2)
 {
 	(void)data;
-	return (!strcmp((char*)data2, "Au revoir"));
+	return (strcmp((char*)data2, "Au revoir"));
 }
 
 static void	free_elem(void* data)
