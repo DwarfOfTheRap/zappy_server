@@ -63,6 +63,7 @@ START_TEST(action_player_incantation_test)
 		gstr[94] = '5';
 		gstr[96] = '6';
 		gstr[98] = '7';
+		gstr[110] = '2';
 	}
 	ck_assert_str_eq(gfx->snd.buf[gfx->snd.read], gstr);
 	clean_msg_queue(gfx);
