@@ -15,7 +15,8 @@ START_TEST(action_player_incantation_test)
 	t_aargs		a;
 	char		str[] = "niveau actuel : 2\n";
 	char		gstr[] = "pie 0 0 1\nplv 6 2\nplv 7 2\nplv 8 2\nplv 9 2\n"
-		"plv 10 2\nplv 11 2\nplv 12 2\nplv 13 2\nbct 0 0 0 1 0 0 0 0 0\n";
+		"plv 10 2\nplv 11 2\nplv 12 2\nplv 13 2\nbct 0 0 0 1 0 0 0 0 0\n"
+		"bct 0 0 1 1 3 4 5 6 7\n";
 
 	srand(time(NULL));
 	dummy_t_zappy_without_board(&var);
